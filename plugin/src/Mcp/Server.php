@@ -1,0 +1,81 @@
+<?php
+/**
+ * MCP Builder's MCP server.
+ *
+ * @package McpBuilder
+ */
+
+namespace McpBuilder\Mcp;
+
+use McpBuilder\Abilities\Registry;
+use McpBuilder\Settings;
+use WP_Error;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Creates the server at /wp-json/mcp-builder/mcp through the MCP Adapter.
+ */
+final class Server {
+
+	public const ID        = 'mcp-builder';
+	public const NAMESPACE = 'mcp-builder';
+	public const ROUTE     = 'mcp';
+
+	public function __construct(
+		private Settings $settings,
+		private Registry $abilities
+	) {}
+
+	public function register(): void {
+		add_action( 'mcp_adapter_init', array( $this, 'create' ) );
+	}
+
+	/**
+	 * @param \WP\MCP\Core\McpAdapter $adapter Adapter instance.
+	 */
+	public function create( $adapter ): void {
+		$result = $adapter->create_server(
+			self::ID,
+			self::NAMESPACE,
+			self::ROUTE,
+			'MCP Builder',
+			'Build and edit Bricks and Elementor pages. By Ashraf Chitambaa (https://ashrafchitambaa.com). Call mcp-builder-site-info first.',
+			MCP_BUILDER_VERSION,
+			array( \WP\MCP\Transport\HttpTransport::class ),
+			defined( 'WP_DEBUG' ) && WP_DEBUG
+				? \WP\MCP\Infrastructure\ErrorHandling\ErrorLogMcpErrorHandler::class
+				: \WP\MCP\Infrastructure\ErrorHandling\NullMcpErrorHandler::class,
+			null,
+			$this->abilities->names(),
+			array(),
+			array(),
+			array( $this, 'can_connect' )
+		);
+
+		if ( is_wp_error( $result ) && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug-only diagnostics.
+			error_log( 'MCP Builder: could not create MCP server: ' . $result->get_error_message() );
+		}
+	}
+
+	/**
+	 * Transport-level gate: any authenticated user who can edit posts, unless
+	 * the kill switch is on.
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function can_connect() {
+		if ( $this->settings->is_killed() ) {
+			return new WP_Error( 'mcp_builder_disabled', __( 'MCP Builder is switched off by a site administrator (kill switch).', 'mcp-builder' ), array( 'status' => 503 ) );
+		}
+		return current_user_can( 'edit_posts' );
+	}
+
+	/**
+	 * Public endpoint URL. Uses ?rest_route= when permalinks are plain.
+	 */
+	public static function url(): string {
+		return rest_url( self::NAMESPACE . '/' . self::ROUTE );
+	}
+}

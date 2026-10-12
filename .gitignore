@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+plugin/vendor/
+
+# Build output
+plugin/build/
+dist/
+
+# Tooling caches
+.phpunit.cache/
+plugin/.phpunit.cache/
+*.log
+.DS_Store

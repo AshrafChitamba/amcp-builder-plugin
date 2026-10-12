@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="MCP Builder">
+	<description>WordPress Coding Standards for MCP Builder.</description>
+
+	<file>mcp-builder.php</file>
+	<file>uninstall.php</file>
+	<file>src</file>
+
+	<arg name="extensions" value="php"/>
+	<arg value="sp"/>
+	<arg name="colors"/>
+
+	<config name="minimum_wp_version" value="7.1"/>
+	<config name="testVersion" value="8.1-"/>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress">
+		<!-- PSR-4 file names (ClassName.php) instead of class-name.php. -->
+		<exclude name="WordPress.Files.FileName"/>
+		<!-- Short one-line accessors are documented by their names and types. -->
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="mcp-builder"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="mcp_builder"/>
+				<element value="McpBuilder"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

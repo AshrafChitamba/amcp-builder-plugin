@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Builds an installable plugin ZIP in dist/: admin UI assets, production
+# Composer autoloader, no tests or dev tooling.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+VERSION="$(sed -n "s/^ \* Version: *//p" "$ROOT/plugin/mcp-builder.php" | tr -d '[:space:]')"
+STAGE="$(mktemp -d)"
+TARGET="$STAGE/mcp-builder"
+trap 'rm -rf "$STAGE"' EXIT
+
+echo "Building MCP Builder $VERSION"
+
+(cd "$ROOT/admin-ui" && npm ci --no-audit --no-fund && npm run build)
+
+mkdir -p "$TARGET"
+cp -R "$ROOT/plugin/src" "$ROOT/plugin/build" "$ROOT/plugin/languages" "$TARGET/"
+cp "$ROOT/plugin/mcp-builder.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/readme.txt" \
+	"$ROOT/plugin/LICENSE" "$ROOT/plugin/composer.json" "$TARGET/"
+
+(cd "$TARGET" && composer install --no-dev --optimize-autoloader --no-interaction --quiet && rm composer.json composer.lock)
+
+mkdir -p "$ROOT/dist"
+rm -f "$ROOT/dist/mcp-builder-$VERSION.zip"
+(cd "$STAGE" && zip -rq "$ROOT/dist/mcp-builder-$VERSION.zip" mcp-builder)
+
+echo "Created dist/mcp-builder-$VERSION.zip"
