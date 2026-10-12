@@ -2,7 +2,19 @@ import apiFetch from '@wordpress/api-fetch';
 import { __, sprintf } from '@wordpress/i18n';
 
 import { config } from './config';
-import type { AppPassword, NewAppPassword, Status, TestResult } from './types';
+import { addQueryArgs } from '@wordpress/url';
+
+import type {
+	AppPassword,
+	AuditFilters,
+	AuditPage,
+	ManagedAbility,
+	NewAppPassword,
+	Settings,
+	Snapshot,
+	Status,
+	TestResult,
+} from './types';
 
 const path = ( route: string ): string =>
 	`/${ config.restNamespace }${ route }`;
@@ -10,6 +22,39 @@ const appPasswordsPath = '/wp/v2/users/me/application-passwords';
 
 export const getStatus = (): Promise< Status > =>
 	apiFetch( { path: path( '/status' ) } );
+
+export const getSettings = (): Promise< Settings > =>
+	apiFetch( { path: path( '/settings' ) } );
+
+export const saveSettings = (
+	patch: Partial< Settings >
+): Promise< Settings > =>
+	apiFetch( { path: path( '/settings' ), method: 'POST', data: patch } );
+
+export const getAbilities = (): Promise< ManagedAbility[] > =>
+	apiFetch( { path: path( '/abilities' ) } );
+
+export const getAudit = (
+	filters: AuditFilters,
+	page: number,
+	perPage: number
+): Promise< AuditPage > =>
+	apiFetch( {
+		path: addQueryArgs( path( '/audit' ), {
+			...filters,
+			post_id: filters.post_id || undefined,
+			page,
+			per_page: perPage,
+		} ),
+	} );
+
+export const getSnapshots = (): Promise< Snapshot[] > =>
+	apiFetch( { path: path( '/snapshots' ) } );
+
+export const restoreSnapshot = (
+	id: number
+): Promise< { restored: number; undoSnapshotId: number } > =>
+	apiFetch( { path: path( `/snapshots/${ id }/restore` ), method: 'POST' } );
 
 export const testAuthHeader = (): Promise< TestResult > =>
 	apiFetch( { path: path( '/auth-header-test' ), method: 'POST' } );

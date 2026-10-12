@@ -1,6 +1,6 @@
 {
 	"name": "mcp-builder-admin-ui",
-	"version": "0.1.0",
+	"version": "0.3.0",
 	"private": true,
 	"description": "Settings screen for the MCP Builder WordPress plugin.",
 	"author": "Ashraf Chitambaa (https://ashrafchitambaa.com)",

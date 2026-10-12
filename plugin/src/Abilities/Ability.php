@@ -8,6 +8,7 @@
 namespace McpBuilder\Abilities;
 
 use McpBuilder\Environment;
+use McpBuilder\Safety\Snapshots;
 use McpBuilder\Settings;
 use WP_Error;
 
@@ -26,7 +27,8 @@ abstract class Ability {
 
 	public function __construct(
 		protected Settings $settings,
-		protected Environment $environment
+		protected Environment $environment,
+		protected Snapshots $snapshots
 	) {}
 
 	/** Short name, e.g. "list-pages". */
@@ -77,6 +79,27 @@ abstract class Ability {
 
 	protected function is_destructive(): bool {
 		return false;
+	}
+
+	/**
+	 * Whether this call only previews. Falls back to the site's dry-run default.
+	 *
+	 * @param array<string, mixed> $input Tool input.
+	 */
+	protected function is_dry_run( array $input ): bool {
+		return (bool) ( $input['dryRun'] ?? $this->settings->get( 'dry_run_default' ) );
+	}
+
+	/**
+	 * Schema for the shared dryRun flag.
+	 *
+	 * @return array<string, string>
+	 */
+	protected static function dry_run_property(): array {
+		return array(
+			'type'        => 'boolean',
+			'description' => 'Preview the change without saving. Defaults to the site setting (see site-info).',
+		);
 	}
 
 	/** Tool group shown in settings: general, bricks, elementor or custom-code. */

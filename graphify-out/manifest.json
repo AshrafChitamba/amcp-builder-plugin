@@ -1,0 +1,542 @@
+{
+  "admin-ui/.prettierrc.js": {
+    "mtime": 1791810788.1849587,
+    "seen": 1791815088.2579942,
+    "ast_hash": "a006acdbc3a27c1c5f444305c1f1d910",
+    "semantic_hash": "a006acdbc3a27c1c5f444305c1f1d910"
+  },
+  "admin-ui/package.json": {
+    "mtime": 1791814829.4264443,
+    "seen": 1791815088.2579992,
+    "ast_hash": "8616d762e331da9f1fcba718309eb383",
+    "semantic_hash": "8616d762e331da9f1fcba718309eb383"
+  },
+  "admin-ui/src/App.tsx": {
+    "mtime": 1791814566.1400018,
+    "seen": 1791815088.2580013,
+    "ast_hash": "da25b13c7f80d35599bfa1f85c71abb5",
+    "semantic_hash": "da25b13c7f80d35599bfa1f85c71abb5"
+  },
+  "admin-ui/src/api.ts": {
+    "mtime": 1791814566.0890014,
+    "seen": 1791815088.258003,
+    "ast_hash": "01f0d967942efde4a8571b6757e4f68f",
+    "semantic_hash": "01f0d967942efde4a8571b6757e4f68f"
+  },
+  "admin-ui/src/components/CodeBlock.tsx": {
+    "mtime": 1791811021.9964166,
+    "seen": 1791815088.2580042,
+    "ast_hash": "3c353b2e9a3a53e028b8a7c21ba83290",
+    "semantic_hash": "3c353b2e9a3a53e028b8a7c21ba83290"
+  },
+  "admin-ui/src/components/CopyButton.tsx": {
+    "mtime": 1791811022.031417,
+    "seen": 1791815088.2580056,
+    "ast_hash": "e597816c7f5cfb1dc729ae98277d9e89",
+    "semantic_hash": "e597816c7f5cfb1dc729ae98277d9e89"
+  },
+  "admin-ui/src/components/CopyField.tsx": {
+    "mtime": 1791810923.4443982,
+    "seen": 1791815088.2580068,
+    "ast_hash": "9fdfcd2147fedf9a6a15f27bdcefdf8e",
+    "semantic_hash": "9fdfcd2147fedf9a6a15f27bdcefdf8e"
+  },
+  "admin-ui/src/components/Section.tsx": {
+    "mtime": 1791810923.4753985,
+    "seen": 1791815088.2580078,
+    "ast_hash": "fdb7ba1a4f8882933a98486af946089d",
+    "semantic_hash": "fdb7ba1a4f8882933a98486af946089d"
+  },
+  "admin-ui/src/config.ts": {
+    "mtime": 1791810892.0540688,
+    "seen": 1791815088.2580092,
+    "ast_hash": "d210efc332979c6f764e1869849477fc",
+    "semantic_hash": "d210efc332979c6f764e1869849477fc"
+  },
+  "admin-ui/src/hooks/useSettings.ts": {
+    "mtime": 1791814566.2300024,
+    "seen": 1791815088.2580104,
+    "ast_hash": "f2cd5fa6e3bdac67d17278aa6f93660e",
+    "semantic_hash": "f2cd5fa6e3bdac67d17278aa6f93660e"
+  },
+  "admin-ui/src/index.tsx": {
+    "mtime": 1791810984.3840306,
+    "seen": 1791815088.2580113,
+    "ast_hash": "36302301b97dbb8dda9b8337a0f6effc",
+    "semantic_hash": "36302301b97dbb8dda9b8337a0f6effc"
+  },
+  "admin-ui/src/snippets.test.ts": {
+    "mtime": 1791811150.5421402,
+    "seen": 1791815088.2580128,
+    "ast_hash": "5c029ffbeae368ca07d1de1449544541",
+    "semantic_hash": "5c029ffbeae368ca07d1de1449544541"
+  },
+  "admin-ui/src/snippets.ts": {
+    "mtime": 1791811052.420393,
+    "seen": 1791815088.258014,
+    "ast_hash": "0ec1c340cf26d1b865f1556f236d5009",
+    "semantic_hash": "0ec1c340cf26d1b865f1556f236d5009"
+  },
+  "admin-ui/src/styles.d.ts": {
+    "mtime": 1791811003.5879714,
+    "seen": 1791815088.258015,
+    "ast_hash": "3063818ed73d08c73fe3594994a3e7c1",
+    "semantic_hash": "3063818ed73d08c73fe3594994a3e7c1"
+  },
+  "admin-ui/src/tabs/AboutTab.tsx": {
+    "mtime": 1791811022.229419,
+    "seen": 1791815088.2580163,
+    "ast_hash": "600819bcc72175a46f9d1712662afbfa",
+    "semantic_hash": "600819bcc72175a46f9d1712662afbfa"
+  },
+  "admin-ui/src/tabs/ConnectionTab.tsx": {
+    "mtime": 1791811022.3624203,
+    "seen": 1791815088.2580173,
+    "ast_hash": "ad89fb4c27b72e0462b403e045c6d8c0",
+    "semantic_hash": "ad89fb4c27b72e0462b403e045c6d8c0"
+  },
+  "admin-ui/src/tabs/SafetyTab.tsx": {
+    "mtime": 1791814566.466004,
+    "seen": 1791815088.2580187,
+    "ast_hash": "9942bc84dd6be709f535fbf3a05e2ecc",
+    "semantic_hash": "9942bc84dd6be709f535fbf3a05e2ecc"
+  },
+  "admin-ui/src/tabs/StatusTab.tsx": {
+    "mtime": 1791811022.4574213,
+    "seen": 1791815088.25802,
+    "ast_hash": "bdbe4ffbbd5ac954e7858e69624b9091",
+    "semantic_hash": "bdbe4ffbbd5ac954e7858e69624b9091"
+  },
+  "admin-ui/src/tabs/ToolsTab.tsx": {
+    "mtime": 1791814566.5440044,
+    "seen": 1791815088.2580209,
+    "ast_hash": "5e6d3d339ce5bdee3e5404f35c22341e",
+    "semantic_hash": "5e6d3d339ce5bdee3e5404f35c22341e"
+  },
+  "admin-ui/src/types.ts": {
+    "mtime": 1791814492.095503,
+    "seen": 1791815088.258022,
+    "ast_hash": "0b893507a35f06c5b08806938e0f80a1",
+    "semantic_hash": "0b893507a35f06c5b08806938e0f80a1"
+  },
+  "admin-ui/tsconfig.json": {
+    "mtime": 1791811150.5397675,
+    "seen": 1791815088.2580235,
+    "ast_hash": "a227813222799ee5b32acb3e805a61be",
+    "semantic_hash": "a227813222799ee5b32acb3e805a61be"
+  },
+  "plugin/composer.json": {
+    "mtime": 1791810385.4762313,
+    "seen": 1791815088.2580245,
+    "ast_hash": "6bfb8f3b8f7151831d198227b97bd7fb",
+    "semantic_hash": "6bfb8f3b8f7151831d198227b97bd7fb"
+  },
+  "plugin/mcp-builder.php": {
+    "mtime": 1791814829.4228654,
+    "seen": 1791815088.258026,
+    "ast_hash": "ca134c6da8c103cdbc2e47934ef2de73",
+    "semantic_hash": "ca134c6da8c103cdbc2e47934ef2de73"
+  },
+  "plugin/src/Abilities/Ability.php": {
+    "mtime": 1791814126.9698365,
+    "seen": 1791815088.2580273,
+    "ast_hash": "727040e2648192663476c368f8e89f85",
+    "semantic_hash": "727040e2648192663476c368f8e89f85"
+  },
+  "plugin/src/Abilities/Bricks/AddElements.php": {
+    "mtime": 1791814214.0051687,
+    "seen": 1791815088.2580283,
+    "ast_hash": "c2fcb6a827e4981475a9b28072b1037e",
+    "semantic_hash": "c2fcb6a827e4981475a9b28072b1037e"
+  },
+  "plugin/src/Abilities/Bricks/ApplyGlobalClass.php": {
+    "mtime": 1791814252.104541,
+    "seen": 1791815088.2580295,
+    "ast_hash": "8e913b2726c848c83bbd7ab48591c78b",
+    "semantic_hash": "8e913b2726c848c83bbd7ab48591c78b"
+  },
+  "plugin/src/Abilities/Bricks/BricksAbility.php": {
+    "mtime": 1791814141.0383973,
+    "seen": 1791815088.2580307,
+    "ast_hash": "ff15fff1b670f0fdadbe71b804d8575c",
+    "semantic_hash": "ff15fff1b670f0fdadbe71b804d8575c"
+  },
+  "plugin/src/Abilities/Bricks/BricksWriteAbility.php": {
+    "mtime": 1791814156.4235666,
+    "seen": 1791815088.2580318,
+    "ast_hash": "31dfd6a7255fa5fd8ad59aa770c92689",
+    "semantic_hash": "31dfd6a7255fa5fd8ad59aa770c92689"
+  },
+  "plugin/src/Abilities/Bricks/DuplicateElement.php": {
+    "mtime": 1791814214.0101688,
+    "seen": 1791815088.258033,
+    "ast_hash": "46cfa43e98846f028d972c6a1a448486",
+    "semantic_hash": "46cfa43e98846f028d972c6a1a448486"
+  },
+  "plugin/src/Abilities/Bricks/GetElementSchema.php": {
+    "mtime": 1791814181.1132429,
+    "seen": 1791815088.2580342,
+    "ast_hash": "cb6f7204764fc1ecde7ccf808e0c0bf9",
+    "semantic_hash": "cb6f7204764fc1ecde7ccf808e0c0bf9"
+  },
+  "plugin/src/Abilities/Bricks/GetPage.php": {
+    "mtime": 1791814181.1098309,
+    "seen": 1791815088.2580352,
+    "ast_hash": "3cb7d6c49664b225ee1acd22aee6779c",
+    "semantic_hash": "3cb7d6c49664b225ee1acd22aee6779c"
+  },
+  "plugin/src/Abilities/Bricks/ListElements.php": {
+    "mtime": 1791814181.1108308,
+    "seen": 1791815088.2580364,
+    "ast_hash": "d711a02fcfc9cd765391eb764b33c7cc",
+    "semantic_hash": "d711a02fcfc9cd765391eb764b33c7cc"
+  },
+  "plugin/src/Abilities/Bricks/ListGlobalClasses.php": {
+    "mtime": 1791814252.0975409,
+    "seen": 1791815088.2580376,
+    "ast_hash": "0f6a8a5e34caa382aec18630ce4c40f4",
+    "semantic_hash": "0f6a8a5e34caa382aec18630ce4c40f4"
+  },
+  "plugin/src/Abilities/Bricks/MoveElement.php": {
+    "mtime": 1791814214.0091686,
+    "seen": 1791815088.2580388,
+    "ast_hash": "17f9c674866d314b27b959bb1d99fdc8",
+    "semantic_hash": "17f9c674866d314b27b959bb1d99fdc8"
+  },
+  "plugin/src/Abilities/Bricks/RemoveElement.php": {
+    "mtime": 1791814214.0121686,
+    "seen": 1791815088.2580397,
+    "ast_hash": "af615ff4d8730ad361b58152e5cf3aa3",
+    "semantic_hash": "af615ff4d8730ad361b58152e5cf3aa3"
+  },
+  "plugin/src/Abilities/Bricks/UpdateElement.php": {
+    "mtime": 1791814214.0071688,
+    "seen": 1791815088.2580411,
+    "ast_hash": "3e8aaf16ca7be2126b8e1e96be2a03f3",
+    "semantic_hash": "3e8aaf16ca7be2126b8e1e96be2a03f3"
+  },
+  "plugin/src/Abilities/Bricks/UpsertGlobalClass.php": {
+    "mtime": 1791814801.4027164,
+    "seen": 1791815088.258042,
+    "ast_hash": "325ba793a5c42591a7c2e45db988134a",
+    "semantic_hash": "325ba793a5c42591a7c2e45db988134a"
+  },
+  "plugin/src/Abilities/General/CreatePage.php": {
+    "mtime": 1791814126.970728,
+    "seen": 1791815088.2580433,
+    "ast_hash": "c6f1afd5e0f0a6225293c9c50a0ce825",
+    "semantic_hash": "c6f1afd5e0f0a6225293c9c50a0ce825"
+  },
+  "plugin/src/Abilities/General/ListMedia.php": {
+    "mtime": 1791814277.9347827,
+    "seen": 1791815088.2580445,
+    "ast_hash": "1498af4a1c7e883550e39534ddc8900a",
+    "semantic_hash": "1498af4a1c7e883550e39534ddc8900a"
+  },
+  "plugin/src/Abilities/General/ListPages.php": {
+    "mtime": 1791810418.5832705,
+    "seen": 1791815088.2580457,
+    "ast_hash": "7199db4940e8e86c9631e4695ba0c5aa",
+    "semantic_hash": "7199db4940e8e86c9631e4695ba0c5aa"
+  },
+  "plugin/src/Abilities/General/ListSnapshots.php": {
+    "mtime": 1791814277.9367826,
+    "seen": 1791815088.2580466,
+    "ast_hash": "e52263372f8f7de39083cd505a30350b",
+    "semantic_hash": "e52263372f8f7de39083cd505a30350b"
+  },
+  "plugin/src/Abilities/General/RestoreSnapshot.php": {
+    "mtime": 1791814777.504176,
+    "seen": 1791815088.258048,
+    "ast_hash": "613734bfd2d1582ba426d5ee94ae670a",
+    "semantic_hash": "613734bfd2d1582ba426d5ee94ae670a"
+  },
+  "plugin/src/Abilities/General/SiteInfo.php": {
+    "mtime": 1791810418.5830944,
+    "seen": 1791815088.258049,
+    "ast_hash": "af6de37fce95eae5470fef2cfa1996ec",
+    "semantic_hash": "af6de37fce95eae5470fef2cfa1996ec"
+  },
+  "plugin/src/Abilities/Registry.php": {
+    "mtime": 1791814300.2944543,
+    "seen": 1791815088.2580514,
+    "ast_hash": "0b643e6bee545e1d919658131297a4e2",
+    "semantic_hash": "0b643e6bee545e1d919658131297a4e2"
+  },
+  "plugin/src/Admin/AdminPage.php": {
+    "mtime": 1791811181.2649016,
+    "seen": 1791815088.2580523,
+    "ast_hash": "37adf86bd9664ec62b8b5fe97933b8e8",
+    "semantic_hash": "37adf86bd9664ec62b8b5fe97933b8e8"
+  },
+  "plugin/src/Admin/Notices.php": {
+    "mtime": 1791810361.50192,
+    "seen": 1791815088.2580535,
+    "ast_hash": "c4925c9f176e3ac93e89c4f173d4e010",
+    "semantic_hash": "c4925c9f176e3ac93e89c4f173d4e010"
+  },
+  "plugin/src/Bricks/BricksCatalog.php": {
+    "mtime": 1791814368.9258196,
+    "seen": 1791815088.25806,
+    "ast_hash": "fad82f913eadf574ce32855590dca4d7",
+    "semantic_hash": "fad82f913eadf574ce32855590dca4d7"
+  },
+  "plugin/src/Bricks/Catalog.php": {
+    "mtime": 1791813973.607279,
+    "seen": 1791815088.2580612,
+    "ast_hash": "d629efe729395693d5894e05596d2336",
+    "semantic_hash": "d629efe729395693d5894e05596d2336"
+  },
+  "plugin/src/Bricks/Diff.php": {
+    "mtime": 1791814141.0381358,
+    "seen": 1791815088.2580624,
+    "ast_hash": "fcca1001246146837ee4002a4d961fa5",
+    "semantic_hash": "fcca1001246146837ee4002a4d961fa5"
+  },
+  "plugin/src/Bricks/GlobalClasses.php": {
+    "mtime": 1791814252.095541,
+    "seen": 1791815088.2580636,
+    "ast_hash": "9046a09f1556f06b17a9708bf530814b",
+    "semantic_hash": "9046a09f1556f06b17a9708bf530814b"
+  },
+  "plugin/src/Bricks/Ids.php": {
+    "mtime": 1791813973.603279,
+    "seen": 1791815088.2580647,
+    "ast_hash": "ff49908f910222669e8971bedcedcba5",
+    "semantic_hash": "ff49908f910222669e8971bedcedcba5"
+  },
+  "plugin/src/Bricks/Store.php": {
+    "mtime": 1791814343.6276734,
+    "seen": 1791815088.258066,
+    "ast_hash": "28ec03b2ea9c2b09b27e9d33e97010d6",
+    "semantic_hash": "28ec03b2ea9c2b09b27e9d33e97010d6"
+  },
+  "plugin/src/Bricks/Tree.php": {
+    "mtime": 1791814054.1491992,
+    "seen": 1791815088.258067,
+    "ast_hash": "8a7db07518b70d5599b3b02cc81a16f5",
+    "semantic_hash": "8a7db07518b70d5599b3b02cc81a16f5"
+  },
+  "plugin/src/Bricks/TreeError.php": {
+    "mtime": 1791813973.605279,
+    "seen": 1791815088.2580683,
+    "ast_hash": "eb2a0b35f2d29d25be3204a315ab65e6",
+    "semantic_hash": "eb2a0b35f2d29d25be3204a315ab65e6"
+  },
+  "plugin/src/Bricks/Validator.php": {
+    "mtime": 1791814059.1980767,
+    "seen": 1791815088.2580693,
+    "ast_hash": "4b48f7f2deb81ad9a928bb208b82df19",
+    "semantic_hash": "4b48f7f2deb81ad9a928bb208b82df19"
+  },
+  "plugin/src/Environment.php": {
+    "mtime": 1791810477.8853934,
+    "seen": 1791815088.2580705,
+    "ast_hash": "70795a18972534b58fdbed8c51aa9089",
+    "semantic_hash": "70795a18972534b58fdbed8c51aa9089"
+  },
+  "plugin/src/Installer.php": {
+    "mtime": 1791814309.1903112,
+    "seen": 1791815088.2580717,
+    "ast_hash": "aed1ce1ecf2a076568f97782eaf2b1e2",
+    "semantic_hash": "aed1ce1ecf2a076568f97782eaf2b1e2"
+  },
+  "plugin/src/Mcp/Server.php": {
+    "mtime": 1791810326.0027194,
+    "seen": 1791815088.2580729,
+    "ast_hash": "6c489b641ca6d5d21a3134666ed63e52",
+    "semantic_hash": "6c489b641ca6d5d21a3134666ed63e52"
+  },
+  "plugin/src/Plugin.php": {
+    "mtime": 1791814331.1132112,
+    "seen": 1791815088.2580738,
+    "ast_hash": "044cbfee96557364ccfd9d885b183d12",
+    "semantic_hash": "044cbfee96557364ccfd9d885b183d12"
+  },
+  "plugin/src/Requirements.php": {
+    "mtime": 1791810418.5825243,
+    "seen": 1791815088.2580752,
+    "ast_hash": "63cb8a580f85605e29dbc8ebec88a276",
+    "semantic_hash": "63cb8a580f85605e29dbc8ebec88a276"
+  },
+  "plugin/src/Rest/AdminController.php": {
+    "mtime": 1791814338.457187,
+    "seen": 1791815088.2580762,
+    "ast_hash": "d2005eb263ac4a2824db783c291e939a",
+    "semantic_hash": "d2005eb263ac4a2824db783c291e939a"
+  },
+  "plugin/src/Safety/AuditLog.php": {
+    "mtime": 1791814385.168702,
+    "seen": 1791815088.2580771,
+    "ast_hash": "ad89a894908c740e2d1d05325ab7cf54",
+    "semantic_hash": "ad89a894908c740e2d1d05325ab7cf54"
+  },
+  "plugin/src/Safety/Governance.php": {
+    "mtime": 1791814331.0779781,
+    "seen": 1791815088.2580786,
+    "ast_hash": "e726970cfe800bc24683a3ef203e33c6",
+    "semantic_hash": "e726970cfe800bc24683a3ef203e33c6"
+  },
+  "plugin/src/Safety/RateLimiter.php": {
+    "mtime": 1791813899.2941482,
+    "seen": 1791815088.2580795,
+    "ast_hash": "b5a7ddddc8de2169b7c332074c001bf3",
+    "semantic_hash": "b5a7ddddc8de2169b7c332074c001bf3"
+  },
+  "plugin/src/Safety/Schema.php": {
+    "mtime": 1791814309.1901004,
+    "seen": 1791815088.2580807,
+    "ast_hash": "81a6c8f6b54da8b15ffb83507e70fd0e",
+    "semantic_hash": "81a6c8f6b54da8b15ffb83507e70fd0e"
+  },
+  "plugin/src/Safety/Snapshots.php": {
+    "mtime": 1791813860.337854,
+    "seen": 1791815088.2580817,
+    "ast_hash": "a60438061153a45e5ddd7b14ec9d888d",
+    "semantic_hash": "a60438061153a45e5ddd7b14ec9d888d"
+  },
+  "plugin/src/Safety/Targets.php": {
+    "mtime": 1791813899.2951481,
+    "seen": 1791815088.258083,
+    "ast_hash": "400230556c649c021e5a3f5911e5d0b5",
+    "semantic_hash": "400230556c649c021e5a3f5911e5d0b5"
+  },
+  "plugin/src/Settings.php": {
+    "mtime": 1791810096.9151382,
+    "seen": 1791815088.258084,
+    "ast_hash": "3867acf2604eabf5c1c334b20152d555",
+    "semantic_hash": "3867acf2604eabf5c1c334b20152d555"
+  },
+  "plugin/src/Support/Errors.php": {
+    "mtime": 1791810190.1745534,
+    "seen": 1791815088.2580855,
+    "ast_hash": "d82d6bf934481120a8de14c5cff65fbc",
+    "semantic_hash": "d82d6bf934481120a8de14c5cff65fbc"
+  },
+  "plugin/src/Support/PageBuilder.php": {
+    "mtime": 1791810211.3227394,
+    "seen": 1791815088.2580864,
+    "ast_hash": "4e9b09d633d2f70f89f0bb96e01a1fdd",
+    "semantic_hash": "4e9b09d633d2f70f89f0bb96e01a1fdd"
+  },
+  "plugin/src/Support/Posts.php": {
+    "mtime": 1791812018.8523564,
+    "seen": 1791815088.2580874,
+    "ast_hash": "b3771e9a500f3b3a36c97a75b0680ff0",
+    "semantic_hash": "b3771e9a500f3b3a36c97a75b0680ff0"
+  },
+  "plugin/src/Support/Untrusted.php": {
+    "mtime": 1791814126.971239,
+    "seen": 1791815088.2580886,
+    "ast_hash": "69124a0afc29a66fdef04f9e196b2fc3",
+    "semantic_hash": "69124a0afc29a66fdef04f9e196b2fc3"
+  },
+  "plugin/tests/ArrayCatalog.php": {
+    "mtime": 1791814465.461313,
+    "seen": 1791815088.2580898,
+    "ast_hash": "13828bc87ad47517ec69e4101835368c",
+    "semantic_hash": "13828bc87ad47517ec69e4101835368c"
+  },
+  "plugin/tests/TestCase.php": {
+    "mtime": 1791810438.9070895,
+    "seen": 1791815088.2580907,
+    "ast_hash": "a377364dafff54efea207f7e9317d929",
+    "semantic_hash": "a377364dafff54efea207f7e9317d929"
+  },
+  "plugin/tests/Unit/AbilitiesTest.php": {
+    "mtime": 1791814404.3178532,
+    "seen": 1791815088.258092,
+    "ast_hash": "b53b09474584a5b258b8a7b83e89b3f4",
+    "semantic_hash": "b53b09474584a5b258b8a7b83e89b3f4"
+  },
+  "plugin/tests/Unit/RequirementsTest.php": {
+    "mtime": 1791810456.868134,
+    "seen": 1791815088.258093,
+    "ast_hash": "cdfacc3f137814b20846073772543aea",
+    "semantic_hash": "cdfacc3f137814b20846073772543aea"
+  },
+  "plugin/tests/Unit/SafetyTest.php": {
+    "mtime": 1791814472.8449469,
+    "seen": 1791815088.2580943,
+    "ast_hash": "462e922b2f437bd2670328e2f49933b0",
+    "semantic_hash": "462e922b2f437bd2670328e2f49933b0"
+  },
+  "plugin/tests/Unit/SettingsTest.php": {
+    "mtime": 1791810456.865134,
+    "seen": 1791815088.2580955,
+    "ast_hash": "afccb7d98a081252fd4c5f440e126506",
+    "semantic_hash": "afccb7d98a081252fd4c5f440e126506"
+  },
+  "plugin/tests/Unit/SupportTest.php": {
+    "mtime": 1791810456.866134,
+    "seen": 1791815088.258097,
+    "ast_hash": "72fda3c92b545d33f2f8e3ff2ecbe307",
+    "semantic_hash": "72fda3c92b545d33f2f8e3ff2ecbe307"
+  },
+  "plugin/tests/Unit/TreeTest.php": {
+    "mtime": 1791814465.4633129,
+    "seen": 1791815088.2580981,
+    "ast_hash": "aa19db627785c8471a4666220af8271a",
+    "semantic_hash": "aa19db627785c8471a4666220af8271a"
+  },
+  "plugin/tests/Unit/ValidatorTest.php": {
+    "mtime": 1791814465.465313,
+    "seen": 1791815088.2580993,
+    "ast_hash": "34f37ea4f350f0d4808d77ba80b5351b",
+    "semantic_hash": "34f37ea4f350f0d4808d77ba80b5351b"
+  },
+  "plugin/tests/bootstrap.php": {
+    "mtime": 1791810438.9039102,
+    "seen": 1791815088.2581005,
+    "ast_hash": "63edd506391b50054f57abccea837d13",
+    "semantic_hash": "63edd506391b50054f57abccea837d13"
+  },
+  "plugin/tests/stubs.php": {
+    "mtime": 1791814465.459313,
+    "seen": 1791815088.2581015,
+    "ast_hash": "a7ae18700691d1083c2981154e45e9b1",
+    "semantic_hash": "a7ae18700691d1083c2981154e45e9b1"
+  },
+  "plugin/uninstall.php": {
+    "mtime": 1791814300.3479855,
+    "seen": 1791815088.2581024,
+    "ast_hash": "9fcd7171ff59fe08d470e464d709d4aa",
+    "semantic_hash": "9fcd7171ff59fe08d470e464d709d4aa"
+  },
+  "scripts/build-zip.sh": {
+    "mtime": 1791811192.8451355,
+    "seen": 1791815088.2581038,
+    "ast_hash": "078218d6cd254a6b20538c68e6ecb86f",
+    "semantic_hash": "078218d6cd254a6b20538c68e6ecb86f"
+  },
+  "CHANGELOG.md": {
+    "mtime": 1791814829.4563746,
+    "seen": 1791815088.2581048,
+    "ast_hash": "ca5e7b7db84f0218d24ce8bc1106189b",
+    "semantic_hash": "ca5e7b7db84f0218d24ce8bc1106189b"
+  },
+  "README.md": {
+    "mtime": 1791814829.4569426,
+    "seen": 1791815088.2581074,
+    "ast_hash": "6ad9bdef2eec1dc71732e668920f67d2",
+    "semantic_hash": "6ad9bdef2eec1dc71732e668920f67d2"
+  },
+  "docs/PLAN.md": {
+    "mtime": 1791814829.4576979,
+    "seen": 1791815088.2581084,
+    "ast_hash": "0b545abadaa248a9092d39662b02909e",
+    "semantic_hash": "0b545abadaa248a9092d39662b02909e"
+  },
+  "docs/VERIFY.md": {
+    "mtime": 1791814854.190619,
+    "seen": 1791815088.2581098,
+    "ast_hash": "3dbe2a3154767de31d29a4cf5f8f69ae",
+    "semantic_hash": "3dbe2a3154767de31d29a4cf5f8f69ae"
+  },
+  "plugin/readme.txt": {
+    "mtime": 1791814829.4556835,
+    "seen": 1791815088.258111,
+    "ast_hash": "8690104b7a5ca4504c260a2afc900067",
+    "semantic_hash": "8690104b7a5ca4504c260a2afc900067"
+  }
+}

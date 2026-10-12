@@ -179,6 +179,9 @@ Bricks is the office's main builder, so it is built first (Phase 3).
 
 ## 8. Roadmap (pause for your OK after each phase)
 
+Status (2026-10-12): Phases 1–3 done and tested live on LocalWP (Bricks 2.3.1, WordPress 7.1.3, MCP Adapter 0.7.0). Phase 4 (Elementor classic) built and tested live on LocalWP (Elementor 4.3.4 + Pro 4.3.1): a 141-element landing page was built through the tools. `elementor-get-globals` is read-only for now; `elementor-update-page-settings` was added for page templates.
+
+
 | Phase | Delivers |
 |---|---|
 | **1. Foundation** | Plugin skeleton, composer/PSR-4, dependency + version checks, settings store, our MCP server, `site-info`, `list-pages`, `create-page`, admin UI shell with Connection/Status/About, PHPUnit + Brain Monkey, PHPCS, Jest for the UI. |

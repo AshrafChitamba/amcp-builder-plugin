@@ -8,6 +8,7 @@
 namespace McpBuilder\Abilities;
 
 use McpBuilder\Environment;
+use McpBuilder\Safety\Snapshots;
 use McpBuilder\Settings;
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +25,8 @@ final class Registry {
 
 	public function __construct(
 		private Settings $settings,
-		private Environment $environment
+		private Environment $environment,
+		private Snapshots $snapshots
 	) {}
 
 	public function register(): void {
@@ -55,11 +57,35 @@ final class Registry {
 	 */
 	public function all(): array {
 		return $this->abilities ??= array_map(
-			fn( string $class_name ): Ability => new $class_name( $this->settings, $this->environment ),
+			fn( string $class_name ): Ability => new $class_name( $this->settings, $this->environment, $this->snapshots ),
 			array(
 				General\SiteInfo::class,
 				General\ListPages::class,
 				General\CreatePage::class,
+				General\ListMedia::class,
+				General\ListSnapshots::class,
+				General\RestoreSnapshot::class,
+				Bricks\GetPage::class,
+				Bricks\ListElements::class,
+				Bricks\GetElementSchema::class,
+				Bricks\AddElements::class,
+				Bricks\UpdateElement::class,
+				Bricks\MoveElement::class,
+				Bricks\DuplicateElement::class,
+				Bricks\RemoveElement::class,
+				Bricks\ListGlobalClasses::class,
+				Bricks\UpsertGlobalClass::class,
+				Bricks\ApplyGlobalClass::class,
+				Elementor\GetPage::class,
+				Elementor\ListWidgets::class,
+				Elementor\GetWidgetSchema::class,
+				Elementor\GetGlobals::class,
+				Elementor\AddElements::class,
+				Elementor\UpdateElement::class,
+				Elementor\MoveElement::class,
+				Elementor\DuplicateElement::class,
+				Elementor\RemoveElement::class,
+				Elementor\UpdatePageSettings::class,
 			)
 		);
 	}
@@ -71,6 +97,18 @@ final class Registry {
 	 */
 	public function available(): array {
 		return array_values( array_filter( $this->all(), static fn( Ability $ability ): bool => $ability->is_available() ) );
+	}
+
+	/**
+	 * One of the plugin's abilities by full name, available or not.
+	 */
+	public function find( string $name ): ?Ability {
+		foreach ( $this->all() as $ability ) {
+			if ( $ability->name() === $name ) {
+				return $ability;
+			}
+		}
+		return null;
 	}
 
 	/**

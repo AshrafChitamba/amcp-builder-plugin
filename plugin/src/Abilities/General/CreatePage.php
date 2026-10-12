@@ -56,10 +56,7 @@ final class CreatePage extends Ability {
 				'enum'    => array( 'draft', 'pending', 'private', 'publish' ),
 				'default' => 'draft',
 			),
-			'dryRun'   => array(
-				'type'        => 'boolean',
-				'description' => 'Preview without saving. Defaults to the site setting.',
-			),
+			'dryRun'   => self::dry_run_property(),
 		);
 	}
 
@@ -97,7 +94,7 @@ final class CreatePage extends Ability {
 			'post_status' => $input['status'],
 		);
 
-		if ( $input['dryRun'] ?? $this->settings->get( 'dry_run_default' ) ) {
+		if ( $this->is_dry_run( $input ) ) {
 			return array(
 				'dryRun'      => true,
 				'wouldCreate' => $postarr + array( 'builder' => $input['builder'] ),

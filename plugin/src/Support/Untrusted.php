@@ -29,4 +29,24 @@ final class Untrusted {
 		$text = trim( (string) preg_replace( '/\s+/u', ' ', $text ) );
 		return mb_strlen( $text ) > $limit ? mb_substr( $text, 0, $limit - 1 ) . '…' : $text;
 	}
+
+	/**
+	 * Shortens every string inside a nested structure, keeping its shape.
+	 *
+	 * @param mixed $value Structure read from the site.
+	 * @param int   $limit Maximum characters per string.
+	 * @return mixed
+	 */
+	public static function truncate_deep( $value, int $limit = 2000 ) {
+		if ( is_string( $value ) ) {
+			return mb_strlen( $value ) > $limit ? mb_substr( $value, 0, $limit - 1 ) . '…' : $value;
+		}
+		if ( is_array( $value ) ) {
+			return array_map( static fn( $item ) => self::truncate_deep( $item, $limit ), $value );
+		}
+		if ( $value instanceof \stdClass ) {
+			return (object) self::truncate_deep( get_object_vars( $value ), $limit );
+		}
+		return $value;
+	}
 }

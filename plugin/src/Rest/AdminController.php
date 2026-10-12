@@ -12,6 +12,9 @@ use McpBuilder\Abilities\Registry;
 use McpBuilder\Environment;
 use McpBuilder\Mcp\Server;
 use McpBuilder\Requirements;
+use McpBuilder\Safety\AuditLog;
+use McpBuilder\Safety\Governance;
+use McpBuilder\Safety\Snapshots;
 use McpBuilder\Settings;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -30,7 +33,9 @@ final class AdminController {
 		private Settings $settings,
 		private Environment $environment,
 		private Requirements $requirements,
-		private Registry $abilities
+		private Registry $abilities,
+		private AuditLog $audit,
+		private Snapshots $snapshots
 	) {}
 
 	public function register(): void {
@@ -61,6 +66,78 @@ final class AdminController {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'status' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/abilities',
+			array(
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'abilities' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/audit',
+			array(
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'audit' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+				'args'                => array(
+					'page'     => array(
+						'type'    => 'integer',
+						'minimum' => 1,
+						'default' => 1,
+					),
+					'per_page' => array(
+						'type'    => 'integer',
+						'minimum' => 1,
+						'maximum' => 100,
+						'default' => 25,
+					),
+					'ability'  => array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'outcome'  => array(
+						'type' => 'string',
+						'enum' => array_merge( array( '' ), AuditLog::OUTCOMES ),
+					),
+					'post_id'  => array(
+						'type'    => 'integer',
+						'minimum' => 0,
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/snapshots',
+			array(
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'list_snapshots' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+				'args'                => array(
+					'post_id' => array(
+						'type'    => 'integer',
+						'minimum' => 0,
+						'default' => 0,
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/snapshots/(?P<id>\\d+)/restore',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'restore_snapshot' ),
 				'permission_callback' => array( $this, 'is_admin' ),
 			)
 		);
@@ -104,6 +181,77 @@ final class AdminController {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Every ability MCP Builder governs: its own and official builder ones.
+	 */
+	public function abilities(): WP_REST_Response {
+		$disabled = $this->settings->get( 'disabled_tools' );
+		$items    = array();
+
+		foreach ( function_exists( 'wp_get_abilities' ) ? wp_get_abilities() : array() as $ability ) {
+			$name = $ability->get_name();
+			if ( ! Governance::is_managed( $name ) ) {
+				continue;
+			}
+			$own = $this->abilities->find( $name );
+			if ( $own ) {
+				$group = $own->group();
+			} elseif ( in_array( $name, Governance::CUSTOM_CODE_ABILITIES, true ) ) {
+				$group = 'custom-code';
+			} else {
+				$group = 'official-' . explode( '/', $name )[0];
+			}
+
+			$items[] = array(
+				'name'        => $name,
+				'label'       => $ability->get_label(),
+				'description' => wp_html_excerpt( explode( "\n", $ability->get_description() )[0], 220, '…' ),
+				'group'       => $group,
+				'readonly'    => Governance::is_readonly( $ability ),
+				'enabled'     => ! in_array( $name, $disabled, true ),
+			);
+		}
+
+		return rest_ensure_response( $items );
+	}
+
+	public function audit( WP_REST_Request $request ): WP_REST_Response {
+		return rest_ensure_response(
+			$this->audit->query(
+				array(
+					'ability' => $request['ability'],
+					'outcome' => $request['outcome'],
+					'post_id' => $request['post_id'],
+				),
+				(int) $request['page'],
+				(int) $request['per_page']
+			)
+		);
+	}
+
+	public function list_snapshots( WP_REST_Request $request ): WP_REST_Response {
+		return rest_ensure_response( $this->snapshots->list( (int) $request['post_id'], 50 ) );
+	}
+
+	/**
+	 * @return WP_REST_Response|\WP_Error
+	 */
+	public function restore_snapshot( WP_REST_Request $request ) {
+		$result = $this->snapshots->restore( (int) $request['id'], 'admin/restore-snapshot' );
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+		$this->audit->record(
+			array(
+				'ability'     => 'admin/restore-snapshot',
+				'outcome'     => 'ok',
+				'snapshot_id' => $result['undoSnapshotId'],
+				'message'     => sprintf( 'Restored snapshot #%d from the settings screen.', (int) $request['id'] ),
+			)
+		);
+		return rest_ensure_response( $result );
 	}
 
 	/**

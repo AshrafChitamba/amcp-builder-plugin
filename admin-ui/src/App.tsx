@@ -5,13 +5,21 @@ import { addQueryArgs, getQueryArg } from '@wordpress/url';
 import { config } from './config';
 import { AboutTab } from './tabs/AboutTab';
 import { ConnectionTab } from './tabs/ConnectionTab';
+import { SafetyTab } from './tabs/SafetyTab';
 import { StatusTab } from './tabs/StatusTab';
+import { ToolsTab } from './tabs/ToolsTab';
 
 const TABS = [
 	{
 		name: 'connection',
 		title: __( 'Connection', 'mcp-builder' ),
 		Component: ConnectionTab,
+	},
+	{ name: 'tools', title: __( 'Tools', 'mcp-builder' ), Component: ToolsTab },
+	{
+		name: 'safety',
+		title: __( 'Safety', 'mcp-builder' ),
+		Component: SafetyTab,
 	},
 	{
 		name: 'status',

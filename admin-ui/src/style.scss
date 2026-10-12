@@ -142,3 +142,75 @@
 	color: #50575e;
 	margin-top: 24px;
 }
+
+.mcpb-spacer {
+	height: 16px;
+}
+
+.mcpb-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	margin-top: 16px;
+}
+
+.mcpb-actions,
+.mcpb-pagination {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.mcpb-filters {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	margin-bottom: 12px;
+}
+
+.mcpb-tools {
+	margin: 0;
+
+	li {
+		border-bottom: 1px solid #f0f0f1;
+		margin: 0;
+		padding: 12px 0;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+}
+
+.mcpb-message {
+	margin: 0 0 4px;
+}
+
+.mcpb-input {
+	display: block;
+	max-height: 160px;
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.mcpb-badge--outcome-ok {
+	background: #edfaef;
+	color: #00450c;
+}
+
+.mcpb-badge--outcome-dry-run {
+	background: #f0f6fc;
+	color: #0a4b78;
+}
+
+.mcpb-badge--outcome-denied {
+	background: #fcf9e8;
+	color: #614200;
+}
+
+.mcpb-badge--outcome-error {
+	background: #fcf0f1;
+	color: #8a2424;
+}

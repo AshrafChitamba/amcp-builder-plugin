@@ -11,6 +11,7 @@ use McpBuilder\Abilities\General\ListPages;
 use McpBuilder\Abilities\General\SiteInfo;
 use McpBuilder\Abilities\Registry;
 use McpBuilder\Environment;
+use McpBuilder\Safety\Snapshots;
 use McpBuilder\Settings;
 use McpBuilder\Tests\TestCase;
 
@@ -21,6 +22,10 @@ final class AbilitiesTest extends TestCase {
 		$environment->shouldReceive( 'bricks_version' )->andReturn( $bricks );
 		$environment->shouldReceive( 'elementor_version' )->andReturn( $elementor );
 		return $environment;
+	}
+
+	private function snapshots(): Snapshots {
+		return \Mockery::mock( Snapshots::class );
 	}
 
 	private function settings( array $stored = array() ): Settings {
@@ -35,15 +40,23 @@ final class AbilitiesTest extends TestCase {
 	}
 
 	public function test_registry_names_are_namespaced(): void {
-		$registry = new Registry( $this->settings(), $this->environment() );
+		$registry = new Registry( $this->settings(), $this->environment(), $this->snapshots() );
 		$this->assertSame(
-			array( 'mcp-builder/site-info', 'mcp-builder/list-pages', 'mcp-builder/create-page' ),
-			$registry->names()
+			array(
+				'mcp-builder/site-info',
+				'mcp-builder/list-pages',
+				'mcp-builder/create-page',
+				'mcp-builder/list-media',
+				'mcp-builder/list-snapshots',
+				'mcp-builder/restore-snapshot',
+			),
+			$registry->names(),
+			'Bricks tools stay hidden when Bricks classes are not loaded.'
 		);
 	}
 
 	public function test_ability_args_are_mcp_only_with_annotations(): void {
-		$args = ( new ListPages( $this->settings(), $this->environment() ) )->to_args();
+		$args = ( new ListPages( $this->settings(), $this->environment(), $this->snapshots() ) )->to_args();
 
 		$this->assertSame( Registry::CATEGORY, $args['category'] );
 		$this->assertTrue( $args['meta']['annotations']['readonly'] );
@@ -56,7 +69,7 @@ final class AbilitiesTest extends TestCase {
 	}
 
 	public function test_required_keys_are_declared(): void {
-		$schema = ( new CreatePage( $this->settings(), $this->environment() ) )->input_schema();
+		$schema = ( new CreatePage( $this->settings(), $this->environment(), $this->snapshots() ) )->input_schema();
 		$this->assertSame( array( 'title', 'builder' ), $schema['required'] );
 	}
 
@@ -68,7 +81,7 @@ final class AbilitiesTest extends TestCase {
 		$environment->shouldReceive( 'elementor_atomic_active' )->andReturn( false );
 		$environment->shouldReceive( 'elementor_pro_version' )->andReturn( null );
 
-		$result = ( new SiteInfo( $this->settings( array( 'read_only' => true ) ), $environment ) )->execute( null );
+		$result = ( new SiteInfo( $this->settings( array( 'read_only' => true ) ), $environment, $this->snapshots() ) )->execute( null );
 
 		$this->assertSame( 'My Site', $result['site']['name'] );
 		$this->assertTrue( $result['builders']['bricks']['active'] );
@@ -82,7 +95,7 @@ final class AbilitiesTest extends TestCase {
 		Functions\when( 'get_post_type_object' )->justReturn( new \WP_Post_Type( 'page' ) );
 		Functions\expect( 'wp_insert_post' )->never();
 
-		$result = ( new CreatePage( $this->settings(), $this->environment() ) )->execute(
+		$result = ( new CreatePage( $this->settings(), $this->environment(), $this->snapshots() ) )->execute(
 			array(
 				'title'   => 'About us',
 				'builder' => 'bricks',
@@ -99,7 +112,7 @@ final class AbilitiesTest extends TestCase {
 		Functions\when( 'get_post_type_object' )->justReturn( new \WP_Post_Type( 'page' ) );
 		Functions\expect( 'wp_insert_post' )->never();
 
-		$result = ( new CreatePage( $this->settings( array( 'dry_run_default' => true ) ), $this->environment() ) )->execute(
+		$result = ( new CreatePage( $this->settings( array( 'dry_run_default' => true ) ), $this->environment(), $this->snapshots() ) )->execute(
 			array(
 				'title'   => 'About us',
 				'builder' => 'bricks',
@@ -111,7 +124,7 @@ final class AbilitiesTest extends TestCase {
 	public function test_create_page_rejects_inactive_builder(): void {
 		Functions\when( 'get_post_type_object' )->justReturn( new \WP_Post_Type( 'page' ) );
 
-		$result = ( new CreatePage( $this->settings(), $this->environment() ) )->execute(
+		$result = ( new CreatePage( $this->settings(), $this->environment(), $this->snapshots() ) )->execute(
 			array(
 				'title'   => 'About us',
 				'builder' => 'elementor',
@@ -126,7 +139,7 @@ final class AbilitiesTest extends TestCase {
 	public function test_create_page_rejects_post_type_not_enabled_for_bricks(): void {
 		Functions\when( 'get_post_type_object' )->justReturn( new \WP_Post_Type( 'post' ) );
 
-		$result = ( new CreatePage( $this->settings(), $this->environment() ) )->execute(
+		$result = ( new CreatePage( $this->settings(), $this->environment(), $this->snapshots() ) )->execute(
 			array(
 				'title'    => 'News',
 				'builder'  => 'bricks',
@@ -141,7 +154,7 @@ final class AbilitiesTest extends TestCase {
 		Functions\when( 'get_post_type_object' )->justReturn( new \WP_Post_Type( 'page' ) );
 		Functions\when( 'current_user_can' )->justReturn( false );
 
-		$result = ( new CreatePage( $this->settings(), $this->environment() ) )->execute(
+		$result = ( new CreatePage( $this->settings(), $this->environment(), $this->snapshots() ) )->execute(
 			array(
 				'title'   => 'About us',
 				'builder' => 'bricks',

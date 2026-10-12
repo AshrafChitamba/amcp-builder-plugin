@@ -44,3 +44,15 @@ class WP_Post_Type {
 		);
 	}
 }
+
+class WP_Ability {
+	public function __construct( private string $name, private array $meta = array() ) {}
+
+	public function get_name(): string {
+		return $this->name;
+	}
+
+	public function get_meta(): array {
+		return $this->meta;
+	}
+}

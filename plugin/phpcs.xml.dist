@@ -24,6 +24,14 @@
 		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
 		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
 		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<!-- Native PHP 8.1 types are authoritative; partial @param blocks only add array shapes. -->
+		<exclude name="Squiz.Commenting.FunctionComment.ParamNameNoMatch"/>
+		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+		<exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing"/>
+		<!-- Exception messages become JSON tool errors, never HTML output. -->
+		<exclude name="WordPress.Security.EscapeOutput.ExceptionNotEscaped"/>
+		<!-- "$parent" is the natural name for a parent element ID. -->
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames"/>
 	</rule>
 
 	<rule ref="WordPress.WP.I18n">
