@@ -88,7 +88,7 @@ abstract class BricksWriteAbility extends BricksAbility {
 
 		$before = $tree->to_array();
 		try {
-			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog() ) );
+			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \McpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
 		} catch ( TreeError $error ) {
 			return $error->to_wp_error();
 		}

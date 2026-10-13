@@ -76,7 +76,17 @@ final class Store {
 			return Errors::make( 'elementor_access_denied', __( 'Elementor does not allow your user to edit this page.', 'mcp-builder' ), __( 'Your role needs access to Elementor (Elementor → Role Manager) and edit rights for the page.', 'mcp-builder' ), 403 );
 		}
 
-		if ( ! $document->save( $data ) ) {
+		// Element-only saves keep the page settings: some document types (landing pages,
+		// floating buttons) would otherwise wipe them while adding their own defaults.
+		if ( ! isset( $data['settings'] ) ) {
+			$existing = self::read_settings( $post_id );
+			if ( $existing ) {
+				$data['settings'] = $existing;
+			}
+		}
+
+		// Some document types (e.g. loop items) return nothing from save(); only false means failure.
+		if ( false === $document->save( $data ) ) {
 			return Errors::make( 'elementor_save_failed', __( 'Elementor refused to save the page.', 'mcp-builder' ), __( 'Your user may lack edit rights, or another plugin blocked the save.', 'mcp-builder' ), 500 );
 		}
 		$document->set_is_built_with_elementor( true );

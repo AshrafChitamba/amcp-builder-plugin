@@ -231,4 +231,35 @@ final class ElementorTreeTest extends TestCase {
 			$seen[ $id ] = true;
 		}
 	}
+
+	public function test_is_inner_follows_elementor_rules_for_legacy_sections(): void {
+		$tree    = new Tree( array() );
+		$created = $tree->insert(
+			array(
+				array(
+					'elType'   => 'section',
+					'elements' => array(
+						array(
+							'elType'   => 'column',
+							'elements' => array(
+								array(
+									'elType'   => 'section',
+									'elements' => array( array( 'elType' => 'column' ) ),
+								),
+							),
+						),
+					),
+				),
+			),
+			null,
+			null,
+			new Ids()
+		);
+		[ $outer, $column, $inner, $inner_column ] = $created;
+
+		$this->assertFalse( (bool) ( $tree->get( $outer )['isInner'] ?? false ), 'Top-level section.' );
+		$this->assertFalse( (bool) ( $tree->get( $column )['isInner'] ?? false ), 'Column of a top-level section.' );
+		$this->assertTrue( (bool) $tree->get( $inner )['isInner'], 'Inner section.' );
+		$this->assertTrue( (bool) $tree->get( $inner_column )['isInner'], 'Column of an inner section.' );
+	}
 }

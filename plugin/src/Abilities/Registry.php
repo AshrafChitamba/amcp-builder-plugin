@@ -60,9 +60,18 @@ final class Registry {
 			fn( string $class_name ): Ability => new $class_name( $this->settings, $this->environment, $this->snapshots ),
 			array(
 				General\SiteInfo::class,
+				Guides\GetDesignGuide::class,
+				Guides\DesignGuideResource::class,
+				Guides\BricksGuideResource::class,
+				Guides\ElementorGuideResource::class,
+				Guides\SafetyGuideResource::class,
+				Guides\DesignPagePrompt::class,
+				Guides\ReviewPagePrompt::class,
 				General\ListPages::class,
 				General\CreatePage::class,
 				General\ListMedia::class,
+				General\UploadMedia::class,
+				General\UpdatePage::class,
 				General\ListSnapshots::class,
 				General\RestoreSnapshot::class,
 				Bricks\GetPage::class,
@@ -76,6 +85,15 @@ final class Registry {
 				Bricks\ListGlobalClasses::class,
 				Bricks\UpsertGlobalClass::class,
 				Bricks\ApplyGlobalClass::class,
+				Bricks\ListTemplates::class,
+				Bricks\CreateTemplate::class,
+				Bricks\SetTemplateConditions::class,
+				Bricks\GetDesignTokens::class,
+				Bricks\UpsertColors::class,
+				Bricks\UpsertVariables::class,
+				Bricks\UpdateThemeStyle::class,
+				Bricks\UpdatePageSettings::class,
+				Bricks\CodeStatus::class,
 				Elementor\GetPage::class,
 				Elementor\ListWidgets::class,
 				Elementor\GetWidgetSchema::class,
@@ -86,6 +104,11 @@ final class Registry {
 				Elementor\DuplicateElement::class,
 				Elementor\RemoveElement::class,
 				Elementor\UpdatePageSettings::class,
+				Elementor\ListTemplates::class,
+				Elementor\CreateTemplate::class,
+				Elementor\SetConditions::class,
+				Elementor\UpdateGlobals::class,
+				Elementor\UpsertCodeSnippet::class,
 			)
 		);
 	}
@@ -116,7 +139,12 @@ final class Registry {
 	 *
 	 * @return list<string>
 	 */
-	public function names(): array {
-		return array_map( static fn( Ability $ability ): string => $ability->name(), $this->available() );
+	public function names( string $type = 'tool' ): array {
+		return array_values(
+			array_map(
+				static fn( Ability $ability ): string => $ability->name(),
+				array_filter( $this->available(), static fn( Ability $ability ): bool => $ability->mcp_type() === $type )
+			)
+		);
 	}
 }

@@ -11,6 +11,8 @@ use McpBuilder\Abilities\Ability;
 use McpBuilder\Abilities\Registry;
 use McpBuilder\Environment;
 use McpBuilder\Mcp\Server;
+use McpBuilder\OAuth\Server as OAuthServer;
+use McpBuilder\OAuth\Tokens;
 use McpBuilder\Requirements;
 use McpBuilder\Safety\AuditLog;
 use McpBuilder\Safety\Governance;
@@ -35,7 +37,8 @@ final class AdminController {
 		private Requirements $requirements,
 		private Registry $abilities,
 		private AuditLog $audit,
-		private Snapshots $snapshots
+		private Snapshots $snapshots,
+		private Tokens $tokens
 	) {}
 
 	public function register(): void {
@@ -144,6 +147,60 @@ final class AdminController {
 
 		register_rest_route(
 			self::NAMESPACE,
+			'/connections',
+			array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => fn() => rest_ensure_response( $this->tokens->list_active( 0 ) ),
+					'permission_callback' => array( $this, 'is_admin' ),
+				),
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'create_token' ),
+					'permission_callback' => array( $this, 'is_admin' ),
+					'args'                => array(
+						'name'     => array(
+							'type'      => 'string',
+							'required'  => true,
+							'minLength' => 1,
+							'maxLength' => 100,
+						),
+						'readOnly' => array(
+							'type'    => 'boolean',
+							'default' => false,
+						),
+						'days'     => array(
+							'type'    => 'integer',
+							'enum'    => array( 0, 30, 90, 365 ),
+							'default' => 90,
+						),
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/connections/(?P<id>\\d+)',
+			array(
+				'methods'             => WP_REST_Server::DELETABLE,
+				'callback'            => array( $this, 'revoke_connection' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/discovery-test',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'discovery_test' ),
+				'permission_callback' => array( $this, 'is_admin' ),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
 			'/auth-header-test',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -169,6 +226,11 @@ final class AdminController {
 				'environment' => $this->environment->to_array(),
 				'canRun'      => $this->requirements->can_run(),
 				'endpoint'    => Server::url(),
+				'oauth'       => array(
+					'enabled'          => (bool) $this->settings->get( 'oauth_enabled' ),
+					'issuer'           => OAuthServer::issuer(),
+					'resourceMetadata' => OAuthServer::resource_metadata_url(),
+				),
 				'tools'       => array_map(
 					static fn( Ability $ability ): array => array(
 						'name'      => $ability->name(),
@@ -181,6 +243,42 @@ final class AdminController {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Creates a personal access token for the current user (shown once).
+	 */
+	public function create_token( WP_REST_Request $request ): WP_REST_Response {
+		$days  = (int) $request['days'];
+		$token = $this->tokens->issue(
+			'pat',
+			array(
+				'user_id'  => get_current_user_id(),
+				'scope'    => $request['readOnly'] ? Tokens::SCOPE_READ : Tokens::SCOPE_FULL,
+				'label'    => sanitize_text_field( (string) $request['name'] ),
+				'resource' => Server::url(),
+			),
+			$days ? $days * DAY_IN_SECONDS : null
+		);
+		return rest_ensure_response( array( 'token' => $token ) );
+	}
+
+	/**
+	 * Revokes a personal token, or disconnects an app (all its tokens for that user).
+	 *
+	 * @return WP_REST_Response|\WP_Error
+	 */
+	public function revoke_connection( WP_REST_Request $request ) {
+		$row = $this->tokens->get_row( (int) $request['id'] );
+		if ( ! $row ) {
+			return new \WP_Error( 'not_found', __( 'Connection not found.', 'mcp-builder' ), array( 'status' => 404 ) );
+		}
+		if ( 'pat' === $row['kind'] ) {
+			$this->tokens->revoke_id( (int) $row['id'] );
+		} else {
+			$this->tokens->revoke_client( (int) $row['user_id'], (string) $row['client_id'] );
+		}
+		return rest_ensure_response( array( 'revoked' => true ) );
 	}
 
 	/**
@@ -252,6 +350,41 @@ final class AdminController {
 			)
 		);
 		return rest_ensure_response( $result );
+	}
+
+	/**
+	 * Checks that the OAuth discovery documents are reachable from outside WordPress' REST API.
+	 */
+	public function discovery_test(): WP_REST_Response {
+		$home     = untrailingslashit( home_url() );
+		$origin   = (string) wp_parse_url( $home, PHP_URL_SCHEME ) . '://' . (string) wp_parse_url( $home, PHP_URL_HOST ) . ( wp_parse_url( $home, PHP_URL_PORT ) ? ':' . wp_parse_url( $home, PHP_URL_PORT ) : '' );
+		$resource = (string) wp_parse_url( Server::url(), PHP_URL_PATH );
+		$checks   = array(
+			'resourceMetadata'  => OAuthServer::resource_metadata_url(),
+			'wellKnownResource' => $origin . '/.well-known/oauth-protected-resource' . $resource,
+			'wellKnownServer'   => $origin . '/.well-known/oauth-authorization-server' . (string) wp_parse_url( OAuthServer::issuer(), PHP_URL_PATH ),
+			'openidAppended'    => OAuthServer::issuer() . '/.well-known/openid-configuration',
+		);
+		$results  = array();
+		foreach ( $checks as $key => $url ) {
+			$response        = wp_remote_get(
+				$url,
+				array(
+					'timeout'   => 10,
+					'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter.
+				)
+			);
+			$body            = is_wp_error( $response ) ? null : json_decode( (string) wp_remote_retrieve_body( $response ), true );
+			$results[ $key ] = array(
+				'url' => $url,
+				'ok'  => is_array( $body ) && ( isset( $body['resource'] ) || isset( $body['issuer'] ) ),
+			);
+		}
+		$results['https'] = array(
+			'url' => $home,
+			'ok'  => 'https' === wp_parse_url( $home, PHP_URL_SCHEME ),
+		);
+		return rest_ensure_response( $results );
 	}
 
 	/**

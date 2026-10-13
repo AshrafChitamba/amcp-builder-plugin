@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       MCP Builder
  * Plugin URI:        https://ashrafchitambaa.com
- * Description:       Lets AI clients such as Claude and Cursor build and edit Bricks and Elementor pages through MCP, with read-only mode, snapshots and an audit log.
- * Version:           0.3.0
+ * Description:       Lets AI apps such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages, templates and design systems through MCP, with read-only mode, snapshots and an audit log.
+ * Version:           0.4.0
  * Requires at least: 7.1
  * Requires PHP:      8.1
  * Requires Plugins:  mcp-adapter
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MCP_BUILDER_VERSION', '0.3.0' );
+define( 'MCP_BUILDER_VERSION', '0.4.0' );
 define( 'MCP_BUILDER_FILE', __FILE__ );
 define( 'MCP_BUILDER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MCP_BUILDER_URL', plugin_dir_url( __FILE__ ) );

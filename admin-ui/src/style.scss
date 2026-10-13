@@ -214,3 +214,29 @@
 	background: #fcf0f1;
 	color: #8a2424;
 }
+
+.mcpb-subheading {
+	font-size: 14px;
+	margin: 20px 0 6px;
+}
+
+.mcpb-steps {
+	margin: 0 0 8px 20px;
+
+	li {
+		margin-bottom: 4px;
+	}
+}
+
+.mcpb-checklist {
+	margin: 12px 0 0;
+
+	li {
+		margin-bottom: 6px;
+		overflow-wrap: anywhere;
+	}
+}
+
+.mcpb-token-form {
+	margin-top: 12px;
+}

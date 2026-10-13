@@ -24,6 +24,7 @@ abstract class TestCase extends PHPUnitTestCase {
 				'rest_sanitize_boolean' => static fn( $value ): bool => is_string( $value ) ? ! in_array( strtolower( $value ), array( '', 'false', '0' ), true ) : (bool) $value,
 				'sanitize_key'          => static fn( $key ): string => preg_replace( '/[^a-z0-9_\-]/', '', strtolower( (string) $key ) ),
 				'sanitize_text_field'   => static fn( $text ): string => trim( strip_tags( (string) $text ) ),
+				'sanitize_textarea_field' => static fn( $text ): string => trim( strip_tags( (string) $text ) ),
 				'wp_strip_all_tags'     => static fn( $text ): string => trim( strip_tags( (string) $text ) ),
 			)
 		);

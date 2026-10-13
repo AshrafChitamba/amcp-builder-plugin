@@ -99,4 +99,16 @@ final class ElementorValidatorTest extends TestCase {
 		$error = $this->assertRefused( 'unknown_setting', fn() => Validator::known_keys( array( 'templat' => 'x' ), array( 'template', 'hide_title' ), 'this page', 'Fix.' ) );
 		$this->assertStringContainsString( 'Close matches: template', $error->getMessage() );
 	}
+
+	public function test_html_widget_needs_custom_code_permission(): void {
+		$html = array( array( 'elType' => 'container', 'elements' => array( array( 'elType' => 'widget', 'widgetType' => 'html', 'settings' => array( 'html' => '<p>x</p>' ) ) ) ) );
+		try {
+			$this->validator()->specs( $html, null );
+			$this->fail( 'HTML widget accepted without permission.' );
+		} catch ( \McpBuilder\Support\TreeError $error ) {
+			$this->assertSame( 'custom_code_disabled', $error->error_code );
+		}
+		( new Validator( new ElementorArrayCatalog(), true ) )->specs( $html, null );
+		$this->addToAssertionCount( 1 );
+	}
 }

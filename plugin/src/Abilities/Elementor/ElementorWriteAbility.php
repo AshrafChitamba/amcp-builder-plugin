@@ -82,7 +82,7 @@ abstract class ElementorWriteAbility extends ElementorAbility {
 
 		$before = $tree->flat();
 		try {
-			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog() ) );
+			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \McpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
 		} catch ( TreeError $error ) {
 			return $error->to_wp_error();
 		}
@@ -107,9 +107,12 @@ abstract class ElementorWriteAbility extends ElementorAbility {
 			return $saved;
 		}
 
+		$warnings = current_user_can( 'unfiltered_html' ) ? array() : array( 'Your account cannot save unfiltered HTML, so Elementor removed scripts, iframes and some HTML or CSS from the saved settings. Read the page back to check.' );
+
 		return array(
 			'dryRun'          => false,
 			'snapshotId'      => $snapshot_id,
+			'warnings'        => $warnings,
 			'builderEditLink' => Posts::builder_edit_link( $post, 'elementor' ),
 			'previewLink'     => (string) get_preview_post_link( $post ),
 		) + $result;

@@ -14,11 +14,13 @@ echo "Building MCP Builder $VERSION"
 (cd "$ROOT/admin-ui" && npm ci --no-audit --no-fund && npm run build)
 
 mkdir -p "$TARGET"
-cp -R "$ROOT/plugin/src" "$ROOT/plugin/build" "$ROOT/plugin/languages" "$TARGET/"
+cp -R "$ROOT/plugin/src" "$ROOT/plugin/build" "$ROOT/plugin/languages" "$ROOT/plugin/guides" "$TARGET/"
 cp "$ROOT/plugin/mcp-builder.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/readme.txt" \
 	"$ROOT/plugin/LICENSE" "$ROOT/plugin/composer.json" "$TARGET/"
 
-(cd "$TARGET" && composer install --no-dev --optimize-autoloader --no-interaction --quiet && rm composer.json composer.lock)
+(cd "$TARGET" && composer install --no-dev --optimize-autoloader --no-interaction --quiet && rm composer.lock)
+# WordPress.org expects composer.json next to vendor/, and no hidden files.
+find "$TARGET" -name '.*' -not -name '.' -prune -exec rm -rf {} +
 
 mkdir -p "$ROOT/dist"
 rm -f "$ROOT/dist/mcp-builder-$VERSION.zip"

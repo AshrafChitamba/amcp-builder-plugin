@@ -7,6 +7,8 @@
 
 namespace McpBuilder\Elementor;
 
+// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
+
 use McpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
@@ -170,11 +172,12 @@ final class Tree {
 	 * @return list<string> IDs of every created element, depth first.
 	 */
 	public function insert( array $specs, ?string $parent, ?int $position, Ids $ids ): array {
-		$parent_type = null === $parent ? null : (string) $this->get( $parent )['elType'];
+		$parent_el   = null === $parent ? null : $this->get( $parent );
+		$parent_type = null === $parent_el ? null : (string) $parent_el['elType'];
 		$created     = array();
 		$built       = array();
 		foreach ( $specs as $spec ) {
-			$built[] = self::build( $spec, $parent_type, $ids, $created );
+			$built[] = self::build( $spec, $parent_type, ! empty( $parent_el['isInner'] ), $ids, $created );
 		}
 
 		$list = &$this->children_ref( $parent );
@@ -208,10 +211,8 @@ final class Tree {
 			}
 		}
 
-		$element = $this->detach( $id );
-		if ( 'widget' !== $element['elType'] ) {
-			$element['isInner'] = null !== $new_parent;
-		}
+		$parent_el = null === $new_parent ? null : $this->get( $new_parent );
+		$element   = self::with_inner( $this->detach( $id ), null === $parent_el ? null : (string) $parent_el['elType'], ! empty( $parent_el['isInner'] ) );
 
 		$list = &$this->children_ref( $new_parent );
 		$at   = null === $position ? count( $list ) : max( 0, min( $position, count( $list ) ) );
@@ -292,11 +293,12 @@ final class Tree {
 
 	/**
 	 * @param array<string, mixed> $spec        Element spec.
-	 * @param string|null          $parent_type elType of the parent, null for the top level.
-	 * @param list<string>         $created     Collects created IDs.
+	 * @param string|null          $parent_type  elType of the parent, null for the top level.
+	 * @param bool                 $parent_inner Whether the parent is an inner element.
+	 * @param list<string>         $created      Collects created IDs.
 	 * @return array<string, mixed>
 	 */
-	private static function build( array $spec, ?string $parent_type, Ids $ids, array &$created ): array {
+	private static function build( array $spec, ?string $parent_type, bool $parent_inner, Ids $ids, array &$created ): array {
 		$id        = $ids->next();
 		$created[] = $id;
 		$el_type   = (string) $spec['elType'];
@@ -306,14 +308,14 @@ final class Tree {
 			'elType'   => $el_type,
 			'settings' => is_array( $spec['settings'] ?? null ) ? $spec['settings'] : array(),
 			'elements' => array(),
-			'isInner'  => 'widget' !== $el_type && null !== $parent_type,
+			'isInner'  => self::is_inner( $el_type, $parent_type, $parent_inner ),
 		);
 		if ( 'widget' === $el_type ) {
 			$element['widgetType'] = (string) $spec['widgetType'];
 		}
 
 		foreach ( (array) ( $spec['elements'] ?? array() ) as $child ) {
-			$element['elements'][] = self::build( $child, $el_type, $ids, $created );
+			$element['elements'][] = self::build( $child, $el_type, $element['isInner'], $ids, $created );
 		}
 		return $element;
 	}
@@ -460,5 +462,35 @@ final class Tree {
 			$result[]            = $element;
 		}
 		return $result;
+	}
+
+	/**
+	 * Elementor's isInner rule: top-level sections and containers and the
+	 * columns of a top-level section are not inner; anything nested deeper is.
+	 */
+	private static function is_inner( string $el_type, ?string $parent_type, bool $parent_inner ): bool {
+		if ( 'widget' === $el_type ) {
+			return false;
+		}
+		if ( 'column' === $el_type ) {
+			return $parent_inner;
+		}
+		return null !== $parent_type;
+	}
+
+	/**
+	 * Recomputes isInner for a moved element and everything inside it.
+	 *
+	 * @param array<string, mixed> $element Element.
+	 * @return array<string, mixed>
+	 */
+	private static function with_inner( array $element, ?string $parent_type, bool $parent_inner ): array {
+		if ( 'widget' !== $element['elType'] ) {
+			$element['isInner'] = self::is_inner( (string) $element['elType'], $parent_type, $parent_inner );
+		}
+		foreach ( (array) ( $element['elements'] ?? array() ) as $index => $child ) {
+			$element['elements'][ $index ] = self::with_inner( $child, (string) $element['elType'], ! empty( $element['isInner'] ) );
+		}
+		return $element;
 	}
 }

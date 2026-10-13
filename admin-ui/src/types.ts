@@ -36,6 +36,7 @@ export interface Status {
 	environment: Record< string, string | boolean | null >;
 	canRun: boolean;
 	endpoint: string;
+	oauth: { enabled: boolean; issuer: string; resourceMetadata: string };
 	tools: ToolInfo[];
 }
 
@@ -69,6 +70,9 @@ export interface Settings {
 	snapshot_days: number;
 	audit_days: number;
 	post_lock: 'deny' | 'allow';
+	design_guide: boolean;
+	design_guidelines: string;
+	oauth_enabled: boolean;
 }
 
 export interface ManagedAbility {
@@ -117,3 +121,23 @@ export interface Snapshot {
 	label: string;
 	size: number;
 }
+
+export interface Connection {
+	id: number;
+	kind: 'app' | 'token';
+	name: string;
+	clientId: string;
+	user: string;
+	userId: number;
+	readOnly: boolean;
+	createdAt: string;
+	expiresAt: string | null;
+	lastUsedAt: string | null;
+}
+
+export interface DiscoveryCheck {
+	url: string;
+	ok: boolean;
+}
+
+export type DiscoveryResult = Record< string, DiscoveryCheck >;

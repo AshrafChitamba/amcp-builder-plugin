@@ -11,6 +11,9 @@ use McpBuilder\Abilities\Registry;
 use McpBuilder\Admin\AdminPage;
 use McpBuilder\Admin\Notices;
 use McpBuilder\Mcp\Server;
+use McpBuilder\OAuth\Clients;
+use McpBuilder\OAuth\Server as OAuthServer;
+use McpBuilder\OAuth\Tokens;
 use McpBuilder\Rest\AdminController;
 use McpBuilder\Safety\AuditLog;
 use McpBuilder\Safety\Governance;
@@ -54,20 +57,30 @@ final class Plugin {
 		$snapshots    = new Snapshots();
 		$abilities    = new Registry( $settings, $environment, $snapshots );
 		$server       = new Server( $settings, $abilities );
+		$tokens       = new Tokens();
+		$clients      = new Clients();
 
 		Schema::maybe_install();
 		Installer::schedule();
-		add_action( Installer::CRON_HOOK, fn() => self::prune( $settings, $audit, $snapshots ) );
+		add_action(
+			Installer::CRON_HOOK,
+			static function () use ( $settings, $audit, $snapshots, $tokens, $clients ): void {
+				self::prune( $settings, $audit, $snapshots );
+				$tokens->prune();
+				$clients->prune();
+			}
+		);
 
 		( new Notices( $requirements ) )->register();
 		( new AdminPage( $requirements ) )->register();
-		( new AdminController( $settings, $environment, $requirements, $abilities, $audit, $snapshots ) )->register();
+		( new AdminController( $settings, $environment, $requirements, $abilities, $audit, $snapshots, $tokens ) )->register();
 
 		if ( ! $requirements->can_run() ) {
 			return;
 		}
 
 		( new Governance( $settings, $abilities, $audit, $snapshots, new RateLimiter() ) )->register();
+		( new OAuthServer( $settings, $clients, $tokens ) )->register();
 		$abilities->register();
 		$server->register();
 	}

@@ -1,0 +1,1591 @@
+# Copyright (C) 2026 Ashraf Chitambaa
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MCP Builder 0.4.0\n"
+"Report-Msgid-Bugs-To: https://ashrafchitambaa.com\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-13T14:47:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: mcp-builder\n"
+
+#. Plugin Name of the plugin
+#: mcp-builder.php
+#: src/Abilities/Registry.php:41
+#: src/Admin/AdminPage.php:41
+#: src/Admin/AdminPage.php:42
+#: build/index.js:10
+msgid "MCP Builder"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: mcp-builder.php
+msgid "https://ashrafchitambaa.com"
+msgstr ""
+
+#. Description of the plugin
+#: mcp-builder.php
+msgid "Lets AI apps such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages, templates and design systems through MCP, with read-only mode, snapshots and an audit log."
+msgstr ""
+
+#. Author of the plugin
+#: mcp-builder.php
+msgid "Ashraf Chitambaa"
+msgstr ""
+
+#: mcp-builder.php:33
+msgid "MCP Builder is missing its vendor folder. Install the release ZIP, or run \"composer install\" in the plugin folder."
+msgstr ""
+
+#: src/Abilities/Bricks/AddElements.php:26
+msgid "Bricks: add elements"
+msgstr ""
+
+#: src/Abilities/Bricks/ApplyGlobalClass.php:29
+msgid "Bricks: apply global class"
+msgstr ""
+
+#. translators: %d: post ID.
+#: src/Abilities/Bricks/BricksAbility.php:64
+#: src/Abilities/Elementor/ElementorAbility.php:65
+#, php-format
+msgid "Page %d does not exist."
+msgstr ""
+
+#. translators: %d: post ID.
+#: src/Abilities/Bricks/BricksAbility.php:64
+#: src/Abilities/Elementor/ElementorAbility.php:65
+#: src/Abilities/General/UpdatePage.php:74
+msgid "Call list-pages to find the right ID."
+msgstr ""
+
+#: src/Abilities/Bricks/BricksAbility.php:67
+#: src/Bricks/Store.php:78
+msgid "Bricks does not allow your user to edit this page."
+msgstr ""
+
+#: src/Abilities/Bricks/BricksAbility.php:67
+#: src/Bricks/Store.php:78
+msgid "Ask an admin to give your role builder access in Bricks → Settings → Builder access."
+msgstr ""
+
+#. translators: %s: user name.
+#: src/Abilities/Bricks/BricksWriteAbility.php:83
+#: src/Abilities/Elementor/ElementorWriteAbility.php:132
+#, php-format
+msgid "%s has this page open in an editor, so saving now could overwrite their work or be overwritten."
+msgstr ""
+
+#: src/Abilities/Bricks/BricksWriteAbility.php:84
+#: src/Abilities/Elementor/ElementorWriteAbility.php:133
+msgid "Ask the user to close the editor, or retry with force: true if they confirm."
+msgstr ""
+
+#: src/Abilities/Bricks/BricksWriteAbility.php:98
+#: src/Abilities/Elementor/ElementorWriteAbility.php:92
+msgid "The change would leave the page structure inconsistent: "
+msgstr ""
+
+#: src/Abilities/Bricks/BricksWriteAbility.php:98
+msgid "Call bricks-get-page and try a simpler change."
+msgstr ""
+
+#: src/Abilities/Bricks/CodeStatus.php:27
+msgid "Bricks: code status"
+msgstr ""
+
+#: src/Abilities/Bricks/CreateTemplate.php:28
+msgid "Bricks: create template"
+msgstr ""
+
+#: src/Abilities/Bricks/DuplicateElement.php:26
+msgid "Bricks: duplicate element"
+msgstr ""
+
+#: src/Abilities/Bricks/GetDesignTokens.php:26
+msgid "Bricks: get design tokens"
+msgstr ""
+
+#: src/Abilities/Bricks/GetElementSchema.php:25
+msgid "Bricks: get element schema"
+msgstr ""
+
+#. translators: %s: element name.
+#: src/Abilities/Bricks/GetElementSchema.php:56
+#, php-format
+msgid "Unknown element \"%s\"."
+msgstr ""
+
+#. translators: %s: element name.
+#: src/Abilities/Bricks/GetElementSchema.php:56
+msgid "Call bricks-list-elements to see valid names."
+msgstr ""
+
+#: src/Abilities/Bricks/GetPage.php:25
+msgid "Bricks: get page"
+msgstr ""
+
+#: src/Abilities/Bricks/ListElements.php:22
+msgid "Bricks: list elements"
+msgstr ""
+
+#: src/Abilities/Bricks/ListGlobalClasses.php:25
+msgid "Bricks: list global classes"
+msgstr ""
+
+#: src/Abilities/Bricks/ListTemplates.php:27
+msgid "Bricks: list templates"
+msgstr ""
+
+#: src/Abilities/Bricks/MoveElement.php:25
+msgid "Bricks: move element"
+msgstr ""
+
+#: src/Abilities/Bricks/RemoveElement.php:25
+msgid "Bricks: remove element"
+msgstr ""
+
+#: src/Abilities/Bricks/SetTemplateConditions.php:27
+msgid "Bricks: set template conditions"
+msgstr ""
+
+#: src/Abilities/Bricks/SetTemplateConditions.php:63
+msgid "That ID is not a Bricks template."
+msgstr ""
+
+#: src/Abilities/Bricks/SetTemplateConditions.php:63
+msgid "Call bricks-list-templates to find template IDs."
+msgstr ""
+
+#: src/Abilities/Bricks/UpdateElement.php:25
+msgid "Bricks: update element"
+msgstr ""
+
+#: src/Abilities/Bricks/UpdatePageSettings.php:44
+msgid "Bricks: update page settings"
+msgstr ""
+
+#. translators: %s: user name.
+#: src/Abilities/Bricks/UpdatePageSettings.php:79
+#: src/Abilities/General/RestoreSnapshot.php:79
+#: src/Abilities/General/UpdatePage.php:82
+#, php-format
+msgid "%s has this page open in an editor."
+msgstr ""
+
+#. translators: %s: user name.
+#: src/Abilities/Bricks/UpdatePageSettings.php:79
+#: src/Abilities/General/RestoreSnapshot.php:80
+#: src/Abilities/General/UpdatePage.php:82
+msgid "Ask the user to close the editor, then try again."
+msgstr ""
+
+#: src/Abilities/Bricks/UpdatePageSettings.php:87
+#: src/Abilities/Elementor/CreateTemplate.php:65
+msgid "Use one of: "
+msgstr ""
+
+#. translators: %s: key.
+#: src/Abilities/Bricks/UpdatePageSettings.php:88
+#, php-format
+msgid "Unknown page setting \"%s\"."
+msgstr ""
+
+#: src/Abilities/Bricks/UpdateThemeStyle.php:28
+msgid "Bricks: update theme style"
+msgstr ""
+
+#: src/Abilities/Bricks/UpdateThemeStyle.php:73
+msgid "That theme style does not exist."
+msgstr ""
+
+#: src/Abilities/Bricks/UpdateThemeStyle.php:73
+msgid "Call bricks-get-design-tokens for style IDs, or pass label to create a new style."
+msgstr ""
+
+#: src/Abilities/Bricks/UpdateThemeStyle.php:77
+msgid "Pass styleId to edit a style or label to create one."
+msgstr ""
+
+#. translators: %s: group name.
+#: src/Abilities/Bricks/UpdateThemeStyle.php:89
+#, php-format
+msgid "Invalid settings group \"%s\"."
+msgstr ""
+
+#. translators: %s: group name.
+#: src/Abilities/Bricks/UpdateThemeStyle.php:89
+msgid "Use groups such as general, colors, typography, links, button or heading, each with an object of settings."
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertColors.php:26
+msgid "Bricks: add or update colors"
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertColors.php:107
+msgid "A color needs a name that can become a CSS variable."
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertGlobalClass.php:27
+msgid "Bricks: create or update global class"
+msgstr ""
+
+#. translators: %s: settings key.
+#: src/Abilities/Bricks/UpsertGlobalClass.php:77
+#, php-format
+msgid "Global class settings must be style keys starting with \"_\"; \"%s\" is not."
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertGlobalClass.php:78
+msgid "Use style keys from bricks-get-element-schema, e.g. _padding, _typography, _background."
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertVariables.php:26
+msgid "Bricks: add or update CSS variables"
+msgstr ""
+
+#: src/Abilities/Bricks/UpsertVariables.php:89
+msgid "A variable name must contain letters or numbers."
+msgstr ""
+
+#: src/Abilities/Elementor/AddElements.php:26
+msgid "Elementor: add elements"
+msgstr ""
+
+#: src/Abilities/Elementor/CreateTemplate.php:26
+msgid "Elementor: create template"
+msgstr ""
+
+#. translators: %s: type.
+#: src/Abilities/Elementor/CreateTemplate.php:66
+#, php-format
+msgid "Template type \"%s\" is not available on this site."
+msgstr ""
+
+#: src/Abilities/Elementor/CreateTemplate.php:87
+msgid "Elementor could not create the template."
+msgstr ""
+
+#: src/Abilities/Elementor/DuplicateElement.php:26
+msgid "Elementor: duplicate element"
+msgstr ""
+
+#: src/Abilities/Elementor/ElementorAbility.php:68
+#: src/Elementor/Store.php:76
+msgid "Elementor does not allow your user to edit this page."
+msgstr ""
+
+#: src/Abilities/Elementor/ElementorAbility.php:68
+msgid "Check that the post type is enabled in Elementor → Settings and that your role has Elementor access (Elementor → Role Manager)."
+msgstr ""
+
+#: src/Abilities/Elementor/ElementorWriteAbility.php:92
+msgid "Call elementor-get-page and try a simpler change."
+msgstr ""
+
+#: src/Abilities/Elementor/GetGlobals.php:25
+msgid "Elementor: get globals"
+msgstr ""
+
+#: src/Abilities/Elementor/GetPage.php:27
+msgid "Elementor: get page"
+msgstr ""
+
+#: src/Abilities/Elementor/GetWidgetSchema.php:25
+msgid "Elementor: get widget schema"
+msgstr ""
+
+#. translators: %s: widget name.
+#: src/Abilities/Elementor/GetWidgetSchema.php:69
+#, php-format
+msgid "Unknown widget \"%s\"."
+msgstr ""
+
+#. translators: %s: widget name.
+#: src/Abilities/Elementor/GetWidgetSchema.php:69
+msgid "Call elementor-list-widgets to see valid names, or use \"container\"."
+msgstr ""
+
+#: src/Abilities/Elementor/ListTemplates.php:27
+msgid "Elementor: list templates"
+msgstr ""
+
+#: src/Abilities/Elementor/ListWidgets.php:22
+msgid "Elementor: list widgets"
+msgstr ""
+
+#: src/Abilities/Elementor/MoveElement.php:25
+msgid "Elementor: move element"
+msgstr ""
+
+#: src/Abilities/Elementor/RemoveElement.php:25
+msgid "Elementor: remove element"
+msgstr ""
+
+#: src/Abilities/Elementor/SetConditions.php:26
+msgid "Elementor: set display conditions"
+msgstr ""
+
+#: src/Abilities/Elementor/SetConditions.php:72
+msgid "That template does not exist."
+msgstr ""
+
+#: src/Abilities/Elementor/SetConditions.php:72
+msgid "Call elementor-list-templates."
+msgstr ""
+
+#: src/Abilities/Elementor/SetConditions.php:96
+msgid "Only Theme Builder templates (header, footer, single, archive, popup) take display conditions."
+msgstr ""
+
+#: src/Abilities/Elementor/SetConditions.php:96
+msgid "Check the template type with elementor-list-templates."
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateElement.php:25
+msgid "Elementor: update element"
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateGlobals.php:27
+msgid "Elementor: update global colors and fonts"
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateGlobals.php:114
+msgid "This site has no active Elementor kit."
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateGlobals.php:114
+msgid "Open Elementor → Site Settings once to create it."
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateGlobals.php:158
+msgid "Pass colors or typography to change."
+msgstr ""
+
+#: src/Abilities/Elementor/UpdateGlobals.php:170
+msgid "Elementor refused to save the kit."
+msgstr ""
+
+#: src/Abilities/Elementor/UpdatePageSettings.php:31
+msgid "Elementor: update page settings"
+msgstr ""
+
+#. translators: %s: setting keys.
+#: src/Abilities/Elementor/UpdatePageSettings.php:68
+#, php-format
+msgid "These settings change the post itself and cannot be set here: %s."
+msgstr ""
+
+#. translators: %s: setting keys.
+#: src/Abilities/Elementor/UpdatePageSettings.php:68
+msgid "Leave publishing and titles to a person in WordPress."
+msgstr ""
+
+#. translators: %s: Elementor error message.
+#: src/Abilities/Elementor/UpdatePageSettings.php:112
+#, php-format
+msgid "Elementor refused the page settings: %s"
+msgstr ""
+
+#: src/Abilities/Elementor/UpsertCodeSnippet.php:32
+msgid "Elementor: add or update custom code snippet"
+msgstr ""
+
+#: src/Abilities/Elementor/UpsertCodeSnippet.php:97
+msgid "That ID is not an Elementor custom code snippet."
+msgstr ""
+
+#: src/Abilities/Elementor/UpsertCodeSnippet.php:131
+msgid "MCP Builder snippet"
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:28
+msgid "Create page"
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:88
+msgid "You are not allowed to publish this post type."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:88
+msgid "Create it as a draft instead."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:127
+msgid "Bricks is not the active theme on this site."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:127
+#: src/Abilities/General/CreatePage.php:134
+msgid "Call site-info to see which builders are active."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:134
+msgid "Elementor is not active on this site."
+msgstr ""
+
+#. translators: 1: post type, 2: builder name.
+#: src/Abilities/General/CreatePage.php:144
+#, php-format
+msgid "Post type \"%1$s\" is not enabled for %2$s."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:145
+msgid "Ask a site admin to enable it in the builder's settings, or use postType \"page\"."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:158
+msgid "Bricks refused to mark the page as a Bricks page."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:158
+msgid "Your user needs builder access in Bricks → Settings → Builder access."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:170
+msgid "Elementor could not set up the page."
+msgstr ""
+
+#: src/Abilities/General/CreatePage.php:170
+msgid "Check that your user can edit this post type with Elementor."
+msgstr ""
+
+#: src/Abilities/General/ListMedia.php:26
+msgid "List media"
+msgstr ""
+
+#: src/Abilities/General/ListPages.php:28
+msgid "List pages"
+msgstr ""
+
+#: src/Abilities/General/ListSnapshots.php:24
+msgid "List snapshots"
+msgstr ""
+
+#: src/Abilities/General/RestoreSnapshot.php:27
+msgid "Restore snapshot"
+msgstr ""
+
+#: src/Abilities/General/RestoreSnapshot.php:70
+#: src/Safety/Snapshots.php:135
+msgid "That snapshot does not exist or has expired."
+msgstr ""
+
+#: src/Abilities/General/RestoreSnapshot.php:70
+#: src/Safety/Snapshots.php:135
+msgid "Call list-snapshots to see available snapshots."
+msgstr ""
+
+#: src/Abilities/General/SiteInfo.php:26
+msgid "Site info"
+msgstr ""
+
+#: src/Abilities/General/UpdatePage.php:27
+msgid "Update page"
+msgstr ""
+
+#: src/Abilities/General/UpdatePage.php:74
+msgid "That page does not exist."
+msgstr ""
+
+#: src/Abilities/General/UpdatePage.php:77
+msgid "Your account cannot publish this page."
+msgstr ""
+
+#: src/Abilities/General/UpdatePage.php:77
+msgid "Ask an editor or administrator to publish it."
+msgstr ""
+
+#: src/Abilities/General/UpdatePage.php:94
+msgid "Pass a title, slug or status to change."
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:29
+msgid "Upload media from URL"
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:72
+msgid "The image URL is not a valid public https URL."
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:72
+msgid "Use a direct https link to the image file."
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:89
+msgid "Check that the URL is public and points directly to an image."
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:96
+msgid "The file is not a supported image or is larger than 10 MB."
+msgstr ""
+
+#: src/Abilities/General/UploadMedia.php:96
+msgid "Use a JPEG, PNG, GIF, WebP or AVIF image under 10 MB."
+msgstr ""
+
+#: src/Abilities/Guides/DesignPagePrompt.php:25
+msgid "Design a page"
+msgstr ""
+
+#: src/Abilities/Guides/GetDesignGuide.php:25
+msgid "Get design guide"
+msgstr ""
+
+#. translators: %s: guide topic.
+#: src/Abilities/Guides/GuideResource.php:28
+#, php-format
+msgid "Guide: %s"
+msgstr ""
+
+#: src/Abilities/Guides/ReviewPagePrompt.php:25
+msgid "Review a page"
+msgstr ""
+
+#: src/Abilities/Registry.php:42
+msgid "Build and edit Bricks and Elementor pages."
+msgstr ""
+
+#: src/Admin/AdminPage.php:54
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:71
+msgid "Loading…"
+msgstr ""
+
+#: src/Admin/AdminPage.php:81
+msgid "MCP Builder admin assets are missing. Run \"npm run build\" in admin-ui, or install the release ZIP."
+msgstr ""
+
+#: src/Admin/Notices.php:46
+msgid "MCP Builder is not running yet."
+msgstr ""
+
+#: src/Admin/Notices.php:49
+msgid "Open Status"
+msgstr ""
+
+#: src/Bricks/Store.php:75
+msgid "The page does not exist."
+msgstr ""
+
+#: src/Bricks/Store.php:92
+msgid "Bricks rejected the elements."
+msgstr ""
+
+#: src/Bricks/Store.php:95
+msgid "Bricks only lets your user edit existing content, not add or remove elements."
+msgstr ""
+
+#: src/Bricks/Store.php:95
+msgid "Ask an admin for \"Full access\" in Bricks → Settings → Builder access, or only update existing elements."
+msgstr ""
+
+#: src/Bricks/Store.php:119
+msgid "The elements were not saved."
+msgstr ""
+
+#: src/Bricks/Store.php:119
+msgid "Your user may lack Bricks builder access, or another plugin blocked the update."
+msgstr ""
+
+#: src/Elementor/Store.php:73
+msgid "Elementor cannot edit this post."
+msgstr ""
+
+#: src/Elementor/Store.php:73
+msgid "Check that the post type is enabled in Elementor → Settings."
+msgstr ""
+
+#: src/Elementor/Store.php:76
+msgid "Your role needs access to Elementor (Elementor → Role Manager) and edit rights for the page."
+msgstr ""
+
+#: src/Elementor/Store.php:90
+msgid "Elementor refused to save the page."
+msgstr ""
+
+#: src/Elementor/Store.php:90
+msgid "Your user may lack edit rights, or another plugin blocked the save."
+msgstr ""
+
+#. translators: 1: saved element count, 2: expected element count.
+#: src/Elementor/Store.php:102
+#, php-format
+msgid "Elementor saved %1$d of %2$d elements."
+msgstr ""
+
+#: src/Elementor/Store.php:103
+msgid "A widget may belong to a plugin that is no longer active. Call elementor-get-page to see what was kept, or restore-snapshot to undo."
+msgstr ""
+
+#: src/Mcp/Server.php:73
+#: src/Safety/Governance.php:215
+msgid "MCP Builder is switched off by a site administrator (kill switch)."
+msgstr ""
+
+#: src/OAuth/Clients.php:64
+msgid "Unnamed app"
+msgstr ""
+
+#: src/OAuth/Consent.php:34
+#: src/OAuth/Consent.php:93
+msgid "Connect an AI app"
+msgstr ""
+
+#. translators: 1: app name, 2: site name.
+#: src/OAuth/Consent.php:39
+#, php-format
+msgid "%1$s wants to use MCP Builder on %2$s."
+msgstr ""
+
+#: src/OAuth/Consent.php:46
+msgid "Returns to"
+msgstr ""
+
+#: src/OAuth/Consent.php:47
+msgid "An app on this computer (local address)"
+msgstr ""
+
+#: src/OAuth/Consent.php:48
+msgid "Acts as"
+msgstr ""
+
+#: src/OAuth/Consent.php:52
+msgid "This app registered itself. Only continue if you started this connection yourself just now."
+msgstr ""
+
+#: src/OAuth/Consent.php:62
+#: build/index.js:2
+#: build/index.js:9
+msgid "Access"
+msgstr ""
+
+#: src/OAuth/Consent.php:63
+msgid "Read and edit pages"
+msgstr ""
+
+#: src/OAuth/Consent.php:64
+#: build/index.js:2
+msgid "Read only"
+msgstr ""
+
+#: src/OAuth/Consent.php:66
+msgid "The app can do what your account can do, within MCP Builder's safety settings. Every change is snapshotted and logged. You can disconnect it any time under Settings → MCP Builder → Connection."
+msgstr ""
+
+#: src/OAuth/Consent.php:68
+msgid "Cancel"
+msgstr ""
+
+#: src/OAuth/Consent.php:69
+msgid "Allow access"
+msgstr ""
+
+#: src/OAuth/Consent.php:77
+msgid "Connection stopped"
+msgstr ""
+
+#: src/OAuth/Server.php:317
+msgid "This app is not registered with this site. Try connecting again from the app."
+msgstr ""
+
+#: src/OAuth/Server.php:323
+msgid "The app sent an unexpected return address, so the request was stopped."
+msgstr ""
+
+#: src/OAuth/Server.php:346
+msgid "Your account is not allowed to connect AI apps to this site."
+msgstr ""
+
+#: src/OAuth/Server.php:356
+msgid "The approval form expired. Go back to the app and connect again."
+msgstr ""
+
+#: src/Requirements.php:56
+msgid "WordPress"
+msgstr ""
+
+#: src/Requirements.php:57
+msgid "PHP"
+msgstr ""
+
+#: src/Requirements.php:59
+#: src/Requirements.php:60
+msgid "MCP Adapter plugin"
+msgstr ""
+
+#: src/Requirements.php:59
+msgid "Install and activate the \"MCP Adapter\" plugin from Plugins → Add New."
+msgstr ""
+
+#: src/Requirements.php:73
+#: build/index.js:9
+msgid "Bricks"
+msgstr ""
+
+#: src/Requirements.php:74
+#: build/index.js:9
+msgid "Elementor"
+msgstr ""
+
+#: src/Requirements.php:77
+msgid "Elementor Atomic editor"
+msgstr ""
+
+#: src/Requirements.php:77
+msgid "On"
+msgstr ""
+
+#: src/Requirements.php:77
+msgid "Pages built with Atomic (v4) elements can be read but not edited by MCP Builder yet. Classic widgets and Containers are fully supported."
+msgstr ""
+
+#: src/Requirements.php:81
+#: src/Requirements.php:82
+#: build/index.js:2
+msgid "HTTPS"
+msgstr ""
+
+#: src/Requirements.php:81
+msgid "Yes"
+msgstr ""
+
+#: src/Requirements.php:82
+msgid "No"
+msgstr ""
+
+#: src/Requirements.php:82
+msgid "Application Passwords are sent in every request. Use HTTPS on any site reachable from the internet."
+msgstr ""
+
+#: src/Requirements.php:85
+#: src/Requirements.php:86
+msgid "Application Passwords"
+msgstr ""
+
+#: src/Requirements.php:85
+msgid "Available"
+msgstr ""
+
+#: src/Requirements.php:86
+msgid "Unavailable"
+msgstr ""
+
+#: src/Requirements.php:86
+msgid "They need HTTPS, or define( 'WP_ENVIRONMENT_TYPE', 'local' ) in wp-config.php on a local site. A security plugin may also be disabling them."
+msgstr ""
+
+#: src/Requirements.php:89
+#: src/Requirements.php:90
+msgid "Permalinks"
+msgstr ""
+
+#: src/Requirements.php:89
+msgid "Pretty"
+msgstr ""
+
+#: src/Requirements.php:90
+msgid "Plain"
+msgstr ""
+
+#: src/Requirements.php:90
+msgid "The endpoint will use the ?rest_route= form. Set Settings → Permalinks to \"Post name\" for a cleaner URL."
+msgstr ""
+
+#. translators: 1: component name, 2: required version.
+#: src/Requirements.php:107
+#, php-format
+msgid "Update %1$s to %2$s or newer."
+msgstr ""
+
+#. translators: %s: builder name.
+#: src/Requirements.php:117
+#, php-format
+msgid "%s is not active, so its tools are hidden."
+msgstr ""
+
+#: src/Rest/AdminController.php:274
+msgid "Connection not found."
+msgstr ""
+
+#. translators: %s: error message.
+#: src/Rest/AdminController.php:418
+#, php-format
+msgid "The site could not reach its own REST API (%s). This is common on local sites and does not always mean AI clients will fail."
+msgstr ""
+
+#: src/Rest/AdminController.php:431
+msgid "The Authorization header reaches WordPress."
+msgstr ""
+
+#: src/Rest/AdminController.php:435
+msgid "The web server strips the Authorization header, so Application Passwords cannot work. See Troubleshooting → \"Authorization header stripped\"."
+msgstr ""
+
+#. translators: %s: REST error code.
+#: src/Rest/AdminController.php:440
+#, php-format
+msgid "Unexpected response (%s). A security plugin or firewall may be intercepting REST requests."
+msgstr ""
+
+#: src/Safety/Governance.php:119
+msgid "Before an official builder tool wrote"
+msgstr ""
+
+#: src/Safety/Governance.php:215
+msgid "Stop and tell the user; nothing can run until an admin turns it back on."
+msgstr ""
+
+#: src/Safety/Governance.php:219
+msgid "This tool is turned off in MCP Builder settings."
+msgstr ""
+
+#: src/Safety/Governance.php:219
+msgid "Use another tool, or ask an admin to enable it under Settings → MCP Builder → Tools."
+msgstr ""
+
+#: src/Safety/Governance.php:223
+msgid "Custom-code tools are disabled, or your user is not allowed to use them."
+msgstr ""
+
+#: src/Safety/Governance.php:223
+msgid "Build with native elements instead. An administrator can enable custom code under Settings → MCP Builder → Tools."
+msgstr ""
+
+#: src/Safety/Governance.php:227
+msgid "This app was connected with read-only access, so it cannot make changes."
+msgstr ""
+
+#: src/Safety/Governance.php:227
+msgid "Tell the user. They can reconnect the app and choose \"Read and edit pages\"."
+msgstr ""
+
+#: src/Safety/Governance.php:231
+msgid "The site is in read-only mode, so no changes can be made."
+msgstr ""
+
+#: src/Safety/Governance.php:231
+msgid "Only use read tools, or ask an admin to turn off read-only mode."
+msgstr ""
+
+#. translators: %s: user name.
+#: src/Safety/Governance.php:242
+#, php-format
+msgid "%s is editing this page right now."
+msgstr ""
+
+#. translators: %s: user name.
+#: src/Safety/Governance.php:242
+msgid "Wait until they close the editor, then try again."
+msgstr ""
+
+#: src/Safety/Governance.php:248
+msgid "Too many requests in the last minute."
+msgstr ""
+
+#: src/Safety/Governance.php:248
+msgid "Wait a minute, then continue. Batch changes into fewer calls where the tool allows it."
+msgstr ""
+
+#: src/Safety/Governance.php:269
+msgid "Another user"
+msgstr ""
+
+#. translators: %d: snapshot ID.
+#: src/Safety/Snapshots.php:139
+#, php-format
+msgid "Before restoring snapshot #%d"
+msgstr ""
+
+#: src/Safety/Snapshots.php:152
+msgid "The page this snapshot belongs to no longer exists."
+msgstr ""
+
+#. translators: 1: error message, 2: suggested fix.
+#: src/Support/Errors.php:32
+#, php-format
+msgid "%1$s How to fix: %2$s"
+msgstr ""
+
+#. translators: %s: post type slug.
+#: src/Support/Posts.php:31
+#, php-format
+msgid "Post type \"%s\" does not exist or cannot be edited."
+msgstr ""
+
+#: src/Support/Posts.php:32
+msgid "Use \"page\" or \"post\", or a custom post type slug registered on this site."
+msgstr ""
+
+#: build/index.js:1
+msgid "The server did not return a session."
+msgstr ""
+
+#. translators: %d: number of tools.
+#: build/index.js:2
+#, js-format
+msgid "Connected. The server offers %d tools."
+msgstr ""
+
+#: build/index.js:2
+msgid "Something went wrong."
+msgstr ""
+
+#: build/index.js:2
+msgid "Copied"
+msgstr ""
+
+#: build/index.js:2
+msgid "Copy"
+msgstr ""
+
+#: build/index.js:2
+msgid "Copy snippet"
+msgstr ""
+
+#: build/index.js:2
+msgid "Never"
+msgstr ""
+
+#: build/index.js:2
+msgid "Resource metadata (REST)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Resource metadata (/.well-known)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Authorization server (/.well-known)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Authorization server (REST)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Connect claude.ai, Claude Desktop or ChatGPT"
+msgstr ""
+
+#: build/index.js:2
+msgid "These apps connect from the internet and sign in with your WordPress account. No password or token to copy."
+msgstr ""
+
+#: build/index.js:2
+msgid "This site is not reachable from the internet over HTTPS, so web apps cannot connect to it. Use it on a live site, expose a local site with a tunnel (LocalWP Live Link or Cloudflare Tunnel), or use a coding tool below."
+msgstr ""
+
+#: build/index.js:2
+msgid "Open Customize → Connectors → \"Add custom connector\"."
+msgstr ""
+
+#: build/index.js:2
+msgid "Paste the endpoint URL above. Leave the OAuth client fields empty."
+msgstr ""
+
+#: build/index.js:2
+msgid "Click Connect, sign in to WordPress if asked, choose the access level and click \"Allow access\"."
+msgstr ""
+
+#: build/index.js:2
+msgid "Available on all Claude plans; the Free plan allows one custom connector."
+msgstr ""
+
+#: build/index.js:2
+msgid "Open Settings → Apps (or Plugins) and choose \"Add custom MCP server\". You may need to turn on Developer mode first."
+msgstr ""
+
+#: build/index.js:2
+msgid "Paste the endpoint URL and choose OAuth as the authentication."
+msgstr ""
+
+#: build/index.js:2
+msgid "Approve the connection on the WordPress page that opens."
+msgstr ""
+
+#: build/index.js:2
+msgid "Custom MCP servers depend on your ChatGPT plan and workspace settings; they are not available on every plan."
+msgstr ""
+
+#: build/index.js:2
+msgid "Test sign-in discovery"
+msgstr ""
+
+#: build/index.js:2
+#: build/index.js:8
+msgid "OK"
+msgstr ""
+
+#: build/index.js:2
+#: build/index.js:8
+msgid "Problem"
+msgstr ""
+
+#: build/index.js:2
+msgid "The /.well-known addresses do not reach WordPress on this server. Most apps still connect through the REST address; if one fails, see Troubleshooting → \"OAuth discovery\"."
+msgstr ""
+
+#: build/index.js:2
+msgid "Connect coding tools"
+msgstr ""
+
+#: build/index.js:2
+msgid "Claude Code, OpenAI Codex, Cursor, VS Code and Gemini CLI can sign in with WordPress, or use an access token."
+msgstr ""
+
+#: build/index.js:2
+msgid "How to sign in"
+msgstr ""
+
+#: build/index.js:2
+msgid "Sign in with WordPress (recommended)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Access token"
+msgstr ""
+
+#: build/index.js:2
+msgid "Sign-in needs HTTPS on sites reachable from the internet. Use an access token, or enable HTTPS."
+msgstr ""
+
+#: build/index.js:2
+msgid "Copy this token now. It will not be shown again."
+msgstr ""
+
+#: build/index.js:2
+msgid "Token name"
+msgstr ""
+
+#: build/index.js:2
+msgid "Expires after"
+msgstr ""
+
+#: build/index.js:2
+msgid "30 days"
+msgstr ""
+
+#: build/index.js:2
+msgid "90 days"
+msgstr ""
+
+#: build/index.js:2
+msgid "1 year"
+msgstr ""
+
+#: build/index.js:2
+msgid "Create token"
+msgstr ""
+
+#: build/index.js:2
+msgid "Apps using this token can read pages but not change them."
+msgstr ""
+
+#: build/index.js:2
+#: build/index.js:4
+msgid "Tool"
+msgstr ""
+
+#: build/index.js:2
+msgid "This snippet contains your token. Keep it private and never commit it to a repository."
+msgstr ""
+
+#: build/index.js:2
+msgid "Claude Desktop with a local site"
+msgstr ""
+
+#: build/index.js:2
+msgid "Copy this password now. It will not be shown again."
+msgstr ""
+
+#: build/index.js:2
+msgid "Create Application Password"
+msgstr ""
+
+#: build/index.js:2
+msgid "Revoke"
+msgstr ""
+
+#: build/index.js:2
+msgid "Connected apps and access tokens"
+msgstr ""
+
+#: build/index.js:2
+msgid "Name"
+msgstr ""
+
+#: build/index.js:2
+msgid "Type"
+msgstr ""
+
+#: build/index.js:2
+#: build/index.js:4
+msgid "User"
+msgstr ""
+
+#: build/index.js:2
+msgid "Last used"
+msgstr ""
+
+#: build/index.js:2
+#: build/index.js:6
+msgid "Actions"
+msgstr ""
+
+#: build/index.js:2
+msgid "Nothing connected yet."
+msgstr ""
+
+#: build/index.js:2
+msgid "App (signed in)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Read and edit"
+msgstr ""
+
+#. translators: %s: app or token name.
+#: build/index.js:3
+#, js-format
+msgid "Disconnect \"%s\"? It stops working immediately."
+msgstr ""
+
+#: build/index.js:3
+msgid "Disconnect"
+msgstr ""
+
+#: build/index.js:3
+msgid "Reads per minute (per user)"
+msgstr ""
+
+#: build/index.js:3
+msgid "Stops runaway AI loops."
+msgstr ""
+
+#: build/index.js:3
+msgid "Changes per minute (per user)"
+msgstr ""
+
+#: build/index.js:3
+msgid "Snapshots kept per page"
+msgstr ""
+
+#: build/index.js:3
+msgid "Older ones are deleted daily."
+msgstr ""
+
+#: build/index.js:3
+msgid "Keep snapshots for (days)"
+msgstr ""
+
+#: build/index.js:3
+msgid "Keep audit log for (days)"
+msgstr ""
+
+#. translators: %d: snapshot ID.
+#: build/index.js:4
+#, js-format
+msgid "Restore snapshot #%d? Changes made after it are undone. The current state is snapshotted first, so you can undo this."
+msgstr ""
+
+#: build/index.js:4
+msgid "Kill switch"
+msgstr ""
+
+#: build/index.js:4
+msgid "Switch off MCP Builder"
+msgstr ""
+
+#: build/index.js:4
+msgid "Immediately refuses every AI request, including official Bricks and Elementor tools. Use it if something goes wrong."
+msgstr ""
+
+#: build/index.js:4
+msgid "Turn on the kill switch? Every AI client is cut off until you turn it off again."
+msgstr ""
+
+#: build/index.js:4
+msgid "Allow AI apps to sign in with WordPress (OAuth)"
+msgstr ""
+
+#: build/index.js:4
+msgid "Needed for claude.ai, ChatGPT and coding tools that sign in. Turning it off disconnects nothing, but signed-in apps stop working until it is on again. Access tokens and Application Passwords keep working."
+msgstr ""
+
+#: build/index.js:4
+msgid "Defaults and limits"
+msgstr ""
+
+#: build/index.js:4
+msgid "Preview changes by default (dry run)"
+msgstr ""
+
+#: build/index.js:4
+msgid "Changes are only previewed unless the AI explicitly asks to save."
+msgstr ""
+
+#: build/index.js:4
+msgid "When someone has the page open in an editor"
+msgstr ""
+
+#: build/index.js:4
+msgid "Refuse AI changes (recommended)"
+msgstr ""
+
+#: build/index.js:4
+msgid "Allow AI changes anyway"
+msgstr ""
+
+#: build/index.js:4
+msgid "Save changes"
+msgstr ""
+
+#: build/index.js:4
+#: build/index.js:9
+msgid "Saved."
+msgstr ""
+
+#: build/index.js:4
+msgid "Audit log"
+msgstr ""
+
+#: build/index.js:4
+msgid "Every change, refusal and error made through MCP. Successful reads are not logged."
+msgstr ""
+
+#: build/index.js:4
+msgid "Outcome"
+msgstr ""
+
+#: build/index.js:4
+msgid "All"
+msgstr ""
+
+#: build/index.js:4
+msgid "Saved"
+msgstr ""
+
+#: build/index.js:4
+msgid "Preview"
+msgstr ""
+
+#: build/index.js:4
+msgid "Refused"
+msgstr ""
+
+#: build/index.js:4
+msgid "Error"
+msgstr ""
+
+#: build/index.js:4
+msgid "Page ID"
+msgstr ""
+
+#: build/index.js:4
+#: build/index.js:6
+msgid "When"
+msgstr ""
+
+#: build/index.js:4
+msgid "Page"
+msgstr ""
+
+#: build/index.js:4
+msgid "Details"
+msgstr ""
+
+#: build/index.js:4
+msgid "Nothing logged yet."
+msgstr ""
+
+#: build/index.js:4
+msgid "Input"
+msgstr ""
+
+#. translators: %d: snapshot ID.
+#: build/index.js:5
+#, js-format
+msgid "Restore snapshot #%d (state before this)"
+msgstr ""
+
+#: build/index.js:5
+msgid "Previous"
+msgstr ""
+
+#. translators: 1: current page, 2: total pages.
+#: build/index.js:6
+#, js-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: build/index.js:6
+msgid "Next"
+msgstr ""
+
+#: build/index.js:6
+msgid "Recent snapshots"
+msgstr ""
+
+#: build/index.js:6
+msgid "Automatic backups taken right before each change."
+msgstr ""
+
+#: build/index.js:6
+msgid "What"
+msgstr ""
+
+#: build/index.js:6
+msgid "Taken before"
+msgstr ""
+
+#: build/index.js:6
+msgid "No snapshots yet."
+msgstr ""
+
+#. translators: %d: page ID.
+#: build/index.js:7
+#, js-format
+msgid "Page %d"
+msgstr ""
+
+#. translators: 1: restored snapshot ID, 2: undo snapshot ID.
+#: build/index.js:8
+#, js-format
+msgid "Restored snapshot #%1$d. To undo, restore #%2$d."
+msgstr ""
+
+#: build/index.js:8
+msgid "Restore"
+msgstr ""
+
+#: build/index.js:8
+msgid "Warning"
+msgstr ""
+
+#: build/index.js:8
+msgid "Not active"
+msgstr ""
+
+#: build/index.js:8
+msgid "Design guidelines for AI"
+msgstr ""
+
+#: build/index.js:8
+msgid "AI apps read these through the get-design-guide tool, the design guide resource and the \"Design a page\" prompt before they build."
+msgstr ""
+
+#: build/index.js:8
+msgid "Include the built-in design guide"
+msgstr ""
+
+#: build/index.js:8
+msgid "Layout, hierarchy, copy and accessibility rules that keep AI-built pages from looking generated."
+msgstr ""
+
+#: build/index.js:8
+msgid "This site's own guidelines"
+msgstr ""
+
+#. translators: 1: characters used, 2: maximum.
+#: build/index.js:9
+#, js-format
+msgid "Brand rules, tone of voice, components to reuse, things to avoid. You can paste the text of your own design skills here. They take priority over the built-in guide. %1$d / %2$d characters."
+msgstr ""
+
+#: build/index.js:9
+msgid "Save guidelines"
+msgstr ""
+
+#: build/index.js:9
+msgid "Guidelines are plain text; HTML tags are removed when saving."
+msgstr ""
+
+#: build/index.js:9
+msgid "General"
+msgstr ""
+
+#: build/index.js:9
+msgid "Site info, pages, media and snapshots."
+msgstr ""
+
+#: build/index.js:9
+msgid "Read and edit Bricks pages and global classes."
+msgstr ""
+
+#: build/index.js:9
+msgid "Read and edit Elementor pages."
+msgstr ""
+
+#: build/index.js:9
+msgid "Custom code"
+msgstr ""
+
+#: build/index.js:9
+msgid "Tools that add HTML, CSS, JavaScript or PHP. Also need the custom-code switch above."
+msgstr ""
+
+#: build/index.js:9
+msgid "Official Bricks tools"
+msgstr ""
+
+#: build/index.js:9
+msgid "Bricks' own AI abilities (Bricks 2.4+). MCP Builder's safety rules apply to them too."
+msgstr ""
+
+#: build/index.js:9
+msgid "Official Elementor tools"
+msgstr ""
+
+#: build/index.js:9
+msgid "Elementor's own MCP abilities. MCP Builder's safety rules apply to them too."
+msgstr ""
+
+#: build/index.js:9
+msgid "Connection"
+msgstr ""
+
+#: build/index.js:9
+msgid "MCP Builder is not running yet. Open the Status tab to see what is missing."
+msgstr ""
+
+#: build/index.js:9
+msgid "MCP endpoint"
+msgstr ""
+
+#: build/index.js:9
+msgid "Every AI app connects to this address. Only signed-in users who can edit posts get access."
+msgstr ""
+
+#: build/index.js:9
+msgid "Endpoint URL"
+msgstr ""
+
+#: build/index.js:9
+msgid "Tools"
+msgstr ""
+
+#: build/index.js:9
+msgid "Read-only mode"
+msgstr ""
+
+#: build/index.js:9
+msgid "AI clients can read pages but every change is refused. Write tools are hidden from them."
+msgstr ""
+
+#: build/index.js:9
+msgid "Allow custom code"
+msgstr ""
+
+#: build/index.js:9
+msgid "Off by default. When on, administrators (with unfiltered HTML) can use custom-code tools. Bricks code still has to be signed by an admin in Bricks before it runs."
+msgstr ""
+
+#: build/index.js:9
+msgid "Custom-code tools let AI clients add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?"
+msgstr ""
+
+#: build/index.js:9
+msgid "Read"
+msgstr ""
+
+#: build/index.js:9
+msgid "Write"
+msgstr ""
+
+#: build/index.js:9
+msgid "Safety"
+msgstr ""
+
+#: build/index.js:9
+msgid "Status"
+msgstr ""
+
+#: build/index.js:9
+msgid "Connection tests"
+msgstr ""
+
+#: build/index.js:9
+msgid "Run these after setup, and whenever an AI client cannot connect."
+msgstr ""
+
+#: build/index.js:9
+msgid "Test MCP connection"
+msgstr ""
+
+#: build/index.js:9
+msgid "Test Authorization header"
+msgstr ""
+
+#: build/index.js:9
+msgid "Environment"
+msgstr ""
+
+#: build/index.js:9
+msgid "Check"
+msgstr ""
+
+#: build/index.js:9
+msgid "Current"
+msgstr ""
+
+#: build/index.js:9
+msgid "Required"
+msgstr ""
+
+#: build/index.js:9
+msgid "Notes"
+msgstr ""
+
+#: build/index.js:9
+msgid "Tools for builders that are not active are hidden from AI clients."
+msgstr ""
+
+#: build/index.js:9
+msgid "Hidden"
+msgstr ""
+
+#: build/index.js:9
+msgid "About"
+msgstr ""
+
+#: build/index.js:9
+msgid "AI clients can change your pages. Try MCP Builder on a staging site first, and keep regular backups of every site you connect."
+msgstr ""
+
+#: build/index.js:9
+msgid "About MCP Builder"
+msgstr ""
+
+#. translators: %s: version number.
+#: build/index.js:10
+#, js-format
+msgid "Version %s. Free and open source under the GPL-2.0-or-later license."
+msgstr ""
+
+#: build/index.js:10
+msgid "MCP Builder lets AI clients such as Claude and Cursor build and edit Bricks and Elementor pages using each builder's native elements."
+msgstr ""
+
+#: build/index.js:10
+msgid "Privacy:"
+msgstr ""
+
+#: build/index.js:10
+msgid "MCP Builder sends no telemetry. Your AI app talks to your site directly. The plugin only makes outbound requests to read an app's sign-in details during OAuth and to download images you ask it to upload."
+msgstr ""
+
+#: build/index.js:10
+msgid "Documentation"
+msgstr ""
+
+#: build/index.js:10
+msgid "Built by"
+msgstr ""

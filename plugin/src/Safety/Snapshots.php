@@ -40,6 +40,9 @@ class Snapshots {
 		'_elementor_template_type',
 		'_elementor_version',
 		'_elementor_conditions',
+		'_elementor_code',
+		'_elementor_location',
+		'_elementor_priority',
 		'_wp_page_template',
 	);
 
@@ -96,7 +99,7 @@ class Snapshots {
 		global $wpdb;
 		$table = Schema::snapshot_table();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table} WHERE id = %d", $id ), ARRAY_A );
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', $table, $id ), ARRAY_A );
 		if ( ! $row ) {
 			return null;
 		}
@@ -114,8 +117,8 @@ class Snapshots {
 		$table = Schema::snapshot_table();
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
 		$rows = $post_id
-			? $wpdb->get_results( $wpdb->prepare( "SELECT id, created_at, user_id, ability, target_type, target_id, target_key, label, size FROM {$table} WHERE target_type = %s AND target_id = %d ORDER BY id DESC LIMIT %d", self::TYPE_POST, $post_id, $limit ), ARRAY_A )
-			: $wpdb->get_results( $wpdb->prepare( "SELECT id, created_at, user_id, ability, target_type, target_id, target_key, label, size FROM {$table} ORDER BY id DESC LIMIT %d", $limit ), ARRAY_A );
+			? $wpdb->get_results( $wpdb->prepare( 'SELECT id, created_at, user_id, ability, target_type, target_id, target_key, label, size FROM %i WHERE target_type = %s AND target_id = %d ORDER BY id DESC LIMIT %d', $table, self::TYPE_POST, $post_id, $limit ), ARRAY_A )
+			: $wpdb->get_results( $wpdb->prepare( 'SELECT id, created_at, user_id, ability, target_type, target_id, target_key, label, size FROM %i ORDER BY id DESC LIMIT %d', $table, $limit ), ARRAY_A );
 		// phpcs:enable
 		return array_map( array( $this, 'format' ), $rows ? $rows : array() );
 	}
@@ -168,13 +171,14 @@ class Snapshots {
 		global $wpdb;
 		$table = Schema::snapshot_table();
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE created_at < %s", gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ) ) );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM %i WHERE created_at < %s', $table, gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ) ) );
 
-		$targets = $wpdb->get_results( $wpdb->prepare( "SELECT target_type, target_id, target_key FROM {$table} GROUP BY target_type, target_id, target_key HAVING COUNT(*) > %d", $keep ), ARRAY_A );
+		$targets = $wpdb->get_results( $wpdb->prepare( 'SELECT target_type, target_id, target_key FROM %i GROUP BY target_type, target_id, target_key HAVING COUNT(*) > %d', $table, $keep ), ARRAY_A );
 		foreach ( (array) $targets as $target ) {
 			$cutoff = (int) $wpdb->get_var(
 				$wpdb->prepare(
-					"SELECT id FROM {$table} WHERE target_type = %s AND target_id = %d AND target_key = %s ORDER BY id DESC LIMIT 1 OFFSET %d",
+					'SELECT id FROM %i WHERE target_type = %s AND target_id = %d AND target_key = %s ORDER BY id DESC LIMIT 1 OFFSET %d',
+					$table,
 					$target['target_type'],
 					$target['target_id'],
 					$target['target_key'],
@@ -183,7 +187,8 @@ class Snapshots {
 			);
 			$wpdb->query(
 				$wpdb->prepare(
-					"DELETE FROM {$table} WHERE target_type = %s AND target_id = %d AND target_key = %s AND id < %d",
+					'DELETE FROM %i WHERE target_type = %s AND target_id = %d AND target_key = %s AND id < %d',
+					$table,
 					$target['target_type'],
 					$target['target_id'],
 					$target['target_key'],
@@ -221,6 +226,11 @@ class Snapshots {
 		if ( class_exists( '\Elementor\Core\Files\CSS\Post' ) && isset( $meta['_elementor_data'] ) ) {
 			// VERIFY: Elementor 4.3 Post CSS file class and delete() (core/files/css/post.php).
 			\Elementor\Core\Files\CSS\Post::create( $post_id )->delete();
+			delete_post_meta( $post_id, '_elementor_element_cache' );
+		}
+		if ( array_key_exists( '_elementor_conditions', $meta ) && class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' ) ) {
+			// VERIFY: Elementor Pro 4.3 Theme Builder conditions cache (conditions-cache.php regenerate()).
+			\ElementorPro\Modules\ThemeBuilder\Module::instance()->get_conditions_manager()->get_cache()->regenerate();
 		}
 		clean_post_cache( $post_id );
 		return true;

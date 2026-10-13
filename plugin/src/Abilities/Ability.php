@@ -107,6 +107,20 @@ abstract class Ability {
 		return 'general';
 	}
 
+	/** How the MCP server exposes this ability: tool, resource or prompt. */
+	public function mcp_type(): string {
+		return 'tool';
+	}
+
+	/**
+	 * Extra MCP metadata, e.g. a resource URI.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function mcp_meta(): array {
+		return array();
+	}
+
 	/** False hides the tool, e.g. when its builder is not active. */
 	public function is_available(): bool {
 		return true;
@@ -174,8 +188,8 @@ abstract class Ability {
 				// Only exposed through MCP Builder's own server, never the adapter's default server.
 				'mcp'          => array(
 					'public' => false,
-					'type'   => 'tool',
-				),
+					'type'   => $this->mcp_type(),
+				) + $this->mcp_meta(),
 			),
 		);
 		if ( $this->output_schema() ) {

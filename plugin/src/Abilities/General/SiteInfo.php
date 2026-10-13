@@ -49,11 +49,11 @@ final class SiteInfo extends Ability {
 		$env          = $this->environment;
 
 		return array(
-			'site'     => array(
+			'site'      => array(
 				'name' => Untrusted::text( get_bloginfo( 'name' ) ),
 				'url'  => home_url( '/' ),
 			),
-			'builders' => array(
+			'builders'  => array(
 				'bricks'    => array(
 					'active'    => null !== $env->bricks_version(),
 					'supported' => $requirements->bricks_supported(),
@@ -68,16 +68,17 @@ final class SiteInfo extends Ability {
 					'atomicNotes' => 'Atomic (v4) elements are read-only in MCP Builder. Classic widgets and Containers are fully editable.',
 				),
 			),
-			'safety'   => array(
+			'safety'    => array(
 				'readOnly'          => (bool) $this->settings->get( 'read_only' ),
 				'dryRunDefault'     => (bool) $this->settings->get( 'dry_run_default' ),
 				'customCodeEnabled' => (bool) $this->settings->get( 'custom_code_enabled' ),
 			),
-			'versions' => array(
+			'versions'  => array(
 				'wordpress'  => $env->wp_version(),
 				'mcpBuilder' => MCP_BUILDER_VERSION,
 			),
-			'notice'   => Untrusted::NOTICE,
+			'startHere' => 'Before building, call get-design-guide with topic "design" and then with the active builder ("bricks" or "elementor"). The site owner\'s guidelines are included there.',
+			'notice'    => Untrusted::NOTICE,
 		);
 	}
 }

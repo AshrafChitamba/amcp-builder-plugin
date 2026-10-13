@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Schema {
 
-	public const VERSION        = '1';
+	public const VERSION        = '2';
 	public const VERSION_OPTION = 'mcp_builder_db_version';
 
 	public static function audit_table(): string {
@@ -25,6 +25,16 @@ final class Schema {
 	public static function snapshot_table(): string {
 		global $wpdb;
 		return $wpdb->prefix . 'mcpb_snapshots';
+	}
+
+	public static function oauth_clients_table(): string {
+		global $wpdb;
+		return $wpdb->prefix . 'mcpb_oauth_clients';
+	}
+
+	public static function tokens_table(): string {
+		global $wpdb;
+		return $wpdb->prefix . 'mcpb_tokens';
 	}
 
 	/**
@@ -41,6 +51,8 @@ final class Schema {
 		$charset = $wpdb->get_charset_collate();
 		$audit   = self::audit_table();
 		$snaps   = self::snapshot_table();
+		$clients = self::oauth_clients_table();
+		$tokens  = self::tokens_table();
 
 		dbDelta(
 			"CREATE TABLE {$audit} (
@@ -73,6 +85,36 @@ final class Schema {
 				PRIMARY KEY  (id),
 				KEY target (target_type, target_id),
 				KEY created_at (created_at)
+			) {$charset};
+			CREATE TABLE {$clients} (
+				client_id varchar(191) NOT NULL,
+				name varchar(191) NOT NULL DEFAULT '',
+				redirect_uris text NOT NULL,
+				secret_hash char(64) NOT NULL DEFAULT '',
+				source varchar(20) NOT NULL DEFAULT 'dcr',
+				created_at datetime NOT NULL,
+				last_used_at datetime NULL,
+				PRIMARY KEY  (client_id)
+			) {$charset};
+			CREATE TABLE {$tokens} (
+				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				token_hash char(64) NOT NULL,
+				kind varchar(20) NOT NULL,
+				client_id varchar(191) NOT NULL DEFAULT '',
+				user_id bigint(20) unsigned NOT NULL,
+				scope varchar(100) NOT NULL DEFAULT '',
+				label varchar(191) NOT NULL DEFAULT '',
+				redirect_uri text NULL,
+				code_challenge varchar(128) NOT NULL DEFAULT '',
+				resource varchar(255) NOT NULL DEFAULT '',
+				created_at datetime NOT NULL,
+				expires_at datetime NULL,
+				last_used_at datetime NULL,
+				revoked tinyint(1) NOT NULL DEFAULT 0,
+				PRIMARY KEY  (id),
+				UNIQUE KEY token_hash (token_hash),
+				KEY user_kind (user_id, kind),
+				KEY client_id (client_id)
 			) {$charset};"
 		);
 

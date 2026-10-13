@@ -32,6 +32,14 @@ final class Settings {
 		'snapshot_days'       => 30,
 		'audit_days'          => 90,
 		'post_lock'           => 'deny',
+		'design_guide'        => true,
+		'oauth_enabled'       => true,
+		'design_guidelines'   => '',
+	);
+
+	/** Free-text settings and their maximum length. */
+	private const TEXT = array(
+		'design_guidelines' => 20000,
 	);
 
 	private const CHOICES = array(
@@ -105,6 +113,8 @@ final class Settings {
 				$clean[ $key ] = is_array( $value )
 					? array_values( array_unique( array_filter( array_map( array( $this, 'sanitize_tool_name' ), $value ) ) ) )
 					: $default;
+			} elseif ( isset( self::TEXT[ $key ] ) ) {
+				$clean[ $key ] = mb_substr( sanitize_textarea_field( (string) $value ), 0, self::TEXT[ $key ] );
 			} else {
 				$value         = sanitize_key( (string) $value );
 				$clean[ $key ] = in_array( $value, self::CHOICES[ $key ], true ) ? $value : $default;

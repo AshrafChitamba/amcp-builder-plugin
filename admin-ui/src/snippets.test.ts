@@ -1,19 +1,20 @@
 import { describe, expect, it } from 'vitest';
 
-import { basicAuth, buildSnippets, PASSWORD_PLACEHOLDER } from './snippets';
+import { basicAuth, buildSnippets, TOKEN_PLACEHOLDER } from './snippets';
 
-const input = {
+const base = {
 	mcpUrl: 'https://example.test/wp-json/mcp-builder/mcp',
+	token: 'mcpbp_abc123',
 	username: 'ashraf',
-	password: 'abcd efgh ijkl mnop qrst uvwx',
+	appPassword: 'abcd efgh ijkl',
 };
 
-describe( 'basicAuth', () => {
-	it( 'encodes username and password', () => {
-		expect( basicAuth( 'user', 'pass' ) ).toBe( 'Basic dXNlcjpwYXNz' );
-	} );
+const byId = ( auth: 'oauth' | 'token', id: string ) =>
+	buildSnippets( { ...base, auth } ).find( ( item ) => item.id === id )!;
 
-	it( 'handles non-ASCII usernames as UTF-8', () => {
+describe( 'basicAuth', () => {
+	it( 'encodes username and password as UTF-8', () => {
+		expect( basicAuth( 'user', 'pass' ) ).toBe( 'Basic dXNlcjpwYXNz' );
 		expect( basicAuth( 'zoë', 'x' ) ).toBe(
 			`Basic ${ Buffer.from( 'zoë:x', 'utf8' ).toString( 'base64' ) }`
 		);
@@ -21,56 +22,85 @@ describe( 'basicAuth', () => {
 } );
 
 describe( 'buildSnippets', () => {
-	const snippets = buildSnippets( input );
-	const byId = ( id: string ) => snippets.find( ( item ) => item.id === id )!;
-
-	it( 'offers every supported client', () => {
-		expect( snippets.map( ( item ) => item.id ) ).toEqual( [
+	it( 'offers every supported coding client', () => {
+		expect(
+			buildSnippets( { ...base, auth: 'token' } ).map(
+				( item ) => item.id
+			)
+		).toEqual( [
 			'claude-code',
+			'codex',
 			'cursor',
-			'claude-desktop',
+			'vscode',
+			'gemini',
+			'claude-desktop-proxy',
 		] );
 	} );
 
-	it( 'builds a Claude Code command with the auth header', () => {
-		const { code } = byId( 'claude-code' );
-		expect( code ).toContain( 'claude mcp add --transport http' );
-		expect( code ).toContain( input.mcpUrl );
+	it( 'puts the bearer token in header-based snippets', () => {
+		expect( byId( 'token', 'claude-code' ).code ).toContain(
+			'--header "Authorization: Bearer mcpbp_abc123"'
+		);
+		expect(
+			JSON.parse( byId( 'token', 'cursor' ).code ).mcpServers[
+				'mcp-builder'
+			].headers.Authorization
+		).toBe( 'Bearer mcpbp_abc123' );
+		expect( byId( 'token', 'gemini' ).code ).toContain(
+			'Authorization: Bearer mcpbp_abc123'
+		);
+	} );
+
+	it( 'leaves credentials out of OAuth snippets', () => {
+		for ( const id of [
+			'claude-code',
+			'codex',
+			'cursor',
+			'vscode',
+			'gemini',
+		] ) {
+			const snippet = byId( 'oauth', id );
+			expect( snippet.code ).not.toContain( 'mcpbp_abc123' );
+			expect( snippet.code ).toContain( base.mcpUrl );
+		}
+		expect( byId( 'oauth', 'codex' ).code ).toContain(
+			'codex mcp login mcp-builder'
+		);
+	} );
+
+	it( 'uses an environment variable for Codex tokens', () => {
+		const code = byId( 'token', 'codex' ).code;
+		expect( code ).toContain( '[mcp_servers.mcp_builder]' );
 		expect( code ).toContain(
-			`Authorization: ${ basicAuth( input.username, input.password ) }`
+			'bearer_token_env_var = "MCP_BUILDER_TOKEN"'
 		);
 	} );
 
-	it( 'builds valid Cursor JSON', () => {
-		const parsed = JSON.parse( byId( 'cursor' ).code );
-		expect( parsed.mcpServers[ 'mcp-builder' ] ).toEqual( {
-			url: input.mcpUrl,
-			headers: {
-				Authorization: basicAuth( input.username, input.password ),
-			},
-		} );
+	it( 'never writes the VS Code token into the file', () => {
+		const config = JSON.parse( byId( 'token', 'vscode' ).code );
+		expect( config.servers[ 'mcp-builder' ].headers.Authorization ).toBe(
+			'Bearer ${input:mcp-builder-token}'
+		);
+		expect( config.inputs[ 0 ].password ).toBe( true );
 	} );
 
-	it( 'builds Claude Desktop JSON using the proxy', () => {
-		const server = JSON.parse( byId( 'claude-desktop' ).code ).mcpServers[
-			'mcp-builder'
-		];
-		expect( server.command ).toBe( 'npx' );
-		expect( server.args ).toContain(
-			'@automattic/mcp-wordpress-remote@latest'
-		);
+	it( 'configures the Claude Desktop proxy with an Application Password', () => {
+		const server = JSON.parse(
+			byId( 'token', 'claude-desktop-proxy' ).code
+		).mcpServers[ 'mcp-builder' ];
 		expect( server.env ).toEqual( {
-			WP_API_URL: input.mcpUrl,
-			WP_API_USERNAME: input.username,
-			WP_API_PASSWORD: input.password,
+			WP_API_URL: base.mcpUrl,
+			WP_API_USERNAME: base.username,
+			WP_API_PASSWORD: base.appPassword,
 		} );
 	} );
 
-	it( 'keeps the placeholder visible when no password was created', () => {
-		const desktop = buildSnippets( {
-			...input,
-			password: PASSWORD_PLACEHOLDER,
-		} ).find( ( item ) => item.id === 'claude-desktop' )!;
-		expect( desktop.code ).toContain( PASSWORD_PLACEHOLDER );
+	it( 'keeps the placeholder visible when no token was created', () => {
+		const snippet = buildSnippets( {
+			...base,
+			auth: 'token',
+			token: TOKEN_PLACEHOLDER,
+		} )[ 0 ];
+		expect( snippet.code ).toContain( TOKEN_PLACEHOLDER );
 	} );
 } );

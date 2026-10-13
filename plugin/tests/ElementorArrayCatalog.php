@@ -18,6 +18,7 @@ final class ElementorArrayCatalog implements Catalog {
 		'text-editor' => array( 'editor' ),
 		'image'       => array( 'image', 'image_size' ),
 		'nested-tabs' => array( 'tabs' ),
+		'html'        => array( 'html' ),
 	);
 
 	public function exists( string $el_type, ?string $widget_type ): bool {

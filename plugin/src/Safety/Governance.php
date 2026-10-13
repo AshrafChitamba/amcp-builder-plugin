@@ -223,6 +223,10 @@ class Governance {
 			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'mcp-builder' ), __( 'Build with native elements instead. An administrator can enable custom code under Settings → MCP Builder → Tools.', 'mcp-builder' ), 403 );
 		}
 
+		if ( ! $readonly && \McpBuilder\OAuth\Tokens::current_is_read_only() ) {
+			return Errors::make( 'read_only_connection', __( 'This app was connected with read-only access, so it cannot make changes.', 'mcp-builder' ), __( 'Tell the user. They can reconnect the app and choose "Read and edit pages".', 'mcp-builder' ), 403 );
+		}
+
 		if ( ! $readonly && $settings['read_only'] ) {
 			return Errors::make( 'read_only', __( 'The site is in read-only mode, so no changes can be made.', 'mcp-builder' ), __( 'Only use read tools, or ask an admin to turn off read-only mode.', 'mcp-builder' ), 403 );
 		}

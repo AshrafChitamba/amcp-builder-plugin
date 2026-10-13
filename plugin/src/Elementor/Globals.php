@@ -24,7 +24,8 @@ final class Globals {
 	 */
 	public static function read(): array {
 		$kit = \Elementor\Plugin::$instance->kits_manager->get_active_kit();
-		if ( ! $kit || ! method_exists( $kit, 'get_settings' ) ) {
+		// get_active_kit() returns an empty kit object, never null, when no kit exists.
+		if ( ! $kit || ! $kit->get_id() || ! method_exists( $kit, 'get_settings' ) ) {
 			return array(
 				'colors'     => array(),
 				'typography' => array(),

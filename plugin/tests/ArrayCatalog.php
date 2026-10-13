@@ -26,6 +26,7 @@ final class ArrayCatalog implements Catalog {
 				'heading'    => array( 'nestable' => false, 'keys' => array_merge( $style, array( 'text', 'tag' ) ) ),
 				'text-basic' => array( 'nestable' => false, 'keys' => array_merge( $style, array( 'text', 'tag' ) ) ),
 				'image'      => array( 'nestable' => false, 'keys' => array_merge( $style, array( 'image', 'altText' ) ) ),
+				'code'       => array( 'nestable' => false, 'keys' => array( 'code', 'executeCode', 'cssCode', 'javascriptCode' ) ),
 			)
 		);
 	}

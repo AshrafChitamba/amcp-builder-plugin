@@ -84,4 +84,11 @@ final class ValidatorTest extends TestCase {
 		$many = array_fill( 0, Validator::MAX_ELEMENTS + 1, array( 'name' => 'heading' ) );
 		$this->assertRejects( 'too_many_elements', fn() => $this->validator()->specs( $many, null ) );
 	}
+
+	public function test_code_element_needs_custom_code_permission(): void {
+		$code = array( array( 'name' => 'code', 'settings' => array( 'code' => '<p>x</p>' ) ) );
+		$this->assertRejects( 'custom_code_disabled', fn() => $this->validator()->specs( $code, null ) );
+		( new Validator( ArrayCatalog::default(), true ) )->specs( $code, null );
+		$this->addToAssertionCount( 1 );
+	}
 }

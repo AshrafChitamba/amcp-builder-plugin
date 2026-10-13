@@ -6,10 +6,12 @@
 namespace McpBuilder\Tests\Unit;
 
 use Brain\Monkey\Functions;
+use McpBuilder\Abilities\Elementor\UpdateGlobals;
 use McpBuilder\Abilities\General\CreatePage;
 use McpBuilder\Abilities\General\ListPages;
 use McpBuilder\Abilities\General\SiteInfo;
 use McpBuilder\Abilities\Registry;
+use McpBuilder\Elementor\Templates;
 use McpBuilder\Environment;
 use McpBuilder\Safety\Snapshots;
 use McpBuilder\Settings;
@@ -44,9 +46,12 @@ final class AbilitiesTest extends TestCase {
 		$this->assertSame(
 			array(
 				'mcp-builder/site-info',
+				'mcp-builder/get-design-guide',
 				'mcp-builder/list-pages',
 				'mcp-builder/create-page',
 				'mcp-builder/list-media',
+				'mcp-builder/upload-media',
+				'mcp-builder/update-page',
 				'mcp-builder/list-snapshots',
 				'mcp-builder/restore-snapshot',
 			),
@@ -163,5 +168,24 @@ final class AbilitiesTest extends TestCase {
 		);
 
 		$this->assertSame( 'mcp_builder_cannot_publish', $result->get_error_code() );
+	}
+
+	public function test_elementor_global_fonts_reject_unknown_fields(): void {
+		$schema = ( new UpdateGlobals( $this->settings(), $this->environment(), $this->snapshots() ) )->input_schema();
+		$font   = $schema['properties']['typography']['items'];
+
+		$this->assertFalse( $font['additionalProperties'], 'A wrong shape such as {"settings":{...}} must be rejected, not silently ignored.' );
+		$this->assertArrayHasKey( 'font_family', $font['properties'] );
+		$this->assertSame( array( 'size' ), $font['properties']['font_size']['required'] );
+	}
+
+	public function test_block_themes_warn_about_elementor_headers_and_footers(): void {
+		Functions\when( 'wp_is_block_theme' )->justReturn( true );
+		$this->assertCount( 1, Templates::theme_warnings( 'header' ) );
+		$this->assertCount( 1, Templates::theme_warnings( 'footer' ) );
+		$this->assertSame( array(), Templates::theme_warnings( 'single-page' ) );
+
+		Functions\when( 'wp_is_block_theme' )->justReturn( false );
+		$this->assertSame( array(), Templates::theme_warnings( 'header' ) );
 	}
 }

@@ -68,10 +68,10 @@ class AuditLog {
 		$sql_where = implode( ' AND ', $where );
 		$offset    = max( 0, ( $page - 1 ) * $per_page );
 
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL,WordPress.DB.PreparedSQLPlaceholders -- Plugin-owned table; all values are prepared.
-		$total = (int) $wpdb->get_var( $params ? $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$sql_where}", $params ) : "SELECT COUNT(*) FROM {$table}" );
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL,WordPress.DB.PreparedSQLPlaceholders,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Plugin-owned table; $sql_where holds only fixed column names and placeholders, values are prepared.
+		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE {$sql_where}", array_merge( array( $table ), $params ) ) );
 		$rows  = $wpdb->get_results(
-			$wpdb->prepare( "SELECT * FROM {$table} WHERE {$sql_where} ORDER BY id DESC LIMIT %d OFFSET %d", array_merge( $params, array( $per_page, $offset ) ) ),
+			$wpdb->prepare( "SELECT * FROM %i WHERE {$sql_where} ORDER BY id DESC LIMIT %d OFFSET %d", array_merge( array( $table ), $params, array( $per_page, $offset ) ) ),
 			ARRAY_A
 		);
 		// phpcs:enable
@@ -86,7 +86,7 @@ class AuditLog {
 		global $wpdb;
 		$table = Schema::audit_table();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Plugin-owned table.
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE created_at < %s", gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ) ) );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM %i WHERE created_at < %s', $table, gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ) ) );
 	}
 
 	/**

@@ -8,6 +8,8 @@ import type {
 	AppPassword,
 	AuditFilters,
 	AuditPage,
+	Connection,
+	DiscoveryResult,
 	ManagedAbility,
 	NewAppPassword,
 	Settings,
@@ -55,6 +57,22 @@ export const restoreSnapshot = (
 	id: number
 ): Promise< { restored: number; undoSnapshotId: number } > =>
 	apiFetch( { path: path( `/snapshots/${ id }/restore` ), method: 'POST' } );
+
+export const getConnections = (): Promise< Connection[] > =>
+	apiFetch( { path: path( '/connections' ) } );
+
+export const createAccessToken = ( data: {
+	name: string;
+	readOnly: boolean;
+	days: number;
+} ): Promise< { token: string } > =>
+	apiFetch( { path: path( '/connections' ), method: 'POST', data } );
+
+export const revokeConnection = ( id: number ): Promise< unknown > =>
+	apiFetch( { path: path( `/connections/${ id }` ), method: 'DELETE' } );
+
+export const testDiscovery = (): Promise< DiscoveryResult > =>
+	apiFetch( { path: path( '/discovery-test' ), method: 'POST' } );
 
 export const testAuthHeader = (): Promise< TestResult > =>
 	apiFetch( { path: path( '/auth-header-test' ), method: 'POST' } );

@@ -7,6 +7,8 @@
 
 namespace McpBuilder\Bricks;
 
+// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
+
 use McpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;

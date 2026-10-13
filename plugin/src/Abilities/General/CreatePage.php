@@ -166,7 +166,7 @@ final class CreatePage extends Ability {
 	private function mark_elementor( int $post_id ) {
 		// VERIFY: Documents API in Elementor 4.3 (core/documents-manager.php, core/base/document.php).
 		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
-		if ( ! $document || ! $document->save( array( 'elements' => array() ) ) ) {
+		if ( ! $document || false === $document->save( array( 'elements' => array() ) ) ) {
 			return Errors::make( 'elementor_save_failed', __( 'Elementor could not set up the page.', 'mcp-builder' ), __( 'Check that your user can edit this post type with Elementor.', 'mcp-builder' ), 500 );
 		}
 		$document->set_is_built_with_elementor( true );

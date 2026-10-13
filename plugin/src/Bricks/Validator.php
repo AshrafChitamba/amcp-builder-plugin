@@ -7,6 +7,8 @@
 
 namespace McpBuilder\Bricks;
 
+// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
+
 use McpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
@@ -33,7 +35,7 @@ final class Validator {
 		'_hideElementFrontend',
 	);
 
-	public function __construct( private Catalog $catalog ) {}
+	public function __construct( private Catalog $catalog, private bool $allow_custom_code = false ) {}
 
 	/**
 	 * @param mixed       $specs       Nested specs from the caller.
@@ -64,6 +66,9 @@ final class Validator {
 	 * @param mixed $settings Settings object.
 	 */
 	public function settings( string $name, $settings ): void {
+		if ( ! $this->allow_custom_code && is_array( $settings ) && ( 'code' === $name || ( 'svg' === $name && isset( $settings['code'] ) ) ) ) {
+			throw \McpBuilder\Support\CustomCode::refusal( 'code' === $name ? 'A Code element' : 'An SVG element with inline code' );
+		}
 		if ( ! is_array( $settings ) || ( $settings && array_is_list( $settings ) ) ) {
 			throw new TreeError( 'invalid_settings', sprintf( 'Settings for "%s" must be an object of key/value pairs.', $name ), 'Pass e.g. {"text":"Hello","tag":"h2"}.' );
 		}

@@ -54,11 +54,13 @@ Missing builder → those tools are not registered. Below minimum → admin noti
 
 | Client | How it connects |
 |---|---|
-| Claude Code | native HTTP + `Authorization: Basic …` header |
-| Cursor | native HTTP + headers |
-| Claude Desktop | `npx @automattic/mcp-wordpress-remote` (needs Node on that PC) **or** `wp mcp-adapter serve` (LocalWP, no Node). Remote connectors need OAuth or beta headers, so they're not supported in v1. |
+| claude.ai / Claude Desktop / mobile | Custom connector → OAuth 2.1 (our authorization server, DCR or CIMD). Needs public HTTPS. |
+| ChatGPT (web, desktop) | Custom MCP app (developer mode, plan-dependent) → OAuth 2.1. Needs public HTTPS. |
+| OpenAI Codex | `codex mcp add --url` + `codex mcp login` (OAuth, loopback callback) or `bearer_token_env_var` with an access token. |
+| Claude Code, Cursor, VS Code, Gemini CLI | Native HTTP: OAuth or `Authorization: Bearer <access token>`. |
+| Claude Desktop + local site | `npx @automattic/mcp-wordpress-remote` with an Application Password. |
 
-OAuth: **not in v1.** No WordPress-side OAuth server exists in core or the adapter; Application Passwords cover every client above.
+OAuth (added in 0.4.0, revising the v1 decision): the plugin runs its own OAuth 2.1 authorization server under `mcp-builder/v1/oauth`, with protected-resource metadata, PKCE S256, rotating refresh tokens and a WordPress approval page. See docs/security.md.
 
 ## 3. Governance design
 
@@ -179,8 +181,16 @@ Bricks is the office's main builder, so it is built first (Phase 3).
 
 ## 8. Roadmap (pause for your OK after each phase)
 
-Status (2026-10-12): Phases 1–3 done and tested live on LocalWP (Bricks 2.3.1, WordPress 7.1.3, MCP Adapter 0.7.0). Phase 4 (Elementor classic) built and tested live on LocalWP (Elementor 4.3.4 + Pro 4.3.1): a 141-element landing page was built through the tools. `elementor-get-globals` is read-only for now; `elementor-update-page-settings` was added for page templates.
+Status (2026-10-13): **all phases built (0.4.0).**
 
+- Phases 1–3 were tested live on LocalWP (Bricks 2.3.1, WordPress 7.1.3, MCP Adapter 0.7.0).
+- Phase 4 (Elementor classic) was tested live on LocalWP (Elementor 4.3.4 + Pro 4.3.1).
+- Phase 5:
+  - Bricks templates and conditions, design tokens and page settings were tested live (dry runs plus one real template).
+  - Elementor templates, conditions, globals and code snippets were tested live on 2026-10-13 (Elementor 4.3.4 + Pro 4.3.1). Two global-font bugs were fixed. Headers and footers don't show with block themes, so the tools now warn.
+- Phase 6: custom-code gating was tested live on Bricks.
+- Phase 7: docs, `.wp-env.json`, translation template (`languages/mcp-builder.pot`) and a clean Plugin Check run (no errors or warnings, 2026-10-13).
+- Remote apps (OAuth): discovery, DCR, token and error paths were tested live. The interactive approval with claude.ai or ChatGPT needs a public HTTPS site.
 
 | Phase | Delivers |
 |---|---|
