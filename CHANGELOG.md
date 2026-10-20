@@ -6,6 +6,24 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-20
+
+### Changed
+- Renamed from MCP Builder to **AMCP Builder**: plugin folder and main file `amcp-builder`, text domain `amcp-builder`, PHP namespace `AmcpBuilder`, MCP endpoint `/wp-json/amcp-builder/mcp`, tool names `amcp-builder-*`, admin REST namespace `amcp-builder/v1`, options `amcp_builder_*` and tables `{prefix}amcpb_*`.
+- New top-level **AMCP Builder** admin menu (with a submenu per screen) instead of Settings → MCP Builder.
+- Redesigned admin interface with a blue brand system, a branded header with live status and a copyable server URL, keyboard-accessible navigation and restyled tables.
+- Design guidelines moved from Tools to a new **Design rules** screen.
+- Rewrote the built-in design guide (drawing on Apple's design principles and the impeccable and taste skills): eyebrow labels above headings are banned; heroes must reflect the business with real imagery; one consistent design system across the site while layouts may vary; no new colors or fonts without the user's permission.
+
+### Added
+- Automatic migration from MCP Builder: settings (including disabled tools), snapshots, audit log, OAuth clients and tokens are copied on first load. An admin notice explains the new URL while the old plugin is still active.
+- `guidelinesVersion` in every tool result, so AI apps re-read the site owner's rules as soon as they change.
+- `preview` links (Bricks links jump to the changed element) and a `reportToUser` instruction on every saved change, so the AI reports each change with a link and a short description.
+- **Tutorial** screen with an embedded video (YouTube, Vimeo, Loom, Google Drive or a video file) and a getting-started guide. The video link is `AdminPage::TUTORIAL_URL` or the `amcp_builder_tutorial_url` filter.
+
+### Removed
+- Planning documents, internal docs, local helper scripts and other files that are not part of the plugin.
+
 ## [0.4.0] - 2026-10-13
 
 ### Added

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<ruleset name="MCP Builder">
-	<description>WordPress Coding Standards for MCP Builder.</description>
+<ruleset name="AMCP Builder">
+	<description>WordPress Coding Standards for AMCP Builder.</description>
 
-	<file>mcp-builder.php</file>
+	<file>amcp-builder.php</file>
 	<file>uninstall.php</file>
 	<file>src</file>
 
@@ -37,7 +37,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="mcp-builder"/>
+				<element value="amcp-builder"/>
 			</property>
 		</properties>
 	</rule>
@@ -45,8 +45,8 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="mcp_builder"/>
-				<element value="McpBuilder"/>
+				<element value="amcp_builder"/>
+				<element value="AmcpBuilder"/>
 			</property>
 		</properties>
 	</rule>

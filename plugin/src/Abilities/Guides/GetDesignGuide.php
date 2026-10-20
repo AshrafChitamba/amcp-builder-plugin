@@ -2,13 +2,13 @@
 /**
  * The get-design-guide tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Guides;
+namespace AmcpBuilder\Abilities\Guides;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Guides\Guides;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,13 +22,13 @@ final class GetDesignGuide extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Get design guide', 'mcp-builder' );
+		return __( 'Get design guide', 'amcp-builder' );
 	}
 
 	protected function description(): string {
 		return 'Returns guidance to follow while building, as markdown. Call it once at the start of every build or redesign: topic "design" (layout, hierarchy, copy and accessibility rules plus this site\'s own guidelines), '
 			. 'then the topic for the active builder ("bricks" or "elementor": data formats, pitfalls and the right tools). "safety" explains snapshots, dry runs and limits. '
-			. 'The site owner\'s guidelines take priority over the general advice.';
+			. 'The site owner\'s guidelines come last and take priority over the general advice. Call it again whenever a result\'s guidelinesVersion differs from the version returned here: the owner has changed the rules.';
 	}
 
 	protected function properties(): array {
@@ -53,6 +53,7 @@ final class GetDesignGuide extends Ability {
 		return array(
 			'topic' => $input['topic'],
 			'guide' => ( new Guides( $this->settings ) )->get( $input['topic'] ),
+			// guidelinesVersion is added to every result by Ability::execute().
 		);
 	}
 }

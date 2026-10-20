@@ -2,13 +2,13 @@
 /**
  * The elementor-move-element tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Tree;
-use McpBuilder\Elementor\Validator;
+use AmcpBuilder\Elementor\Tree;
+use AmcpBuilder\Elementor\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class MoveElement extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: move element', 'mcp-builder' );
+		return __( 'Elementor: move element', 'amcp-builder' );
 	}
 
 	protected function description(): string {

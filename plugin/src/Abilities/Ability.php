@@ -1,15 +1,17 @@
 <?php
 /**
- * Base class for every MCP Builder ability.
+ * Base class for every AMCP Builder ability.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities;
+namespace AmcpBuilder\Abilities;
 
-use McpBuilder\Environment;
-use McpBuilder\Safety\Snapshots;
-use McpBuilder\Settings;
+use AmcpBuilder\Environment;
+use AmcpBuilder\Guides\Guides;
+use AmcpBuilder\Safety\Snapshots;
+use AmcpBuilder\Settings;
+use AmcpBuilder\Support\ChangeReport;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  */
 abstract class Ability {
 
-	public const NAMESPACE = 'mcp-builder';
+	public const NAMESPACE = 'amcp-builder';
 
 	public function __construct(
 		protected Settings $settings,
@@ -162,7 +164,16 @@ abstract class Ability {
 	 * @return array<string, mixed>|WP_Error
 	 */
 	public function execute( $input = null ) {
-		return $this->run( $this->with_defaults( $input ) );
+		$result = $this->run( $this->with_defaults( $input ) );
+		if ( ! is_array( $result ) ) {
+			return $result;
+		}
+		if ( ! $this->is_readonly() ) {
+			$result += ChangeReport::for_result( $result );
+		}
+		// Lets the AI notice when the site owner edits the guidelines mid-session.
+		$result['guidelinesVersion'] = ( new Guides( $this->settings ) )->version();
+		return $result;
 	}
 
 	/**
@@ -185,7 +196,7 @@ abstract class Ability {
 					'idempotent'  => $this->is_readonly(),
 				),
 				'show_in_rest' => false,
-				// Only exposed through MCP Builder's own server, never the adapter's default server.
+				// Only exposed through AMCP Builder's own server, never the adapter's default server.
 				'mcp'          => array(
 					'public' => false,
 					'type'   => $this->mcp_type(),

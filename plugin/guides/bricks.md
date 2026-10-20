@@ -2,7 +2,7 @@
 
 ## Structure
 
-- A Bricks page is a flat list of elements linked by parent/children. You send nested trees; MCP Builder flattens them and creates the IDs.
+- A Bricks page is a flat list of elements linked by parent/children. You send nested trees; AMCP Builder flattens them and creates the IDs.
 - Standard layout: section > container > block/div > content elements. Sections give vertical spacing and full width; containers give the content width; blocks and divs group and lay out content.
 - Content elements: heading, text-basic (plain text), text (rich text), button, image, icon, icon-box, list, video, divider, nav-menu, form, accordion-nested, tabs-nested, slider-nested.
 - Always check names with bricks-list-elements and settings with bricks-get-element-schema before using a new element type. Unknown keys are rejected.
@@ -19,7 +19,7 @@
 - Icons: {"library":"fontawesomeSolid","icon":"fas fa-arrow-right"} (also fontawesomeBrands "fab fa-…", themify "ti-…", ionicons).
 - Links: {"type":"internal","postId":42} or {"type":"external","url":"https://…","newTab":true}.
 - Images: {"id":123,"url":"https://…/image.jpg","size":"large"} from list-media or upload-media, plus altText.
-- Custom CSS (_cssCustom on elements and global classes): write %root% for the element or class selector; MCP Builder replaces it with "#brxe-ID" or ".class-name" when saving, as the Bricks builder does.
+- Custom CSS (_cssCustom on elements and global classes): write %root% for the element or class selector; AMCP Builder replaces it with "#brxe-ID" or ".class-name" when saving, as the Bricks builder does.
 
 ## Design system
 
@@ -42,5 +42,5 @@
 
 ## Custom code
 
-- Build with native elements. The Code element, SVG code and page scripts are custom code: they are refused unless an administrator enabled custom code in MCP Builder.
-- Code that runs PHP or HTML only executes after an administrator signs it in Bricks (Settings → Custom code → Regenerate code signatures). MCP Builder never signs code. bricks-code-status shows what still needs signing.
+- Build with native elements. The Code element, SVG code and page scripts are custom code: they are refused unless an administrator enabled custom code in AMCP Builder.
+- Code that runs PHP or HTML only executes after an administrator signs it in Bricks (Settings → Custom code → Regenerate code signatures). AMCP Builder never signs code. bricks-code-status shows what still needs signing.

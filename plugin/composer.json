@@ -1,5 +1,5 @@
 {
-	"name": "ashrafchitambaa/mcp-builder",
+	"name": "ashrafchitambaa/amcp-builder",
 	"description": "Lets AI clients build and edit Bricks and Elementor pages through MCP.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
@@ -22,12 +22,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"McpBuilder\\": "src/"
+			"AmcpBuilder\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"McpBuilder\\Tests\\": "tests/"
+			"AmcpBuilder\\Tests\\": "tests/"
 		}
 	},
 	"scripts": {

@@ -2,15 +2,15 @@
 /**
  * The bricks-upsert-global-class tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\CustomCss;
-use McpBuilder\Bricks\GlobalClasses;
-use McpBuilder\Bricks\Ids;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Bricks\CustomCss;
+use AmcpBuilder\Bricks\GlobalClasses;
+use AmcpBuilder\Bricks\Ids;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class UpsertGlobalClass extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: create or update global class', 'mcp-builder' );
+		return __( 'Bricks: create or update global class', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -74,8 +74,8 @@ final class UpsertGlobalClass extends BricksAbility {
 				return Errors::make(
 					'invalid_class_setting',
 					/* translators: %s: settings key. */
-					sprintf( __( 'Global class settings must be style keys starting with "_"; "%s" is not.', 'mcp-builder' ), $key ),
-					__( 'Use style keys from bricks-get-element-schema, e.g. _padding, _typography, _background.', 'mcp-builder' )
+					sprintf( __( 'Global class settings must be style keys starting with "_"; "%s" is not.', 'amcp-builder' ), $key ),
+					__( 'Use style keys from bricks-get-element-schema, e.g. _padding, _typography, _background.', 'amcp-builder' )
 				);
 			}
 		}

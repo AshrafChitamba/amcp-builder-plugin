@@ -10,6 +10,8 @@ export interface Config {
 	authorUrl: string;
 	docsUrl: string;
 	isLocal: boolean;
+	tutorialUrl: string;
+	adminUrl: string;
 }
 
 export type CheckStatus = 'ok' | 'warning' | 'error' | 'inactive';

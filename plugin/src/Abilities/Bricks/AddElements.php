@@ -2,14 +2,14 @@
 /**
  * The bricks-add-elements tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\Ids;
-use McpBuilder\Bricks\Tree;
-use McpBuilder\Bricks\Validator;
+use AmcpBuilder\Bricks\Ids;
+use AmcpBuilder\Bricks\Tree;
+use AmcpBuilder\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class AddElements extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: add elements', 'mcp-builder' );
+		return __( 'Bricks: add elements', 'amcp-builder' );
 	}
 
 	protected function description(): string {

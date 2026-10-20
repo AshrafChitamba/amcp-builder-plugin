@@ -2,14 +2,14 @@
 /**
  * The site-info tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\General;
+namespace AmcpBuilder\Abilities\General;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Requirements;
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Requirements;
+use AmcpBuilder\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class SiteInfo extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Site info', 'mcp-builder' );
+		return __( 'Site info', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -65,7 +65,7 @@ final class SiteInfo extends Ability {
 					'version'     => $env->elementor_version(),
 					'pro'         => $env->elementor_pro_version(),
 					'atomicOn'    => $env->elementor_atomic_active(),
-					'atomicNotes' => 'Atomic (v4) elements are read-only in MCP Builder. Classic widgets and Containers are fully editable.',
+					'atomicNotes' => 'Atomic (v4) elements are read-only in AMCP Builder. Classic widgets and Containers are fully editable.',
 				),
 			),
 			'safety'    => array(
@@ -74,10 +74,10 @@ final class SiteInfo extends Ability {
 				'customCodeEnabled' => (bool) $this->settings->get( 'custom_code_enabled' ),
 			),
 			'versions'  => array(
-				'wordpress'  => $env->wp_version(),
-				'mcpBuilder' => MCP_BUILDER_VERSION,
+				'wordpress'   => $env->wp_version(),
+				'amcpBuilder' => AMCP_BUILDER_VERSION,
 			),
-			'startHere' => 'Before building, call get-design-guide with topic "design" and then with the active builder ("bricks" or "elementor"). The site owner\'s guidelines are included there.',
+			'startHere' => 'Before building, call get-design-guide with topic "design" and then with the active builder ("bricks" or "elementor"). The site owner\'s rules are at the end of the design guide and override everything else. Re-read the guide whenever guidelinesVersion in a result changes.',
 			'notice'    => Untrusted::NOTICE,
 		);
 	}

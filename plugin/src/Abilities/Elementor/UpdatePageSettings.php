@@ -2,16 +2,16 @@
 /**
  * The elementor-update-page-settings tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Store;
-use McpBuilder\Elementor\Validator;
-use McpBuilder\Support\Errors;
-use McpBuilder\Support\Posts;
-use McpBuilder\Support\TreeError;
+use AmcpBuilder\Elementor\Store;
+use AmcpBuilder\Elementor\Validator;
+use AmcpBuilder\Support\Errors;
+use AmcpBuilder\Support\Posts;
+use AmcpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -28,7 +28,7 @@ final class UpdatePageSettings extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: update page settings', 'mcp-builder' );
+		return __( 'Elementor: update page settings', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -65,7 +65,7 @@ final class UpdatePageSettings extends ElementorWriteAbility {
 		$patch   = (array) $input['settings'];
 		$blocked = array_intersect( array_keys( $patch ), self::BLOCKED );
 		if ( $blocked ) {
-			return Errors::make( 'setting_not_allowed', sprintf( /* translators: %s: setting keys. */ __( 'These settings change the post itself and cannot be set here: %s.', 'mcp-builder' ), implode( ', ', $blocked ) ), __( 'Leave publishing and titles to a person in WordPress.', 'mcp-builder' ) );
+			return Errors::make( 'setting_not_allowed', sprintf( /* translators: %s: setting keys. */ __( 'These settings change the post itself and cannot be set here: %s.', 'amcp-builder' ), implode( ', ', $blocked ) ), __( 'Leave publishing and titles to a person in WordPress.', 'amcp-builder' ) );
 		}
 
 		$document = Store::document( $post->ID );
@@ -109,7 +109,7 @@ final class UpdatePageSettings extends ElementorWriteAbility {
 		try {
 			$saved = Store::write( $post->ID, array( 'settings' => $settings ) );
 		} catch ( \Exception $exception ) {
-			return Errors::make( 'elementor_save_failed', sprintf( /* translators: %s: Elementor error message. */ __( 'Elementor refused the page settings: %s', 'mcp-builder' ), $exception->getMessage() ), '', 400 );
+			return Errors::make( 'elementor_save_failed', sprintf( /* translators: %s: Elementor error message. */ __( 'Elementor refused the page settings: %s', 'amcp-builder' ), $exception->getMessage() ), '', 400 );
 		}
 		if ( is_wp_error( $saved ) ) {
 			return $saved;
@@ -123,7 +123,7 @@ final class UpdatePageSettings extends ElementorWriteAbility {
 		) + $result;
 	}
 
-	protected function mutate( \McpBuilder\Elementor\Tree $tree, array $input, Validator $validator ): array {
+	protected function mutate( \AmcpBuilder\Elementor\Tree $tree, array $input, Validator $validator ): array {
 		return array();
 	}
 }

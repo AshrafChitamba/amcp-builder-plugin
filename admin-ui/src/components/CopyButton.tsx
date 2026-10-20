@@ -18,8 +18,8 @@ export const CopyButton = ( { text, label }: Props ) => {
 	return (
 		<Button variant="secondary" size="compact" ref={ ref }>
 			{ copied
-				? __( 'Copied', 'mcp-builder' )
-				: ( label ?? __( 'Copy', 'mcp-builder' ) ) }
+				? __( 'Copied', 'amcp-builder' )
+				: ( label ?? __( 'Copy', 'amcp-builder' ) ) }
 		</Button>
 	);
 };

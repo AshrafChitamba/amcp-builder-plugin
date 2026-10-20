@@ -2,14 +2,14 @@
 /**
  * The bricks-upsert-colors tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\DesignTokens;
-use McpBuilder\Bricks\Ids;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Bricks\DesignTokens;
+use AmcpBuilder\Bricks\Ids;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class UpsertColors extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: add or update colors', 'mcp-builder' );
+		return __( 'Bricks: add or update colors', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -94,7 +94,7 @@ final class UpsertColors extends BricksAbility {
 		if ( null === $index ) {
 			$palettes[] = array(
 				'id'     => $ids->next(),
-				'name'   => '' !== $wanted ? sanitize_text_field( $wanted ) : 'MCP Builder',
+				'name'   => '' !== $wanted ? sanitize_text_field( $wanted ) : 'AMCP Builder',
 				'colors' => array(),
 			);
 			$index      = count( $palettes ) - 1;
@@ -104,7 +104,7 @@ final class UpsertColors extends BricksAbility {
 		foreach ( $input['colors'] as $color ) {
 			$variable = DesignTokens::variable_name( (string) ( $color['variable'] ?? $color['name'] ) );
 			if ( '' === $variable ) {
-				return Errors::make( 'invalid_color', __( 'A color needs a name that can become a CSS variable.', 'mcp-builder' ) );
+				return Errors::make( 'invalid_color', __( 'A color needs a name that can become a CSS variable.', 'amcp-builder' ) );
 			}
 			$item  = array(
 				'name'  => sanitize_text_field( $color['name'] ),

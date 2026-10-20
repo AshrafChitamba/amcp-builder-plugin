@@ -2,14 +2,14 @@
 /**
  * The elementor-set-conditions tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Templates;
-use McpBuilder\Support\Errors;
-use McpBuilder\Support\TreeError;
+use AmcpBuilder\Elementor\Templates;
+use AmcpBuilder\Support\Errors;
+use AmcpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class SetConditions extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: set display conditions', 'mcp-builder' );
+		return __( 'Elementor: set display conditions', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -69,7 +69,7 @@ final class SetConditions extends ElementorAbility {
 	protected function run( array $input ) {
 		$post = get_post( (int) $input['templateId'] );
 		if ( ! $post ) {
-			return Errors::make( 'template_not_found', __( 'That template does not exist.', 'mcp-builder' ), __( 'Call elementor-list-templates.', 'mcp-builder' ), 404 );
+			return Errors::make( 'template_not_found', __( 'That template does not exist.', 'amcp-builder' ), __( 'Call elementor-list-templates.', 'amcp-builder' ), 404 );
 		}
 		try {
 			$parsed = Templates::parse_conditions( $input['conditions'] );
@@ -93,7 +93,7 @@ final class SetConditions extends ElementorAbility {
 		$snapshot = $this->snapshots->take_post( $post->ID, $this->name(), $this->label() );
 		// save_conditions() returns false when the post is not a theme template; it regenerates the cache itself.
 		if ( false === Templates::conditions_manager()->save_conditions( $post->ID, $parsed ) ) {
-			return Errors::make( 'not_theme_template', __( 'Only Theme Builder templates (header, footer, single, archive, popup) take display conditions.', 'mcp-builder' ), __( 'Check the template type with elementor-list-templates.', 'mcp-builder' ) );
+			return Errors::make( 'not_theme_template', __( 'Only Theme Builder templates (header, footer, single, archive, popup) take display conditions.', 'amcp-builder' ), __( 'Check the template type with elementor-list-templates.', 'amcp-builder' ) );
 		}
 
 		return array(

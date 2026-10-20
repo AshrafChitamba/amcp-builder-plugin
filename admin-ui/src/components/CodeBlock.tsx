@@ -8,12 +8,12 @@ interface Props {
 }
 
 export const CodeBlock = ( { code, label }: Props ) => (
-	<div className="mcpb-code">
-		<div className="mcpb-code__bar">
+	<div className="amcpb-code">
+		<div className="amcpb-code__bar">
 			<span>{ label }</span>
 			<CopyButton
 				text={ code }
-				label={ __( 'Copy snippet', 'mcp-builder' ) }
+				label={ __( 'Copy snippet', 'amcp-builder' ) }
 			/>
 		</div>
 		<pre tabIndex={ 0 } aria-label={ label }>

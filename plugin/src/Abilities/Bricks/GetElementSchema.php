@@ -2,13 +2,13 @@
 /**
  * The bricks-get-element-schema tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\Validator;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Bricks\Validator;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class GetElementSchema extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: get element schema', 'mcp-builder' );
+		return __( 'Bricks: get element schema', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -53,7 +53,7 @@ final class GetElementSchema extends BricksAbility {
 	protected function run( array $input ) {
 		$name = (string) $input['name'];
 		if ( ! $this->catalog()->has( $name ) ) {
-			return Errors::make( 'unknown_element', sprintf( /* translators: %s: element name. */ __( 'Unknown element "%s".', 'mcp-builder' ), $name ), __( 'Call bricks-list-elements to see valid names.', 'mcp-builder' ), 404 );
+			return Errors::make( 'unknown_element', sprintf( /* translators: %s: element name. */ __( 'Unknown element "%s".', 'amcp-builder' ), $name ), __( 'Call bricks-list-elements to see valid names.', 'amcp-builder' ), 404 );
 		}
 
 		// VERIFY: Bricks\Breakpoints::get_breakpoints() returns [ [ 'key' => …, 'width' => … ] ] (Bricks 2.3.1).

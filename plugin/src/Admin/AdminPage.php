@@ -1,16 +1,16 @@
 <?php
 /**
- * Settings → MCP Builder screen.
+ * The AMCP Builder admin menu and screen.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Admin;
+namespace AmcpBuilder\Admin;
 
-use McpBuilder\Mcp\Server;
-use McpBuilder\Plugin;
-use McpBuilder\Requirements;
-use McpBuilder\Rest\AdminController;
+use AmcpBuilder\Mcp\Server;
+use AmcpBuilder\Plugin;
+use AmcpBuilder\Requirements;
+use AmcpBuilder\Rest\AdminController;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,6 +26,28 @@ final class AdminPage {
 	public const AUTHOR_URL = 'https://ashrafchitambaa.com';
 	public const DOCS_URL   = 'https://ashrafchitambaa.com';
 
+	/**
+	 * Tutorial video shown on the Tutorial screen. Paste a YouTube, Vimeo,
+	 * Loom or Google Drive link here (Drive files must be shared as
+	 * "Anyone with the link"). Sites can override it with the
+	 * amcp_builder_tutorial_url filter.
+	 */
+	public const TUTORIAL_URL = '';
+
+	/** Screens of the app, in menu order: tab => menu label. */
+	private const SCREENS = array(
+		'connection' => 'Connection',
+		'design'     => 'Design rules',
+		'tools'      => 'Tools',
+		'safety'     => 'Safety & logs',
+		'status'     => 'Status',
+		'tutorial'   => 'Tutorial',
+		'about'      => 'About',
+	);
+
+	/** Menu icon: the AMCP mark, a monochrome SVG that WordPress tints to the admin color scheme. */
+	private const ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="black" d="M8.6 2.4h2.8l5.6 13.9h-3l-1.2-3.1H7.2L6 16.3H3zm1.4 3.5L8.1 10.9h3.8z"/><circle fill="black" cx="3.2" cy="17.4" r="1.6"/><circle fill="black" cx="16.8" cy="17.4" r="1.6"/><circle fill="black" cx="10" cy="2.3" r="1.6"/></svg>';
+
 	private string $hook = '';
 
 	public function __construct( private Requirements $requirements ) {}
@@ -33,17 +55,69 @@ final class AdminPage {
 	public function register(): void {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( MCP_BUILDER_FILE ), array( $this, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( AMCP_BUILDER_FILE ), array( $this, 'action_links' ) );
 	}
 
 	public function menu(): void {
-		$this->hook = (string) add_options_page(
-			__( 'MCP Builder', 'mcp-builder' ),
-			__( 'MCP Builder', 'mcp-builder' ),
+		$this->hook = (string) add_menu_page(
+			__( 'AMCP Builder', 'amcp-builder' ),
+			__( 'AMCP Builder', 'amcp-builder' ),
 			'manage_options',
 			Plugin::SLUG,
-			array( $this, 'render' )
+			array( $this, 'render' ),
+			'data:image/svg+xml;base64,' . base64_encode( self::ICON ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- Menu icons are passed as data URIs.
+			58.7
 		);
+
+		foreach ( self::SCREENS as $tab => $label ) {
+			add_submenu_page(
+				Plugin::SLUG,
+				self::screen_label( $label ),
+				self::screen_label( $label ),
+				'manage_options',
+				'connection' === $tab ? Plugin::SLUG : 'admin.php?page=' . Plugin::SLUG . '&tab=' . $tab
+			);
+		}
+		add_filter( 'submenu_file', array( $this, 'current_submenu' ) );
+	}
+
+	/**
+	 * Highlights the submenu item of the open tab.
+	 *
+	 * @param string|null $file Current submenu file.
+	 */
+	public function current_submenu( $file ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only menu highlighting.
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only menu highlighting.
+		$tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
+		if ( Plugin::SLUG !== $page || '' === $tab || 'connection' === $tab || ! isset( self::SCREENS[ $tab ] ) ) {
+			return $file;
+		}
+		return 'admin.php?page=' . Plugin::SLUG . '&tab=' . $tab;
+	}
+
+	/**
+	 * Translated menu label.
+	 */
+	private static function screen_label( string $label ): string {
+		$labels = array(
+			'Connection'    => __( 'Connection', 'amcp-builder' ),
+			'Design rules'  => __( 'Design rules', 'amcp-builder' ),
+			'Tools'         => __( 'Tools', 'amcp-builder' ),
+			'Safety & logs' => __( 'Safety & logs', 'amcp-builder' ),
+			'Status'        => __( 'Status', 'amcp-builder' ),
+			'Tutorial'      => __( 'Tutorial', 'amcp-builder' ),
+			'About'         => __( 'About', 'amcp-builder' ),
+		);
+		return $labels[ $label ] ?? $label;
+	}
+
+	/**
+	 * Tutorial video link, overridable per site.
+	 */
+	public static function tutorial_url(): string {
+		return esc_url_raw( (string) apply_filters( 'amcp_builder_tutorial_url', self::TUTORIAL_URL ) );
 	}
 
 	/**
@@ -51,7 +125,7 @@ final class AdminPage {
 	 * @return array<string, string>
 	 */
 	public function action_links( array $links ): array {
-		$links['settings'] = sprintf( '<a href="%s">%s</a>', esc_url( self::url() ), esc_html__( 'Settings', 'mcp-builder' ) );
+		$links['settings'] = sprintf( '<a href="%s">%s</a>', esc_url( self::url() ), esc_html__( 'Settings', 'amcp-builder' ) );
 		return $links;
 	}
 
@@ -63,12 +137,12 @@ final class AdminPage {
 					'tab'  => $tab,
 				)
 			),
-			admin_url( 'options-general.php' )
+			admin_url( 'admin.php' )
 		);
 	}
 
 	public function render(): void {
-		echo '<div class="wrap"><div id="mcp-builder-root"><p>' . esc_html__( 'Loading…', 'mcp-builder' ) . '</p></div></div>';
+		echo '<div class="wrap amcpb-wrap"><div id="amcp-builder-root"><p>' . esc_html__( 'Loading…', 'amcp-builder' ) . '</p></div></div>';
 	}
 
 	public function enqueue( string $hook ): void {
@@ -76,24 +150,24 @@ final class AdminPage {
 			return;
 		}
 
-		$asset_file = MCP_BUILDER_DIR . 'build/index.asset.php';
+		$asset_file = AMCP_BUILDER_DIR . 'build/index.asset.php';
 		if ( ! is_readable( $asset_file ) ) {
-			wp_admin_notice( esc_html__( 'MCP Builder admin assets are missing. Run "npm run build" in admin-ui, or install the release ZIP.', 'mcp-builder' ), array( 'type' => 'error' ) );
+			wp_admin_notice( esc_html__( 'AMCP Builder admin assets are missing. Run "npm run build" in admin-ui, or install the release ZIP.', 'amcp-builder' ), array( 'type' => 'error' ) );
 			return;
 		}
 		$asset = require $asset_file;
 
-		wp_enqueue_script( 'mcp-builder-admin', MCP_BUILDER_URL . 'build/index.js', $asset['dependencies'], $asset['version'], true );
-		wp_enqueue_style( 'mcp-builder-admin', MCP_BUILDER_URL . 'build/style-index.css', array( 'wp-components' ), $asset['version'] );
-		wp_style_add_data( 'mcp-builder-admin', 'rtl', 'replace' );
-		wp_set_script_translations( 'mcp-builder-admin', 'mcp-builder', MCP_BUILDER_DIR . 'languages' );
+		wp_enqueue_script( 'amcp-builder-admin', AMCP_BUILDER_URL . 'build/index.js', $asset['dependencies'], $asset['version'], true );
+		wp_enqueue_style( 'amcp-builder-admin', AMCP_BUILDER_URL . 'build/style-index.css', array( 'wp-components' ), $asset['version'] );
+		wp_style_add_data( 'amcp-builder-admin', 'rtl', 'replace' );
+		wp_set_script_translations( 'amcp-builder-admin', 'amcp-builder', AMCP_BUILDER_DIR . 'languages' );
 
 		$user = wp_get_current_user();
 		wp_add_inline_script(
-			'mcp-builder-admin',
-			'window.mcpBuilder = ' . wp_json_encode(
+			'amcp-builder-admin',
+			'window.amcpBuilder = ' . wp_json_encode(
 				array(
-					'version'       => MCP_BUILDER_VERSION,
+					'version'       => AMCP_BUILDER_VERSION,
 					'restNamespace' => AdminController::NAMESPACE,
 					'mcpUrl'        => Server::url(),
 					'siteUrl'       => home_url( '/' ),
@@ -104,6 +178,8 @@ final class AdminPage {
 					'authorUrl'     => self::AUTHOR_URL,
 					'docsUrl'       => self::DOCS_URL,
 					'isLocal'       => 'local' === wp_get_environment_type(),
+					'tutorialUrl'   => self::tutorial_url(),
+					'adminUrl'      => admin_url( 'admin.php?page=' . Plugin::SLUG ),
 				)
 			) . ';',
 			'before'

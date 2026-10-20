@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { basicAuth, buildSnippets, TOKEN_PLACEHOLDER } from './snippets';
 
 const base = {
-	mcpUrl: 'https://example.test/wp-json/mcp-builder/mcp',
-	token: 'mcpbp_abc123',
+	mcpUrl: 'https://example.test/wp-json/amcp-builder/mcp',
+	token: 'amcpbp_abc123',
 	username: 'ashraf',
 	appPassword: 'abcd efgh ijkl',
 };
@@ -39,15 +39,15 @@ describe( 'buildSnippets', () => {
 
 	it( 'puts the bearer token in header-based snippets', () => {
 		expect( byId( 'token', 'claude-code' ).code ).toContain(
-			'--header "Authorization: Bearer mcpbp_abc123"'
+			'--header "Authorization: Bearer amcpbp_abc123"'
 		);
 		expect(
 			JSON.parse( byId( 'token', 'cursor' ).code ).mcpServers[
-				'mcp-builder'
+				'amcp-builder'
 			].headers.Authorization
-		).toBe( 'Bearer mcpbp_abc123' );
+		).toBe( 'Bearer amcpbp_abc123' );
 		expect( byId( 'token', 'gemini' ).code ).toContain(
-			'Authorization: Bearer mcpbp_abc123'
+			'Authorization: Bearer amcpbp_abc123'
 		);
 	} );
 
@@ -60,26 +60,26 @@ describe( 'buildSnippets', () => {
 			'gemini',
 		] ) {
 			const snippet = byId( 'oauth', id );
-			expect( snippet.code ).not.toContain( 'mcpbp_abc123' );
+			expect( snippet.code ).not.toContain( 'amcpbp_abc123' );
 			expect( snippet.code ).toContain( base.mcpUrl );
 		}
 		expect( byId( 'oauth', 'codex' ).code ).toContain(
-			'codex mcp login mcp-builder'
+			'codex mcp login amcp-builder'
 		);
 	} );
 
 	it( 'uses an environment variable for Codex tokens', () => {
 		const code = byId( 'token', 'codex' ).code;
-		expect( code ).toContain( '[mcp_servers.mcp_builder]' );
+		expect( code ).toContain( '[mcp_servers.amcp_builder]' );
 		expect( code ).toContain(
-			'bearer_token_env_var = "MCP_BUILDER_TOKEN"'
+			'bearer_token_env_var = "AMCP_BUILDER_TOKEN"'
 		);
 	} );
 
 	it( 'never writes the VS Code token into the file', () => {
 		const config = JSON.parse( byId( 'token', 'vscode' ).code );
-		expect( config.servers[ 'mcp-builder' ].headers.Authorization ).toBe(
-			'Bearer ${input:mcp-builder-token}'
+		expect( config.servers[ 'amcp-builder' ].headers.Authorization ).toBe(
+			'Bearer ${input:amcp-builder-token}'
 		);
 		expect( config.inputs[ 0 ].password ).toBe( true );
 	} );
@@ -87,7 +87,7 @@ describe( 'buildSnippets', () => {
 	it( 'configures the Claude Desktop proxy with an Application Password', () => {
 		const server = JSON.parse(
 			byId( 'token', 'claude-desktop-proxy' ).code
-		).mcpServers[ 'mcp-builder' ];
+		).mcpServers[ 'amcp-builder' ];
 		expect( server.env ).toEqual( {
 			WP_API_URL: base.mcpUrl,
 			WP_API_USERNAME: base.username,

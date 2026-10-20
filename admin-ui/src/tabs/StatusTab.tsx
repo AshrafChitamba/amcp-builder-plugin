@@ -12,10 +12,10 @@ import { Section } from '../components/Section';
 import type { CheckStatus, Status, TestResult } from '../types';
 
 const STATUS_TEXT: Record< CheckStatus, string > = {
-	ok: __( 'OK', 'mcp-builder' ),
-	warning: __( 'Warning', 'mcp-builder' ),
-	error: __( 'Problem', 'mcp-builder' ),
-	inactive: __( 'Not active', 'mcp-builder' ),
+	ok: __( 'OK', 'amcp-builder' ),
+	warning: __( 'Warning', 'amcp-builder' ),
+	error: __( 'Problem', 'amcp-builder' ),
+	inactive: __( 'Not active', 'amcp-builder' ),
 };
 
 const NOTICE_STATUS = {
@@ -41,7 +41,7 @@ const TestButton = ( {
 	};
 
 	return (
-		<div className="mcpb-test">
+		<div className="amcpb-test">
 			<Button
 				variant="secondary"
 				onClick={ onClick }
@@ -88,18 +88,18 @@ export const StatusTab = () => {
 	return (
 		<>
 			<Section
-				title={ __( 'Connection tests', 'mcp-builder' ) }
+				title={ __( 'Connection tests', 'amcp-builder' ) }
 				description={ __(
 					'Run these after setup, and whenever an AI client cannot connect.',
-					'mcp-builder'
+					'amcp-builder'
 				) }
 			>
 				<TestButton
-					label={ __( 'Test MCP connection', 'mcp-builder' ) }
+					label={ __( 'Test MCP connection', 'amcp-builder' ) }
 					run={ testMcpConnection }
 				/>
 				<TestButton
-					label={ __( 'Test Authorization header', 'mcp-builder' ) }
+					label={ __( 'Test Authorization header', 'amcp-builder' ) }
 					run={ () =>
 						testAuthHeader().catch( ( e ) => ( {
 							status: 'error',
@@ -109,70 +109,72 @@ export const StatusTab = () => {
 				/>
 			</Section>
 
-			<Section title={ __( 'Environment', 'mcp-builder' ) }>
-				<table className="widefat striped mcpb-table">
-					<thead>
-						<tr>
-							<th scope="col">
-								{ __( 'Check', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								{ __( 'Status', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								{ __( 'Current', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								{ __( 'Required', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								{ __( 'Notes', 'mcp-builder' ) }
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{ status.checks.map( ( check ) => (
-							<tr key={ check.id }>
-								<td>{ check.label }</td>
-								<td>
-									<span
-										className={ `mcpb-badge mcpb-badge--${ check.status }` }
-									>
-										{ STATUS_TEXT[ check.status ] }
-									</span>
-								</td>
-								<td>{ check.current ?? '—' }</td>
-								<td>
-									{ check.required
-										? `${ check.required }+`
-										: '—' }
-								</td>
-								<td>{ check.message }</td>
+			<Section title={ __( 'Environment', 'amcp-builder' ) }>
+				<div className="amcpb-table-wrap">
+					<table className="amcpb-table">
+						<thead>
+							<tr>
+								<th scope="col">
+									{ __( 'Check', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Status', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Current', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Required', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Notes', 'amcp-builder' ) }
+								</th>
 							</tr>
-						) ) }
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{ status.checks.map( ( check ) => (
+								<tr key={ check.id }>
+									<td>{ check.label }</td>
+									<td>
+										<span
+											className={ `amcpb-badge amcpb-badge--${ check.status }` }
+										>
+											{ STATUS_TEXT[ check.status ] }
+										</span>
+									</td>
+									<td>{ check.current ?? '—' }</td>
+									<td>
+										{ check.required
+											? `${ check.required }+`
+											: '—' }
+									</td>
+									<td>{ check.message }</td>
+								</tr>
+							) ) }
+						</tbody>
+					</table>
+				</div>
 			</Section>
 
 			<Section
-				title={ __( 'Tools', 'mcp-builder' ) }
+				title={ __( 'Tools', 'amcp-builder' ) }
 				description={ __(
 					'Tools for builders that are not active are hidden from AI clients.',
-					'mcp-builder'
+					'amcp-builder'
 				) }
 			>
-				<ul className="mcpb-tool-list">
+				<ul className="amcpb-tool-list">
 					{ status.tools.map( ( tool ) => (
 						<li key={ tool.name }>
 							<code>{ tool.name }</code> { tool.label }{ ' ' }
-							<span className="mcpb-badge">
+							<span className="amcpb-badge">
 								{ tool.readonly
-									? __( 'Read', 'mcp-builder' )
-									: __( 'Write', 'mcp-builder' ) }
+									? __( 'Read', 'amcp-builder' )
+									: __( 'Write', 'amcp-builder' ) }
 							</span>
 							{ ! tool.available && (
-								<span className="mcpb-badge mcpb-badge--inactive">
-									{ __( 'Hidden', 'mcp-builder' ) }
+								<span className="amcpb-badge amcpb-badge--inactive">
+									{ __( 'Hidden', 'amcp-builder' ) }
 								</span>
 							) }
 						</li>

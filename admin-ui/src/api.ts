@@ -133,7 +133,7 @@ const mcpCall = async (
 };
 
 /**
- * Runs initialize + tools/list against MCP Builder's endpoint as the logged-in
+ * Runs initialize + tools/list against AMCP Builder's endpoint as the logged-in
  * admin (cookie auth), then closes the session.
  */
 export const testMcpConnection = async (): Promise< TestResult > => {
@@ -142,7 +142,7 @@ export const testMcpConnection = async (): Promise< TestResult > => {
 			protocolVersion: MCP_PROTOCOL_VERSION,
 			capabilities: {},
 			clientInfo: {
-				name: 'mcp-builder-settings',
+				name: 'amcp-builder-settings',
 				version: config.version,
 			},
 		} );
@@ -151,7 +151,10 @@ export const testMcpConnection = async (): Promise< TestResult > => {
 				status: 'error',
 				message:
 					init.body.error?.message ??
-					__( 'The server did not return a session.', 'mcp-builder' ),
+					__(
+						'The server did not return a session.',
+						'amcp-builder'
+					),
 			};
 		}
 
@@ -171,7 +174,7 @@ export const testMcpConnection = async (): Promise< TestResult > => {
 			status: 'ok',
 			message: sprintf(
 				/* translators: %d: number of tools. */
-				__( 'Connected. The server offers %d tools.', 'mcp-builder' ),
+				__( 'Connected. The server offers %d tools.', 'amcp-builder' ),
 				list.body.result?.tools?.length ?? 0
 			),
 		};
@@ -184,5 +187,5 @@ export const errorMessage = ( error: unknown ): string => {
 	if ( error && typeof error === 'object' && 'message' in error ) {
 		return String( ( error as { message: unknown } ).message );
 	}
-	return __( 'Something went wrong.', 'mcp-builder' );
+	return __( 'Something went wrong.', 'amcp-builder' );
 };

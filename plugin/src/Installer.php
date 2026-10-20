@@ -2,12 +2,12 @@
 /**
  * Activation and deactivation routines.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder;
+namespace AmcpBuilder;
 
-use McpBuilder\Safety\Schema;
+use AmcpBuilder\Safety\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -16,9 +16,10 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Installer {
 
-	public const CRON_HOOK = 'mcp_builder_prune';
+	public const CRON_HOOK = 'amcp_builder_prune';
 
 	public static function activate(): void {
+		Migration::maybe_run();
 		add_option( Settings::OPTION, Settings::DEFAULTS, '', false );
 		Schema::maybe_install();
 		self::schedule();

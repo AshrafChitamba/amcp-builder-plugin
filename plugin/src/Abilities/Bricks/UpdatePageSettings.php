@@ -2,14 +2,14 @@
 /**
  * The bricks-update-page-settings tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Safety\Governance;
-use McpBuilder\Support\CustomCode;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Safety\Governance;
+use AmcpBuilder\Support\CustomCode;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -41,7 +41,7 @@ final class UpdatePageSettings extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: update page settings', 'mcp-builder' );
+		return __( 'Bricks: update page settings', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -76,7 +76,7 @@ final class UpdatePageSettings extends BricksAbility {
 		$locked_by = Governance::locked_by( $post->ID );
 		if ( $locked_by && 'deny' === $this->settings->get( 'post_lock' ) ) {
 			/* translators: %s: user name. */
-			return Errors::make( 'post_locked', sprintf( __( '%s has this page open in an editor.', 'mcp-builder' ), $locked_by ), __( 'Ask the user to close the editor, then try again.', 'mcp-builder' ), 409 );
+			return Errors::make( 'post_locked', sprintf( __( '%s has this page open in an editor.', 'amcp-builder' ), $locked_by ), __( 'Ask the user to close the editor, then try again.', 'amcp-builder' ), 409 );
 		}
 
 		$current = get_post_meta( $post->ID, '_bricks_page_settings', true );
@@ -84,8 +84,8 @@ final class UpdatePageSettings extends BricksAbility {
 		foreach ( (array) $input['settings'] as $key => $value ) {
 			$is_script = in_array( $key, self::SCRIPTS, true );
 			if ( ! isset( self::ALLOWED[ $key ] ) && ! $is_script ) {
-				$hint = __( 'Use one of: ', 'mcp-builder' ) . implode( ', ', array_merge( array_keys( self::ALLOWED ), self::SCRIPTS ) ) . '.';
-				return Errors::make( 'unknown_setting', sprintf( /* translators: %s: key. */ __( 'Unknown page setting "%s".', 'mcp-builder' ), (string) $key ), $hint );
+				$hint = __( 'Use one of: ', 'amcp-builder' ) . implode( ', ', array_merge( array_keys( self::ALLOWED ), self::SCRIPTS ) ) . '.';
+				return Errors::make( 'unknown_setting', sprintf( /* translators: %s: key. */ __( 'Unknown page setting "%s".', 'amcp-builder' ), (string) $key ), $hint );
 			}
 			if ( $is_script && ! CustomCode::allowed( $this->settings ) ) {
 				return CustomCode::refusal( 'Page scripts' )->to_wp_error();

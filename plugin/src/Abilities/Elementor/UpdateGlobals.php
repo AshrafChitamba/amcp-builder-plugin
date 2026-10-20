@@ -2,13 +2,13 @@
 /**
  * The elementor-update-globals tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Ids;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Elementor\Ids;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class UpdateGlobals extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: update global colors and fonts', 'mcp-builder' );
+		return __( 'Elementor: update global colors and fonts', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -111,7 +111,7 @@ final class UpdateGlobals extends ElementorAbility {
 	protected function run( array $input ) {
 		$kit = \Elementor\Plugin::$instance->kits_manager->get_active_kit();
 		if ( ! $kit || ! $kit->get_id() ) {
-			return Errors::make( 'no_kit', __( 'This site has no active Elementor kit.', 'mcp-builder' ), __( 'Open Elementor → Site Settings once to create it.', 'mcp-builder' ) );
+			return Errors::make( 'no_kit', __( 'This site has no active Elementor kit.', 'amcp-builder' ), __( 'Open Elementor → Site Settings once to create it.', 'amcp-builder' ) );
 		}
 
 		// Start from the raw stored settings: get_settings() would add every control default.
@@ -155,7 +155,7 @@ final class UpdateGlobals extends ElementorAbility {
 		}
 
 		if ( ! $changed ) {
-			return Errors::make( 'nothing_to_change', __( 'Pass colors or typography to change.', 'mcp-builder' ) );
+			return Errors::make( 'nothing_to_change', __( 'Pass colors or typography to change.', 'amcp-builder' ) );
 		}
 		if ( $this->is_dry_run( $input ) ) {
 			return array(
@@ -167,7 +167,7 @@ final class UpdateGlobals extends ElementorAbility {
 		$snapshot = $this->snapshots->take_post( $kit->get_id(), $this->name(), $this->label() );
 		// Kit::save() saves the full settings and clears Elementor's CSS cache.
 		if ( false === $kit->save( array( 'settings' => $settings ) ) ) {
-			return Errors::make( 'kit_save_failed', __( 'Elementor refused to save the kit.', 'mcp-builder' ), '', 500 );
+			return Errors::make( 'kit_save_failed', __( 'Elementor refused to save the kit.', 'amcp-builder' ), '', 500 );
 		}
 
 		return array(

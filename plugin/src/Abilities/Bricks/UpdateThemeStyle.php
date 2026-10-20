@@ -2,16 +2,16 @@
 /**
  * The bricks-update-theme-style tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\DesignTokens;
-use McpBuilder\Bricks\Ids;
-use McpBuilder\Bricks\Templates;
-use McpBuilder\Support\Errors;
-use McpBuilder\Support\TreeError;
+use AmcpBuilder\Bricks\DesignTokens;
+use AmcpBuilder\Bricks\Ids;
+use AmcpBuilder\Bricks\Templates;
+use AmcpBuilder\Support\Errors;
+use AmcpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -25,7 +25,7 @@ final class UpdateThemeStyle extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: update theme style', 'mcp-builder' );
+		return __( 'Bricks: update theme style', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -70,11 +70,11 @@ final class UpdateThemeStyle extends BricksAbility {
 		$styles = DesignTokens::theme_styles();
 		$id     = (string) ( $input['styleId'] ?? '' );
 		if ( '' !== $id && ! isset( $styles[ $id ] ) ) {
-			return Errors::make( 'style_not_found', __( 'That theme style does not exist.', 'mcp-builder' ), __( 'Call bricks-get-design-tokens for style IDs, or pass label to create a new style.', 'mcp-builder' ), 404 );
+			return Errors::make( 'style_not_found', __( 'That theme style does not exist.', 'amcp-builder' ), __( 'Call bricks-get-design-tokens for style IDs, or pass label to create a new style.', 'amcp-builder' ), 404 );
 		}
 		if ( '' === $id ) {
 			if ( empty( $input['label'] ) ) {
-				return Errors::make( 'missing_style', __( 'Pass styleId to edit a style or label to create one.', 'mcp-builder' ) );
+				return Errors::make( 'missing_style', __( 'Pass styleId to edit a style or label to create one.', 'amcp-builder' ) );
 			}
 			$id            = ( new Ids( array_keys( $styles ) ) )->next();
 			$styles[ $id ] = array(
@@ -86,7 +86,7 @@ final class UpdateThemeStyle extends BricksAbility {
 		$settings = (array) ( $styles[ $id ]['settings'] ?? array() );
 		foreach ( (array) $input['settings'] as $group => $values ) {
 			if ( ! is_string( $group ) || ! preg_match( '/^[a-zA-Z0-9_-]+$/', $group ) || 'conditions' === $group || ! is_array( $values ) ) {
-				return Errors::make( 'invalid_group', sprintf( /* translators: %s: group name. */ __( 'Invalid settings group "%s".', 'mcp-builder' ), (string) $group ), __( 'Use groups such as general, colors, typography, links, button or heading, each with an object of settings.', 'mcp-builder' ) );
+				return Errors::make( 'invalid_group', sprintf( /* translators: %s: group name. */ __( 'Invalid settings group "%s".', 'amcp-builder' ), (string) $group ), __( 'Use groups such as general, colors, typography, links, button or heading, each with an object of settings.', 'amcp-builder' ) );
 			}
 			$current = (array) ( $settings[ $group ] ?? array() );
 			foreach ( $values as $key => $value ) {

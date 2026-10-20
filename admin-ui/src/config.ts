@@ -2,8 +2,8 @@ import type { Config } from './types';
 
 declare global {
 	interface Window {
-		mcpBuilder: Config;
+		amcpBuilder: Config;
 	}
 }
 
-export const config: Config = window.mcpBuilder;
+export const config: Config = window.amcpBuilder;

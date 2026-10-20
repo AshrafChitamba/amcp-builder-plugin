@@ -2,15 +2,15 @@
 /**
  * The bricks guide resource.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Guides;
+namespace AmcpBuilder\Abilities\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Resource at mcp-builder://guides/bricks.
+ * Resource at amcp-builder://guides/bricks.
  */
 final class BricksGuideResource extends GuideResource {
 

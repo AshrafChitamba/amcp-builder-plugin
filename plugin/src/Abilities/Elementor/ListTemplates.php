@@ -2,14 +2,14 @@
 /**
  * The elementor-list-templates tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Templates;
-use McpBuilder\Support\Posts;
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Elementor\Templates;
+use AmcpBuilder\Support\Posts;
+use AmcpBuilder\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ final class ListTemplates extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: list templates', 'mcp-builder' );
+		return __( 'Elementor: list templates', 'amcp-builder' );
 	}
 
 	protected function description(): string {

@@ -2,15 +2,15 @@
 /**
  * The update-page tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\General;
+namespace AmcpBuilder\Abilities\General;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Safety\Governance;
-use McpBuilder\Support\Errors;
-use McpBuilder\Support\Posts;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Safety\Governance;
+use AmcpBuilder\Support\Errors;
+use AmcpBuilder\Support\Posts;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class UpdatePage extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Update page', 'mcp-builder' );
+		return __( 'Update page', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -71,15 +71,15 @@ final class UpdatePage extends Ability {
 	protected function run( array $input ) {
 		$post = get_post( (int) $input['postId'] );
 		if ( ! $post || 'trash' === $post->post_status ) {
-			return Errors::make( 'post_not_found', __( 'That page does not exist.', 'mcp-builder' ), __( 'Call list-pages to find the right ID.', 'mcp-builder' ), 404 );
+			return Errors::make( 'post_not_found', __( 'That page does not exist.', 'amcp-builder' ), __( 'Call list-pages to find the right ID.', 'amcp-builder' ), 404 );
 		}
 		if ( 'publish' === ( $input['status'] ?? '' ) && ! current_user_can( 'publish_post', $post->ID ) ) {
-			return Errors::make( 'cannot_publish', __( 'Your account cannot publish this page.', 'mcp-builder' ), __( 'Ask an editor or administrator to publish it.', 'mcp-builder' ), 403 );
+			return Errors::make( 'cannot_publish', __( 'Your account cannot publish this page.', 'amcp-builder' ), __( 'Ask an editor or administrator to publish it.', 'amcp-builder' ), 403 );
 		}
 		$locked_by = Governance::locked_by( $post->ID );
 		if ( $locked_by && 'deny' === $this->settings->get( 'post_lock' ) ) {
 			/* translators: %s: user name. */
-			return Errors::make( 'post_locked', sprintf( __( '%s has this page open in an editor.', 'mcp-builder' ), $locked_by ), __( 'Ask the user to close the editor, then try again.', 'mcp-builder' ), 409 );
+			return Errors::make( 'post_locked', sprintf( __( '%s has this page open in an editor.', 'amcp-builder' ), $locked_by ), __( 'Ask the user to close the editor, then try again.', 'amcp-builder' ), 409 );
 		}
 
 		$changes = array_filter(
@@ -91,7 +91,7 @@ final class UpdatePage extends Ability {
 			static fn( $value ): bool => null !== $value
 		);
 		if ( ! $changes ) {
-			return Errors::make( 'nothing_to_change', __( 'Pass a title, slug or status to change.', 'mcp-builder' ) );
+			return Errors::make( 'nothing_to_change', __( 'Pass a title, slug or status to change.', 'amcp-builder' ) );
 		}
 		if ( $this->is_dry_run( $input ) ) {
 			return array(
@@ -105,7 +105,7 @@ final class UpdatePage extends Ability {
 			return Errors::make( 'update_failed', $updated->get_error_message(), '', 500 );
 		}
 		if ( 'bricks_template' === $post->post_type ) {
-			\McpBuilder\Bricks\Templates::flush_cache();
+			\AmcpBuilder\Bricks\Templates::flush_cache();
 		}
 
 		return array(

@@ -1,77 +1,111 @@
-# Design guide: building pages that do not look generated
+# AMCP Builder design guide
 
-Read this before you build or redesign a page. It applies to Bricks and Elementor alike.
+Read this before you build or redesign anything. It applies to Bricks and Elementor alike. The site owner's own rules come at the end of this guide. **They override everything here.**
 
-## 1. Read the brief first
+## 0. Non-negotiables
+
+These hold on every page, every change, every time.
+
+1. **Read the owner's rules first.** They are at the end of this guide. Every tool result includes `guidelinesVersion`; if it ever differs from the version you read, call `get-design-guide` again before the next change. The owner may have updated the rules mid-session.
+2. **No new colors or fonts.** Use only the site's existing palette, global colors, variables and font families. If the design truly needs something new, stop and ask the user for permission first. Never add one silently.
+3. **One design system across the whole site.** Typography scale, colors, spacing, corner radius, shadows and button styles stay identical from page to page. Layouts may differ (see section 3).
+4. **No eyebrows.** Never put a small label, kicker or uppercase tagline above a heading. The heading carries its own weight.
+5. **Report every change.** After each saved change, give the user the preview link(s) from the tool result and describe each changed section or element in 1-3 plain lines. For one element, one line is enough: "Changed the button background to red and its corner radius to 28px."
+6. **Never invent content.** No made-up facts, statistics, testimonials, clients, people, prices or news. Use the site's content or the user's. Mark anything that is a placeholder.
+
+## 1. Read the brief and the site
 
 Before adding anything, write one line for yourself:
-"This is a <page kind> for <audience>, in a <tone> style, using <the site's existing design system>."
+"This is a <page kind> for <audience>. The business is <what it does and how it wants to feel>. I will use <the site's existing design system>."
 
-- Look at the site first. Call site-info, read one or two existing pages, and check global classes, global colors and typography. The site's brand is the starting point, not your taste.
-- Public-sector, legal, health and finance sites are trust-first: calm layouts, high contrast, plain language, few animations.
-- Marketing and portfolio sites can take more layout risk.
-- If the brief is unclear on one important point, ask the user one question. Otherwise decide and continue.
+- Call site-info, read the home page and one or two other pages, and check the design tokens, global classes and theme styles. The site's brand is the starting point, not your taste.
+- Decide the mode of the page. **Persuade** (home, landing, services, pricing): earn attention and action. **Operate** (forms, account, tools): clarity and speed over expression. **Read** (articles, docs, policies): comfortable reading first.
+- Trust-first businesses (legal, health, finance, public sector, education) want calm layouts, high contrast, plain language and little motion. Creative and consumer brands can take more layout risk.
+- If one important point is unclear, ask the user one question. Otherwise decide and continue.
 
-## 2. Respect what exists
+## 2. The hero: one captivating moment
 
-- Reuse the site's colors, fonts, spacing, corner radius and global classes. Do not invent a new palette.
+The hero is the first impression. It must look like *this* business, not like a template.
+
+- **Lead with the business's real world.** Use its strongest real image: the product, the place, the team at work, the result it delivers. A real photo of the actual thing beats any abstract shape or gradient.
+- **Say what makes it different in one headline**, at most two lines, in the business's own voice. Specific beats clever: "Rules your board can use at the next meeting" beats "Elevate your meetings".
+- **Subtext of at most about 20 words**, one primary button and at most one secondary action. The primary call to action is visible without scrolling on a laptop.
+- **Create contrast of scale.** A confident, large headline set tight (line-height 1.05-1.15, slight negative letter spacing) against generous space reads as premium. Small, timid headlines read as generic.
+- **Pick a hero form that fits the brand**, not the same one every time:
+  - split: headline on one side, a large real image on the other;
+  - full-bleed image or video with a dark overlay for legible text;
+  - typographic hero on the brand color with one striking product visual;
+  - hero with an embedded working element (a form, a search, a booking widget) when the page's job is a task.
+- **One authored motion moment at most** (for example the image settling in, or the headline revealing), never a different animation on every element.
+- Keep logo walls, feature lists, statistics rows and small print out of the hero. Give them their own section below.
+- One h1 per page. Section titles are h2, items inside sections are h3.
+
+## 3. Consistency without sameness
+
+- **Fixed across the site:** type scale and fonts, color roles (primary, accent, text, surfaces), spacing scale, section padding, corner radius, shadow style, button and link styles, form field style, icon set.
+- **Free per page:** layout and hero form. An About page can open with a photo banner and breadcrumbs; that does not mean every page must. Choose the layout from each page's job.
+- Reuse the site's global classes and components before creating anything. When you need a new reusable style, create one new, uniquely named class (never edit an existing class to fix one page; it changes every page that uses it).
+- Avoid class names that contain framework prefixes the site already uses (for example "btn--" or "link--" on Automatic.css sites).
 - Never change headers, footers, navigation or other site-wide templates unless the user asked.
-- Never rename or restyle an existing global class to fix one page; that changes every page that uses it. Create a new, uniquely named class instead.
-- Avoid class names that contain framework prefixes the site already uses (for example "btn--" or "link--" on sites with Automatic.css), or they will inherit that framework's styles.
-- Build on a draft or test page first and let the user review before touching published pages.
 
-## 3. Hierarchy and the hero
+## 4. Layout and rhythm
 
-- The hero is one moment: an optional small label, a headline of at most two lines, a subtext of at most about 20 words, and one primary plus at most one secondary button. Nothing else.
-- Keep the call to action visible without scrolling on a laptop screen.
-- Do not put logo walls, feature lists or small print inside the hero; give them their own section below.
-- Use one h1 per page. Section titles are h2, items inside sections are h3.
-
-## 4. Layout
-
-- Vary layouts between sections. A page with six sections should use at least four different layouts (split, grid of tiles, list rows, full-width band, cards). Never repeat the same image-left/text-right block three times in a row.
-- Avoid the default "three identical cards in a row". Prefer a two-column list, an asymmetric grid (one large tile and several smaller ones), or rows.
+- Vary layouts between sections. A page with six sections should use at least four different layouts: split, asymmetric grid, list rows, full-width band, media with caption, quote. Never repeat the same image-left/text-right block three times in a row.
+- Do not default to "three identical cards in a row". Prefer an asymmetric grid (one large tile and smaller ones), a two-column list, or rows. Use cards only when items are truly parallel and the brief calls for them, and never nest cards.
 - A grid has exactly as many cells as items. No empty cells.
-- Put headings above their content, not in a separate column with a tiny paragraph floating beside them.
-- Small uppercase labels above headings (eyebrows) are allowed on at most one section in three.
-- Give sections generous, consistent vertical spacing. Keep text blocks to about 60-70 characters per line.
-- Every multi-column layout needs an explicit tablet and mobile fallback (usually two columns on tablet, one on mobile) and side padding on small screens.
+- Headings sit above their content, not in a column of their own with a tiny paragraph floating beside them.
+- Spacing: tight inside a group, generous between groups, more space above a heading than below it. Keep the site's section padding.
+- Text blocks stay around 60-75 characters per line.
+- Every multi-column layout needs an explicit tablet and mobile fallback (usually two columns on tablet, one on mobile) with side padding on small screens. Nothing may scroll sideways.
+- No section numbers (01 / 02 / 03) unless the order itself is information.
 
-## 5. Color, shape and depth
+## 5. Typography
 
-- One accent color, used consistently. A second strong color is reserved for one meaning (for example red only for "report a problem").
-- Do not use pure black or pure white for large areas when the brand has tinted neutrals.
-- Pick one corner-radius rule for the whole page and keep it.
-- Shadows only where elevation means something (an overlapping panel). Never shadows on every button or card. Tint shadows towards the background color.
-- Keep the page in one theme. Do not drop a dark section into a light page unless it is a single, deliberate color block (for example a call-to-action band).
+- Use the site's fonts only. Build hierarchy from size, weight and line-height together, not from extra colors.
+- Large headings: line-height 1.05-1.2 and slightly negative letter spacing (about -0.01em to -0.02em). Body: line-height about 1.6 and letter spacing near 0. Small text and labels: slightly positive tracking.
+- Sentence case for headings and buttons. No all-caps labels.
+- Size text in rem or the site's variables so it scales with the visitor's settings.
+- No gradient text. Emphasis comes from weight or size.
 
-## 6. Typography and copy
+## 6. Color, shape and depth
 
-- Use the site's fonts. Create hierarchy with weight and size, not with many colors.
-- Headlines: tight line-height (1.05-1.2), slight negative letter spacing for large sizes. Body text: line-height around 1.6.
-- Sentence case for headings and buttons.
-- Write plain, specific copy. Avoid filler words such as "elevate", "seamless", "unleash", "next-gen".
-- Do not use em-dashes or en-dashes in visible text. Use a period, a comma or a colon. Use a hyphen for ranges (2021-2026).
-- Never use lorem ipsum. Never invent facts, statistics, testimonials, people or news. Use only content from the site or the user, and say clearly what is a placeholder.
-- Each button label states one action. Do not use two different labels for the same action on one page.
+- One accent color, used for actions and key emphasis, consistently. A second strong color is reserved for one meaning (for example red only for errors).
+- Large surfaces use the site's tinted neutrals rather than pure black or pure white when the brand has them.
+- One corner-radius rule for the whole site: for example buttons 6px, cards 12px, inputs 6px. Follow the rule the site already uses.
+- Shadows only where elevation means something (a raised card on hover, a floating panel). They have an offset and a soft blur, and are tinted towards the background. No shadow on everything; no hard offset "block" shadows; no colored glows.
+- No colored border-left or border-right stripes on cards, list items or callouts.
+- Keep the page in one theme. A single deliberate color band (for example a call-to-action strip in the brand color) is fine.
+- Translucency and blur only when they serve a purpose (a sticky header over content), never as decoration.
 
-## 7. Images and icons
+## 7. Copy
 
-- Use real images from the media library (list-media). Never invent image URLs.
-- Give every meaningful image alt text that describes it.
-- Use the builder's icon libraries (for example Font Awesome). Do not draw icons from scratch.
-- Do not overlay labels or captions on photos as decoration.
+- Plain, specific language in the business's voice. Avoid filler: "elevate", "seamless", "unleash", "next-gen", "revolutionize", "cutting-edge".
+- No em-dashes or en-dashes in visible text. Use a period, a comma or a colon. Use a hyphen for ranges (2021-2026).
+- Each button names one action ("Book a consultation", "Request a training"). Do not use two labels for the same action on one page.
+- Errors say what went wrong and how to fix it.
+- Re-read every visible string before you finish. Fix anything vague, broken or that sounds generated.
 
-## 8. Interaction and accessibility
+## 8. Images and icons
 
-- Text must meet WCAG AA contrast against its background, including buttons over photos (use an overlay).
-- Every link and button needs a visible hover and keyboard-focus state. Hover effects should be subtle (color fill, small arrow movement), and animations should respect reduced-motion preferences.
-- Links must go somewhere real. If a destination does not exist yet, tell the user instead of silently linking to "#".
+- Use real images from the media library (list-media) or images the user provides (upload-media). Never invent image URLs.
+- Choose images that show the business's real world. Every meaningful image gets alt text that describes it.
+- Use the builder's icon libraries in one consistent style. Never use emoji or text symbols as icons.
+- Do not overlay labels or captions on photos as decoration. Text over a photo needs an overlay that keeps it readable.
 
-## 9. Working method with MCP Builder
+## 9. Interaction, motion and accessibility
 
-1. site-info, then get-design-guide for this builder.
-2. Read existing pages and global styles.
-3. Build one section per call, with dryRun first for large changes.
-4. Read the page back and check structure.
-5. Tell the user what you built, what is a placeholder, and how to undo it (restore-snapshot).
+- Text meets WCAG AA contrast: 4.5:1 for body text and placeholders, 3:1 for large text, including over photos.
+- Every link, button and form field has visible hover, focus and pressed states. Feedback is immediate: a button reacts the moment it is pressed.
+- Motion has a purpose (hierarchy, feedback, a state change). Prefer short, soft ease-out transitions on transform and opacity; avoid bouncy or looping effects. Respect reduced-motion preferences: replace movement with a simple fade or nothing.
+- Interactive states are complete: hover, focus, disabled, loading, error, empty.
+- Links go somewhere real. If a destination does not exist yet, tell the user instead of linking to "#".
+- Forms: label above every field, never placeholder-as-label, clear required markers, inline error messages.
+
+## 10. Working method
+
+1. site-info, then get-design-guide ("design", then the active builder). Note `guidelinesVersion`.
+2. Read the site: existing pages, design tokens, global classes, theme styles.
+3. Build one section per call. Use dryRun first for large changes.
+4. Read the page back and check structure, then check every breakpoint.
+5. After each saved change, report it: the preview link(s) from the result, then 1-3 plain lines per changed section or element.
+6. At the end, list what is a placeholder and how to undo any change (restore-snapshot with the snapshot ID).

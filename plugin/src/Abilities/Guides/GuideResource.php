@@ -2,18 +2,18 @@
 /**
  * Guides exposed as MCP resources.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Guides;
+namespace AmcpBuilder\Abilities\Guides;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Guides\Guides;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * One guide topic as a read-only markdown resource at mcp-builder://guides/{topic}.
+ * One guide topic as a read-only markdown resource at amcp-builder://guides/{topic}.
  */
 abstract class GuideResource extends Ability {
 
@@ -25,11 +25,11 @@ abstract class GuideResource extends Ability {
 
 	public function label(): string {
 		/* translators: %s: guide topic. */
-		return sprintf( __( 'Guide: %s', 'mcp-builder' ), ucfirst( $this->topic() ) );
+		return sprintf( __( 'Guide: %s', 'amcp-builder' ), ucfirst( $this->topic() ) );
 	}
 
 	protected function description(): string {
-		return 'MCP Builder ' . $this->topic() . ' guide (markdown). Same content as get-design-guide with topic "' . $this->topic() . '".';
+		return 'AMCP Builder ' . $this->topic() . ' guide (markdown). Same content as get-design-guide with topic "' . $this->topic() . '".';
 	}
 
 	public function mcp_type(): string {
@@ -38,7 +38,7 @@ abstract class GuideResource extends Ability {
 
 	protected function mcp_meta(): array {
 		return array(
-			'uri'      => 'mcp-builder://guides/' . $this->topic(),
+			'uri'      => 'amcp-builder://guides/' . $this->topic(),
 			'mimeType' => 'text/markdown',
 		);
 	}

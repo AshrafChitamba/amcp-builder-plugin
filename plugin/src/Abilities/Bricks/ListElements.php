@@ -2,10 +2,10 @@
 /**
  * The bricks-list-elements tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -19,7 +19,7 @@ final class ListElements extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: list elements', 'mcp-builder' );
+		return __( 'Bricks: list elements', 'amcp-builder' );
 	}
 
 	protected function description(): string {

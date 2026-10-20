@@ -2,14 +2,14 @@
 /**
  * The bricks-get-design-tokens tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\DesignTokens;
-use McpBuilder\Bricks\GlobalClasses;
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Bricks\DesignTokens;
+use AmcpBuilder\Bricks\GlobalClasses;
+use AmcpBuilder\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class GetDesignTokens extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: get design tokens', 'mcp-builder' );
+		return __( 'Bricks: get design tokens', 'amcp-builder' );
 	}
 
 	protected function description(): string {

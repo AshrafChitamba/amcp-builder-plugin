@@ -5,53 +5,52 @@ import { __ } from '@wordpress/i18n';
 import { errorMessage, getAbilities } from '../api';
 import { Section } from '../components/Section';
 import { useSettings } from '../hooks/useSettings';
-import { DesignGuidelines } from './DesignGuidelines';
 import type { ManagedAbility } from '../types';
 
 const GROUPS: Array< { id: string; title: string; description: string } > = [
 	{
 		id: 'general',
-		title: __( 'General', 'mcp-builder' ),
+		title: __( 'General', 'amcp-builder' ),
 		description: __(
 			'Site info, pages, media and snapshots.',
-			'mcp-builder'
+			'amcp-builder'
 		),
 	},
 	{
 		id: 'bricks',
-		title: __( 'Bricks', 'mcp-builder' ),
+		title: __( 'Bricks', 'amcp-builder' ),
 		description: __(
 			'Read and edit Bricks pages and global classes.',
-			'mcp-builder'
+			'amcp-builder'
 		),
 	},
 	{
 		id: 'elementor',
-		title: __( 'Elementor', 'mcp-builder' ),
-		description: __( 'Read and edit Elementor pages.', 'mcp-builder' ),
+		title: __( 'Elementor', 'amcp-builder' ),
+		description: __( 'Read and edit Elementor pages.', 'amcp-builder' ),
 	},
 	{
 		id: 'custom-code',
-		title: __( 'Custom code', 'mcp-builder' ),
+		title: __( 'Custom code', 'amcp-builder' ),
 		description: __(
 			'Tools that add HTML, CSS, JavaScript or PHP. Also need the custom-code switch above.',
-			'mcp-builder'
+			'amcp-builder'
 		),
 	},
 	{
 		id: 'official-bricks',
-		title: __( 'Official Bricks tools', 'mcp-builder' ),
+		title: __( 'Official Bricks tools', 'amcp-builder' ),
 		description: __(
-			"Bricks' own AI abilities (Bricks 2.4+). MCP Builder's safety rules apply to them too.",
-			'mcp-builder'
+			"Bricks' own AI abilities (Bricks 2.4+). AMCP Builder's safety rules apply to them too.",
+			'amcp-builder'
 		),
 	},
 	{
 		id: 'official-elementor',
-		title: __( 'Official Elementor tools', 'mcp-builder' ),
+		title: __( 'Official Elementor tools', 'amcp-builder' ),
 		description: __(
-			"Elementor's own MCP abilities. MCP Builder's safety rules apply to them too.",
-			'mcp-builder'
+			"Elementor's own MCP abilities. AMCP Builder's safety rules apply to them too.",
+			'amcp-builder'
 		),
 	},
 ];
@@ -94,7 +93,7 @@ export const ToolsTab = () => {
 			! window.confirm(
 				__(
 					'Custom-code tools let AI clients add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?',
-					'mcp-builder'
+					'amcp-builder'
 				)
 			)
 		) {
@@ -111,37 +110,31 @@ export const ToolsTab = () => {
 				</Notice>
 			) }
 
-			<Section title={ __( 'Access', 'mcp-builder' ) }>
+			<Section title={ __( 'Access', 'amcp-builder' ) }>
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Read-only mode', 'mcp-builder' ) }
+					label={ __( 'Read-only mode', 'amcp-builder' ) }
 					help={ __(
 						'AI clients can read pages but every change is refused. Write tools are hidden from them.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					checked={ settings.read_only }
 					disabled={ saving }
 					onChange={ ( value ) => save( { read_only: value } ) }
 				/>
-				<div className="mcpb-spacer" />
+				<div className="amcpb-spacer" />
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Allow custom code', 'mcp-builder' ) }
+					label={ __( 'Allow custom code', 'amcp-builder' ) }
 					help={ __(
 						'Off by default. When on, administrators (with unfiltered HTML) can use custom-code tools. Bricks code still has to be signed by an admin in Bricks before it runs.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					checked={ settings.custom_code_enabled }
 					disabled={ saving }
 					onChange={ toggleCustomCode }
 				/>
 			</Section>
-
-			<DesignGuidelines
-				settings={ settings }
-				save={ save }
-				saving={ saving }
-			/>
 
 			{ GROUPS.map( ( group ) => {
 				const items = abilities.filter(
@@ -156,7 +149,7 @@ export const ToolsTab = () => {
 						title={ group.title }
 						description={ group.description }
 					>
-						<ul className="mcpb-tools">
+						<ul className="amcpb-tools">
 							{ items.map( ( ability ) => (
 								<li key={ ability.name }>
 									<ToggleControl
@@ -164,15 +157,15 @@ export const ToolsTab = () => {
 										label={
 											<>
 												{ ability.label }{ ' ' }
-												<span className="mcpb-badge">
+												<span className="amcpb-badge">
 													{ ability.readonly
 														? __(
 																'Read',
-																'mcp-builder'
+																'amcp-builder'
 															)
 														: __(
 																'Write',
-																'mcp-builder'
+																'amcp-builder'
 															) }
 												</span>
 											</>

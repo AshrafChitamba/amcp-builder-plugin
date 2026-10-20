@@ -39,16 +39,19 @@ import type {
 } from '../types';
 
 const formatDate = ( value: string | null ): string =>
-	value ? new Date( value ).toLocaleString() : __( 'Never', 'mcp-builder' );
+	value ? new Date( value ).toLocaleString() : __( 'Never', 'amcp-builder' );
 
 const isHttps = config.mcpUrl.startsWith( 'https://' );
 
 const DISCOVERY_LABELS: Record< string, string > = {
-	resourceMetadata: __( 'Resource metadata (REST)', 'mcp-builder' ),
-	wellKnownResource: __( 'Resource metadata (/.well-known)', 'mcp-builder' ),
-	wellKnownServer: __( 'Authorization server (/.well-known)', 'mcp-builder' ),
-	openidAppended: __( 'Authorization server (REST)', 'mcp-builder' ),
-	https: __( 'HTTPS', 'mcp-builder' ),
+	resourceMetadata: __( 'Resource metadata (REST)', 'amcp-builder' ),
+	wellKnownResource: __( 'Resource metadata (/.well-known)', 'amcp-builder' ),
+	wellKnownServer: __(
+		'Authorization server (/.well-known)',
+		'amcp-builder'
+	),
+	openidAppended: __( 'Authorization server (REST)', 'amcp-builder' ),
+	https: __( 'HTTPS', 'amcp-builder' ),
 };
 
 const RemoteApps = () => {
@@ -71,83 +74,83 @@ const RemoteApps = () => {
 		<Section
 			title={ __(
 				'Connect claude.ai, Claude Desktop or ChatGPT',
-				'mcp-builder'
+				'amcp-builder'
 			) }
 			description={ __(
 				'These apps connect from the internet and sign in with your WordPress account. No password or token to copy.',
-				'mcp-builder'
+				'amcp-builder'
 			) }
 		>
 			{ ( ! isHttps || config.isLocal ) && (
 				<Notice status="warning" isDismissible={ false }>
 					{ __(
 						'This site is not reachable from the internet over HTTPS, so web apps cannot connect to it. Use it on a live site, expose a local site with a tunnel (LocalWP Live Link or Cloudflare Tunnel), or use a coding tool below.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</Notice>
 			) }
-			<h3 className="mcpb-subheading">claude.ai and Claude Desktop</h3>
-			<ol className="mcpb-steps">
+			<h3 className="amcpb-subheading">claude.ai and Claude Desktop</h3>
+			<ol className="amcpb-steps">
 				<li>
 					{ __(
 						'Open Customize → Connectors → "Add custom connector".',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 				<li>
 					{ __(
 						'Paste the endpoint URL above. Leave the OAuth client fields empty.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 				<li>
 					{ __(
 						'Click Connect, sign in to WordPress if asked, choose the access level and click "Allow access".',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 			</ol>
-			<p className="mcpb-help">
+			<p className="amcpb-help">
 				{ __(
 					'Available on all Claude plans; the Free plan allows one custom connector.',
-					'mcp-builder'
+					'amcp-builder'
 				) }
 			</p>
-			<h3 className="mcpb-subheading">ChatGPT</h3>
-			<ol className="mcpb-steps">
+			<h3 className="amcpb-subheading">ChatGPT</h3>
+			<ol className="amcpb-steps">
 				<li>
 					{ __(
 						'Open Settings → Apps (or Plugins) and choose "Add custom MCP server". You may need to turn on Developer mode first.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 				<li>
 					{ __(
 						'Paste the endpoint URL and choose OAuth as the authentication.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 				<li>
 					{ __(
 						'Approve the connection on the WordPress page that opens.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</li>
 			</ol>
-			<p className="mcpb-help">
+			<p className="amcpb-help">
 				{ __(
 					'Custom MCP servers depend on your ChatGPT plan and workspace settings; they are not available on every plan.',
-					'mcp-builder'
+					'amcp-builder'
 				) }
 			</p>
-			<div className="mcpb-test">
+			<div className="amcpb-test">
 				<Button
 					variant="secondary"
 					onClick={ run }
 					isBusy={ busy }
 					disabled={ busy }
 				>
-					{ __( 'Test sign-in discovery', 'mcp-builder' ) }
+					{ __( 'Test sign-in discovery', 'amcp-builder' ) }
 				</Button>
 				{ error && (
 					<Notice status="error" isDismissible={ false }>
@@ -155,17 +158,17 @@ const RemoteApps = () => {
 					</Notice>
 				) }
 				{ result && (
-					<ul className="mcpb-checklist" aria-live="polite">
+					<ul className="amcpb-checklist" aria-live="polite">
 						{ Object.entries( result ).map( ( [ key, check ] ) => (
 							<li key={ key }>
 								<span
-									className={ `mcpb-badge mcpb-badge--${
+									className={ `amcpb-badge amcpb-badge--${
 										check.ok ? 'ok' : 'warning'
 									}` }
 								>
 									{ check.ok
-										? __( 'OK', 'mcp-builder' )
-										: __( 'Problem', 'mcp-builder' ) }
+										? __( 'OK', 'amcp-builder' )
+										: __( 'Problem', 'amcp-builder' ) }
 								</span>{ ' ' }
 								{ DISCOVERY_LABELS[ key ] ?? key }{ ' ' }
 								<code>{ check.url }</code>
@@ -176,10 +179,10 @@ const RemoteApps = () => {
 				{ result &&
 					! result.wellKnownResource?.ok &&
 					result.resourceMetadata?.ok && (
-						<p className="mcpb-help">
+						<p className="amcpb-help">
 							{ __(
 								'The /.well-known addresses do not reach WordPress on this server. Most apps still connect through the REST address; if one fails, see Troubleshooting → "OAuth discovery".',
-								'mcp-builder'
+								'amcp-builder'
 							) }
 						</p>
 					) }
@@ -231,25 +234,25 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 
 	return (
 		<Section
-			title={ __( 'Connect coding tools', 'mcp-builder' ) }
+			title={ __( 'Connect coding tools', 'amcp-builder' ) }
 			description={ __(
 				'Claude Code, OpenAI Codex, Cursor, VS Code and Gemini CLI can sign in with WordPress, or use an access token.',
-				'mcp-builder'
+				'amcp-builder'
 			) }
 		>
 			<RadioControl
-				label={ __( 'How to sign in', 'mcp-builder' ) }
+				label={ __( 'How to sign in', 'amcp-builder' ) }
 				selected={ auth }
 				options={ [
 					{
 						label: __(
 							'Sign in with WordPress (recommended)',
-							'mcp-builder'
+							'amcp-builder'
 						),
 						value: 'oauth',
 					},
 					{
-						label: __( 'Access token', 'mcp-builder' ),
+						label: __( 'Access token', 'amcp-builder' ),
 						value: 'token',
 					},
 				] }
@@ -259,12 +262,12 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 				<Notice status="warning" isDismissible={ false }>
 					{ __(
 						'Sign-in needs HTTPS on sites reachable from the internet. Use an access token, or enable HTTPS.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</Notice>
 			) }
 			{ auth === 'token' && (
-				<div className="mcpb-token-form">
+				<div className="amcpb-token-form">
 					{ error && (
 						<Notice
 							status="error"
@@ -279,42 +282,42 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 								<strong>
 									{ __(
 										'Copy this token now. It will not be shown again.',
-										'mcp-builder'
+										'amcp-builder'
 									) }
 								</strong>
 							</p>
 							<CopyField label={ name } value={ token } />
 						</Notice>
 					) }
-					<div className="mcpb-inline-form">
+					<div className="amcpb-inline-form">
 						<TextControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							label={ __( 'Token name', 'mcp-builder' ) }
+							label={ __( 'Token name', 'amcp-builder' ) }
 							value={ name }
 							onChange={ setName }
 						/>
 						<SelectControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							label={ __( 'Expires after', 'mcp-builder' ) }
+							label={ __( 'Expires after', 'amcp-builder' ) }
 							value={ days }
 							options={ [
 								{
 									value: '30',
-									label: __( '30 days', 'mcp-builder' ),
+									label: __( '30 days', 'amcp-builder' ),
 								},
 								{
 									value: '90',
-									label: __( '90 days', 'mcp-builder' ),
+									label: __( '90 days', 'amcp-builder' ),
 								},
 								{
 									value: '365',
-									label: __( '1 year', 'mcp-builder' ),
+									label: __( '1 year', 'amcp-builder' ),
 								},
 								{
 									value: '0',
-									label: __( 'Never', 'mcp-builder' ),
+									label: __( 'Never', 'amcp-builder' ),
 								},
 							] }
 							onChange={ setDays }
@@ -325,26 +328,26 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 							isBusy={ busy }
 							disabled={ busy }
 						>
-							{ __( 'Create token', 'mcp-builder' ) }
+							{ __( 'Create token', 'amcp-builder' ) }
 						</Button>
 					</div>
 					<ToggleControl
 						__nextHasNoMarginBottom
-						label={ __( 'Read only', 'mcp-builder' ) }
+						label={ __( 'Read only', 'amcp-builder' ) }
 						help={ __(
 							'Apps using this token can read pages but not change them.',
-							'mcp-builder'
+							'amcp-builder'
 						) }
 						checked={ readOnly }
 						onChange={ setReadOnly }
 					/>
 				</div>
 			) }
-			<div className="mcpb-spacer" />
+			<div className="amcpb-spacer" />
 			<SelectControl
 				__next40pxDefaultSize
 				__nextHasNoMarginBottom
-				label={ __( 'Tool', 'mcp-builder' ) }
+				label={ __( 'Tool', 'amcp-builder' ) }
 				value={ client }
 				options={ snippets.map( ( item ) => ( {
 					label: item.label,
@@ -352,14 +355,14 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 				} ) ) }
 				onChange={ ( value ) => setClient( value as ClientId ) }
 			/>
-			<p className="mcpb-help">{ snippet.where }</p>
+			<p className="amcpb-help">{ snippet.where }</p>
 			<CodeBlock code={ snippet.code } label={ snippet.label } />
-			{ snippet.after && <p className="mcpb-help">{ snippet.after }</p> }
+			{ snippet.after && <p className="amcpb-help">{ snippet.after }</p> }
 			{ auth === 'token' && token && (
-				<p className="mcpb-help">
+				<p className="amcpb-help">
 					{ __(
 						'This snippet contains your token. Keep it private and never commit it to a repository.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 				</p>
 			) }
@@ -389,7 +392,7 @@ const LocalProxy = () => {
 		setError( null );
 		try {
 			setCreated(
-				await createAppPassword( 'MCP Builder – Claude Desktop' )
+				await createAppPassword( 'AMCP Builder – Claude Desktop' )
 			);
 			await refresh();
 		} catch ( e ) {
@@ -419,7 +422,7 @@ const LocalProxy = () => {
 
 	return (
 		<Section
-			title={ __( 'Claude Desktop with a local site', 'mcp-builder' ) }
+			title={ __( 'Claude Desktop with a local site', 'amcp-builder' ) }
 			description={ snippet.where }
 		>
 			{ error && (
@@ -433,7 +436,7 @@ const LocalProxy = () => {
 						<strong>
 							{ __(
 								'Copy this password now. It will not be shown again.',
-								'mcp-builder'
+								'amcp-builder'
 							) }
 						</strong>
 					</p>
@@ -444,14 +447,14 @@ const LocalProxy = () => {
 				</Notice>
 			) }
 			<Button variant="secondary" onClick={ create }>
-				{ __( 'Create Application Password', 'mcp-builder' ) }
+				{ __( 'Create Application Password', 'amcp-builder' ) }
 			</Button>
 			<CodeBlock code={ snippet.code } label={ snippet.label } />
 			{ passwords === null ? (
 				<Spinner />
 			) : (
 				passwords.length > 0 && (
-					<ul className="mcpb-tool-list">
+					<ul className="amcpb-tool-list">
 						{ passwords.map( ( item ) => (
 							<li key={ item.uuid }>
 								{ item.name } · { formatDate( item.last_used ) }{ ' ' }
@@ -460,7 +463,7 @@ const LocalProxy = () => {
 									isDestructive
 									onClick={ () => revoke( item ) }
 								>
-									{ __( 'Revoke', 'mcp-builder' ) }
+									{ __( 'Revoke', 'amcp-builder' ) }
 								</Button>
 							</li>
 						) ) }
@@ -490,7 +493,7 @@ const Connections = ( { version }: { version: number } ) => {
 					/* translators: %s: app or token name. */
 					__(
 						'Disconnect "%s"? It stops working immediately.',
-						'mcp-builder'
+						'amcp-builder'
 					),
 					item.name
 				)
@@ -508,7 +511,7 @@ const Connections = ( { version }: { version: number } ) => {
 
 	return (
 		<Section
-			title={ __( 'Connected apps and access tokens', 'mcp-builder' ) }
+			title={ __( 'Connected apps and access tokens', 'amcp-builder' ) }
 		>
 			{ error && (
 				<Notice status="error" onRemove={ () => setError( null ) }>
@@ -518,64 +521,84 @@ const Connections = ( { version }: { version: number } ) => {
 			{ ! items ? (
 				<Spinner />
 			) : (
-				<table className="widefat striped mcpb-table">
-					<thead>
-						<tr>
-							<th scope="col">{ __( 'Name', 'mcp-builder' ) }</th>
-							<th scope="col">{ __( 'Type', 'mcp-builder' ) }</th>
-							<th scope="col">{ __( 'User', 'mcp-builder' ) }</th>
-							<th scope="col">
-								{ __( 'Access', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								{ __( 'Last used', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								<span className="screen-reader-text">
-									{ __( 'Actions', 'mcp-builder' ) }
-								</span>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{ items.length === 0 && (
+				<div className="amcpb-table-wrap">
+					<table className="amcpb-table">
+						<thead>
 							<tr>
-								<td colSpan={ 6 }>
-									{ __(
-										'Nothing connected yet.',
-										'mcp-builder'
-									) }
-								</td>
+								<th scope="col">
+									{ __( 'Name', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Type', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'User', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Access', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Last used', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									<span className="screen-reader-text">
+										{ __( 'Actions', 'amcp-builder' ) }
+									</span>
+								</th>
 							</tr>
-						) }
-						{ items.map( ( item ) => (
-							<tr key={ item.id }>
-								<td>{ item.name }</td>
-								<td>
-									{ item.kind === 'app'
-										? __( 'App (signed in)', 'mcp-builder' )
-										: __( 'Access token', 'mcp-builder' ) }
-								</td>
-								<td>{ item.user }</td>
-								<td>
-									{ item.readOnly
-										? __( 'Read only', 'mcp-builder' )
-										: __( 'Read and edit', 'mcp-builder' ) }
-								</td>
-								<td>{ formatDate( item.lastUsedAt ) }</td>
-								<td>
-									<Button
-										variant="link"
-										isDestructive
-										onClick={ () => revoke( item ) }
-									>
-										{ __( 'Disconnect', 'mcp-builder' ) }
-									</Button>
-								</td>
-							</tr>
-						) ) }
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{ items.length === 0 && (
+								<tr>
+									<td colSpan={ 6 } className="amcpb-empty">
+										{ __(
+											'Nothing connected yet.',
+											'amcp-builder'
+										) }
+									</td>
+								</tr>
+							) }
+							{ items.map( ( item ) => (
+								<tr key={ item.id }>
+									<td>{ item.name }</td>
+									<td>
+										{ item.kind === 'app'
+											? __(
+													'App (signed in)',
+													'amcp-builder'
+												)
+											: __(
+													'Access token',
+													'amcp-builder'
+												) }
+									</td>
+									<td>{ item.user }</td>
+									<td>
+										{ item.readOnly
+											? __( 'Read only', 'amcp-builder' )
+											: __(
+													'Read and edit',
+													'amcp-builder'
+												) }
+									</td>
+									<td>{ formatDate( item.lastUsedAt ) }</td>
+									<td>
+										<Button
+											variant="link"
+											isDestructive
+											onClick={ () => revoke( item ) }
+										>
+											{ __(
+												'Disconnect',
+												'amcp-builder'
+											) }
+										</Button>
+									</td>
+								</tr>
+							) ) }
+						</tbody>
+					</table>
+				</div>
 			) }
 		</Section>
 	);
@@ -589,23 +612,11 @@ export const ConnectionTab = () => {
 			{ ! config.canRun && (
 				<Notice status="error" isDismissible={ false }>
 					{ __(
-						'MCP Builder is not running yet. Open the Status tab to see what is missing.',
-						'mcp-builder'
+						'AMCP Builder is not running yet. Open the Status tab to see what is missing.',
+						'amcp-builder'
 					) }
 				</Notice>
 			) }
-			<Section
-				title={ __( 'MCP endpoint', 'mcp-builder' ) }
-				description={ __(
-					'Every AI app connects to this address. Only signed-in users who can edit posts get access.',
-					'mcp-builder'
-				) }
-			>
-				<CopyField
-					label={ __( 'Endpoint URL', 'mcp-builder' ) }
-					value={ config.mcpUrl }
-				/>
-			</Section>
 			<RemoteApps />
 			<CodingTools onTokenCreated={ () => setVersion( version + 1 ) } />
 			<LocalProxy />

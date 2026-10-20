@@ -2,16 +2,16 @@
 /**
  * Shared behaviour of Elementor tools.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Elementor\ElementorCatalog;
-use McpBuilder\Elementor\Store;
-use McpBuilder\Elementor\Tree;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Elementor\ElementorCatalog;
+use AmcpBuilder\Elementor\Store;
+use AmcpBuilder\Elementor\Tree;
+use AmcpBuilder\Support\Errors;
 use WP_Error;
 use WP_Post;
 
@@ -62,10 +62,10 @@ abstract class ElementorAbility extends Ability {
 	protected function load( int $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post || 'trash' === $post->post_status ) {
-			return Errors::make( 'post_not_found', sprintf( /* translators: %d: post ID. */ __( 'Page %d does not exist.', 'mcp-builder' ), $post_id ), __( 'Call list-pages to find the right ID.', 'mcp-builder' ), 404 );
+			return Errors::make( 'post_not_found', sprintf( /* translators: %d: post ID. */ __( 'Page %d does not exist.', 'amcp-builder' ), $post_id ), __( 'Call list-pages to find the right ID.', 'amcp-builder' ), 404 );
 		}
 		if ( ! Store::can_edit( $post_id ) ) {
-			return Errors::make( 'elementor_access_denied', __( 'Elementor does not allow your user to edit this page.', 'mcp-builder' ), __( 'Check that the post type is enabled in Elementor → Settings and that your role has Elementor access (Elementor → Role Manager).', 'mcp-builder' ), 403 );
+			return Errors::make( 'elementor_access_denied', __( 'Elementor does not allow your user to edit this page.', 'amcp-builder' ), __( 'Check that the post type is enabled in Elementor → Settings and that your role has Elementor access (Elementor → Role Manager).', 'amcp-builder' ), 403 );
 		}
 
 		return array(

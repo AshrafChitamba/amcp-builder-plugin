@@ -2,13 +2,13 @@
 /**
  * The review-page prompt.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Guides;
+namespace AmcpBuilder\Abilities\Guides;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Guides\Guides;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class ReviewPagePrompt extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Review a page', 'mcp-builder' );
+		return __( 'Review a page', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -60,7 +60,7 @@ final class ReviewPagePrompt extends Ability {
 				"\n\n",
 				array(
 					sprintf( 'Review page %d on this WordPress site. Do not change anything yet.', (int) $input['postId'] ),
-					"Read the page with the builder's get-page tool and check it against the guide below: hierarchy, layout variety, mobile fallbacks, contrast, copy (no filler, no invented facts, no em-dashes), real links and images, and reuse of the site's design system.\nReport the problems ordered by impact, each with the element ID and the exact fix you propose. Ask the user which fixes to apply.",
+					"Read the page with the builder's get-page tool and check it against the guide below: the site owner's rules at the end of the guide first, then hierarchy, the hero (does it reflect this business?), eyebrow labels above headings (remove them), layout variety, mobile fallbacks, contrast, copy (no filler, no invented facts, no em-dashes), real links and images, and consistency with the rest of the site (no new colors, fonts, spacing or radius).\nReport the problems ordered by impact, each with the element ID and the exact fix you propose. Ask the user which fixes to apply.",
 					( new Guides( $this->settings ) )->get( 'design' ),
 				)
 			),

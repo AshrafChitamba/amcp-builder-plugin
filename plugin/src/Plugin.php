@@ -2,24 +2,24 @@
 /**
  * Plugin bootstrap.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder;
+namespace AmcpBuilder;
 
-use McpBuilder\Abilities\Registry;
-use McpBuilder\Admin\AdminPage;
-use McpBuilder\Admin\Notices;
-use McpBuilder\Mcp\Server;
-use McpBuilder\OAuth\Clients;
-use McpBuilder\OAuth\Server as OAuthServer;
-use McpBuilder\OAuth\Tokens;
-use McpBuilder\Rest\AdminController;
-use McpBuilder\Safety\AuditLog;
-use McpBuilder\Safety\Governance;
-use McpBuilder\Safety\RateLimiter;
-use McpBuilder\Safety\Schema;
-use McpBuilder\Safety\Snapshots;
+use AmcpBuilder\Abilities\Registry;
+use AmcpBuilder\Admin\AdminPage;
+use AmcpBuilder\Admin\Notices;
+use AmcpBuilder\Mcp\Server;
+use AmcpBuilder\OAuth\Clients;
+use AmcpBuilder\OAuth\Server as OAuthServer;
+use AmcpBuilder\OAuth\Tokens;
+use AmcpBuilder\Rest\AdminController;
+use AmcpBuilder\Safety\AuditLog;
+use AmcpBuilder\Safety\Governance;
+use AmcpBuilder\Safety\RateLimiter;
+use AmcpBuilder\Safety\Schema;
+use AmcpBuilder\Safety\Snapshots;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Plugin {
 
-	public const SLUG = 'mcp-builder';
+	public const SLUG = 'amcp-builder';
 
 	private static ?Plugin $instance = null;
 
@@ -60,6 +60,7 @@ final class Plugin {
 		$tokens       = new Tokens();
 		$clients      = new Clients();
 
+		Migration::maybe_run();
 		Schema::maybe_install();
 		Installer::schedule();
 		add_action(

@@ -3,7 +3,7 @@
 ## Structure
 
 - Elementor pages are nested elements: containers (flexbox or grid) holding widgets and other containers. Legacy layouts use section > column > widget.
-- Atomic (v4) elements (e-heading, e-flexbox, …) are read-only in MCP Builder; edit them with Elementor's own tools or the editor.
+- Atomic (v4) elements (e-heading, e-flexbox, …) are read-only in AMCP Builder; edit them with Elementor's own tools or the editor.
 - Check widget names with elementor-list-widgets and settings keys with elementor-get-widget-schema before using a new widget. Unknown keys are rejected.
 
 ## Settings that are easy to get wrong
@@ -33,6 +33,6 @@
 
 ## Custom code
 
-- Build with native widgets. The HTML widget is custom code and is refused unless an administrator enabled custom code in MCP Builder.
+- Build with native widgets. The HTML widget is custom code and is refused unless an administrator enabled custom code in AMCP Builder.
 - Elementor removes scripts and unsafe HTML for accounts without unfiltered HTML; read the page back after saving.
 - Elementor Pro Custom Code snippets (head or body code) go through elementor-upsert-code-snippet, created as drafts for the user to review.

@@ -2,15 +2,15 @@
 /**
  * The list-pages tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\General;
+namespace AmcpBuilder\Abilities\General;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Support\PageBuilder;
-use McpBuilder\Support\Posts;
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Support\PageBuilder;
+use AmcpBuilder\Support\Posts;
+use AmcpBuilder\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +25,7 @@ final class ListPages extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'List pages', 'mcp-builder' );
+		return __( 'List pages', 'amcp-builder' );
 	}
 
 	protected function description(): string {

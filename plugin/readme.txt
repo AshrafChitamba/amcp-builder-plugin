@@ -1,11 +1,11 @@
-=== MCP Builder ===
+=== AMCP Builder ===
 Contributors: ashrafchitambaa
 Tags: mcp, ai, bricks, elementor, page builder
 Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 8.1
 Requires Plugins: mcp-adapter
-Stable tag: 0.4.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,18 +13,19 @@ Lets AI apps such as Claude, ChatGPT and Codex build and edit Bricks and Element
 
 == Description ==
 
-MCP Builder connects AI clients to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code.
+AMCP Builder connects AI clients to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code.
 
 * One MCP endpoint for Bricks and Elementor.
 * Builds Bricks pages and templates from native elements, with display conditions, global classes, colors, variables, theme styles and page settings.
 * Builds Elementor pages and Theme Builder templates from containers and widgets, with kit globals and display conditions.
-* Gives the AI design guidance and your own design guidelines, so it builds in your style.
+* Gives the AI a strong built-in design guide plus your own design rules, which it re-reads whenever you change them, so it builds in your style and keeps the whole site consistent.
+* Reports every change with a front-end preview link and a short description.
 * Every change is snapshotted first and can be restored.
 * Read-only mode, per-tool switches, rate limits, an audit log and a kill switch, applied to the official Bricks and Elementor AI tools too.
 * Works with claude.ai, ChatGPT, Claude Code, Codex, Cursor and more: web apps sign in with OAuth (you approve each app, read-only if you like), coding tools with OAuth or access tokens.
 * Tools only appear for builders that are active on the site.
 
-MCP Builder sends no telemetry. It only makes outbound requests to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
+AMCP Builder sends no telemetry. It only makes outbound requests to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
 
 **Use a staging site first and keep backups.** AI clients can change your pages.
 
@@ -33,10 +34,18 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 == Installation ==
 
 1. Install and activate the MCP Adapter plugin.
-2. Upload and activate MCP Builder.
-3. Go to Settings → MCP Builder → Connection and follow the steps for your AI app. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
+2. Upload and activate AMCP Builder.
+3. Open AMCP Builder in the admin menu, go to Connection and follow the steps for your AI app. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
+4. Add your brand rules on the Design rules screen.
 
 == Changelog ==
+
+= 1.0.0 =
+* MCP Builder is now AMCP Builder. The connection URL changes to /wp-json/amcp-builder/mcp. Settings, snapshots, the audit log and connected apps are copied over automatically from MCP Builder.
+* New top-level AMCP Builder admin menu with a redesigned interface, a Design rules screen and a Tutorial screen.
+* Rewritten built-in design guide: no labels above headings, heroes that reflect the business, one consistent design system across the site, and no new colors or fonts without permission.
+* The AI re-reads your design rules as soon as you change them.
+* Every change now returns front-end preview links, and the AI reports each change in plain words.
 
 = 0.4.0 =
 * Sign in with OAuth 2.1 for claude.ai, Claude Desktop, ChatGPT, Codex, Claude Code and other apps; access tokens for coding tools; active connections list with revoke.
@@ -57,3 +66,8 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
 = 0.1.0 =
 * First development release: connection screen, status checks, site-info, list-pages and create-page tools.
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+MCP Builder is now AMCP Builder. After updating, deactivate the old MCP Builder plugin and change the server URL in each AI app to /wp-json/amcp-builder/mcp. Your settings and history are copied over automatically.

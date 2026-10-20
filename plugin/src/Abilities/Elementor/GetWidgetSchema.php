@@ -2,13 +2,13 @@
 /**
  * The elementor-get-widget-schema tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Validator;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Elementor\Validator;
+use AmcpBuilder\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class GetWidgetSchema extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: get widget schema', 'mcp-builder' );
+		return __( 'Elementor: get widget schema', 'amcp-builder' );
 	}
 
 	protected function description(): string {
@@ -66,7 +66,7 @@ final class GetWidgetSchema extends ElementorAbility {
 		$widget  = 'widget' === $el_type ? $name : null;
 
 		if ( ! $this->catalog()->exists( $el_type, $widget ) ) {
-			return Errors::make( 'unknown_widget', sprintf( /* translators: %s: widget name. */ __( 'Unknown widget "%s".', 'mcp-builder' ), $name ), __( 'Call elementor-list-widgets to see valid names, or use "container".', 'mcp-builder' ), 404 );
+			return Errors::make( 'unknown_widget', sprintf( /* translators: %s: widget name. */ __( 'Unknown widget "%s".', 'amcp-builder' ), $name ), __( 'Call elementor-list-widgets to see valid names, or use "container".', 'amcp-builder' ), 404 );
 		}
 
 		$schema   = $this->catalog()->schema( $el_type, $widget );

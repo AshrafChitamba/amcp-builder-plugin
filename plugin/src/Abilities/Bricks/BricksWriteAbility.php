@@ -2,19 +2,19 @@
 /**
  * Shared write flow of Bricks page tools.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Support\Diff;
-use McpBuilder\Bricks\Store;
-use McpBuilder\Bricks\Tree;
-use McpBuilder\Support\TreeError;
-use McpBuilder\Bricks\Validator;
-use McpBuilder\Safety\Governance;
-use McpBuilder\Support\Errors;
-use McpBuilder\Support\Posts;
+use AmcpBuilder\Support\Diff;
+use AmcpBuilder\Bricks\Store;
+use AmcpBuilder\Bricks\Tree;
+use AmcpBuilder\Support\TreeError;
+use AmcpBuilder\Bricks\Validator;
+use AmcpBuilder\Safety\Governance;
+use AmcpBuilder\Support\Errors;
+use AmcpBuilder\Support\Posts;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -80,22 +80,22 @@ abstract class BricksWriteAbility extends BricksAbility {
 			return Errors::make(
 				'post_locked',
 				/* translators: %s: user name. */
-				sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'mcp-builder' ), $locked_by ),
-				__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'mcp-builder' ),
+				sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'amcp-builder' ), $locked_by ),
+				__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'amcp-builder' ),
 				409
 			);
 		}
 
 		$before = $tree->to_array();
 		try {
-			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \McpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
+			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AmcpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
 		} catch ( TreeError $error ) {
 			return $error->to_wp_error();
 		}
 
 		$problems = $tree->integrity();
 		if ( $problems ) {
-			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'mcp-builder' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call bricks-get-page and try a simpler change.', 'mcp-builder' ), 500 );
+			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'amcp-builder' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call bricks-get-page and try a simpler change.', 'amcp-builder' ), 500 );
 		}
 
 		$result = array(

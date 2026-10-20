@@ -2,13 +2,13 @@
 /**
  * The bricks-move-element tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Bricks;
+namespace AmcpBuilder\Abilities\Bricks;
 
-use McpBuilder\Bricks\Tree;
-use McpBuilder\Bricks\Validator;
+use AmcpBuilder\Bricks\Tree;
+use AmcpBuilder\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class MoveElement extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: move element', 'mcp-builder' );
+		return __( 'Bricks: move element', 'amcp-builder' );
 	}
 
 	protected function description(): string {

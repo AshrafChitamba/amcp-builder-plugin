@@ -14,6 +14,13 @@ import { Section } from '../components/Section';
 import { useSettings } from '../hooks/useSettings';
 import type { AuditFilters, AuditPage, Settings, Snapshot } from '../types';
 
+const OUTCOME_LABELS: Record< string, string > = {
+	ok: __( 'Saved', 'amcp-builder' ),
+	'dry-run': __( 'Preview', 'amcp-builder' ),
+	denied: __( 'Refused', 'amcp-builder' ),
+	error: __( 'Error', 'amcp-builder' ),
+};
+
 const PER_PAGE = 25;
 
 type NumberKey =
@@ -27,27 +34,27 @@ const NUMBER_FIELDS: Array< { key: NumberKey; label: string; help: string } > =
 	[
 		{
 			key: 'rate_limit_reads',
-			label: __( 'Reads per minute (per user)', 'mcp-builder' ),
-			help: __( 'Stops runaway AI loops.', 'mcp-builder' ),
+			label: __( 'Reads per minute (per user)', 'amcp-builder' ),
+			help: __( 'Stops runaway AI loops.', 'amcp-builder' ),
 		},
 		{
 			key: 'rate_limit_writes',
-			label: __( 'Changes per minute (per user)', 'mcp-builder' ),
+			label: __( 'Changes per minute (per user)', 'amcp-builder' ),
 			help: '',
 		},
 		{
 			key: 'snapshot_keep',
-			label: __( 'Snapshots kept per page', 'mcp-builder' ),
-			help: __( 'Older ones are deleted daily.', 'mcp-builder' ),
+			label: __( 'Snapshots kept per page', 'amcp-builder' ),
+			help: __( 'Older ones are deleted daily.', 'amcp-builder' ),
 		},
 		{
 			key: 'snapshot_days',
-			label: __( 'Keep snapshots for (days)', 'mcp-builder' ),
+			label: __( 'Keep snapshots for (days)', 'amcp-builder' ),
 			help: '',
 		},
 		{
 			key: 'audit_days',
-			label: __( 'Keep audit log for (days)', 'mcp-builder' ),
+			label: __( 'Keep audit log for (days)', 'amcp-builder' ),
 			help: '',
 		},
 	];
@@ -62,7 +69,7 @@ const confirmRestore = ( id: number ): boolean =>
 			/* translators: %d: snapshot ID. */
 			__(
 				'Restore snapshot #%d? Changes made after it are undone. The current state is snapshotted first, so you can undo this.',
-				'mcp-builder'
+				'amcp-builder'
 			),
 			id
 		)
@@ -87,7 +94,7 @@ const SettingsForm = ( {
 			! window.confirm(
 				__(
 					'Turn on the kill switch? Every AI client is cut off until you turn it off again.',
-					'mcp-builder'
+					'amcp-builder'
 				)
 			)
 		) {
@@ -105,28 +112,28 @@ const SettingsForm = ( {
 
 	return (
 		<>
-			<Section title={ __( 'Kill switch', 'mcp-builder' ) }>
+			<Section title={ __( 'Kill switch', 'amcp-builder' ) }>
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Switch off MCP Builder', 'mcp-builder' ) }
+					label={ __( 'Switch off AMCP Builder', 'amcp-builder' ) }
 					help={ __(
 						'Immediately refuses every AI request, including official Bricks and Elementor tools. Use it if something goes wrong.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					checked={ settings.kill_switch }
 					disabled={ saving }
 					onChange={ toggleKill }
 				/>
-				<div className="mcpb-spacer" />
+				<div className="amcpb-spacer" />
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
 						'Allow AI apps to sign in with WordPress (OAuth)',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					help={ __(
 						'Needed for claude.ai, ChatGPT and coding tools that sign in. Turning it off disconnects nothing, but signed-in apps stop working until it is on again. Access tokens and Application Passwords keep working.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					checked={ settings.oauth_enabled }
 					disabled={ saving }
@@ -134,29 +141,29 @@ const SettingsForm = ( {
 				/>
 			</Section>
 
-			<Section title={ __( 'Defaults and limits', 'mcp-builder' ) }>
+			<Section title={ __( 'Defaults and limits', 'amcp-builder' ) }>
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
 						'Preview changes by default (dry run)',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					help={ __(
 						'Changes are only previewed unless the AI explicitly asks to save.',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					checked={ draft.dry_run_default }
 					onChange={ ( value ) =>
 						setDraft( { ...draft, dry_run_default: value } )
 					}
 				/>
-				<div className="mcpb-spacer" />
+				<div className="amcpb-spacer" />
 				<SelectControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 					label={ __(
 						'When someone has the page open in an editor',
-						'mcp-builder'
+						'amcp-builder'
 					) }
 					value={ draft.post_lock }
 					options={ [
@@ -164,14 +171,14 @@ const SettingsForm = ( {
 							value: 'deny',
 							label: __(
 								'Refuse AI changes (recommended)',
-								'mcp-builder'
+								'amcp-builder'
 							),
 						},
 						{
 							value: 'allow',
 							label: __(
 								'Allow AI changes anyway',
-								'mcp-builder'
+								'amcp-builder'
 							),
 						},
 					] }
@@ -182,7 +189,7 @@ const SettingsForm = ( {
 						} )
 					}
 				/>
-				<div className="mcpb-grid">
+				<div className="amcpb-grid">
 					{ NUMBER_FIELDS.map( ( field ) => (
 						<TextControl
 							key={ field.key }
@@ -202,17 +209,17 @@ const SettingsForm = ( {
 						/>
 					) ) }
 				</div>
-				<div className="mcpb-actions">
+				<div className="amcpb-actions">
 					<Button
 						variant="primary"
 						onClick={ submit }
 						isBusy={ saving }
 						disabled={ saving }
 					>
-						{ __( 'Save changes', 'mcp-builder' ) }
+						{ __( 'Save changes', 'amcp-builder' ) }
 					</Button>
 					<span aria-live="polite">
-						{ saved && __( 'Saved.', 'mcp-builder' ) }
+						{ saved && __( 'Saved.', 'amcp-builder' ) }
 					</span>
 				</div>
 			</Section>
@@ -259,10 +266,10 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 
 	return (
 		<Section
-			title={ __( 'Audit log', 'mcp-builder' ) }
+			title={ __( 'Audit log', 'amcp-builder' ) }
 			description={ __(
 				'Every change, refusal and error made through MCP. Successful reads are not logged.',
-				'mcp-builder'
+				'amcp-builder'
 			) }
 		>
 			{ error && (
@@ -270,24 +277,27 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 					{ error }
 				</Notice>
 			) }
-			<div className="mcpb-filters">
+			<div className="amcpb-filters">
 				<SelectControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
-					label={ __( 'Outcome', 'mcp-builder' ) }
+					label={ __( 'Outcome', 'amcp-builder' ) }
 					value={ filters.outcome }
 					options={ [
-						{ value: '', label: __( 'All', 'mcp-builder' ) },
-						{ value: 'ok', label: __( 'Saved', 'mcp-builder' ) },
+						{ value: '', label: __( 'All', 'amcp-builder' ) },
+						{ value: 'ok', label: __( 'Saved', 'amcp-builder' ) },
 						{
 							value: 'dry-run',
-							label: __( 'Preview', 'mcp-builder' ),
+							label: __( 'Preview', 'amcp-builder' ),
 						},
 						{
 							value: 'denied',
-							label: __( 'Refused', 'mcp-builder' ),
+							label: __( 'Refused', 'amcp-builder' ),
 						},
-						{ value: 'error', label: __( 'Error', 'mcp-builder' ) },
+						{
+							value: 'error',
+							label: __( 'Error', 'amcp-builder' ),
+						},
 					] }
 					onChange={ ( value ) =>
 						setFilter( {
@@ -298,8 +308,8 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 				<TextControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
-					label={ __( 'Tool', 'mcp-builder' ) }
-					placeholder="mcp-builder/bricks-add-elements"
+					label={ __( 'Tool', 'amcp-builder' ) }
+					placeholder="amcp-builder/bricks-add-elements"
 					value={ filters.ability }
 					onChange={ ( value ) =>
 						setFilter( { ability: value.trim() } )
@@ -309,7 +319,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 					type="number"
-					label={ __( 'Page ID', 'mcp-builder' ) }
+					label={ __( 'Page ID', 'amcp-builder' ) }
 					value={ filters.post_id ? String( filters.post_id ) : '' }
 					onChange={ ( value ) =>
 						setFilter( { post_id: Number( value ) || 0 } )
@@ -321,109 +331,128 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 				<Spinner />
 			) : (
 				<>
-					<table className="widefat striped mcpb-table">
-						<thead>
-							<tr>
-								<th scope="col">
-									{ __( 'When', 'mcp-builder' ) }
-								</th>
-								<th scope="col">
-									{ __( 'User', 'mcp-builder' ) }
-								</th>
-								<th scope="col">
-									{ __( 'Tool', 'mcp-builder' ) }
-								</th>
-								<th scope="col">
-									{ __( 'Outcome', 'mcp-builder' ) }
-								</th>
-								<th scope="col">
-									{ __( 'Page', 'mcp-builder' ) }
-								</th>
-								<th scope="col">
-									{ __( 'Details', 'mcp-builder' ) }
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{ data.items.length === 0 && (
+					<div className="amcpb-table-wrap">
+						<table className="amcpb-table">
+							<thead>
 								<tr>
-									<td colSpan={ 6 }>
-										{ __(
-											'Nothing logged yet.',
-											'mcp-builder'
-										) }
-									</td>
+									<th scope="col">
+										{ __( 'When', 'amcp-builder' ) }
+									</th>
+									<th scope="col">
+										{ __( 'User', 'amcp-builder' ) }
+									</th>
+									<th scope="col">
+										{ __( 'Tool', 'amcp-builder' ) }
+									</th>
+									<th scope="col">
+										{ __( 'Outcome', 'amcp-builder' ) }
+									</th>
+									<th scope="col">
+										{ __( 'Page', 'amcp-builder' ) }
+									</th>
+									<th scope="col">
+										{ __( 'Details', 'amcp-builder' ) }
+									</th>
 								</tr>
-							) }
-							{ data.items.map( ( entry ) => (
-								<tr key={ entry.id }>
-									<td>{ formatDate( entry.createdAt ) }</td>
-									<td>{ entry.user || '—' }</td>
-									<td>
-										<code>{ entry.ability }</code>
-									</td>
-									<td>
-										<span
-											className={ `mcpb-badge mcpb-badge--outcome-${ entry.outcome }` }
+							</thead>
+							<tbody>
+								{ data.items.length === 0 && (
+									<tr>
+										<td
+											colSpan={ 6 }
+											className="amcpb-empty"
 										>
-											{ entry.outcome }
-										</span>
-									</td>
-									<td>{ entry.postId || '—' }</td>
-									<td>
-										{ entry.message && (
-											<p className="mcpb-message">
-												{ entry.message }
-											</p>
-										) }
-										{ entry.inputSummary && (
-											<details>
-												<summary>
-													{ __(
-														'Input',
-														'mcp-builder'
-													) }
-												</summary>
-												<code className="mcpb-input">
-													{ entry.inputSummary }
-												</code>
-											</details>
-										) }
-										{ entry.snapshotId > 0 && (
-											<Button
-												variant="link"
-												onClick={ () =>
-													restore( entry.snapshotId )
-												}
+											{ __(
+												'Nothing logged yet.',
+												'amcp-builder'
+											) }
+										</td>
+									</tr>
+								) }
+								{ data.items.map( ( entry ) => (
+									<tr key={ entry.id }>
+										<td>
+											{ formatDate( entry.createdAt ) }
+										</td>
+										<td>{ entry.user || '—' }</td>
+										<td>
+											<code
+												className="amcpb-tool-name"
+												title={ entry.ability }
 											>
-												{ sprintf(
-													/* translators: %d: snapshot ID. */
-													__(
-														'Restore snapshot #%d (state before this)',
-														'mcp-builder'
-													),
-													entry.snapshotId
+												{ entry.ability.replace(
+													/^amcp-builder\//,
+													''
 												) }
-											</Button>
-										) }
-									</td>
-								</tr>
-							) ) }
-						</tbody>
-					</table>
-					<div className="mcpb-pagination">
+											</code>
+										</td>
+										<td>
+											<span
+												className={ `amcpb-badge amcpb-badge--outcome-${ entry.outcome }` }
+											>
+												{ OUTCOME_LABELS[
+													entry.outcome
+												] ?? entry.outcome }
+											</span>
+										</td>
+										<td>{ entry.postId || '—' }</td>
+										<td>
+											{ entry.message && (
+												<p className="amcpb-message">
+													{ entry.message }
+												</p>
+											) }
+											{ entry.inputSummary && (
+												<details>
+													<summary>
+														{ __(
+															'Input',
+															'amcp-builder'
+														) }
+													</summary>
+													<code className="amcpb-input">
+														{ entry.inputSummary }
+													</code>
+												</details>
+											) }
+											{ entry.snapshotId > 0 && (
+												<Button
+													variant="link"
+													onClick={ () =>
+														restore(
+															entry.snapshotId
+														)
+													}
+												>
+													{ sprintf(
+														/* translators: %d: snapshot ID. */
+														__(
+															'Restore snapshot #%d (state before this)',
+															'amcp-builder'
+														),
+														entry.snapshotId
+													) }
+												</Button>
+											) }
+										</td>
+									</tr>
+								) ) }
+							</tbody>
+						</table>
+					</div>
+					<div className="amcpb-pagination">
 						<Button
 							variant="secondary"
 							size="compact"
 							disabled={ page <= 1 }
 							onClick={ () => setPage( page - 1 ) }
 						>
-							{ __( 'Previous', 'mcp-builder' ) }
+							{ __( 'Previous', 'amcp-builder' ) }
 						</Button>
 						<span>
 							{ sprintf(
 								/* translators: 1: current page, 2: total pages. */
-								__( 'Page %1$d of %2$d', 'mcp-builder' ),
+								__( 'Page %1$d of %2$d', 'amcp-builder' ),
 								page,
 								pages
 							) }
@@ -434,7 +463,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 							disabled={ page >= pages }
 							onClick={ () => setPage( page + 1 ) }
 						>
-							{ __( 'Next', 'mcp-builder' ) }
+							{ __( 'Next', 'amcp-builder' ) }
 						</Button>
 					</div>
 				</>
@@ -467,7 +496,7 @@ const Snapshots = ( { version }: { version: number } ) => {
 					/* translators: 1: restored snapshot ID, 2: undo snapshot ID. */
 					__(
 						'Restored snapshot #%1$d. To undo, restore #%2$d.',
-						'mcp-builder'
+						'amcp-builder'
 					),
 					result.restored,
 					result.undoSnapshotId
@@ -481,10 +510,10 @@ const Snapshots = ( { version }: { version: number } ) => {
 
 	return (
 		<Section
-			title={ __( 'Recent snapshots', 'mcp-builder' ) }
+			title={ __( 'Recent snapshots', 'amcp-builder' ) }
 			description={ __(
 				'Automatic backups taken right before each change.',
-				'mcp-builder'
+				'amcp-builder'
 			) }
 		>
 			{ error && (
@@ -500,56 +529,68 @@ const Snapshots = ( { version }: { version: number } ) => {
 			{ ! items ? (
 				<Spinner />
 			) : (
-				<table className="widefat striped mcpb-table">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">{ __( 'When', 'mcp-builder' ) }</th>
-							<th scope="col">{ __( 'What', 'mcp-builder' ) }</th>
-							<th scope="col">
-								{ __( 'Taken before', 'mcp-builder' ) }
-							</th>
-							<th scope="col">
-								<span className="screen-reader-text">
-									{ __( 'Actions', 'mcp-builder' ) }
-								</span>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{ items.length === 0 && (
+				<div className="amcpb-table-wrap">
+					<table className="amcpb-table">
+						<thead>
 							<tr>
-								<td colSpan={ 5 }>
-									{ __( 'No snapshots yet.', 'mcp-builder' ) }
-								</td>
+								<th scope="col">#</th>
+								<th scope="col">
+									{ __( 'When', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'What', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									{ __( 'Taken before', 'amcp-builder' ) }
+								</th>
+								<th scope="col">
+									<span className="screen-reader-text">
+										{ __( 'Actions', 'amcp-builder' ) }
+									</span>
+								</th>
 							</tr>
-						) }
-						{ items.map( ( item ) => (
-							<tr key={ item.id }>
-								<td>{ item.id }</td>
-								<td>{ formatDate( item.createdAt ) }</td>
-								<td>
-									{ item.targetType === 'post'
-										? sprintf(
-												/* translators: %d: page ID. */
-												__( 'Page %d', 'mcp-builder' ),
-												item.targetId
-											)
-										: item.targetKey }
-								</td>
-								<td>{ item.label || item.ability }</td>
-								<td>
-									<Button
-										variant="link"
-										onClick={ () => restore( item.id ) }
-									>
-										{ __( 'Restore', 'mcp-builder' ) }
-									</Button>
-								</td>
-							</tr>
-						) ) }
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{ items.length === 0 && (
+								<tr>
+									<td colSpan={ 5 } className="amcpb-empty">
+										{ __(
+											'No snapshots yet.',
+											'amcp-builder'
+										) }
+									</td>
+								</tr>
+							) }
+							{ items.map( ( item ) => (
+								<tr key={ item.id }>
+									<td>{ item.id }</td>
+									<td>{ formatDate( item.createdAt ) }</td>
+									<td>
+										{ item.targetType === 'post'
+											? sprintf(
+													/* translators: %d: page ID. */
+													__(
+														'Page %d',
+														'amcp-builder'
+													),
+													item.targetId
+												)
+											: item.targetKey }
+									</td>
+									<td>{ item.label || item.ability }</td>
+									<td>
+										<Button
+											variant="link"
+											onClick={ () => restore( item.id ) }
+										>
+											{ __( 'Restore', 'amcp-builder' ) }
+										</Button>
+									</td>
+								</tr>
+							) ) }
+						</tbody>
+					</table>
+				</div>
 			) }
 		</Section>
 	);

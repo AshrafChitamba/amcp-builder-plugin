@@ -2,14 +2,14 @@
 /**
  * The elementor-duplicate-element tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Ids;
-use McpBuilder\Elementor\Tree;
-use McpBuilder\Elementor\Validator;
+use AmcpBuilder\Elementor\Ids;
+use AmcpBuilder\Elementor\Tree;
+use AmcpBuilder\Elementor\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class DuplicateElement extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: duplicate element', 'mcp-builder' );
+		return __( 'Elementor: duplicate element', 'amcp-builder' );
 	}
 
 	protected function description(): string {

@@ -7,12 +7,12 @@ interface Props {
 }
 
 export const CopyField = ( { label, value, help }: Props ) => (
-	<div className="mcpb-copy-field">
-		<span className="mcpb-copy-field__label">{ label }</span>
-		<div className="mcpb-copy-field__row">
-			<code className="mcpb-copy-field__value">{ value }</code>
+	<div className="amcpb-copy-field">
+		<span className="amcpb-copy-field__label">{ label }</span>
+		<div className="amcpb-copy-field__row">
+			<code className="amcpb-copy-field__value">{ value }</code>
 			<CopyButton text={ value } />
 		</div>
-		{ help && <p className="mcpb-help">{ help }</p> }
+		{ help && <p className="amcpb-help">{ help }</p> }
 	</div>
 );

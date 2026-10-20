@@ -2,13 +2,13 @@
 /**
  * The elementor-get-globals tool.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Abilities\Elementor;
+namespace AmcpBuilder\Abilities\Elementor;
 
-use McpBuilder\Elementor\Globals;
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Elementor\Globals;
+use AmcpBuilder\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class GetGlobals extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: get globals', 'mcp-builder' );
+		return __( 'Elementor: get globals', 'amcp-builder' );
 	}
 
 	protected function description(): string {
