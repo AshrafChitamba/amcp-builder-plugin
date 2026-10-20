@@ -2,10 +2,10 @@
 /**
  * Element catalog read from the live Elementor registry.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 

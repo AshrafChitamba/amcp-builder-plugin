@@ -2,22 +2,22 @@
 /**
  * REST routes used by the settings screen.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Rest;
+namespace AmcpBuilder\Rest;
 
-use McpBuilder\Abilities\Ability;
-use McpBuilder\Abilities\Registry;
-use McpBuilder\Environment;
-use McpBuilder\Mcp\Server;
-use McpBuilder\OAuth\Server as OAuthServer;
-use McpBuilder\OAuth\Tokens;
-use McpBuilder\Requirements;
-use McpBuilder\Safety\AuditLog;
-use McpBuilder\Safety\Governance;
-use McpBuilder\Safety\Snapshots;
-use McpBuilder\Settings;
+use AmcpBuilder\Abilities\Ability;
+use AmcpBuilder\Abilities\Registry;
+use AmcpBuilder\Environment;
+use AmcpBuilder\Mcp\Server;
+use AmcpBuilder\OAuth\Server as OAuthServer;
+use AmcpBuilder\OAuth\Tokens;
+use AmcpBuilder\Requirements;
+use AmcpBuilder\Safety\AuditLog;
+use AmcpBuilder\Safety\Governance;
+use AmcpBuilder\Safety\Snapshots;
+use AmcpBuilder\Settings;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
@@ -25,11 +25,11 @@ use WP_REST_Server;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Admin-only routes under /wp-json/mcp-builder/v1.
+ * Admin-only routes under /wp-json/amcp-builder/v1.
  */
 final class AdminController {
 
-	public const NAMESPACE = 'mcp-builder/v1';
+	public const NAMESPACE = 'amcp-builder/v1';
 
 	public function __construct(
 		private Settings $settings,
@@ -271,7 +271,7 @@ final class AdminController {
 	public function revoke_connection( WP_REST_Request $request ) {
 		$row = $this->tokens->get_row( (int) $request['id'] );
 		if ( ! $row ) {
-			return new \WP_Error( 'not_found', __( 'Connection not found.', 'mcp-builder' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'not_found', __( 'Connection not found.', 'amcp-builder' ), array( 'status' => 404 ) );
 		}
 		if ( 'pat' === $row['kind'] ) {
 			$this->tokens->revoke_id( (int) $row['id'] );
@@ -282,7 +282,7 @@ final class AdminController {
 	}
 
 	/**
-	 * Every ability MCP Builder governs: its own and official builder ones.
+	 * Every ability AMCP Builder governs: its own and official builder ones.
 	 */
 	public function abilities(): WP_REST_Response {
 		$disabled = $this->settings->get( 'disabled_tools' );
@@ -404,7 +404,7 @@ final class AdminController {
 				'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter.
 				'headers'   => array(
 					// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- HTTP Basic auth encoding.
-					'Authorization' => 'Basic ' . base64_encode( 'mcp-builder-header-test-' . wp_generate_password( 8, false ) . ':invalid' ),
+					'Authorization' => 'Basic ' . base64_encode( 'amcp-builder-header-test-' . wp_generate_password( 8, false ) . ':invalid' ),
 				),
 			)
 		);
@@ -415,7 +415,7 @@ final class AdminController {
 					'status'  => 'unknown',
 					'message' => sprintf(
 						/* translators: %s: error message. */
-						__( 'The site could not reach its own REST API (%s). This is common on local sites and does not always mean AI clients will fail.', 'mcp-builder' ),
+						__( 'The site could not reach its own REST API (%s). This is common on local sites and does not always mean AI clients will fail.', 'amcp-builder' ),
 						$response->get_error_message()
 					),
 				)
@@ -428,16 +428,16 @@ final class AdminController {
 			match ( $code ) {
 				'invalid_username', 'incorrect_password', 'application_passwords_disabled' => array(
 					'status'  => 'ok',
-					'message' => __( 'The Authorization header reaches WordPress.', 'mcp-builder' ),
+					'message' => __( 'The Authorization header reaches WordPress.', 'amcp-builder' ),
 				),
 				'rest_not_logged_in' => array(
 					'status'  => 'error',
-					'message' => __( 'The web server strips the Authorization header, so Application Passwords cannot work. See Troubleshooting → "Authorization header stripped".', 'mcp-builder' ),
+					'message' => __( 'The web server strips the Authorization header, so Application Passwords cannot work. See Troubleshooting → "Authorization header stripped".', 'amcp-builder' ),
 				),
 				default => array(
 					'status'  => 'unknown',
 					/* translators: %s: REST error code. */
-					'message' => sprintf( __( 'Unexpected response (%s). A security plugin or firewall may be intercepting REST requests.', 'mcp-builder' ), $code ? $code : wp_remote_retrieve_response_code( $response ) ),
+					'message' => sprintf( __( 'Unexpected response (%s). A security plugin or firewall may be intercepting REST requests.', 'amcp-builder' ), $code ? $code : wp_remote_retrieve_response_code( $response ) ),
 				),
 			}
 		);

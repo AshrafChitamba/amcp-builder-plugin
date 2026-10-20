@@ -2,10 +2,10 @@
 /**
  * Elementor element ID generator.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 

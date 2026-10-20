@@ -2,12 +2,12 @@
 /**
  * In-memory Elementor catalog for tests.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Tests;
+namespace AmcpBuilder\Tests;
 
-use McpBuilder\Elementor\Catalog;
+use AmcpBuilder\Elementor\Catalog;
 
 final class ElementorArrayCatalog implements Catalog {
 

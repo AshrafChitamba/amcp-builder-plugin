@@ -2,13 +2,13 @@
 /**
  * Snapshot storage and restore.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Safety;
+namespace AmcpBuilder\Safety;
 
-use McpBuilder\Bricks\Store;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Bricks\Store;
+use AmcpBuilder\Support\Errors;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -132,11 +132,11 @@ class Snapshots {
 	public function restore( int $id, string $ability ) {
 		$snapshot = $this->get( $id );
 		if ( ! $snapshot ) {
-			return Errors::make( 'snapshot_not_found', __( 'That snapshot does not exist or has expired.', 'mcp-builder' ), __( 'Call list-snapshots to see available snapshots.', 'mcp-builder' ), 404 );
+			return Errors::make( 'snapshot_not_found', __( 'That snapshot does not exist or has expired.', 'amcp-builder' ), __( 'Call list-snapshots to see available snapshots.', 'amcp-builder' ), 404 );
 		}
 
 		/* translators: %d: snapshot ID. */
-		$label = sprintf( __( 'Before restoring snapshot #%d', 'mcp-builder' ), $id );
+		$label = sprintf( __( 'Before restoring snapshot #%d', 'amcp-builder' ), $id );
 
 		if ( self::TYPE_OPTION === $snapshot['targetType'] ) {
 			$undo = $this->take_option( $snapshot['targetKey'], $ability, $label );
@@ -149,7 +149,7 @@ class Snapshots {
 
 		$post_id = (int) $snapshot['targetId'];
 		if ( ! get_post( $post_id ) ) {
-			return Errors::make( 'post_not_found', __( 'The page this snapshot belongs to no longer exists.', 'mcp-builder' ), '', 404 );
+			return Errors::make( 'post_not_found', __( 'The page this snapshot belongs to no longer exists.', 'amcp-builder' ), '', 404 );
 		}
 
 		$undo   = $this->take_post( $post_id, $ability, $label );

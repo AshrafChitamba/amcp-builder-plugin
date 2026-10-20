@@ -2,12 +2,12 @@
 /**
  * In-memory element catalog for tests.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Tests;
+namespace AmcpBuilder\Tests;
 
-use McpBuilder\Bricks\Catalog;
+use AmcpBuilder\Bricks\Catalog;
 
 final class ArrayCatalog implements Catalog {
 

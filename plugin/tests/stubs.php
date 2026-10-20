@@ -2,7 +2,7 @@
 /**
  * Minimal stand-ins for WordPress classes used by unit tests.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
 // phpcs:disable

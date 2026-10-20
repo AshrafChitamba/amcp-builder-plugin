@@ -2,12 +2,12 @@
 /**
  * Elementor kit globals (site colors and fonts).
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
-use McpBuilder\Support\Untrusted;
+use AmcpBuilder\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 

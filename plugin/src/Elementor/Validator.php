@@ -2,14 +2,14 @@
 /**
  * Validates Elementor element specs and settings before they are saved.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use McpBuilder\Support\TreeError;
+use AmcpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -59,7 +59,7 @@ final class Validator {
 	}
 
 	/**
-	 * Refuses changes to Atomic (v4) elements, which MCP Builder only reads.
+	 * Refuses changes to Atomic (v4) elements, which AMCP Builder only reads.
 	 *
 	 * @param array<string, mixed> $element Existing element.
 	 */
@@ -86,7 +86,7 @@ final class Validator {
 	 */
 	public function settings( string $el_type, ?string $widget_type, $settings ): void {
 		if ( ! $this->allow_custom_code && 'html' === $widget_type ) {
-			throw \McpBuilder\Support\CustomCode::refusal( 'The HTML widget' );
+			throw \AmcpBuilder\Support\CustomCode::refusal( 'The HTML widget' );
 		}
 		$what = self::describe( $el_type, $widget_type );
 		if ( ! is_array( $settings ) || ( $settings && array_is_list( $settings ) ) ) {
@@ -188,7 +188,7 @@ final class Validator {
 		if ( Tree::is_atomic( $element + array( 'elType' => '' ) ) ) {
 			throw new TreeError(
 				'atomic_not_supported',
-				'This is an Elementor v4 Atomic element. MCP Builder can read Atomic content but not edit it.',
+				'This is an Elementor v4 Atomic element. AMCP Builder can read Atomic content but not edit it.',
 				'Use classic containers and widgets, or edit Atomic elements with Elementor\'s own tools.'
 			);
 		}

@@ -2,10 +2,10 @@
 /**
  * Actionable error builder.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Support;
+namespace AmcpBuilder\Support;
 
 use WP_Error;
 
@@ -29,8 +29,8 @@ final class Errors {
 		$text = '' === $fix
 			? $message
 			/* translators: 1: error message, 2: suggested fix. */
-			: sprintf( __( '%1$s How to fix: %2$s', 'mcp-builder' ), $message, $fix );
+			: sprintf( __( '%1$s How to fix: %2$s', 'amcp-builder' ), $message, $fix );
 
-		return new WP_Error( 'mcp_builder_' . $code, $text, array( 'status' => $status ) );
+		return new WP_Error( 'amcp_builder_' . $code, $text, array( 'status' => $status ) );
 	}
 }

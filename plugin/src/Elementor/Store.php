@@ -2,12 +2,12 @@
 /**
  * Reads and writes Elementor documents.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Support\Errors;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -70,10 +70,10 @@ final class Store {
 	public static function write( int $post_id, array $data ) {
 		$document = self::document( $post_id );
 		if ( ! $document ) {
-			return Errors::make( 'elementor_unsupported', __( 'Elementor cannot edit this post.', 'mcp-builder' ), __( 'Check that the post type is enabled in Elementor → Settings.', 'mcp-builder' ), 400 );
+			return Errors::make( 'elementor_unsupported', __( 'Elementor cannot edit this post.', 'amcp-builder' ), __( 'Check that the post type is enabled in Elementor → Settings.', 'amcp-builder' ), 400 );
 		}
 		if ( ! $document->is_editable_by_current_user() ) {
-			return Errors::make( 'elementor_access_denied', __( 'Elementor does not allow your user to edit this page.', 'mcp-builder' ), __( 'Your role needs access to Elementor (Elementor → Role Manager) and edit rights for the page.', 'mcp-builder' ), 403 );
+			return Errors::make( 'elementor_access_denied', __( 'Elementor does not allow your user to edit this page.', 'amcp-builder' ), __( 'Your role needs access to Elementor (Elementor → Role Manager) and edit rights for the page.', 'amcp-builder' ), 403 );
 		}
 
 		// Element-only saves keep the page settings: some document types (landing pages,
@@ -87,7 +87,7 @@ final class Store {
 
 		// Some document types (e.g. loop items) return nothing from save(); only false means failure.
 		if ( false === $document->save( $data ) ) {
-			return Errors::make( 'elementor_save_failed', __( 'Elementor refused to save the page.', 'mcp-builder' ), __( 'Your user may lack edit rights, or another plugin blocked the save.', 'mcp-builder' ), 500 );
+			return Errors::make( 'elementor_save_failed', __( 'Elementor refused to save the page.', 'amcp-builder' ), __( 'Your user may lack edit rights, or another plugin blocked the save.', 'amcp-builder' ), 500 );
 		}
 		$document->set_is_built_with_elementor( true );
 		clean_post_cache( $post_id );
@@ -99,8 +99,8 @@ final class Store {
 				return Errors::make(
 					'elementor_write_incomplete',
 					/* translators: 1: saved element count, 2: expected element count. */
-					sprintf( __( 'Elementor saved %1$d of %2$d elements.', 'mcp-builder' ), $stored, $expected ),
-					__( 'A widget may belong to a plugin that is no longer active. Call elementor-get-page to see what was kept, or restore-snapshot to undo.', 'mcp-builder' ),
+					sprintf( __( 'Elementor saved %1$d of %2$d elements.', 'amcp-builder' ), $stored, $expected ),
+					__( 'A widget may belong to a plugin that is no longer active. Call elementor-get-page to see what was kept, or restore-snapshot to undo.', 'amcp-builder' ),
 					500
 				);
 			}

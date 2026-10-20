@@ -2,14 +2,14 @@
 /**
  * Elementor element tree operations.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use McpBuilder\Support\TreeError;
+use AmcpBuilder\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -280,7 +280,7 @@ final class Tree {
 	}
 
 	/**
-	 * True for Elementor v4 Atomic elements, which MCP Builder only reads.
+	 * True for Elementor v4 Atomic elements, which AMCP Builder only reads.
 	 *
 	 * @param array<string, mixed> $element Stored element.
 	 */

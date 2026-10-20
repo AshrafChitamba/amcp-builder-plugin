@@ -2,12 +2,12 @@
 /**
  * Builder guidance shared with AI clients.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Guides;
+namespace AmcpBuilder\Guides;
 
-use McpBuilder\Settings;
+use AmcpBuilder\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -46,8 +46,17 @@ final class Guides {
 		return implode( "\n\n---\n\n", $parts );
 	}
 
+	/**
+	 * Short fingerprint of the site owner's guidelines. AI clients compare it
+	 * with the one they last read and re-read the guide when it changes.
+	 */
+	public function version(): string {
+		$custom = trim( (string) $this->settings->get( 'design_guidelines' ) );
+		return '' === $custom ? 'none' : substr( md5( $custom ), 0, 10 );
+	}
+
 	private function file( string $topic ): string {
-		$path = MCP_BUILDER_DIR . 'guides/' . $topic . '.md';
+		$path = AMCP_BUILDER_DIR . 'guides/' . $topic . '.md';
 		$text = is_readable( $path ) ? file_get_contents( $path ) : false; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local plugin file.
 		return false === $text ? '' : $text;
 	}

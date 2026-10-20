@@ -2,17 +2,19 @@
 /**
  * Admin notices for unmet requirements.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Admin;
+namespace AmcpBuilder\Admin;
 
-use McpBuilder\Requirements;
+use AmcpBuilder\Mcp\Server;
+use AmcpBuilder\Migration;
+use AmcpBuilder\Requirements;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Warns administrators when MCP Builder cannot run.
+ * Warns administrators when AMCP Builder cannot run.
  */
 final class Notices {
 
@@ -25,6 +27,21 @@ final class Notices {
 	public function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
+
+		if ( Migration::old_plugin_active() ) {
+			wp_admin_notice(
+				sprintf(
+					'<p><strong>%1$s</strong> %2$s</p><p><code>%3$s</code></p>',
+					esc_html__( 'MCP Builder is now AMCP Builder.', 'amcp-builder' ),
+					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI app to:', 'amcp-builder' ),
+					esc_html( Server::url() )
+				),
+				array(
+					'type'           => 'warning',
+					'paragraph_wrap' => false,
+				)
+			);
 		}
 
 		$failed = array_filter( $this->requirements->core_checks(), static fn( array $check ): bool => 'error' === $check['status'] );
@@ -43,10 +60,10 @@ final class Notices {
 		wp_admin_notice(
 			sprintf(
 				'<p><strong>%s</strong></p><ul>%s</ul><p><a href="%s">%s</a></p>',
-				esc_html__( 'MCP Builder is not running yet.', 'mcp-builder' ),
+				esc_html__( 'AMCP Builder is not running yet.', 'amcp-builder' ),
 				$items,
 				esc_url( AdminPage::url( 'status' ) ),
-				esc_html__( 'Open Status', 'mcp-builder' )
+				esc_html__( 'Open Status', 'amcp-builder' )
 			),
 			array(
 				'type'           => 'error',

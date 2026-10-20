@@ -2,14 +2,14 @@
 /**
  * Applies the safety rules to every managed ability.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Safety;
+namespace AmcpBuilder\Safety;
 
-use McpBuilder\Abilities\Registry;
-use McpBuilder\Settings;
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Abilities\Registry;
+use AmcpBuilder\Settings;
+use AmcpBuilder\Support\Errors;
 use WP_Ability;
 use WP_Error;
 
@@ -17,19 +17,19 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Hooks into WordPress core's ability execution, so the rules apply to
- * MCP Builder's tools and to the official Bricks and Elementor abilities,
+ * AMCP Builder's tools and to the official Bricks and Elementor abilities,
  * whichever server or REST route calls them.
  *
  * - wp_pre_execute_ability: kill switch, disabled tools, custom-code gate,
  *   read-only mode, editor locks, rate limits. Denials are audited.
  * - wp_before_execute_ability: snapshot before official abilities write.
- *   MCP Builder's own tools snapshot themselves, after a dry-run check.
+ *   AMCP Builder's own tools snapshot themselves, after a dry-run check.
  * - wp_ability_execute_result: audit the outcome (success or error).
  * - mcp_adapter_tools_list: hide tools that would be refused anyway.
  */
 class Governance {
 
-	public const MANAGED_NAMESPACES = array( 'mcp-builder/', 'bricks/', 'elementor/' );
+	public const MANAGED_NAMESPACES = array( 'amcp-builder/', 'bricks/', 'elementor/' );
 
 	/** Official abilities that run arbitrary code. */
 	public const CUSTOM_CODE_ABILITIES = array( 'bricks/execute-php' );
@@ -110,13 +110,13 @@ class Governance {
 	 * @param mixed $input Validated input.
 	 */
 	public function before_execute( string $name, $input, WP_Ability $ability ): void {
-		if ( ! self::is_managed( $name ) || str_starts_with( $name, 'mcp-builder/' ) || self::is_readonly( $ability ) ) {
+		if ( ! self::is_managed( $name ) || str_starts_with( $name, 'amcp-builder/' ) || self::is_readonly( $ability ) ) {
 			return;
 		}
 
 		$post_id = Targets::post_id( $input );
 		$option  = Targets::option_for( $name );
-		$label   = __( 'Before an official builder tool wrote', 'mcp-builder' );
+		$label   = __( 'Before an official builder tool wrote', 'amcp-builder' );
 
 		$snapshot = 0;
 		if ( $post_id && get_post( $post_id ) ) {
@@ -212,40 +212,40 @@ class Governance {
 		$readonly = self::is_readonly( $ability );
 
 		if ( $this->settings->is_killed() ) {
-			return Errors::make( 'disabled', __( 'MCP Builder is switched off by a site administrator (kill switch).', 'mcp-builder' ), __( 'Stop and tell the user; nothing can run until an admin turns it back on.', 'mcp-builder' ), 503 );
+			return Errors::make( 'disabled', __( 'AMCP Builder is switched off by a site administrator (kill switch).', 'amcp-builder' ), __( 'Stop and tell the user; nothing can run until an admin turns it back on.', 'amcp-builder' ), 503 );
 		}
 
 		if ( in_array( $name, $settings['disabled_tools'], true ) ) {
-			return Errors::make( 'tool_disabled', __( 'This tool is turned off in MCP Builder settings.', 'mcp-builder' ), __( 'Use another tool, or ask an admin to enable it under Settings → MCP Builder → Tools.', 'mcp-builder' ), 403 );
+			return Errors::make( 'tool_disabled', __( 'This tool is turned off in AMCP Builder settings.', 'amcp-builder' ), __( 'Use another tool, or ask an admin to enable it under AMCP Builder → Tools.', 'amcp-builder' ), 403 );
 		}
 
 		if ( $this->is_custom_code( $name ) && ( ! $settings['custom_code_enabled'] || ! current_user_can( 'manage_options' ) || ! current_user_can( 'unfiltered_html' ) ) ) {
-			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'mcp-builder' ), __( 'Build with native elements instead. An administrator can enable custom code under Settings → MCP Builder → Tools.', 'mcp-builder' ), 403 );
+			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'amcp-builder' ), __( 'Build with native elements instead. An administrator can enable custom code under AMCP Builder → Tools.', 'amcp-builder' ), 403 );
 		}
 
-		if ( ! $readonly && \McpBuilder\OAuth\Tokens::current_is_read_only() ) {
-			return Errors::make( 'read_only_connection', __( 'This app was connected with read-only access, so it cannot make changes.', 'mcp-builder' ), __( 'Tell the user. They can reconnect the app and choose "Read and edit pages".', 'mcp-builder' ), 403 );
+		if ( ! $readonly && \AmcpBuilder\OAuth\Tokens::current_is_read_only() ) {
+			return Errors::make( 'read_only_connection', __( 'This app was connected with read-only access, so it cannot make changes.', 'amcp-builder' ), __( 'Tell the user. They can reconnect the app and choose "Read and edit pages".', 'amcp-builder' ), 403 );
 		}
 
 		if ( ! $readonly && $settings['read_only'] ) {
-			return Errors::make( 'read_only', __( 'The site is in read-only mode, so no changes can be made.', 'mcp-builder' ), __( 'Only use read tools, or ask an admin to turn off read-only mode.', 'mcp-builder' ), 403 );
+			return Errors::make( 'read_only', __( 'The site is in read-only mode, so no changes can be made.', 'amcp-builder' ), __( 'Only use read tools, or ask an admin to turn off read-only mode.', 'amcp-builder' ), 403 );
 		}
 
 		if ( ! $count_toward ) {
 			return null;
 		}
 
-		if ( ! $readonly && 'deny' === $settings['post_lock'] && ! str_starts_with( $name, 'mcp-builder/' ) ) {
+		if ( ! $readonly && 'deny' === $settings['post_lock'] && ! str_starts_with( $name, 'amcp-builder/' ) ) {
 			$locked_by = self::locked_by( Targets::post_id( $input ) );
 			if ( $locked_by ) {
 				/* translators: %s: user name. */
-				return Errors::make( 'post_locked', sprintf( __( '%s is editing this page right now.', 'mcp-builder' ), $locked_by ), __( 'Wait until they close the editor, then try again.', 'mcp-builder' ), 409 );
+				return Errors::make( 'post_locked', sprintf( __( '%s is editing this page right now.', 'amcp-builder' ), $locked_by ), __( 'Wait until they close the editor, then try again.', 'amcp-builder' ), 409 );
 			}
 		}
 
 		$limit = $readonly ? $settings['rate_limit_reads'] : $settings['rate_limit_writes'];
 		if ( ! $this->rate_limiter->hit( get_current_user_id(), $readonly ? 'read' : 'write', $limit ) ) {
-			return Errors::make( 'rate_limited', __( 'Too many requests in the last minute.', 'mcp-builder' ), __( 'Wait a minute, then continue. Batch changes into fewer calls where the tool allows it.', 'mcp-builder' ), 429 );
+			return Errors::make( 'rate_limited', __( 'Too many requests in the last minute.', 'amcp-builder' ), __( 'Wait a minute, then continue. Batch changes into fewer calls where the tool allows it.', 'amcp-builder' ), 429 );
 		}
 
 		return null;
@@ -266,7 +266,7 @@ class Governance {
 			return null;
 		}
 		$user = get_userdata( $user_id );
-		return $user ? $user->display_name : __( 'Another user', 'mcp-builder' );
+		return $user ? $user->display_name : __( 'Another user', 'amcp-builder' );
 	}
 
 	private function ability_for_tool( string $tool_name ): ?WP_Ability {

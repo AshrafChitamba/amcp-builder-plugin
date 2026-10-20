@@ -1,14 +1,14 @@
 <?php
 /**
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Tests\Unit;
+namespace AmcpBuilder\Tests\Unit;
 
-use McpBuilder\Support\TreeError;
-use McpBuilder\Bricks\Validator;
-use McpBuilder\Tests\ArrayCatalog;
-use McpBuilder\Tests\TestCase;
+use AmcpBuilder\Support\TreeError;
+use AmcpBuilder\Bricks\Validator;
+use AmcpBuilder\Tests\ArrayCatalog;
+use AmcpBuilder\Tests\TestCase;
 
 final class ValidatorTest extends TestCase {
 

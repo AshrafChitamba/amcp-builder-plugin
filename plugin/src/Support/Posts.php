@@ -2,10 +2,10 @@
 /**
  * Post helpers shared by tools.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Support;
+namespace AmcpBuilder\Support;
 
 use WP_Error;
 use WP_Post;
@@ -28,8 +28,8 @@ final class Posts {
 			return Errors::make(
 				'invalid_post_type',
 				/* translators: %s: post type slug. */
-				sprintf( __( 'Post type "%s" does not exist or cannot be edited.', 'mcp-builder' ), $post_type ),
-				__( 'Use "page" or "post", or a custom post type slug registered on this site.', 'mcp-builder' )
+				sprintf( __( 'Post type "%s" does not exist or cannot be edited.', 'amcp-builder' ), $post_type ),
+				__( 'Use "page" or "post", or a custom post type slug registered on this site.', 'amcp-builder' )
 			);
 		}
 		return $type;

@@ -2,10 +2,10 @@
 /**
  * Custom CSS selector placeholder handling.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Bricks;
+namespace AmcpBuilder\Bricks;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -2,16 +2,16 @@
 /**
  * Works out what an ability call will change.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Safety;
+namespace AmcpBuilder\Safety;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Best-effort resolution of the post or option an ability writes to, used
- * to snapshot and lock-check abilities MCP Builder does not own.
+ * to snapshot and lock-check abilities AMCP Builder does not own.
  */
 final class Targets {
 

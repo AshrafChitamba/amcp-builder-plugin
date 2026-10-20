@@ -1,13 +1,13 @@
 <?php
 /**
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Tests\Unit;
+namespace AmcpBuilder\Tests\Unit;
 
 use Brain\Monkey\Functions;
-use McpBuilder\Settings;
-use McpBuilder\Tests\TestCase;
+use AmcpBuilder\Settings;
+use AmcpBuilder\Tests\TestCase;
 
 final class SettingsTest extends TestCase {
 
@@ -23,7 +23,7 @@ final class SettingsTest extends TestCase {
 				'rate_limit_writes' => '45',
 				'snapshot_keep'     => 99999,
 				'post_lock'         => 'EVERYTHING',
-				'disabled_tools'    => array( 'mcp-builder/list-pages', 'Bad Name!', 'mcp-builder/list-pages', 42 ),
+				'disabled_tools'    => array( 'amcp-builder/list-pages', 'Bad Name!', 'amcp-builder/list-pages', 42 ),
 				'unknown'           => 'x',
 			)
 		);
@@ -32,7 +32,7 @@ final class SettingsTest extends TestCase {
 		$this->assertSame( 45, $clean['rate_limit_writes'] );
 		$this->assertSame( 500, $clean['snapshot_keep'] );
 		$this->assertSame( 'deny', $clean['post_lock'] );
-		$this->assertSame( array( 'mcp-builder/list-pages', 'badname' ), $clean['disabled_tools'] );
+		$this->assertSame( array( 'amcp-builder/list-pages', 'badname' ), $clean['disabled_tools'] );
 		$this->assertArrayNotHasKey( 'unknown', $clean );
 	}
 

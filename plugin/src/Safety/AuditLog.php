@@ -2,10 +2,10 @@
 /**
  * Audit log storage.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Safety;
+namespace AmcpBuilder\Safety;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -2,10 +2,10 @@
 /**
  * Element catalog contract.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Elementor;
+namespace AmcpBuilder\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 

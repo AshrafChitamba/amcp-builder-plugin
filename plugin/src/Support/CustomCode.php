@@ -2,12 +2,12 @@
 /**
  * Custom-code policy.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Support;
+namespace AmcpBuilder\Support;
 
-use McpBuilder\Settings;
+use AmcpBuilder\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,7 +26,7 @@ final class CustomCode {
 		return new TreeError(
 			'custom_code_disabled',
 			sprintf( 'This needs custom code (%s), and custom code is switched off or not allowed for this account.', $what ),
-			'Build it with native elements instead. If custom code is really needed, ask an administrator to enable "Allow custom code" under Settings → MCP Builder → Tools and to use an administrator account.'
+			'Build it with native elements instead. If custom code is really needed, ask an administrator to enable "Allow custom code" under AMCP Builder → Tools and to use an administrator account.'
 		);
 	}
 }

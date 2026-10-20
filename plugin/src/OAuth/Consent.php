@@ -2,10 +2,10 @@
 /**
  * The "Connect an AI app" consent screen.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\OAuth;
+namespace AmcpBuilder\OAuth;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Consent {
 
-	public const NONCE = 'mcpb_oauth_consent_';
+	public const NONCE = 'amcpb_oauth_consent_';
 
 	/**
 	 * @param array<string, mixed>  $client Client row.
@@ -31,25 +31,25 @@ final class Consent {
 
 		ob_start();
 		?>
-		<h1><?php esc_html_e( 'Connect an AI app', 'mcp-builder' ); ?></h1>
+		<h1><?php esc_html_e( 'Connect an AI app', 'amcp-builder' ); ?></h1>
 		<p class="lead">
 			<?php
 			printf(
 				/* translators: 1: app name, 2: site name. */
-				esc_html__( '%1$s wants to use MCP Builder on %2$s.', 'mcp-builder' ),
+				esc_html__( '%1$s wants to use AMCP Builder on %2$s.', 'amcp-builder' ),
 				'<strong>' . esc_html( (string) $client['name'] ) . '</strong>',
 				'<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>'
 			);
 			?>
 		</p>
 		<dl>
-			<dt><?php esc_html_e( 'Returns to', 'mcp-builder' ); ?></dt>
-			<dd><?php echo esc_html( $is_loopback ? __( 'An app on this computer (local address)', 'mcp-builder' ) : $app_host ); ?></dd>
-			<dt><?php esc_html_e( 'Acts as', 'mcp-builder' ); ?></dt>
+			<dt><?php esc_html_e( 'Returns to', 'amcp-builder' ); ?></dt>
+			<dd><?php echo esc_html( $is_loopback ? __( 'An app on this computer (local address)', 'amcp-builder' ) : $app_host ); ?></dd>
+			<dt><?php esc_html_e( 'Acts as', 'amcp-builder' ); ?></dt>
 			<dd><?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?></dd>
 		</dl>
 		<?php if ( 'cimd' !== ( $client['source'] ?? '' ) ) : ?>
-			<p class="note"><?php esc_html_e( 'This app registered itself. Only continue if you started this connection yourself just now.', 'mcp-builder' ); ?></p>
+			<p class="note"><?php esc_html_e( 'This app registered itself. Only continue if you started this connection yourself just now.', 'amcp-builder' ); ?></p>
 		<?php endif; ?>
 		<form method="post" action="<?php echo esc_url( $action ); ?>">
 			<?php foreach ( $query as $key => $value ) : ?>
@@ -59,14 +59,14 @@ final class Consent {
 			<?php endforeach; ?>
 			<input type="hidden" name="_mcpb_nonce" value="<?php echo esc_attr( wp_create_nonce( self::NONCE . $client['client_id'] ) ); ?>">
 			<fieldset>
-				<legend><?php esc_html_e( 'Access', 'mcp-builder' ); ?></legend>
-				<label><input type="radio" name="access" value="full" <?php checked( ! $read_first ); ?>> <?php esc_html_e( 'Read and edit pages', 'mcp-builder' ); ?></label>
-				<label><input type="radio" name="access" value="read" <?php checked( $read_first ); ?>> <?php esc_html_e( 'Read only', 'mcp-builder' ); ?></label>
+				<legend><?php esc_html_e( 'Access', 'amcp-builder' ); ?></legend>
+				<label><input type="radio" name="access" value="full" <?php checked( ! $read_first ); ?>> <?php esc_html_e( 'Read and edit pages', 'amcp-builder' ); ?></label>
+				<label><input type="radio" name="access" value="read" <?php checked( $read_first ); ?>> <?php esc_html_e( 'Read only', 'amcp-builder' ); ?></label>
 			</fieldset>
-			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within MCP Builder\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under Settings → MCP Builder → Connection.', 'mcp-builder' ); ?></p>
+			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within AMCP Builder\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under AMCP Builder → Connection.', 'amcp-builder' ); ?></p>
 			<div class="actions">
-				<button type="submit" name="decision" value="deny" class="secondary"><?php esc_html_e( 'Cancel', 'mcp-builder' ); ?></button>
-				<button type="submit" name="decision" value="approve" class="primary"><?php esc_html_e( 'Allow access', 'mcp-builder' ); ?></button>
+				<button type="submit" name="decision" value="deny" class="secondary"><?php esc_html_e( 'Cancel', 'amcp-builder' ); ?></button>
+				<button type="submit" name="decision" value="approve" class="primary"><?php esc_html_e( 'Allow access', 'amcp-builder' ); ?></button>
 			</div>
 		</form>
 		<?php
@@ -74,7 +74,7 @@ final class Consent {
 	}
 
 	public static function error_page( string $message ): void {
-		self::render( '<h1>' . esc_html__( 'Connection stopped', 'mcp-builder' ) . '</h1><p class="lead">' . esc_html( $message ) . '</p>', 400 );
+		self::render( '<h1>' . esc_html__( 'Connection stopped', 'amcp-builder' ) . '</h1><p class="lead">' . esc_html( $message ) . '</p>', 400 );
 	}
 
 	private static function render( string $body, int $status = 200 ): void {
@@ -90,7 +90,7 @@ final class Consent {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title><?php echo esc_html__( 'Connect an AI app', 'mcp-builder' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
+<title><?php echo esc_html__( 'Connect an AI app', 'amcp-builder' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
 <style>
 	body { margin: 0; background: #f0f0f1; color: #1d2327; font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
 	main { max-width: 420px; margin: 8vh auto; padding: 0 16px; }
@@ -120,7 +120,7 @@ final class Consent {
 	<div class="card">
 		<?php echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts above. ?>
 	</div>
-	<p class="credit">MCP Builder by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
+	<p class="credit">AMCP Builder by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
 </main>
 </body>
 </html>

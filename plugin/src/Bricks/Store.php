@@ -2,12 +2,12 @@
 /**
  * Reads and writes Bricks element data.
  *
- * @package McpBuilder
+ * @package AmcpBuilder
  */
 
-namespace McpBuilder\Bricks;
+namespace AmcpBuilder\Bricks;
 
-use McpBuilder\Support\Errors;
+use AmcpBuilder\Support\Errors;
 use WP_Error;
 use WP_Post;
 
@@ -72,10 +72,10 @@ final class Store {
 	public static function write( int $post_id, string $meta_key, array $elements ) {
 		$post = get_post( $post_id );
 		if ( ! $post ) {
-			return Errors::make( 'post_not_found', __( 'The page does not exist.', 'mcp-builder' ), '', 404 );
+			return Errors::make( 'post_not_found', __( 'The page does not exist.', 'amcp-builder' ), '', 404 );
 		}
 		if ( ! self::can_edit( $post_id ) ) {
-			return Errors::make( 'bricks_access_denied', __( 'Bricks does not allow your user to edit this page.', 'mcp-builder' ), __( 'Ask an admin to give your role builder access in Bricks → Settings → Builder access.', 'mcp-builder' ), 403 );
+			return Errors::make( 'bricks_access_denied', __( 'Bricks does not allow your user to edit this page.', 'amcp-builder' ), __( 'Ask an admin to give your role builder access in Bricks → Settings → Builder access.', 'amcp-builder' ), 403 );
 		}
 
 		$area = array(
@@ -89,10 +89,10 @@ final class Store {
 		$submitted = count( $elements );
 		$elements  = \Bricks\Helpers::security_check_elements_before_save( wp_slash( array_values( $elements ) ), $post_id, $area );
 		if ( ! is_array( $elements ) ) {
-			return Errors::make( 'bricks_rejected', __( 'Bricks rejected the elements.', 'mcp-builder' ), '', 400 );
+			return Errors::make( 'bricks_rejected', __( 'Bricks rejected the elements.', 'amcp-builder' ), '', 400 );
 		}
 		if ( count( $elements ) !== $submitted ) {
-			return Errors::make( 'bricks_content_only', __( 'Bricks only lets your user edit existing content, not add or remove elements.', 'mcp-builder' ), __( 'Ask an admin for "Full access" in Bricks → Settings → Builder access, or only update existing elements.', 'mcp-builder' ), 403 );
+			return Errors::make( 'bricks_content_only', __( 'Bricks only lets your user edit existing content, not add or remove elements.', 'amcp-builder' ), __( 'Ask an admin for "Full access" in Bricks → Settings → Builder access, or only update existing elements.', 'amcp-builder' ), 403 );
 		}
 
 		$revision_id = self::save_revision( $post );
@@ -116,7 +116,7 @@ final class Store {
 
 		$stored = self::read( $post_id, $meta_key );
 		if ( count( $stored ) !== count( $elements ) ) {
-			return Errors::make( 'bricks_write_failed', __( 'The elements were not saved.', 'mcp-builder' ), __( 'Your user may lack Bricks builder access, or another plugin blocked the update.', 'mcp-builder' ), 500 );
+			return Errors::make( 'bricks_write_failed', __( 'The elements were not saved.', 'amcp-builder' ), __( 'Your user may lack Bricks builder access, or another plugin blocked the update.', 'amcp-builder' ), 500 );
 		}
 		return true;
 	}
