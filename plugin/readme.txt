@@ -9,11 +9,11 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Lets AI apps such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages through MCP.
+Lets AI assistants such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages through MCP.
 
 == Description ==
 
-AMCP Builder connects AI clients to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code.
+AMCP Builder connects AI assistants to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code.
 
 * One MCP endpoint for Bricks and Elementor.
 * Builds Bricks pages and templates from native elements, with display conditions, global classes, colors, variables, theme styles and page settings.
@@ -27,7 +27,7 @@ AMCP Builder connects AI clients to your site through the Model Context Protocol
 
 AMCP Builder sends no telemetry. It only makes outbound requests to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
 
-**Use a staging site first and keep backups.** AI clients can change your pages.
+**Use a staging site first and keep backups.** AI assistants can change your pages.
 
 Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
@@ -35,7 +35,7 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
 1. Install and activate the MCP Adapter plugin.
 2. Upload and activate AMCP Builder.
-3. Open AMCP Builder in the admin menu, go to Connection and follow the steps for your AI app. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
+3. Open AMCP Builder in the admin menu, go to Connection and follow the steps for your AI assistant. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
 4. Add your brand rules on the Design rules screen.
 
 == Changelog ==
@@ -70,4 +70,4 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 == Upgrade Notice ==
 
 = 1.0.0 =
-MCP Builder is now AMCP Builder. After updating, deactivate the old MCP Builder plugin and change the server URL in each AI app to /wp-json/amcp-builder/mcp. Your settings and history are copied over automatically.
+MCP Builder is now AMCP Builder. After updating, deactivate the old MCP Builder plugin and change the server URL in each AI assistant to /wp-json/amcp-builder/mcp. Your settings and history are copied over automatically.

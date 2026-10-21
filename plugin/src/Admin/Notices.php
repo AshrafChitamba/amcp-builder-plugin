@@ -34,7 +34,7 @@ final class Notices {
 				sprintf(
 					'<p><strong>%1$s</strong> %2$s</p><p><code>%3$s</code></p>',
 					esc_html__( 'MCP Builder is now AMCP Builder.', 'amcp-builder' ),
-					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI app to:', 'amcp-builder' ),
+					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI assistant to:', 'amcp-builder' ),
 					esc_html( Server::url() )
 				),
 				array(

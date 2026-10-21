@@ -155,36 +155,39 @@
 
 .amcpb-state {
 	align-items: center;
-	background: rgb(255 255 255 / 8%);
-	border: 1px solid rgb(255 255 255 / 14%);
-	border-radius: 999px;
-	color: #fff;
+	color: #dfe6f7;
 	display: inline-flex;
-	font-size: 12.5px;
-	font-weight: 600;
-	gap: 8px;
-	padding: 4px 12px 4px 10px;
+	font-size: 13px;
+	font-weight: 550;
+	gap: 6px;
 
-	&__dot {
-		border-radius: 50%;
-		height: 8px;
-		width: 8px;
+	svg {
+		fill: currentcolor;
+		flex: none;
 	}
 
-	&--ok &__dot {
-		background: #34d399;
-		box-shadow: 0 0 0 3px rgb(52 211 153 / 22%);
+	&--ok svg {
+		fill: #6ee7b7;
 	}
 
-	&--warning &__dot {
-		background: #fbbf24;
-		box-shadow: 0 0 0 3px rgb(251 191 36 / 22%);
+	&--warning svg {
+		fill: #fcd34d;
 	}
 
-	&--error &__dot {
-		background: #f87171;
-		box-shadow: 0 0 0 3px rgb(248 113 113 / 22%);
+	&--error svg {
+		fill: #fca5a5;
 	}
+}
+
+// Divider between the status and the version.
+.amcpb-header__meta .amcpb-version::before {
+	background: rgb(255 255 255 / 20%);
+	content: "";
+	display: inline-block;
+	height: 14px;
+	margin-right: 12px;
+	vertical-align: -2px;
+	width: 1px;
 }
 
 .amcpb-endpoint {
@@ -635,13 +638,13 @@
 	align-items: center;
 	background: var(--amcpb-canvas);
 	border: 1px solid var(--amcpb-line);
-	border-radius: 999px;
+	border-radius: 6px;
 	color: var(--amcpb-muted);
 	display: inline-flex;
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 1;
-	padding: 4px 10px;
+	padding: 4px 8px;
 	white-space: nowrap;
 
 	&--ok,

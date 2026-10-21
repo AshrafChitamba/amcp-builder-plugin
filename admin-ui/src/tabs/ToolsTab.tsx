@@ -92,7 +92,7 @@ export const ToolsTab = () => {
 			// eslint-disable-next-line no-alert
 			! window.confirm(
 				__(
-					'Custom-code tools let AI clients add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?',
+					'Custom-code tools let AI assistants add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?',
 					'amcp-builder'
 				)
 			)
@@ -115,7 +115,7 @@ export const ToolsTab = () => {
 					__nextHasNoMarginBottom
 					label={ __( 'Read-only mode', 'amcp-builder' ) }
 					help={ __(
-						'AI clients can read pages but every change is refused. Write tools are hidden from them.',
+						'AI assistants can read pages but every change is refused. Write tools are hidden from them.',
 						'amcp-builder'
 					) }
 					checked={ settings.read_only }

@@ -1,8 +1,9 @@
-import { ExternalLink } from '@wordpress/components';
+import { ExternalLink, Icon } from '@wordpress/components';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
+import { cancelCircleFilled, info, lock, published } from '@wordpress/icons';
 import { addQueryArgs, getQueryArg } from '@wordpress/url';
-import type { KeyboardEvent } from 'react';
+import type { ComponentProps, KeyboardEvent } from 'react';
 
 import { getSettings } from './api';
 import { CopyButton } from './components/CopyButton';
@@ -85,22 +86,42 @@ const syncLocation = ( tab: string ) => {
 	} );
 };
 
-type SiteState = { label: string; tone: 'ok' | 'warning' | 'error' };
+type SiteState = {
+	label: string;
+	tone: 'ok' | 'warning' | 'error';
+	icon: ComponentProps< typeof Icon >[ 'icon' ];
+};
 
 const siteState = ( settings: Settings | null ): SiteState | null => {
 	if ( ! config.canRun ) {
-		return { label: __( 'Needs setup', 'amcp-builder' ), tone: 'error' };
+		return {
+			label: __( 'Needs setup', 'amcp-builder' ),
+			tone: 'error',
+			icon: info,
+		};
 	}
 	if ( ! settings ) {
 		return null;
 	}
 	if ( settings.kill_switch ) {
-		return { label: __( 'Switched off', 'amcp-builder' ), tone: 'error' };
+		return {
+			label: __( 'Switched off', 'amcp-builder' ),
+			tone: 'error',
+			icon: cancelCircleFilled,
+		};
 	}
 	if ( settings.read_only ) {
-		return { label: __( 'Read-only', 'amcp-builder' ), tone: 'warning' };
+		return {
+			label: __( 'Read-only', 'amcp-builder' ),
+			tone: 'warning',
+			icon: lock,
+		};
 	}
-	return { label: __( 'Live', 'amcp-builder' ), tone: 'ok' };
+	return {
+		label: __( 'Accepting changes', 'amcp-builder' ),
+		tone: 'ok',
+		icon: published,
+	};
 };
 
 export const App = () => {
@@ -150,7 +171,7 @@ export const App = () => {
 						</h1>
 						<p className="amcpb-header__tagline">
 							{ __(
-								'Build and edit Bricks and Elementor pages with your AI app.',
+								'Build and edit Bricks and Elementor pages with your AI assistant.',
 								'amcp-builder'
 							) }
 						</p>
@@ -161,10 +182,7 @@ export const App = () => {
 						<span
 							className={ `amcpb-state amcpb-state--${ state.tone }` }
 						>
-							<span
-								className="amcpb-state__dot"
-								aria-hidden="true"
-							/>
+							<Icon icon={ state.icon } size={ 18 } />
 							{ state.label }
 						</span>
 					) }

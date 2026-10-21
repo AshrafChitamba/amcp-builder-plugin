@@ -1,6 +1,6 @@
 # AMCP Builder design guide
 
-Read this before you build or redesign anything. It applies to Bricks and Elementor alike. The site owner's own rules come at the end of this guide. **They override everything here.**
+Read this before you build or redesign anything. It applies to Bricks and Elementor alike. The site owner's own rules come at the end of this guide. **Where they conflict with anything here, they win.**
 
 ## 0. Non-negotiables
 
@@ -20,12 +20,12 @@ Before adding anything, write one line for yourself:
 
 - Call site-info, read the home page and one or two other pages, and check the design tokens, global classes and theme styles. The site's brand is the starting point, not your taste.
 - Decide the mode of the page. **Persuade** (home, landing, services, pricing): earn attention and action. **Operate** (forms, account, tools): clarity and speed over expression. **Read** (articles, docs, policies): comfortable reading first.
-- Trust-first businesses (legal, health, finance, public sector, education) want calm layouts, high contrast, plain language and little motion. Creative and consumer brands can take more layout risk.
+- Trust-first businesses (legal, health, finance, public sector, education) want calm layouts, high contrast, plain language and little motion (where needed). Creative and consumer brands can take more layout risk.
 - If one important point is unclear, ask the user one question. Otherwise decide and continue.
 
 ## 2. The hero: one captivating moment
 
-The hero is the first impression. It must look like *this* business, not like a template.
+The hero is the first impression. It must look like _this_ business, not like a template.
 
 - **Lead with the business's real world.** Use its strongest real image: the product, the place, the team at work, the result it delivers. A real photo of the actual thing beats any abstract shape or gradient.
 - **Say what makes it different in one headline**, at most two lines, in the business's own voice. Specific beats clever: "Rules your board can use at the next meeting" beats "Elevate your meetings".
@@ -36,7 +36,7 @@ The hero is the first impression. It must look like *this* business, not like a 
   - full-bleed image or video with a dark overlay for legible text;
   - typographic hero on the brand color with one striking product visual;
   - hero with an embedded working element (a form, a search, a booking widget) when the page's job is a task.
-- **One authored motion moment at most** (for example the image settling in, or the headline revealing), never a different animation on every element.
+- **One authored motion moment at most where needed** (for example the image settling in, or the headline revealing), never a different animation on every element.
 - Keep logo walls, feature lists, statistics rows and small print out of the hero. Give them their own section below.
 - One h1 per page. Section titles are h2, items inside sections are h3.
 

@@ -11,8 +11,9 @@ All notable changes to this project are documented here. The format follows
 ### Changed
 - Renamed from MCP Builder to **AMCP Builder**: plugin folder and main file `amcp-builder`, text domain `amcp-builder`, PHP namespace `AmcpBuilder`, MCP endpoint `/wp-json/amcp-builder/mcp`, tool names `amcp-builder-*`, admin REST namespace `amcp-builder/v1`, options `amcp_builder_*` and tables `{prefix}amcpb_*`.
 - New top-level **AMCP Builder** admin menu (with a submenu per screen) instead of Settings → MCP Builder.
-- Redesigned admin interface with a blue brand system, a branded header with live status and a copyable server URL, keyboard-accessible navigation and restyled tables.
+- Redesigned admin interface with a blue brand system, a branded header with a plain status line and a copyable server URL, keyboard-accessible navigation and restyled tables.
 - Design guidelines moved from Tools to a new **Design rules** screen.
+- User-facing wording now says "AI assistant" instead of "AI app" or "AI client".
 - Rewrote the built-in design guide (drawing on Apple's design principles and the impeccable and taste skills): eyebrow labels above headings are banned; heroes must reflect the business with real imagery; one consistent design system across the site while layouts may vary; no new colors or fonts without the user's permission.
 
 ### Added
@@ -20,6 +21,10 @@ All notable changes to this project are documented here. The format follows
 - `guidelinesVersion` in every tool result, so AI apps re-read the site owner's rules as soon as they change.
 - `preview` links (Bricks links jump to the changed element) and a `reportToUser` instruction on every saved change, so the AI reports each change with a link and a short description.
 - **Tutorial** screen with an embedded video (YouTube, Vimeo, Loom, Google Drive or a video file) and a getting-started guide. The video link is `AdminPage::TUTORIAL_URL` or the `amcp_builder_tutorial_url` filter.
+
+- Plain CSS classes set on Bricks elements (`_cssClasses`) are attached as Bricks global classes instead, created if needed, so they appear in the Bricks class selector next to the element ID rather than only under Style → CSS. New classes are reported as `globalClassesCreated` and snapshotted.
+- `npm run preview` in `admin-ui` opens the admin screens locally with sample data, no WordPress needed.
+- `REFERENCES.md` lists the documentation of every platform, standard and tool the plugin is built on.
 
 ### Removed
 - Planning documents, internal docs, local helper scripts and other files that are not part of the plugin.

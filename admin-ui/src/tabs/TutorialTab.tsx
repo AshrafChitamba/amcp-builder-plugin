@@ -7,9 +7,9 @@ import { videoEmbed } from '../embed';
 
 const STEPS = [
 	{
-		title: __( 'Connect your AI app', 'amcp-builder' ),
+		title: __( 'Connect your AI assistant', 'amcp-builder' ),
 		text: __(
-			'On the Connection screen, pick your app (Claude, ChatGPT, Cursor, Codex…) and follow its steps. Approve the connection when your site asks.',
+			'On the Connection screen, pick your AI assistant (Claude, ChatGPT, Cursor, Codex…) and follow its steps. Approve the connection when your site asks.',
 			'amcp-builder'
 		),
 	},
@@ -81,7 +81,7 @@ export const TutorialTab = () => (
 		<Section
 			title={ __( 'Watch: build your first page', 'amcp-builder' ) }
 			description={ __(
-				'A short walkthrough of connecting an AI app and building a page with it.',
+				'A short walkthrough of connecting an AI assistant and building a page with it.',
 				'amcp-builder'
 			) }
 			actions={

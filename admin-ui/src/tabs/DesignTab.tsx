@@ -81,7 +81,7 @@ export const DesignTab = () => {
 					'amcp-builder'
 				) }
 				description={ __(
-					'A summary of the design guide every AI app receives, unless you switch it off above.',
+					'A summary of the design guide every AI assistant receives, unless you switch it off above.',
 					'amcp-builder'
 				) }
 			>

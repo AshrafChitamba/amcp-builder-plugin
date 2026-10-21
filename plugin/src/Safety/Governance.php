@@ -224,7 +224,7 @@ class Governance {
 		}
 
 		if ( ! $readonly && \AmcpBuilder\OAuth\Tokens::current_is_read_only() ) {
-			return Errors::make( 'read_only_connection', __( 'This app was connected with read-only access, so it cannot make changes.', 'amcp-builder' ), __( 'Tell the user. They can reconnect the app and choose "Read and edit pages".', 'amcp-builder' ), 403 );
+			return Errors::make( 'read_only_connection', __( 'This AI assistant was connected with read-only access, so it cannot make changes.', 'amcp-builder' ), __( 'Tell the user. They can reconnect the AI assistant and choose "Read and edit pages".', 'amcp-builder' ), 403 );
 		}
 
 		if ( ! $readonly && $settings['read_only'] ) {

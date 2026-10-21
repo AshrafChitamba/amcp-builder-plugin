@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "amcp-admin-preview", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "5191", "--directory", "/tmp/claude-1000/-home-freelr-ceo-Programming-WordPress-Plugins-mcp-builder-plugin/ebe48799-7bd1-43a1-a593-aed32413db35/scratchpad/harness/out"], "port": 5191 }
+    { "name": "amcp-admin-preview", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "admin-ui", "run", "preview"], "port": 5191 }
   ]
 }

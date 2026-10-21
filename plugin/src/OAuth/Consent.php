@@ -1,6 +1,6 @@
 <?php
 /**
- * The "Connect an AI app" consent screen.
+ * The "Connect an AI assistant" consent screen.
  *
  * @package AmcpBuilder
  */
@@ -10,7 +10,7 @@ namespace AmcpBuilder\OAuth;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Renders the approval page shown when an AI app asks to connect.
+ * Renders the approval page shown when an AI assistant asks to connect.
  * Plain HTML styled like the WordPress login screen, so it works without
  * loading wp-admin.
  */
@@ -31,7 +31,7 @@ final class Consent {
 
 		ob_start();
 		?>
-		<h1><?php esc_html_e( 'Connect an AI app', 'amcp-builder' ); ?></h1>
+		<h1><?php esc_html_e( 'Connect an AI assistant', 'amcp-builder' ); ?></h1>
 		<p class="lead">
 			<?php
 			printf(
@@ -90,7 +90,7 @@ final class Consent {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title><?php echo esc_html__( 'Connect an AI app', 'amcp-builder' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
+<title><?php echo esc_html__( 'Connect an AI assistant', 'amcp-builder' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
 <style>
 	body { margin: 0; background: #f0f0f1; color: #1d2327; font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
 	main { max-width: 420px; margin: 8vh auto; padding: 0 16px; }

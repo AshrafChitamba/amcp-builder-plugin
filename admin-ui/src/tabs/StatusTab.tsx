@@ -90,7 +90,7 @@ export const StatusTab = () => {
 			<Section
 				title={ __( 'Connection tests', 'amcp-builder' ) }
 				description={ __(
-					'Run these after setup, and whenever an AI client cannot connect.',
+					'Run these after setup, and whenever an AI assistant cannot connect.',
 					'amcp-builder'
 				) }
 			>
@@ -159,7 +159,7 @@ export const StatusTab = () => {
 			<Section
 				title={ __( 'Tools', 'amcp-builder' ) }
 				description={ __(
-					'Tools for builders that are not active are hidden from AI clients.',
+					'Tools for builders that are not active are hidden from AI assistants.',
 					'amcp-builder'
 				) }
 			>

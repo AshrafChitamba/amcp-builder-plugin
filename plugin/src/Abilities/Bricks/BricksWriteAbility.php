@@ -8,6 +8,8 @@
 namespace AmcpBuilder\Abilities\Bricks;
 
 use AmcpBuilder\Support\Diff;
+use AmcpBuilder\Bricks\ClassPromoter;
+use AmcpBuilder\Bricks\GlobalClasses;
 use AmcpBuilder\Bricks\Store;
 use AmcpBuilder\Bricks\Tree;
 use AmcpBuilder\Support\TreeError;
@@ -86,6 +88,15 @@ abstract class BricksWriteAbility extends BricksAbility {
 			);
 		}
 
+		// Plain classes are invisible in the Bricks class selector; attach them as global classes.
+		$classes = new ClassPromoter();
+		if ( isset( $input['elements'] ) ) {
+			$input['elements'] = $classes->specs( $input['elements'] );
+		}
+		if ( isset( $input['settings'] ) && is_array( $input['settings'] ) ) {
+			$input['settings'] = $classes->settings( $input['settings'] );
+		}
+
 		$before = $tree->to_array();
 		try {
 			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AmcpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
@@ -102,6 +113,9 @@ abstract class BricksWriteAbility extends BricksAbility {
 			'postId' => $post->ID,
 			'diff'   => Diff::between( $before, $tree->to_array() ),
 		) + $extra;
+		if ( $classes->pending() ) {
+			$result['globalClassesCreated'] = array_column( $classes->pending(), 'name' );
+		}
 
 		if ( $this->is_dry_run( $input ) ) {
 			return array( 'dryRun' => true ) + $result;
@@ -111,6 +125,10 @@ abstract class BricksWriteAbility extends BricksAbility {
 		$saved       = Store::write( $post->ID, $key, $tree->to_array() );
 		if ( is_wp_error( $saved ) ) {
 			return $saved;
+		}
+		if ( $classes->pending() ) {
+			$this->snapshots->take_option( GlobalClasses::OPTION, $this->name(), $this->label() );
+			$classes->save();
 		}
 
 		return array(

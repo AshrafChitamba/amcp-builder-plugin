@@ -35,7 +35,7 @@ export const DesignGuidelines = ( {
 		<Section
 			title={ __( 'Your design rules', 'amcp-builder' ) }
 			description={ __(
-				'Brand rules every AI app must follow on this site. They override the built-in guide, and apps pick up changes the moment you save.',
+				'Brand rules every AI assistant must follow on this site. They override the built-in guide, and assistants pick up changes the moment you save.',
 				'amcp-builder'
 			) }
 		>

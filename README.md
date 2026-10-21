@@ -1,14 +1,14 @@
 # AMCP Builder
 
-A free, open-source WordPress plugin that lets AI apps (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). It uses each builder's native elements and settings, never hidden code.
+A free, open-source WordPress plugin that lets AI assistants (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). It uses each builder's native elements and settings, never hidden code.
 
 Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
-> **Use a staging site first and keep backups.** AI apps can change your pages.
+> **Use a staging site first and keep backups.** AI assistants can change your pages.
 
 ## How it works
 
-The plugin registers its tools with the WordPress Abilities API and serves them over MCP through the official [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin. There is no separate server to run. AI apps connect to `https://your-site/wp-json/amcp-builder/mcp` and sign in with WordPress:
+The plugin registers its tools with the WordPress Abilities API and serves them over MCP through the official [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin. There is no separate server to run. AI assistants connect to `https://your-site/wp-json/amcp-builder/mcp` and sign in with WordPress:
 
 - **Web apps** (claude.ai, Claude Desktop, ChatGPT) use OAuth: you approve the app on a WordPress page, choosing read-and-edit or read-only.
 - **Coding tools** (Claude Code, Codex, Cursor, VS Code, Gemini CLI) use OAuth or an access token.
@@ -44,7 +44,33 @@ The plugin registers its tools with the WordPress Abilities API and serves them 
 
 ### Upgrading from MCP Builder
 
-AMCP Builder 1.0 replaces MCP Builder 0.x. On first load it copies your settings, snapshots, audit log and connected apps. Then deactivate the old plugin and change the server URL in each AI app from `/wp-json/mcp-builder/mcp` to `/wp-json/amcp-builder/mcp`.
+AMCP Builder 1.0 replaces MCP Builder 0.x. On first load it copies your settings, snapshots, audit log and connected apps. Then deactivate the old plugin and change the server URL in each AI assistant from `/wp-json/mcp-builder/mcp` to `/wp-json/amcp-builder/mcp`.
+
+## Preview the admin screens locally
+
+You can open the plugin's admin screens in your browser without installing WordPress. The preview runs the real interface with sample data, so you can check the design and click through every screen. Nothing is saved, and no AI assistant can connect to it.
+
+You need [Node.js](https://nodejs.org) 20 or newer.
+
+```bash
+cd admin-ui
+npm install
+npm run preview
+```
+
+Then open <http://localhost:5191>. Edits to files in `admin-ui/src` show up instantly. Stop it with `Ctrl+C`.
+
+Useful addresses:
+
+| Address | Shows |
+|---|---|
+| `http://localhost:5191/?tab=design` | A specific screen: `connection`, `design`, `tools`, `safety`, `status`, `tutorial` or `about` |
+| `http://localhost:5191/?tab=tutorial&video=https://youtu.be/VIDEO_ID` | The Tutorial screen with a video |
+| `http://localhost:5191/?state=read-only` | The header in read-only mode (also `off` and `setup`) |
+
+The sample data lives in `admin-ui/preview/sample-data.ts`.
+
+To try the full plugin (saving settings, the admin menu, connecting an AI assistant), install the ZIP on a WordPress site: a staging site, [LocalWP](https://localwp.com), or [WordPress Playground](https://playground.wordpress.net) in your browser (Playground cannot accept connections from AI assistants).
 
 ## Development
 
@@ -56,9 +82,11 @@ scripts/build-zip.sh   # writes dist/amcp-builder-<version>.zip
 
 The tutorial video on the Tutorial screen is set in `AdminPage::TUTORIAL_URL` (YouTube, Vimeo, Loom, Google Drive or a direct video file), or per site with the `amcp_builder_tutorial_url` filter.
 
+The documentation of every tool and standard the plugin is built on is listed in [REFERENCES.md](REFERENCES.md).
+
 ## Privacy
 
-No telemetry. Your AI app talks to your site directly. The plugin makes outbound requests only to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
+No telemetry. Your AI assistant talks to your site directly. The plugin makes outbound requests only to read an AI assistant's sign-in metadata during OAuth and to download images you ask it to upload.
 
 ## License
 

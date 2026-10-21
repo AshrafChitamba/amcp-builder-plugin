@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>AMCP Builder admin preview</title>
+		<style>
+			/* A stand-in for the WordPress admin frame around the plugin screen. */
+			body {
+				margin: 0;
+				background: #f0f0f1;
+				color: #3c434a;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+				font-size: 13px;
+			}
+			#adminmenuback { position: fixed; inset: 0 auto 0 0; width: 160px; background: #1d2327; }
+			#wpcontent { margin-left: 180px; }
+			.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+			@media (max-width: 782px) { #adminmenuback { display: none; } #wpcontent { margin-left: 10px; } }
+		</style>
+	</head>
+	<body>
+		<div id="adminmenuback"></div>
+		<div id="wpcontent">
+			<div class="wrap amcpb-wrap"><div id="amcp-builder-root"></div></div>
+		</div>
+		<script type="module" src="./main.tsx"></script>
+	</body>
+</html>

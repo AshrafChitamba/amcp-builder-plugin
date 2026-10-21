@@ -27,6 +27,7 @@
 - Many Bricks sites run Automatic.css (ACSS): spacing, colors and type are variables such as var(--space-m), var(--primary), var(--text-l). Its button and link styles are applied to any class containing "btn--" or "link--", so never use those fragments in your own class names.
 - Theme button styles can override fonts and text transform on buttons; set them explicitly in a class if the design needs it.
 - Create new global classes with a unique prefix instead of editing classes the site already uses: an existing class may style many pages.
+- Use global classes, never plain classes. Bricks shows plain classes ("_cssClasses") only under Style → CSS, so the user cannot see them in the class selector next to the element ID. Create the class with bricks-upsert-global-class and attach it through "_cssGlobalClasses" (class IDs) or bricks-apply-global-class. If you do send "_cssClasses", AMCP Builder turns each name into a global class (reusing one with the same name) and lists new ones in globalClassesCreated.
 
 ## Templates
 

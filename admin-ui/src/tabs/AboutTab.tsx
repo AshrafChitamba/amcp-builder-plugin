@@ -8,7 +8,7 @@ export const AboutTab = () => (
 	<>
 		<Notice status="warning" isDismissible={ false }>
 			{ __(
-				'AI clients can change your pages. Try AMCP Builder on a staging site first, and keep regular backups of every site you connect.',
+				'AI assistants can change your pages. Try AMCP Builder on a staging site first, and keep regular backups of every site you connect.',
 				'amcp-builder'
 			) }
 		</Notice>
@@ -26,14 +26,14 @@ export const AboutTab = () => (
 			</p>
 			<p>
 				{ __(
-					"AMCP Builder lets AI clients such as Claude and Cursor build and edit Bricks and Elementor pages using each builder's native elements.",
+					"AMCP Builder lets AI assistants such as Claude and Cursor build and edit Bricks and Elementor pages using each builder's native elements.",
 					'amcp-builder'
 				) }
 			</p>
 			<p>
 				<strong>{ __( 'Privacy:', 'amcp-builder' ) }</strong>{ ' ' }
 				{ __(
-					"AMCP Builder sends no telemetry. Your AI app talks to your site directly. The plugin only makes outbound requests to read an app's sign-in details during OAuth and to download images you ask it to upload.",
+					"AMCP Builder sends no telemetry. Your AI assistant talks to your site directly. The plugin only makes outbound requests to read an AI assistant's sign-in details during OAuth and to download images you ask it to upload.",
 					'amcp-builder'
 				) }
 			</p>

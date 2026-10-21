@@ -93,7 +93,7 @@ const SettingsForm = ( {
 			// eslint-disable-next-line no-alert
 			! window.confirm(
 				__(
-					'Turn on the kill switch? Every AI client is cut off until you turn it off again.',
+					'Turn on the kill switch? Every AI assistant is cut off until you turn it off again.',
 					'amcp-builder'
 				)
 			)
@@ -128,7 +128,7 @@ const SettingsForm = ( {
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
-						'Allow AI apps to sign in with WordPress (OAuth)',
+						'Allow AI assistants to sign in with WordPress (OAuth)',
 						'amcp-builder'
 					) }
 					help={ __(

@@ -343,7 +343,7 @@ class Server {
 		}
 		wp_set_current_user( $user_id );
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			Consent::error_page( __( 'Your account is not allowed to connect AI apps to this site.', 'amcp-builder' ) );
+			Consent::error_page( __( 'Your account is not allowed to connect AI assistants to this site.', 'amcp-builder' ) );
 		}
 
 		$requested_scope = Tokens::normalize_scope( (string) ( $params['scope'] ?? '' ) );
