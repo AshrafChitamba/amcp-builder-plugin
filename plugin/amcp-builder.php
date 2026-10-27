@@ -1,8 +1,7 @@
 <?php
 /**
  * Plugin Name:       AMCP Builder
- * Plugin URI:        https://ashrafchitambaa.com
- * Description:       Lets AI apps such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages, templates and design systems through MCP, with read-only mode, snapshots and an audit log.
+ * Description:       Lets AI assistants such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages, templates and design systems through MCP, with read-only mode, snapshots and an audit log.
  * Version:           1.0.0
  * Requires at least: 7.1
  * Requires PHP:      8.1
