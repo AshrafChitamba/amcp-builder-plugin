@@ -2,15 +2,15 @@
 /**
  * The elementor guide resource.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Resource at amcp-builder://guides/elementor.
+ * Resource at ac-mcp://guides/elementor.
  */
 final class ElementorGuideResource extends GuideResource {
 

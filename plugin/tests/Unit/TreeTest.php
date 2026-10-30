@@ -1,15 +1,15 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
-use AmcpBuilder\Support\Diff;
-use AmcpBuilder\Bricks\Ids;
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Support\Diff;
+use AcMcp\Bricks\Ids;
+use AcMcp\Bricks\Tree;
+use AcMcp\Support\TreeError;
+use AcMcp\Tests\TestCase;
 
 final class TreeTest extends TestCase {
 

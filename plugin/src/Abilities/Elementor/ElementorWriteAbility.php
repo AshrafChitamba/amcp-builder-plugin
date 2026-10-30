@@ -2,19 +2,19 @@
 /**
  * Shared write flow of Elementor page tools.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Store;
-use AmcpBuilder\Elementor\Tree;
-use AmcpBuilder\Elementor\Validator;
-use AmcpBuilder\Safety\Governance;
-use AmcpBuilder\Support\Diff;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Elementor\Store;
+use AcMcp\Elementor\Tree;
+use AcMcp\Elementor\Validator;
+use AcMcp\Safety\Governance;
+use AcMcp\Support\Diff;
+use AcMcp\Support\Errors;
+use AcMcp\Support\Posts;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -82,14 +82,14 @@ abstract class ElementorWriteAbility extends ElementorAbility {
 
 		$before = $tree->flat();
 		try {
-			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AmcpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
+			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AcMcp\Support\CustomCode::allowed( $this->settings ) ) );
 		} catch ( TreeError $error ) {
 			return $error->to_wp_error();
 		}
 
 		$problems = $tree->integrity();
 		if ( $problems ) {
-			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'amcp-builder' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call elementor-get-page and try a simpler change.', 'amcp-builder' ), 500 );
+			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'ac-mcp-for-bricks-elementor' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call elementor-get-page and try a simpler change.', 'ac-mcp-for-bricks-elementor' ), 500 );
 		}
 
 		$result = array(
@@ -129,8 +129,8 @@ abstract class ElementorWriteAbility extends ElementorAbility {
 		return Errors::make(
 			'post_locked',
 			/* translators: %s: user name. */
-			sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'amcp-builder' ), $locked_by ),
-			__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'amcp-builder' ),
+			sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'ac-mcp-for-bricks-elementor' ), $locked_by ),
+			__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'ac-mcp-for-bricks-elementor' ),
 			409
 		);
 	}

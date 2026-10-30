@@ -19,10 +19,10 @@ if ( state === 'off' ) {
 	settings.kill_switch = true;
 }
 
-window.amcpBuilder = {
+window.acMcp = {
 	version: '1.0.0',
-	restNamespace: 'amcp-builder/v1',
-	mcpUrl: 'https://example.com/wp-json/amcp-builder/mcp',
+	restNamespace: 'ac-mcp/v1',
+	mcpUrl: 'https://example.com/wp-json/ac-mcp/mcp',
 	siteUrl: 'https://example.com/',
 	username: 'admin',
 	appId: 'preview',

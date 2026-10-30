@@ -2,10 +2,10 @@
 /**
  * Element catalog read from the live Bricks registry.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Bricks;
+namespace AcMcp\Bricks;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class BricksCatalog implements Catalog {
 
-	private const CACHE_KEY = 'amcpb_bricks_catalog_';
+	private const CACHE_KEY = 'acmcp_bricks_catalog_';
 
 	/** Control types that only decorate the panel and hold no value. */
 	private const NON_VALUE_TYPES = array( 'separator', 'info', 'apply', 'divider', 'button' );

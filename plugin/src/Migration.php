@@ -2,12 +2,12 @@
 /**
  * One-time migration from the plugin's former name, MCP Builder.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
-use AmcpBuilder\Safety\Schema;
+use AcMcp\Safety\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Migration {
 
-	public const DONE_OPTION = 'amcp_builder_migrated_from_mcp_builder';
+	public const DONE_OPTION = 'ac_mcp_migrated_from_mcp_builder';
 
 	private const OLD_SETTINGS   = 'mcp_builder_settings';
 	private const OLD_DB_VERSION = 'mcp_builder_db_version';
@@ -63,11 +63,11 @@ final class Migration {
 	}
 
 	/**
-	 * "mcp-builder/site-info" → "amcp-builder/site-info". Official builder abilities keep their names.
+	 * "mcp-builder/site-info" → "ac-mcp/site-info". Official builder abilities keep their names.
 	 */
 	public static function rename_tool( $name ): string {
 		$name = (string) $name;
-		return str_starts_with( $name, 'mcp-builder/' ) ? 'a' . $name : $name;
+		return str_starts_with( $name, 'mcp-builder/' ) ? 'ac-mcp/' . substr( $name, 12 ) : $name;
 	}
 
 	/**
@@ -102,7 +102,7 @@ final class Migration {
 		if ( $copied ) {
 			// OAuth tokens are bound to the MCP endpoint URL, which changed with the rename.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Plugin-owned table.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET resource = REPLACE(resource, %s, %s)', Schema::tokens_table(), '/mcp-builder/mcp', '/amcp-builder/mcp' ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET resource = REPLACE(resource, %s, %s)', Schema::tokens_table(), '/mcp-builder/mcp', '/ac-mcp/mcp' ) );
 		}
 		return $copied;
 	}

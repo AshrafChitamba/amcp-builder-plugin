@@ -2,14 +2,14 @@
 /**
  * The bricks-code-status tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Store;
-use AmcpBuilder\Support\CustomCode;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Bricks\Store;
+use AcMcp\Support\CustomCode;
+use AcMcp\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -24,13 +24,13 @@ final class CodeStatus extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: code status', 'amcp-builder' );
+		return __( 'Bricks: code status', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
-		return 'Reports whether Bricks custom code can run on this site: code execution setting, whether the current user may execute code, whether AMCP Builder allows custom code, '
+		return 'Reports whether Bricks custom code can run on this site: code execution setting, whether the current user may execute code, whether AC MCP for Bricks and Elementor allows custom code, '
 			. 'and every Code or SVG-code element with its signature status (valid, invalid or missing). Code that runs PHP or HTML only executes after an administrator signs it in Bricks → Settings → Custom code → "Regenerate code signatures". '
-			. 'AMCP Builder never signs code itself. Use it before and after adding a Code element, and tell the user what they must do.';
+			. 'AC MCP for Bricks and Elementor never signs code itself. Use it before and after adding a Code element, and tell the user what they must do.';
 	}
 
 	protected function properties(): array {
@@ -104,14 +104,14 @@ final class CodeStatus extends BricksAbility {
 		$can_run = class_exists( '\Bricks\Capabilities' ) && method_exists( '\Bricks\Capabilities', 'current_user_can_execute_code' ) && \Bricks\Capabilities::current_user_can_execute_code();
 
 		return array(
-			'codeExecutionEnabled'  => $enabled,
-			'userCanExecuteCode'    => $can_run,
-			'amcpBuilderAllowsCode' => CustomCode::allowed( $this->settings ),
-			'signaturesLocked'      => defined( 'BRICKS_LOCK_CODE_SIGNATURES' ) && BRICKS_LOCK_CODE_SIGNATURES,
-			'codeElements'          => $elements,
-			'needsSigning'          => count( array_filter( $elements, static fn( $e ): bool => $e['executes'] && 'valid' !== $e['signature'] ) ),
-			'reviewUrl'             => admin_url( 'admin.php?page=bricks-settings&code-review=all#tab-custom-code' ),
-			'howToSign'             => 'An administrator reviews the code at reviewUrl, then clicks "Regenerate code signatures" under Bricks → Settings → Custom code. Code execution must be enabled there too.',
+			'codeExecutionEnabled' => $enabled,
+			'userCanExecuteCode'   => $can_run,
+			'acMcpAllowsCode'      => CustomCode::allowed( $this->settings ),
+			'signaturesLocked'     => defined( 'BRICKS_LOCK_CODE_SIGNATURES' ) && BRICKS_LOCK_CODE_SIGNATURES,
+			'codeElements'         => $elements,
+			'needsSigning'         => count( array_filter( $elements, static fn( $e ): bool => $e['executes'] && 'valid' !== $e['signature'] ) ),
+			'reviewUrl'            => admin_url( 'admin.php?page=bricks-settings&code-review=all#tab-custom-code' ),
+			'howToSign'            => 'An administrator reviews the code at reviewUrl, then clicks "Regenerate code signatures" under Bricks → Settings → Custom code. Code execution must be enabled there too.',
 		);
 	}
 }

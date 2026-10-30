@@ -2,15 +2,15 @@
 /**
  * The list-pages tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Support\PageBuilder;
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Abilities\Ability;
+use AcMcp\Support\PageBuilder;
+use AcMcp\Support\Posts;
+use AcMcp\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +25,7 @@ final class ListPages extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'List pages', 'amcp-builder' );
+		return __( 'List pages', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

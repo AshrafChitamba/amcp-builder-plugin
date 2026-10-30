@@ -1,17 +1,17 @@
 <?php
 /**
- * Base class for every AMCP Builder ability.
+ * Base class for every AC MCP for Bricks and Elementor ability.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities;
+namespace AcMcp\Abilities;
 
-use AmcpBuilder\Environment;
-use AmcpBuilder\Guides\Guides;
-use AmcpBuilder\Safety\Snapshots;
-use AmcpBuilder\Settings;
-use AmcpBuilder\Support\ChangeReport;
+use AcMcp\Environment;
+use AcMcp\Guides\Guides;
+use AcMcp\Safety\Snapshots;
+use AcMcp\Settings;
+use AcMcp\Support\ChangeReport;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  */
 abstract class Ability {
 
-	public const NAMESPACE = 'amcp-builder';
+	public const NAMESPACE = 'ac-mcp';
 
 	public function __construct(
 		protected Settings $settings,
@@ -196,7 +196,7 @@ abstract class Ability {
 					'idempotent'  => $this->is_readonly(),
 				),
 				'show_in_rest' => false,
-				// Only exposed through AMCP Builder's own server, never the adapter's default server.
+				// Only exposed through AC MCP for Bricks and Elementor's own server, never the adapter's default server.
 				'mcp'          => array(
 					'public' => false,
 					'type'   => $this->mcp_type(),

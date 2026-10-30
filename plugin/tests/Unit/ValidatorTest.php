@@ -1,14 +1,14 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Bricks\Validator;
-use AmcpBuilder\Tests\ArrayCatalog;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Support\TreeError;
+use AcMcp\Bricks\Validator;
+use AcMcp\Tests\ArrayCatalog;
+use AcMcp\Tests\TestCase;
 
 final class ValidatorTest extends TestCase {
 

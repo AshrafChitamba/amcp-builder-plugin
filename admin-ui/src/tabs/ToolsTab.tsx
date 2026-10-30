@@ -10,47 +10,47 @@ import type { ManagedAbility } from '../types';
 const GROUPS: Array< { id: string; title: string; description: string } > = [
 	{
 		id: 'general',
-		title: __( 'General', 'amcp-builder' ),
+		title: __( 'General', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
 			'Site info, pages, media and snapshots.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
 		id: 'bricks',
-		title: __( 'Bricks', 'amcp-builder' ),
+		title: __( 'Bricks', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
 			'Read and edit Bricks pages and global classes.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
 		id: 'elementor',
-		title: __( 'Elementor', 'amcp-builder' ),
-		description: __( 'Read and edit Elementor pages.', 'amcp-builder' ),
+		title: __( 'Elementor', 'ac-mcp-for-bricks-elementor' ),
+		description: __( 'Read and edit Elementor pages.', 'ac-mcp-for-bricks-elementor' ),
 	},
 	{
 		id: 'custom-code',
-		title: __( 'Custom code', 'amcp-builder' ),
+		title: __( 'Custom code', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
 			'Tools that add HTML, CSS, JavaScript or PHP. Also need the custom-code switch above.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
 		id: 'official-bricks',
-		title: __( 'Official Bricks tools', 'amcp-builder' ),
+		title: __( 'Official Bricks tools', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
-			"Bricks' own AI abilities (Bricks 2.4+). AMCP Builder's safety rules apply to them too.",
-			'amcp-builder'
+			"Bricks' own AI abilities (Bricks 2.4+). AC MCP for Bricks and Elementor's safety rules apply to them too.",
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
 		id: 'official-elementor',
-		title: __( 'Official Elementor tools', 'amcp-builder' ),
+		title: __( 'Official Elementor tools', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
-			"Elementor's own MCP abilities. AMCP Builder's safety rules apply to them too.",
-			'amcp-builder'
+			"Elementor's own MCP abilities. AC MCP for Bricks and Elementor's safety rules apply to them too.",
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 ];
@@ -93,7 +93,7 @@ export const ToolsTab = () => {
 			! window.confirm(
 				__(
 					'Custom-code tools let AI assistants add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				)
 			)
 		) {
@@ -110,25 +110,25 @@ export const ToolsTab = () => {
 				</Notice>
 			) }
 
-			<Section title={ __( 'Access', 'amcp-builder' ) }>
+			<Section title={ __( 'Access', 'ac-mcp-for-bricks-elementor' ) }>
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Read-only mode', 'amcp-builder' ) }
+					label={ __( 'Read-only mode', 'ac-mcp-for-bricks-elementor' ) }
 					help={ __(
 						'AI assistants can read pages but every change is refused. Write tools are hidden from them.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					checked={ settings.read_only }
 					disabled={ saving }
 					onChange={ ( value ) => save( { read_only: value } ) }
 				/>
-				<div className="amcpb-spacer" />
+				<div className="acmcp-spacer" />
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Allow custom code', 'amcp-builder' ) }
+					label={ __( 'Allow custom code', 'ac-mcp-for-bricks-elementor' ) }
 					help={ __(
 						'Off by default. When on, administrators (with unfiltered HTML) can use custom-code tools. Bricks code still has to be signed by an admin in Bricks before it runs.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					checked={ settings.custom_code_enabled }
 					disabled={ saving }
@@ -149,7 +149,7 @@ export const ToolsTab = () => {
 						title={ group.title }
 						description={ group.description }
 					>
-						<ul className="amcpb-tools">
+						<ul className="acmcp-tools">
 							{ items.map( ( ability ) => (
 								<li key={ ability.name }>
 									<ToggleControl
@@ -157,15 +157,15 @@ export const ToolsTab = () => {
 										label={
 											<>
 												{ ability.label }{ ' ' }
-												<span className="amcpb-badge">
+												<span className="acmcp-badge">
 													{ ability.readonly
 														? __(
 																'Read',
-																'amcp-builder'
+																'ac-mcp-for-bricks-elementor'
 															)
 														: __(
 																'Write',
-																'amcp-builder'
+																'ac-mcp-for-bricks-elementor'
 															) }
 												</span>
 											</>

@@ -2,14 +2,14 @@
 /**
  * Validates element specs and settings before they are saved.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Bricks;
+namespace AcMcp\Bricks;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -67,7 +67,7 @@ final class Validator {
 	 */
 	public function settings( string $name, $settings ): void {
 		if ( ! $this->allow_custom_code && is_array( $settings ) && ( 'code' === $name || ( 'svg' === $name && isset( $settings['code'] ) ) ) ) {
-			throw \AmcpBuilder\Support\CustomCode::refusal( 'code' === $name ? 'A Code element' : 'An SVG element with inline code' );
+			throw \AcMcp\Support\CustomCode::refusal( 'code' === $name ? 'A Code element' : 'An SVG element with inline code' );
 		}
 		if ( ! is_array( $settings ) || ( $settings && array_is_list( $settings ) ) ) {
 			throw new TreeError( 'invalid_settings', sprintf( 'Settings for "%s" must be an object of key/value pairs.', $name ), 'Pass e.g. {"text":"Hello","tag":"h2"}.' );

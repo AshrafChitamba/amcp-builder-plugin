@@ -2,11 +2,11 @@
 /**
  * PHPUnit bootstrap: Brain Monkey unit tests, no WordPress install needed.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'AMCP_BUILDER_VERSION', '0.0.0-test' );
+define( 'AC_MCP_VERSION', '0.0.0-test' );
 define( 'MINUTE_IN_SECONDS', 60 );
 define( 'HOUR_IN_SECONDS', 3600 );
 define( 'DAY_IN_SECONDS', 86400 );

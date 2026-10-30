@@ -2,10 +2,10 @@
 /**
  * Minimum-version checks.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,12 +26,13 @@ final class Requirements {
 	 * True when the core requirements are met and tools can be registered.
 	 */
 	public function can_run(): bool {
-		foreach ( $this->core_checks() as $check ) {
-			if ( 'error' === $check['status'] ) {
-				return false;
-			}
-		}
-		return true;
+		// No translated strings here: this runs on plugins_loaded, before the text domain may load.
+		$adapter = $this->environment->adapter_version();
+
+		return null !== $adapter
+			&& version_compare( $this->environment->wp_version(), self::MIN_WP, '>=' )
+			&& version_compare( $this->environment->php_version(), self::MIN_PHP, '>=' )
+			&& version_compare( $adapter, self::MIN_ADAPTER, '>=' );
 	}
 
 	public function bricks_supported(): bool {
@@ -53,11 +54,11 @@ final class Requirements {
 		$adapter = $this->environment->adapter_version();
 
 		return array(
-			$this->version_check( 'wordpress', __( 'WordPress', 'amcp-builder' ), $this->environment->wp_version(), self::MIN_WP, 'error' ),
-			$this->version_check( 'php', __( 'PHP', 'amcp-builder' ), $this->environment->php_version(), self::MIN_PHP, 'error' ),
+			$this->version_check( 'wordpress', __( 'WordPress', 'ac-mcp-for-bricks-elementor' ), $this->environment->wp_version(), self::MIN_WP, 'error' ),
+			$this->version_check( 'php', __( 'PHP', 'ac-mcp-for-bricks-elementor' ), $this->environment->php_version(), self::MIN_PHP, 'error' ),
 			null === $adapter
-				? $this->check( 'mcpAdapter', __( 'MCP Adapter plugin', 'amcp-builder' ), 'error', null, self::MIN_ADAPTER, __( 'Install and activate the "MCP Adapter" plugin from Plugins → Add New.', 'amcp-builder' ) )
-				: $this->version_check( 'mcpAdapter', __( 'MCP Adapter plugin', 'amcp-builder' ), $adapter, self::MIN_ADAPTER, 'error' ),
+				? $this->check( 'mcpAdapter', __( 'MCP Adapter plugin', 'ac-mcp-for-bricks-elementor' ), 'error', null, self::MIN_ADAPTER, __( 'Install and activate the "MCP Adapter" plugin from Plugins → Add New.', 'ac-mcp-for-bricks-elementor' ) )
+				: $this->version_check( 'mcpAdapter', __( 'MCP Adapter plugin', 'ac-mcp-for-bricks-elementor' ), $adapter, self::MIN_ADAPTER, 'error' ),
 		);
 	}
 
@@ -70,24 +71,24 @@ final class Requirements {
 		$env    = $this->environment;
 		$checks = $this->core_checks();
 
-		$checks[] = $this->builder_check( 'bricks', __( 'Bricks', 'amcp-builder' ), $env->bricks_version(), self::MIN_BRICKS );
-		$checks[] = $this->builder_check( 'elementor', __( 'Elementor', 'amcp-builder' ), $env->elementor_version(), self::MIN_ELEMENTOR );
+		$checks[] = $this->builder_check( 'bricks', __( 'Bricks', 'ac-mcp-for-bricks-elementor' ), $env->bricks_version(), self::MIN_BRICKS );
+		$checks[] = $this->builder_check( 'elementor', __( 'Elementor', 'ac-mcp-for-bricks-elementor' ), $env->elementor_version(), self::MIN_ELEMENTOR );
 
 		if ( $env->elementor_atomic_active() ) {
-			$checks[] = $this->check( 'elementorAtomic', __( 'Elementor Atomic editor', 'amcp-builder' ), 'warning', __( 'On', 'amcp-builder' ), null, __( 'Pages built with Atomic (v4) elements can be read but not edited by AMCP Builder yet. Classic widgets and Containers are fully supported.', 'amcp-builder' ) );
+			$checks[] = $this->check( 'elementorAtomic', __( 'Elementor Atomic editor', 'ac-mcp-for-bricks-elementor' ), 'warning', __( 'On', 'ac-mcp-for-bricks-elementor' ), null, __( 'Pages built with Atomic (v4) elements can be read but not edited by AC MCP for Bricks and Elementor yet. Classic widgets and Containers are fully supported.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		$checks[] = $env->is_https()
-			? $this->check( 'https', __( 'HTTPS', 'amcp-builder' ), 'ok', __( 'Yes', 'amcp-builder' ) )
-			: $this->check( 'https', __( 'HTTPS', 'amcp-builder' ), 'local' === wp_get_environment_type() ? 'warning' : 'error', __( 'No', 'amcp-builder' ), null, __( 'Application Passwords are sent in every request. Use HTTPS on any site reachable from the internet.', 'amcp-builder' ) );
+			? $this->check( 'https', __( 'HTTPS', 'ac-mcp-for-bricks-elementor' ), 'ok', __( 'Yes', 'ac-mcp-for-bricks-elementor' ) )
+			: $this->check( 'https', __( 'HTTPS', 'ac-mcp-for-bricks-elementor' ), 'local' === wp_get_environment_type() ? 'warning' : 'error', __( 'No', 'ac-mcp-for-bricks-elementor' ), null, __( 'Application Passwords are sent in every request. Use HTTPS on any site reachable from the internet.', 'ac-mcp-for-bricks-elementor' ) );
 
 		$checks[] = $env->app_passwords_available()
-			? $this->check( 'appPasswords', __( 'Application Passwords', 'amcp-builder' ), 'ok', __( 'Available', 'amcp-builder' ) )
-			: $this->check( 'appPasswords', __( 'Application Passwords', 'amcp-builder' ), 'error', __( 'Unavailable', 'amcp-builder' ), null, __( 'They need HTTPS, or define( \'WP_ENVIRONMENT_TYPE\', \'local\' ) in wp-config.php on a local site. A security plugin may also be disabling them.', 'amcp-builder' ) );
+			? $this->check( 'appPasswords', __( 'Application Passwords', 'ac-mcp-for-bricks-elementor' ), 'ok', __( 'Available', 'ac-mcp-for-bricks-elementor' ) )
+			: $this->check( 'appPasswords', __( 'Application Passwords', 'ac-mcp-for-bricks-elementor' ), 'error', __( 'Unavailable', 'ac-mcp-for-bricks-elementor' ), null, __( 'They need HTTPS, or define( \'WP_ENVIRONMENT_TYPE\', \'local\' ) in wp-config.php on a local site. A security plugin may also be disabling them.', 'ac-mcp-for-bricks-elementor' ) );
 
 		$checks[] = $env->pretty_permalinks()
-			? $this->check( 'permalinks', __( 'Permalinks', 'amcp-builder' ), 'ok', __( 'Pretty', 'amcp-builder' ) )
-			: $this->check( 'permalinks', __( 'Permalinks', 'amcp-builder' ), 'warning', __( 'Plain', 'amcp-builder' ), null, __( 'The endpoint will use the ?rest_route= form. Set Settings → Permalinks to "Post name" for a cleaner URL.', 'amcp-builder' ) );
+			? $this->check( 'permalinks', __( 'Permalinks', 'ac-mcp-for-bricks-elementor' ), 'ok', __( 'Pretty', 'ac-mcp-for-bricks-elementor' ) )
+			: $this->check( 'permalinks', __( 'Permalinks', 'ac-mcp-for-bricks-elementor' ), 'warning', __( 'Plain', 'ac-mcp-for-bricks-elementor' ), null, __( 'The endpoint will use the ?rest_route= form. Set Settings → Permalinks to "Post name" for a cleaner URL.', 'ac-mcp-for-bricks-elementor' ) );
 
 		return $checks;
 	}
@@ -104,7 +105,7 @@ final class Requirements {
 			$current,
 			$required,
 			/* translators: 1: component name, 2: required version. */
-			$ok ? '' : sprintf( __( 'Update %1$s to %2$s or newer.', 'amcp-builder' ), $label, $required )
+			$ok ? '' : sprintf( __( 'Update %1$s to %2$s or newer.', 'ac-mcp-for-bricks-elementor' ), $label, $required )
 		);
 	}
 
@@ -114,7 +115,7 @@ final class Requirements {
 	private function builder_check( string $id, string $label, ?string $current, string $required ): array {
 		if ( null === $current ) {
 			/* translators: %s: builder name. */
-			return $this->check( $id, $label, 'inactive', null, $required, sprintf( __( '%s is not active, so its tools are hidden.', 'amcp-builder' ), $label ) );
+			return $this->check( $id, $label, 'inactive', null, $required, sprintf( __( '%s is not active, so its tools are hidden.', 'ac-mcp-for-bricks-elementor' ), $label ) );
 		}
 		return $this->version_check( $id, $label, $current, $required, 'warning' );
 	}

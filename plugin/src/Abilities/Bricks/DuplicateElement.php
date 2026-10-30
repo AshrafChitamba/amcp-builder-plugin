@@ -2,14 +2,14 @@
 /**
  * The bricks-duplicate-element tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Ids;
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Bricks\Validator;
+use AcMcp\Bricks\Ids;
+use AcMcp\Bricks\Tree;
+use AcMcp\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class DuplicateElement extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: duplicate element', 'amcp-builder' );
+		return __( 'Bricks: duplicate element', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

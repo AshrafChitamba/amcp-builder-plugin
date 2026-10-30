@@ -2,13 +2,13 @@
 /**
  * The list-media tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Abilities\Ability;
+use AcMcp\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +23,7 @@ final class ListMedia extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'List media', 'amcp-builder' );
+		return __( 'List media', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

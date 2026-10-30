@@ -2,12 +2,12 @@
 /**
  * The list-snapshots tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
+use AcMcp\Abilities\Ability;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ final class ListSnapshots extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'List snapshots', 'amcp-builder' );
+		return __( 'List snapshots', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

@@ -1,15 +1,15 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
-use AmcpBuilder\Elementor\Ids;
-use AmcpBuilder\Elementor\Tree;
-use AmcpBuilder\Support\Diff;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Elementor\Ids;
+use AcMcp\Elementor\Tree;
+use AcMcp\Support\Diff;
+use AcMcp\Support\TreeError;
+use AcMcp\Tests\TestCase;
 
 final class ElementorTreeTest extends TestCase {
 

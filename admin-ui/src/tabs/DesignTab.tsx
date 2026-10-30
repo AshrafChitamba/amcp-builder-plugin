@@ -7,45 +7,45 @@ import { DesignGuidelines } from './DesignGuidelines';
 
 const RULES = [
 	{
-		title: __( 'Your rules come first', 'amcp-builder' ),
+		title: __( 'Your rules come first', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'The AI reads your rules before every build and re-reads them as soon as you change them.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'One design system', 'amcp-builder' ),
+		title: __( 'One design system', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'Typography, colors, spacing, corner radius and buttons stay consistent on every page. Layouts can still differ.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'No new colors or fonts', 'amcp-builder' ),
+		title: __( 'No new colors or fonts', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'It only uses your existing palette and fonts, and asks before adding anything new.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Heroes that fit the business', 'amcp-builder' ),
+		title: __( 'Heroes that fit the business', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'Real imagery, one clear headline and one main action, in a layout chosen for the brand.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Clean, honest pages', 'amcp-builder' ),
+		title: __( 'Clean, honest pages', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'No small labels above headings, no filler words, no invented facts or testimonials.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Every change reported', 'amcp-builder' ),
+		title: __( 'Every change reported', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'After each change you get a preview link and a short note of what changed.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 ];
@@ -78,20 +78,20 @@ export const DesignTab = () => {
 			<Section
 				title={ __(
 					'What the built-in guide enforces',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 				description={ __(
 					'A summary of the design guide every AI assistant receives, unless you switch it off above.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 			>
-				<ul className="amcpb-rules">
+				<ul className="acmcp-rules">
 					{ RULES.map( ( rule ) => (
-						<li key={ rule.title } className="amcpb-rules__item">
-							<h3 className="amcpb-rules__title">
+						<li key={ rule.title } className="acmcp-rules__item">
+							<h3 className="acmcp-rules__title">
 								{ rule.title }
 							</h3>
-							<p className="amcpb-rules__text">{ rule.text }</p>
+							<p className="acmcp-rules__text">{ rule.text }</p>
 						</li>
 					) ) }
 				</ul>

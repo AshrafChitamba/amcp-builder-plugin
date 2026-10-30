@@ -2,10 +2,10 @@
 /**
  * Detects which builder a post was built with.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 defined( 'ABSPATH' ) || exit;
 

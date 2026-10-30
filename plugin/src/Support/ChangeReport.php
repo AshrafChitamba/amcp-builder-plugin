@@ -2,10 +2,10 @@
 /**
  * Preview links and reporting instructions attached to every saved change.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 defined( 'ABSPATH' ) || exit;
 

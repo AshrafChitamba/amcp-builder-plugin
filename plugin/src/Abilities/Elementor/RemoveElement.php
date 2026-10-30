@@ -2,13 +2,13 @@
 /**
  * The elementor-remove-element tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Tree;
-use AmcpBuilder\Elementor\Validator;
+use AcMcp\Elementor\Tree;
+use AcMcp\Elementor\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class RemoveElement extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: remove element', 'amcp-builder' );
+		return __( 'Elementor: remove element', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

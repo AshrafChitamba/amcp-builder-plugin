@@ -2,14 +2,14 @@
 /**
  * Elementor template and Theme Builder helpers.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Elementor;
+namespace AcMcp\Elementor;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -35,7 +35,7 @@ final class Templates {
 		$types = array();
 		foreach ( \Elementor\Plugin::$instance->documents->get_document_types( array( 'show_in_library' => true ) ) as $name => $class ) {
 			$cpt = (array) ( $class::get_property( 'cpt' ) ?? array() );
-			// Atomic (v4) component types are read-only in AMCP Builder, and the kit is not a template.
+			// Atomic (v4) component types are read-only in AC MCP for Bricks and Elementor, and the kit is not a template.
 			if ( in_array( self::POST_TYPE, $cpt, true ) && 'kit' !== $name && ! str_starts_with( (string) $name, 'e-' ) ) {
 				$types[] = (string) $name;
 			}

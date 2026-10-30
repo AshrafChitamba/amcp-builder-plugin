@@ -2,13 +2,13 @@
 /**
  * The review-page prompt.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Guides\Guides;
+use AcMcp\Abilities\Ability;
+use AcMcp\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class ReviewPagePrompt extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Review a page', 'amcp-builder' );
+		return __( 'Review a page', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

@@ -2,10 +2,10 @@
 /**
  * Base test case with Brain Monkey.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests;
+namespace AcMcp\Tests;
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;

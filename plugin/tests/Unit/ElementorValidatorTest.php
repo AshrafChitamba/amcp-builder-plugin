@@ -1,14 +1,14 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
-use AmcpBuilder\Elementor\Validator;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Tests\ElementorArrayCatalog;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Elementor\Validator;
+use AcMcp\Support\TreeError;
+use AcMcp\Tests\ElementorArrayCatalog;
+use AcMcp\Tests\TestCase;
 
 final class ElementorValidatorTest extends TestCase {
 
@@ -105,7 +105,7 @@ final class ElementorValidatorTest extends TestCase {
 		try {
 			$this->validator()->specs( $html, null );
 			$this->fail( 'HTML widget accepted without permission.' );
-		} catch ( \AmcpBuilder\Support\TreeError $error ) {
+		} catch ( \AcMcp\Support\TreeError $error ) {
 			$this->assertSame( 'custom_code_disabled', $error->error_code );
 		}
 		( new Validator( new ElementorArrayCatalog(), true ) )->specs( $html, null );

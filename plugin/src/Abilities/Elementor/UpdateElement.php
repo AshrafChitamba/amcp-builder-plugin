@@ -2,13 +2,13 @@
 /**
  * The elementor-update-element tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Tree;
-use AmcpBuilder\Elementor\Validator;
+use AcMcp\Elementor\Tree;
+use AcMcp\Elementor\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class UpdateElement extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: update element', 'amcp-builder' );
+		return __( 'Elementor: update element', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

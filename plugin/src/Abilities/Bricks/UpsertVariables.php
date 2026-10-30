@@ -2,14 +2,14 @@
 /**
  * The bricks-upsert-variables tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\DesignTokens;
-use AmcpBuilder\Bricks\Ids;
-use AmcpBuilder\Support\Errors;
+use AcMcp\Bricks\DesignTokens;
+use AcMcp\Bricks\Ids;
+use AcMcp\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class UpsertVariables extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: add or update CSS variables', 'amcp-builder' );
+		return __( 'Bricks: add or update CSS variables', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -86,7 +86,7 @@ final class UpsertVariables extends BricksAbility {
 		foreach ( $input['variables'] as $variable ) {
 			$name = DesignTokens::variable_name( (string) $variable['name'] );
 			if ( '' === $name ) {
-				return Errors::make( 'invalid_variable', __( 'A variable name must contain letters or numbers.', 'amcp-builder' ) );
+				return Errors::make( 'invalid_variable', __( 'A variable name must contain letters or numbers.', 'ac-mcp-for-bricks-elementor' ) );
 			}
 			// Values are CSS: strip anything that could close a style block.
 			$value = trim( str_replace( array( '<', '>', '{', '}', ';' ), '', (string) $variable['value'] ) );

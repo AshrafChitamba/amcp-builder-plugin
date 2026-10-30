@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
 use Brain\Monkey\Functions;
-use AmcpBuilder\Abilities\Elementor\UpdateGlobals;
-use AmcpBuilder\Abilities\General\CreatePage;
-use AmcpBuilder\Abilities\General\ListPages;
-use AmcpBuilder\Abilities\General\SiteInfo;
-use AmcpBuilder\Abilities\Registry;
-use AmcpBuilder\Elementor\Templates;
-use AmcpBuilder\Environment;
-use AmcpBuilder\Safety\Snapshots;
-use AmcpBuilder\Settings;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Abilities\Elementor\UpdateGlobals;
+use AcMcp\Abilities\General\CreatePage;
+use AcMcp\Abilities\General\ListPages;
+use AcMcp\Abilities\General\SiteInfo;
+use AcMcp\Abilities\Registry;
+use AcMcp\Elementor\Templates;
+use AcMcp\Environment;
+use AcMcp\Safety\Snapshots;
+use AcMcp\Settings;
+use AcMcp\Tests\TestCase;
 
 final class AbilitiesTest extends TestCase
 {
@@ -51,15 +51,15 @@ final class AbilitiesTest extends TestCase
 		$registry = new Registry($this->settings(), $this->environment(), $this->snapshots());
 		$this->assertSame(
 			array(
-				'amcp-builder/site-info',
-				'amcp-builder/get-design-guide',
-				'amcp-builder/list-pages',
-				'amcp-builder/create-page',
-				'amcp-builder/list-media',
-				'amcp-builder/upload-media',
-				'amcp-builder/update-page',
-				'amcp-builder/list-snapshots',
-				'amcp-builder/restore-snapshot',
+				'ac-mcp/site-info',
+				'ac-mcp/get-design-guide',
+				'ac-mcp/list-pages',
+				'ac-mcp/create-page',
+				'ac-mcp/list-media',
+				'ac-mcp/upload-media',
+				'ac-mcp/update-page',
+				'ac-mcp/list-snapshots',
+				'ac-mcp/restore-snapshot',
 			),
 			$registry->names(),
 			'Bricks tools stay hidden when Bricks classes are not loaded.'
@@ -149,7 +149,7 @@ final class AbilitiesTest extends TestCase
 		);
 
 		$this->assertInstanceOf(\WP_Error::class, $result);
-		$this->assertSame('amcp_builder_builder_inactive', $result->get_error_code());
+		$this->assertSame('ac_mcp_builder_inactive', $result->get_error_code());
 		$this->assertStringContainsString('How to fix', $result->get_error_message());
 	}
 
@@ -165,7 +165,7 @@ final class AbilitiesTest extends TestCase
 			)
 		);
 
-		$this->assertSame('amcp_builder_post_type_not_enabled', $result->get_error_code());
+		$this->assertSame('ac_mcp_post_type_not_enabled', $result->get_error_code());
 	}
 
 	public function test_create_page_publish_requires_capability(): void
@@ -181,7 +181,7 @@ final class AbilitiesTest extends TestCase
 			)
 		);
 
-		$this->assertSame('amcp_builder_cannot_publish', $result->get_error_code());
+		$this->assertSame('ac_mcp_cannot_publish', $result->get_error_code());
 	}
 
 	public function test_elementor_global_fonts_reject_unknown_fields(): void

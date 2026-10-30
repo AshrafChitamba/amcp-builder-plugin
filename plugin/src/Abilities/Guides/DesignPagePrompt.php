@@ -2,13 +2,13 @@
 /**
  * The design-page prompt.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Guides\Guides;
+use AcMcp\Abilities\Ability;
+use AcMcp\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,11 +22,11 @@ final class DesignPagePrompt extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Design a page', 'amcp-builder' );
+		return __( 'Design a page', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
-		return 'Design or redesign a page on this site following the site\'s design system and AMCP Builder\'s design guide.';
+		return 'Design or redesign a page on this site following the site\'s design system and AC MCP for Bricks and Elementor\'s design guide.';
 	}
 
 	public function mcp_type(): string {
@@ -67,7 +67,7 @@ final class DesignPagePrompt extends Ability {
 			'text' => implode(
 				"\n\n",
 				array(
-					'Design a page on this WordPress site with AMCP Builder.',
+					'Design a page on this WordPress site with AC MCP for Bricks and Elementor.',
 					'Brief: ' . sanitize_textarea_field( (string) $input['brief'] ),
 					$target,
 					"Steps:\n1. Call site-info to see which builder is active and the site's safety settings.\n2. Read the design guide below, including the site owner's rules at the end (they override everything), then the builder guide (get-design-guide with the builder's topic). Look at the home page, one other page and the global styles, so you reuse the site's colors, fonts, spacing and classes. Do not introduce a new color or font without asking.\n3. Write a one-line design read and a short section plan, including how the hero will reflect this business, and show it to the user before building if the change is large.\n4. Build one section per call. Use dryRun for big changes. Use only real content and real media; mark placeholders. No eyebrow labels above headings.\n5. After each saved section, share its preview link from the result and describe the change in 1-3 plain lines.\n6. Read the page back, then summarize what you built, what is a placeholder and how to undo it (restore-snapshot).",

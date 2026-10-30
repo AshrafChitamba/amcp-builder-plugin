@@ -2,15 +2,15 @@
 /**
  * The safety guide resource.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Resource at amcp-builder://guides/safety.
+ * Resource at ac-mcp://guides/safety.
  */
 final class SafetyGuideResource extends GuideResource {
 

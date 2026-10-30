@@ -2,15 +2,15 @@
 /**
  * The design guide resource.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Resource at amcp-builder://guides/design.
+ * Resource at ac-mcp://guides/design.
  */
 final class DesignGuideResource extends GuideResource {
 

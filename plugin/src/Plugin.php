@@ -2,24 +2,24 @@
 /**
  * Plugin bootstrap.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
-use AmcpBuilder\Abilities\Registry;
-use AmcpBuilder\Admin\AdminPage;
-use AmcpBuilder\Admin\Notices;
-use AmcpBuilder\Mcp\Server;
-use AmcpBuilder\OAuth\Clients;
-use AmcpBuilder\OAuth\Server as OAuthServer;
-use AmcpBuilder\OAuth\Tokens;
-use AmcpBuilder\Rest\AdminController;
-use AmcpBuilder\Safety\AuditLog;
-use AmcpBuilder\Safety\Governance;
-use AmcpBuilder\Safety\RateLimiter;
-use AmcpBuilder\Safety\Schema;
-use AmcpBuilder\Safety\Snapshots;
+use AcMcp\Abilities\Registry;
+use AcMcp\Admin\AdminPage;
+use AcMcp\Admin\Notices;
+use AcMcp\Mcp\Server;
+use AcMcp\OAuth\Clients;
+use AcMcp\OAuth\Server as OAuthServer;
+use AcMcp\OAuth\Tokens;
+use AcMcp\Rest\AdminController;
+use AcMcp\Safety\AuditLog;
+use AcMcp\Safety\Governance;
+use AcMcp\Safety\RateLimiter;
+use AcMcp\Safety\Schema;
+use AcMcp\Safety\Snapshots;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Plugin {
 
-	public const SLUG = 'amcp-builder';
+	public const SLUG = 'ac-mcp-for-bricks-elementor';
 
 	private static ?Plugin $instance = null;
 

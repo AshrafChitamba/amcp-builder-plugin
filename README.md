@@ -1,6 +1,6 @@
-# AMCP Builder
+# AC MCP for Bricks and Elementor
 
-A free, open-source WordPress plugin that lets AI assistants (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). It uses each builder's native elements and settings, never hidden code.
+A free, open-source WordPress plugin that lets AI assistants (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). It uses each builder's native elements and settings, never hidden code unless you turn on the optional custom-code switch.
 
 Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
@@ -8,7 +8,7 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
 ## How it works
 
-The plugin registers its tools with the WordPress Abilities API and serves them over MCP through the official [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin. There is no separate server to run. AI assistants connect to `https://your-site/wp-json/amcp-builder/mcp` and sign in with WordPress:
+The plugin registers its tools with the WordPress Abilities API and serves them over MCP through the official [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin. There is no separate server to run. AI assistants connect to `https://your-site/wp-json/ac-mcp/mcp` and sign in with WordPress:
 
 - **Web apps** (claude.ai, Claude Desktop, ChatGPT) use OAuth: you approve the app on a WordPress page, choosing read-and-edit or read-only.
 - **Coding tools** (Claude Code, Codex, Cursor, VS Code, Gemini CLI) use OAuth or an access token.
@@ -37,14 +37,14 @@ The plugin registers its tools with the WordPress Abilities API and serves them 
 ## Quick start
 
 1. Install and activate the **MCP Adapter** plugin.
-2. Install the latest `amcp-builder-<version>.zip` from `dist/` and activate it.
-3. Open **AMCP Builder → Connection** in the admin menu and follow the steps for your app.
-4. Add your brand rules on **AMCP Builder → Design rules**.
+2. Install the latest `ac-mcp-<version>.zip` from `dist/` and activate it.
+3. Open **AC MCP for Bricks and Elementor → Connection** in the admin menu and follow the steps for your app.
+4. Add your brand rules on **AC MCP for Bricks and Elementor → Design rules**.
 5. Open **Status** and run **Test MCP connection**.
 
 ### Upgrading from MCP Builder
 
-AMCP Builder 1.0 replaces MCP Builder 0.x. On first load it copies your settings, snapshots, audit log and connected apps. Then deactivate the old plugin and change the server URL in each AI assistant from `/wp-json/mcp-builder/mcp` to `/wp-json/amcp-builder/mcp`.
+AC MCP for Bricks and Elementor 1.0 replaces MCP Builder 0.x. On first load it copies your settings, snapshots, audit log and connected apps. Then deactivate the old plugin and change the server URL in each AI assistant from `/wp-json/mcp-builder/mcp` to `/wp-json/ac-mcp/mcp`.
 
 ## Preview the admin screens locally
 
@@ -77,10 +77,10 @@ To try the full plugin (saving settings, the admin menu, connecting an AI assist
 ```bash
 cd plugin && composer install && vendor/bin/phpunit && vendor/bin/phpcs
 cd admin-ui && npm ci && npm test && npm run build
-scripts/build-zip.sh   # writes dist/amcp-builder-<version>.zip
+scripts/build-zip.sh   # writes dist/ac-mcp-<version>.zip
 ```
 
-The tutorial video on the Tutorial screen is set in `AdminPage::TUTORIAL_URL` (YouTube, Vimeo, Loom, Google Drive or a direct video file), or per site with the `amcp_builder_tutorial_url` filter.
+The tutorial video on the Tutorial screen is set in `AdminPage::TUTORIAL_URL` (YouTube, Vimeo, Loom, Google Drive or a direct video file), or per site with the `ac_mcp_tutorial_url` filter.
 
 The documentation of every tool and standard the plugin is built on is listed in [REFERENCES.md](REFERENCES.md).
 

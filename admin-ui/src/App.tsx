@@ -21,37 +21,37 @@ import type { Settings } from './types';
 const TABS = [
 	{
 		name: 'connection',
-		title: __( 'Connection', 'amcp-builder' ),
+		title: __( 'Connection', 'ac-mcp-for-bricks-elementor' ),
 		Component: ConnectionTab,
 	},
 	{
 		name: 'design',
-		title: __( 'Design rules', 'amcp-builder' ),
+		title: __( 'Design rules', 'ac-mcp-for-bricks-elementor' ),
 		Component: DesignTab,
 	},
 	{
 		name: 'tools',
-		title: __( 'Tools', 'amcp-builder' ),
+		title: __( 'Tools', 'ac-mcp-for-bricks-elementor' ),
 		Component: ToolsTab,
 	},
 	{
 		name: 'safety',
-		title: __( 'Safety & logs', 'amcp-builder' ),
+		title: __( 'Safety & logs', 'ac-mcp-for-bricks-elementor' ),
 		Component: SafetyTab,
 	},
 	{
 		name: 'status',
-		title: __( 'Status', 'amcp-builder' ),
+		title: __( 'Status', 'ac-mcp-for-bricks-elementor' ),
 		Component: StatusTab,
 	},
 	{
 		name: 'tutorial',
-		title: __( 'Tutorial', 'amcp-builder' ),
+		title: __( 'Tutorial', 'ac-mcp-for-bricks-elementor' ),
 		Component: TutorialTab,
 	},
 	{
 		name: 'about',
-		title: __( 'About', 'amcp-builder' ),
+		title: __( 'About', 'ac-mcp-for-bricks-elementor' ),
 		Component: AboutTab,
 	},
 ];
@@ -74,12 +74,12 @@ const syncLocation = ( tab: string ) => {
 		'',
 		addQueryArgs( window.location.href, { tab } )
 	);
-	const submenu = document.querySelector( '#toplevel_page_amcp-builder' );
+	const submenu = document.querySelector( '#toplevel_page_ac-mcp' );
 	submenu?.querySelectorAll( 'li' ).forEach( ( item ) => {
 		const href = item.querySelector( 'a' )?.getAttribute( 'href' ) ?? '';
 		const match =
 			tab === 'connection'
-				? /page=amcp-builder$/.test( href )
+				? /page=ac-mcp$/.test( href )
 				: href.endsWith( `tab=${ tab }` );
 		item.classList.toggle( 'current', match );
 		item.querySelector( 'a' )?.classList.toggle( 'current', match );
@@ -95,7 +95,7 @@ type SiteState = {
 const siteState = ( settings: Settings | null ): SiteState | null => {
 	if ( ! config.canRun ) {
 		return {
-			label: __( 'Needs setup', 'amcp-builder' ),
+			label: __( 'Needs setup', 'ac-mcp-for-bricks-elementor' ),
 			tone: 'error',
 			icon: info,
 		};
@@ -105,20 +105,20 @@ const siteState = ( settings: Settings | null ): SiteState | null => {
 	}
 	if ( settings.kill_switch ) {
 		return {
-			label: __( 'Switched off', 'amcp-builder' ),
+			label: __( 'Switched off', 'ac-mcp-for-bricks-elementor' ),
 			tone: 'error',
 			icon: cancelCircleFilled,
 		};
 	}
 	if ( settings.read_only ) {
 		return {
-			label: __( 'Read-only', 'amcp-builder' ),
+			label: __( 'Read-only', 'ac-mcp-for-bricks-elementor' ),
 			tone: 'warning',
 			icon: lock,
 		};
 	}
 	return {
-		label: __( 'Accepting changes', 'amcp-builder' ),
+		label: __( 'Accepting changes', 'ac-mcp-for-bricks-elementor' ),
 		tone: 'ok',
 		icon: published,
 	};
@@ -161,57 +161,57 @@ export const App = () => {
 		TABS.find( ( item ) => item.name === active ) ?? TABS[ 0 ];
 
 	return (
-		<div className="amcpb-app">
-			<header className="amcpb-header">
-				<div className="amcpb-header__brand">
+		<div className="acmcp-app">
+			<header className="acmcp-header">
+				<div className="acmcp-header__brand">
 					<Logo size={ 44 } />
 					<div>
-						<h1 className="amcpb-header__title">
-							{ __( 'AMCP Builder', 'amcp-builder' ) }
+						<h1 className="acmcp-header__title">
+							{ __( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ) }
 						</h1>
-						<p className="amcpb-header__tagline">
+						<p className="acmcp-header__tagline">
 							{ __(
 								'Build and edit Bricks and Elementor pages with your AI assistant.',
-								'amcp-builder'
+								'ac-mcp-for-bricks-elementor'
 							) }
 						</p>
 					</div>
 				</div>
-				<div className="amcpb-header__meta">
+				<div className="acmcp-header__meta">
 					{ state && (
 						<span
-							className={ `amcpb-state amcpb-state--${ state.tone }` }
+							className={ `acmcp-state acmcp-state--${ state.tone }` }
 						>
 							<Icon icon={ state.icon } size={ 18 } />
 							{ state.label }
 						</span>
 					) }
-					<span className="amcpb-version">
+					<span className="acmcp-version">
 						{ sprintf(
 							/* translators: %s: version number. */
-							__( 'Version %s', 'amcp-builder' ),
+							__( 'Version %s', 'ac-mcp-for-bricks-elementor' ),
 							config.version
 						) }
 					</span>
 				</div>
-				<div className="amcpb-endpoint">
-					<span className="amcpb-endpoint__label">
-						{ __( 'Server URL', 'amcp-builder' ) }
+				<div className="acmcp-endpoint">
+					<span className="acmcp-endpoint__label">
+						{ __( 'Server URL', 'ac-mcp-for-bricks-elementor' ) }
 					</span>
-					<code className="amcpb-endpoint__value">
+					<code className="acmcp-endpoint__value">
 						{ config.mcpUrl }
 					</code>
 					<CopyButton
 						text={ config.mcpUrl }
-						label={ __( 'Copy URL', 'amcp-builder' ) }
+						label={ __( 'Copy URL', 'ac-mcp-for-bricks-elementor' ) }
 					/>
 				</div>
 			</header>
 
 			<div
-				className="amcpb-nav"
+				className="acmcp-nav"
 				role="tablist"
-				aria-label={ __( 'AMCP Builder screens', 'amcp-builder' ) }
+				aria-label={ __( 'AC MCP for Bricks and Elementor screens', 'ac-mcp-for-bricks-elementor' ) }
 			>
 				{ TABS.map( ( tab, index ) => (
 					<button
@@ -221,11 +221,11 @@ export const App = () => {
 						} }
 						type="button"
 						role="tab"
-						id={ `amcpb-tab-${ tab.name }` }
+						id={ `acmcp-tab-${ tab.name }` }
 						aria-selected={ active === tab.name }
-						aria-controls="amcpb-panel"
+						aria-controls="acmcp-panel"
 						tabIndex={ active === tab.name ? 0 : -1 }
-						className="amcpb-nav__tab"
+						className="acmcp-nav__tab"
 						onClick={ () => open( tab.name ) }
 						onKeyDown={ ( event ) => onKeyDown( event, index ) }
 					>
@@ -235,18 +235,18 @@ export const App = () => {
 			</div>
 
 			<main
-				id="amcpb-panel"
-				className="amcpb-panel"
+				id="acmcp-panel"
+				className="acmcp-panel"
 				role="tabpanel"
-				aria-labelledby={ `amcpb-tab-${ active }` }
+				aria-labelledby={ `acmcp-tab-${ active }` }
 				key={ active }
 			>
 				<Component />
 			</main>
 
-			<footer className="amcpb-footer">
+			<footer className="acmcp-footer">
 				<span>
-					{ __( 'AMCP Builder by', 'amcp-builder' ) }{ ' ' }
+					{ __( 'AC MCP for Bricks and Elementor by', 'ac-mcp-for-bricks-elementor' ) }{ ' ' }
 					<ExternalLink href={ config.authorUrl }>
 						{ config.author }
 					</ExternalLink>
@@ -254,7 +254,7 @@ export const App = () => {
 				<span>
 					{ __(
 						'Free and open source under the GPL. No telemetry.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 				</span>
 			</footer>

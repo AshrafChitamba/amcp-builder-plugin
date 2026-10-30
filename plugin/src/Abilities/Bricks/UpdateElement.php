@@ -2,13 +2,13 @@
 /**
  * The bricks-update-element tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Bricks\Validator;
+use AcMcp\Bricks\Tree;
+use AcMcp\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class UpdateElement extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: update element', 'amcp-builder' );
+		return __( 'Bricks: update element', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

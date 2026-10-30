@@ -2,10 +2,10 @@
 /**
  * Detects the site's WordPress, PHP, MCP Adapter and builder setup.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
 defined( 'ABSPATH' ) || exit;
 

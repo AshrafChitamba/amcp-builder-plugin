@@ -2,21 +2,21 @@
 /**
  * Shared write flow of Bricks page tools.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Support\Diff;
-use AmcpBuilder\Bricks\ClassPromoter;
-use AmcpBuilder\Bricks\GlobalClasses;
-use AmcpBuilder\Bricks\Store;
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Bricks\Validator;
-use AmcpBuilder\Safety\Governance;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\Posts;
+use AcMcp\Support\Diff;
+use AcMcp\Bricks\ClassPromoter;
+use AcMcp\Bricks\GlobalClasses;
+use AcMcp\Bricks\Store;
+use AcMcp\Bricks\Tree;
+use AcMcp\Support\TreeError;
+use AcMcp\Bricks\Validator;
+use AcMcp\Safety\Governance;
+use AcMcp\Support\Errors;
+use AcMcp\Support\Posts;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -82,8 +82,8 @@ abstract class BricksWriteAbility extends BricksAbility {
 			return Errors::make(
 				'post_locked',
 				/* translators: %s: user name. */
-				sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'amcp-builder' ), $locked_by ),
-				__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'amcp-builder' ),
+				sprintf( __( '%s has this page open in an editor, so saving now could overwrite their work or be overwritten.', 'ac-mcp-for-bricks-elementor' ), $locked_by ),
+				__( 'Ask the user to close the editor, or retry with force: true if they confirm.', 'ac-mcp-for-bricks-elementor' ),
 				409
 			);
 		}
@@ -99,14 +99,14 @@ abstract class BricksWriteAbility extends BricksAbility {
 
 		$before = $tree->to_array();
 		try {
-			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AmcpBuilder\Support\CustomCode::allowed( $this->settings ) ) );
+			$extra = $this->mutate( $tree, $input, new Validator( $this->catalog(), \AcMcp\Support\CustomCode::allowed( $this->settings ) ) );
 		} catch ( TreeError $error ) {
 			return $error->to_wp_error();
 		}
 
 		$problems = $tree->integrity();
 		if ( $problems ) {
-			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'amcp-builder' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call bricks-get-page and try a simpler change.', 'amcp-builder' ), 500 );
+			return Errors::make( 'broken_tree', __( 'The change would leave the page structure inconsistent: ', 'ac-mcp-for-bricks-elementor' ) . implode( ' ', array_slice( $problems, 0, 5 ) ), __( 'Call bricks-get-page and try a simpler change.', 'ac-mcp-for-bricks-elementor' ), 500 );
 		}
 
 		$result = array(

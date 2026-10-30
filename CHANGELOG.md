@@ -9,8 +9,8 @@ All notable changes to this project are documented here. The format follows
 ## [1.0.0] - 2026-10-20
 
 ### Changed
-- Renamed from MCP Builder to **AMCP Builder**: plugin folder and main file `amcp-builder`, text domain `amcp-builder`, PHP namespace `AmcpBuilder`, MCP endpoint `/wp-json/amcp-builder/mcp`, tool names `amcp-builder-*`, admin REST namespace `amcp-builder/v1`, options `amcp_builder_*` and tables `{prefix}amcpb_*`.
-- New top-level **AMCP Builder** admin menu (with a submenu per screen) instead of Settings → MCP Builder.
+- Renamed from MCP Builder to **AC MCP for Bricks and Elementor**: plugin folder and main file `ac-mcp`, text domain `ac-mcp`, PHP namespace `AcMcp`, MCP endpoint `/wp-json/ac-mcp/mcp`, tool names `ac-mcp-*`, admin REST namespace `ac-mcp/v1`, options `ac_mcp_*` and tables `{prefix}acmcp_*`.
+- New top-level **AC MCP for Bricks and Elementor** admin menu (with a submenu per screen) instead of Settings → MCP Builder.
 - Redesigned admin interface with a blue brand system, a branded header with a plain status line and a copyable server URL, keyboard-accessible navigation and restyled tables.
 - Design guidelines moved from Tools to a new **Design rules** screen.
 - User-facing wording now says "AI assistant" instead of "AI app" or "AI client".
@@ -20,7 +20,7 @@ All notable changes to this project are documented here. The format follows
 - Automatic migration from MCP Builder: settings (including disabled tools), snapshots, audit log, OAuth clients and tokens are copied on first load. An admin notice explains the new URL while the old plugin is still active.
 - `guidelinesVersion` in every tool result, so AI apps re-read the site owner's rules as soon as they change.
 - `preview` links (Bricks links jump to the changed element) and a `reportToUser` instruction on every saved change, so the AI reports each change with a link and a short description.
-- **Tutorial** screen with an embedded video (YouTube, Vimeo, Loom, Google Drive or a video file) and a getting-started guide. The video link is `AdminPage::TUTORIAL_URL` or the `amcp_builder_tutorial_url` filter.
+- **Tutorial** screen with an embedded video (YouTube, Vimeo, Loom, Google Drive or a video file) and a getting-started guide. The video link is `AdminPage::TUTORIAL_URL` or the `ac_mcp_tutorial_url` filter.
 
 - Plain CSS classes set on Bricks elements (`_cssClasses`) are attached as Bricks global classes instead, created if needed, so they appear in the Bricks class selector next to the element ID rather than only under Style → CSS. New classes are reported as `globalClassesCreated` and snapshotted.
 - `npm run preview` in `admin-ui` opens the admin screens locally with sample data, no WordPress needed.

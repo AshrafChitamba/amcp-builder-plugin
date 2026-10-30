@@ -2,12 +2,12 @@
 /**
  * OAuth client registry.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\OAuth;
+namespace AcMcp\OAuth;
 
-use AmcpBuilder\Safety\Schema;
+use AcMcp\Safety\Schema;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Clients {
 
-	private const CIMD_CACHE = 'amcpb_cimd_';
+	private const CIMD_CACHE = 'acmcp_cimd_';
 
 	/**
 	 * @return array<string, mixed>|null Client row with decoded redirect_uris.
@@ -59,9 +59,9 @@ class Clients {
 			$method = 'none';
 		}
 
-		$client_id = 'amcpb_' . bin2hex( random_bytes( 16 ) );
+		$client_id = 'acmcp_' . bin2hex( random_bytes( 16 ) );
 		$secret    = 'none' === $method ? '' : bin2hex( random_bytes( 32 ) );
-		$name      = mb_substr( sanitize_text_field( (string) ( $metadata['client_name'] ?? __( 'Unnamed app', 'amcp-builder' ) ) ), 0, 191 );
+		$name      = mb_substr( sanitize_text_field( (string) ( $metadata['client_name'] ?? __( 'Unnamed app', 'ac-mcp-for-bricks-elementor' ) ) ), 0, 191 );
 
 		$this->store( $client_id, $name, $redirects, 'dcr', $secret );
 

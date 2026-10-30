@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<ruleset name="AMCP Builder">
-	<description>WordPress Coding Standards for AMCP Builder.</description>
+<ruleset name="AC MCP for Bricks and Elementor">
+	<description>WordPress Coding Standards for AC MCP for Bricks and Elementor.</description>
 
-	<file>amcp-builder.php</file>
+	<file>ac-mcp-for-bricks-elementor.php</file>
 	<file>uninstall.php</file>
 	<file>src</file>
 
@@ -37,7 +37,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="amcp-builder"/>
+				<element value="ac-mcp-for-bricks-elementor"/>
 			</property>
 		</properties>
 	</rule>
@@ -45,8 +45,8 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="amcp_builder"/>
-				<element value="AmcpBuilder"/>
+				<element value="ac_mcp"/>
+				<element value="AcMcp"/>
 			</property>
 		</properties>
 	</rule>

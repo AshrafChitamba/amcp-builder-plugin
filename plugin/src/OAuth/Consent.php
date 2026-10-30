@@ -2,10 +2,10 @@
 /**
  * The "Connect an AI assistant" consent screen.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\OAuth;
+namespace AcMcp\OAuth;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Consent {
 
-	public const NONCE = 'amcpb_oauth_consent_';
+	public const NONCE = 'acmcp_oauth_consent_';
 
 	/**
 	 * @param array<string, mixed>  $client Client row.
@@ -31,25 +31,25 @@ final class Consent {
 
 		ob_start();
 		?>
-		<h1><?php esc_html_e( 'Connect an AI assistant', 'amcp-builder' ); ?></h1>
+		<h1><?php esc_html_e( 'Connect an AI assistant', 'ac-mcp-for-bricks-elementor' ); ?></h1>
 		<p class="lead">
 			<?php
 			printf(
 				/* translators: 1: app name, 2: site name. */
-				esc_html__( '%1$s wants to use AMCP Builder on %2$s.', 'amcp-builder' ),
+				esc_html__( '%1$s wants to use AC MCP for Bricks and Elementor on %2$s.', 'ac-mcp-for-bricks-elementor' ),
 				'<strong>' . esc_html( (string) $client['name'] ) . '</strong>',
 				'<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>'
 			);
 			?>
 		</p>
 		<dl>
-			<dt><?php esc_html_e( 'Returns to', 'amcp-builder' ); ?></dt>
-			<dd><?php echo esc_html( $is_loopback ? __( 'An app on this computer (local address)', 'amcp-builder' ) : $app_host ); ?></dd>
-			<dt><?php esc_html_e( 'Acts as', 'amcp-builder' ); ?></dt>
+			<dt><?php esc_html_e( 'Returns to', 'ac-mcp-for-bricks-elementor' ); ?></dt>
+			<dd><?php echo esc_html( $is_loopback ? __( 'An app on this computer (local address)', 'ac-mcp-for-bricks-elementor' ) : $app_host ); ?></dd>
+			<dt><?php esc_html_e( 'Acts as', 'ac-mcp-for-bricks-elementor' ); ?></dt>
 			<dd><?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?></dd>
 		</dl>
 		<?php if ( 'cimd' !== ( $client['source'] ?? '' ) ) : ?>
-			<p class="note"><?php esc_html_e( 'This app registered itself. Only continue if you started this connection yourself just now.', 'amcp-builder' ); ?></p>
+			<p class="note"><?php esc_html_e( 'This app registered itself. Only continue if you started this connection yourself just now.', 'ac-mcp-for-bricks-elementor' ); ?></p>
 		<?php endif; ?>
 		<form method="post" action="<?php echo esc_url( $action ); ?>">
 			<?php foreach ( $query as $key => $value ) : ?>
@@ -59,14 +59,14 @@ final class Consent {
 			<?php endforeach; ?>
 			<input type="hidden" name="_mcpb_nonce" value="<?php echo esc_attr( wp_create_nonce( self::NONCE . $client['client_id'] ) ); ?>">
 			<fieldset>
-				<legend><?php esc_html_e( 'Access', 'amcp-builder' ); ?></legend>
-				<label><input type="radio" name="access" value="full" <?php checked( ! $read_first ); ?>> <?php esc_html_e( 'Read and edit pages', 'amcp-builder' ); ?></label>
-				<label><input type="radio" name="access" value="read" <?php checked( $read_first ); ?>> <?php esc_html_e( 'Read only', 'amcp-builder' ); ?></label>
+				<legend><?php esc_html_e( 'Access', 'ac-mcp-for-bricks-elementor' ); ?></legend>
+				<label><input type="radio" name="access" value="full" <?php checked( ! $read_first ); ?>> <?php esc_html_e( 'Read and edit pages', 'ac-mcp-for-bricks-elementor' ); ?></label>
+				<label><input type="radio" name="access" value="read" <?php checked( $read_first ); ?>> <?php esc_html_e( 'Read only', 'ac-mcp-for-bricks-elementor' ); ?></label>
 			</fieldset>
-			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within AMCP Builder\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under AMCP Builder → Connection.', 'amcp-builder' ); ?></p>
+			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within AC MCP for Bricks and Elementor\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under AC MCP for Bricks and Elementor → Connection.', 'ac-mcp-for-bricks-elementor' ); ?></p>
 			<div class="actions">
-				<button type="submit" name="decision" value="deny" class="secondary"><?php esc_html_e( 'Cancel', 'amcp-builder' ); ?></button>
-				<button type="submit" name="decision" value="approve" class="primary"><?php esc_html_e( 'Allow access', 'amcp-builder' ); ?></button>
+				<button type="submit" name="decision" value="deny" class="secondary"><?php esc_html_e( 'Cancel', 'ac-mcp-for-bricks-elementor' ); ?></button>
+				<button type="submit" name="decision" value="approve" class="primary"><?php esc_html_e( 'Allow access', 'ac-mcp-for-bricks-elementor' ); ?></button>
 			</div>
 		</form>
 		<?php
@@ -74,7 +74,7 @@ final class Consent {
 	}
 
 	public static function error_page( string $message ): void {
-		self::render( '<h1>' . esc_html__( 'Connection stopped', 'amcp-builder' ) . '</h1><p class="lead">' . esc_html( $message ) . '</p>', 400 );
+		self::render( '<h1>' . esc_html__( 'Connection stopped', 'ac-mcp-for-bricks-elementor' ) . '</h1><p class="lead">' . esc_html( $message ) . '</p>', 400 );
 	}
 
 	private static function render( string $body, int $status = 200 ): void {
@@ -90,7 +90,7 @@ final class Consent {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title><?php echo esc_html__( 'Connect an AI assistant', 'amcp-builder' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
+<title><?php echo esc_html__( 'Connect an AI assistant', 'ac-mcp-for-bricks-elementor' ) . ' &lsaquo; ' . esc_html( get_bloginfo( 'name' ) ); ?></title>
 <style>
 	body { margin: 0; background: #f0f0f1; color: #1d2327; font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
 	main { max-width: 420px; margin: 8vh auto; padding: 0 16px; }
@@ -120,7 +120,7 @@ final class Consent {
 	<div class="card">
 		<?php echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts above. ?>
 	</div>
-	<p class="credit">AMCP Builder by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
+	<p class="credit">AC MCP for Bricks and Elementor by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
 </main>
 </body>
 </html>

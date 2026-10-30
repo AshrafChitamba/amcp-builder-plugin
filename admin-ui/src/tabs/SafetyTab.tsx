@@ -15,10 +15,10 @@ import { useSettings } from '../hooks/useSettings';
 import type { AuditFilters, AuditPage, Settings, Snapshot } from '../types';
 
 const OUTCOME_LABELS: Record< string, string > = {
-	ok: __( 'Saved', 'amcp-builder' ),
-	'dry-run': __( 'Preview', 'amcp-builder' ),
-	denied: __( 'Refused', 'amcp-builder' ),
-	error: __( 'Error', 'amcp-builder' ),
+	ok: __( 'Saved', 'ac-mcp-for-bricks-elementor' ),
+	'dry-run': __( 'Preview', 'ac-mcp-for-bricks-elementor' ),
+	denied: __( 'Refused', 'ac-mcp-for-bricks-elementor' ),
+	error: __( 'Error', 'ac-mcp-for-bricks-elementor' ),
 };
 
 const PER_PAGE = 25;
@@ -34,27 +34,48 @@ const NUMBER_FIELDS: Array< { key: NumberKey; label: string; help: string } > =
 	[
 		{
 			key: 'rate_limit_reads',
-			label: __( 'Reads per minute (per user)', 'amcp-builder' ),
-			help: __( 'Stops runaway AI loops.', 'amcp-builder' ),
+			label: __(
+				'Reads per minute (per user)',
+				'ac-mcp-for-bricks-elementor'
+			),
+			help: __(
+				'Stops runaway AI loops.',
+				'ac-mcp-for-bricks-elementor'
+			),
 		},
 		{
 			key: 'rate_limit_writes',
-			label: __( 'Changes per minute (per user)', 'amcp-builder' ),
+			label: __(
+				'Changes per minute (per user)',
+				'ac-mcp-for-bricks-elementor'
+			),
 			help: '',
 		},
 		{
 			key: 'snapshot_keep',
-			label: __( 'Snapshots kept per page', 'amcp-builder' ),
-			help: __( 'Older ones are deleted daily.', 'amcp-builder' ),
+			label: __(
+				'Snapshots kept per page',
+				'ac-mcp-for-bricks-elementor'
+			),
+			help: __(
+				'Older ones are deleted daily.',
+				'ac-mcp-for-bricks-elementor'
+			),
 		},
 		{
 			key: 'snapshot_days',
-			label: __( 'Keep snapshots for (days)', 'amcp-builder' ),
+			label: __(
+				'Keep snapshots for (days)',
+				'ac-mcp-for-bricks-elementor'
+			),
 			help: '',
 		},
 		{
 			key: 'audit_days',
-			label: __( 'Keep audit log for (days)', 'amcp-builder' ),
+			label: __(
+				'Keep audit log for (days)',
+				'ac-mcp-for-bricks-elementor'
+			),
 			help: '',
 		},
 	];
@@ -69,7 +90,7 @@ const confirmRestore = ( id: number ): boolean =>
 			/* translators: %d: snapshot ID. */
 			__(
 				'Restore snapshot #%d? Changes made after it are undone. The current state is snapshotted first, so you can undo this.',
-				'amcp-builder'
+				'ac-mcp-for-bricks-elementor'
 			),
 			id
 		)
@@ -94,7 +115,7 @@ const SettingsForm = ( {
 			! window.confirm(
 				__(
 					'Turn on the kill switch? Every AI assistant is cut off until you turn it off again.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				)
 			)
 		) {
@@ -112,28 +133,33 @@ const SettingsForm = ( {
 
 	return (
 		<>
-			<Section title={ __( 'Kill switch', 'amcp-builder' ) }>
+			<Section
+				title={ __( 'Kill switch', 'ac-mcp-for-bricks-elementor' ) }
+			>
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Switch off AMCP Builder', 'amcp-builder' ) }
+					label={ __(
+						'Switch off AC MCP for Bricks and Elementor',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					help={ __(
 						'Immediately refuses every AI request, including official Bricks and Elementor tools. Use it if something goes wrong.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					checked={ settings.kill_switch }
 					disabled={ saving }
 					onChange={ toggleKill }
 				/>
-				<div className="amcpb-spacer" />
+				<div className="acmcp-spacer" />
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
 						'Allow AI assistants to sign in with WordPress (OAuth)',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					help={ __(
 						'Needed for claude.ai, ChatGPT and coding tools that sign in. Turning it off disconnects nothing, but signed-in apps stop working until it is on again. Access tokens and Application Passwords keep working.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					checked={ settings.oauth_enabled }
 					disabled={ saving }
@@ -141,29 +167,41 @@ const SettingsForm = ( {
 				/>
 			</Section>
 
-			<Section title={ __( 'Defaults and limits', 'amcp-builder' ) }>
+			<Section
+				title={ __(
+					'Defaults and limits',
+					'ac-mcp-for-bricks-elementor'
+				) }
+			>
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
 						'Preview changes by default (dry run)',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
-					help={ __(
-						'Changes are only previewed unless the AI explicitly asks to save.',
-						'amcp-builder'
-					) }
+					help={
+						draft.dry_run_default
+							? __(
+									'On: changes are only previewed, and nothing is saved unless the AI explicitly asks to save.',
+									'ac-mcp-for-bricks-elementor'
+								)
+							: __(
+									'Off: changes are saved straight away. Every save is still snapshotted, so you can undo it.',
+									'ac-mcp-for-bricks-elementor'
+								)
+					}
 					checked={ draft.dry_run_default }
 					onChange={ ( value ) =>
 						setDraft( { ...draft, dry_run_default: value } )
 					}
 				/>
-				<div className="amcpb-spacer" />
+				<div className="acmcp-spacer" />
 				<SelectControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 					label={ __(
 						'When someone has the page open in an editor',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 					value={ draft.post_lock }
 					options={ [
@@ -171,14 +209,14 @@ const SettingsForm = ( {
 							value: 'deny',
 							label: __(
 								'Refuse AI changes (recommended)',
-								'amcp-builder'
+								'ac-mcp-for-bricks-elementor'
 							),
 						},
 						{
 							value: 'allow',
 							label: __(
 								'Allow AI changes anyway',
-								'amcp-builder'
+								'ac-mcp-for-bricks-elementor'
 							),
 						},
 					] }
@@ -189,7 +227,7 @@ const SettingsForm = ( {
 						} )
 					}
 				/>
-				<div className="amcpb-grid">
+				<div className="acmcp-grid">
 					{ NUMBER_FIELDS.map( ( field ) => (
 						<TextControl
 							key={ field.key }
@@ -209,17 +247,18 @@ const SettingsForm = ( {
 						/>
 					) ) }
 				</div>
-				<div className="amcpb-actions">
+				<div className="acmcp-actions">
 					<Button
 						variant="primary"
 						onClick={ submit }
 						isBusy={ saving }
 						disabled={ saving }
 					>
-						{ __( 'Save changes', 'amcp-builder' ) }
+						{ __( 'Save changes', 'ac-mcp-for-bricks-elementor' ) }
 					</Button>
 					<span aria-live="polite">
-						{ saved && __( 'Saved.', 'amcp-builder' ) }
+						{ saved &&
+							__( 'Saved.', 'ac-mcp-for-bricks-elementor' ) }
 					</span>
 				</div>
 			</Section>
@@ -266,10 +305,10 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 
 	return (
 		<Section
-			title={ __( 'Audit log', 'amcp-builder' ) }
+			title={ __( 'Audit log', 'ac-mcp-for-bricks-elementor' ) }
 			description={ __(
 				'Every change, refusal and error made through MCP. Successful reads are not logged.',
-				'amcp-builder'
+				'ac-mcp-for-bricks-elementor'
 			) }
 		>
 			{ error && (
@@ -277,26 +316,38 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 					{ error }
 				</Notice>
 			) }
-			<div className="amcpb-filters">
+			<div className="acmcp-filters">
 				<SelectControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
-					label={ __( 'Outcome', 'amcp-builder' ) }
+					label={ __( 'Outcome', 'ac-mcp-for-bricks-elementor' ) }
 					value={ filters.outcome }
 					options={ [
-						{ value: '', label: __( 'All', 'amcp-builder' ) },
-						{ value: 'ok', label: __( 'Saved', 'amcp-builder' ) },
+						{
+							value: '',
+							label: __( 'All', 'ac-mcp-for-bricks-elementor' ),
+						},
+						{
+							value: 'ok',
+							label: __( 'Saved', 'ac-mcp-for-bricks-elementor' ),
+						},
 						{
 							value: 'dry-run',
-							label: __( 'Preview', 'amcp-builder' ),
+							label: __(
+								'Preview',
+								'ac-mcp-for-bricks-elementor'
+							),
 						},
 						{
 							value: 'denied',
-							label: __( 'Refused', 'amcp-builder' ),
+							label: __(
+								'Refused',
+								'ac-mcp-for-bricks-elementor'
+							),
 						},
 						{
 							value: 'error',
-							label: __( 'Error', 'amcp-builder' ),
+							label: __( 'Error', 'ac-mcp-for-bricks-elementor' ),
 						},
 					] }
 					onChange={ ( value ) =>
@@ -308,8 +359,8 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 				<TextControl
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
-					label={ __( 'Tool', 'amcp-builder' ) }
-					placeholder="amcp-builder/bricks-add-elements"
+					label={ __( 'Tool', 'ac-mcp-for-bricks-elementor' ) }
+					placeholder="ac-mcp/bricks-add-elements"
 					value={ filters.ability }
 					onChange={ ( value ) =>
 						setFilter( { ability: value.trim() } )
@@ -319,7 +370,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 					type="number"
-					label={ __( 'Page ID', 'amcp-builder' ) }
+					label={ __( 'Page ID', 'ac-mcp-for-bricks-elementor' ) }
 					value={ filters.post_id ? String( filters.post_id ) : '' }
 					onChange={ ( value ) =>
 						setFilter( { post_id: Number( value ) || 0 } )
@@ -331,27 +382,45 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 				<Spinner />
 			) : (
 				<>
-					<div className="amcpb-table-wrap">
-						<table className="amcpb-table">
+					<div className="acmcp-table-wrap">
+						<table className="acmcp-table">
 							<thead>
 								<tr>
 									<th scope="col">
-										{ __( 'When', 'amcp-builder' ) }
+										{ __(
+											'When',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 									<th scope="col">
-										{ __( 'User', 'amcp-builder' ) }
+										{ __(
+											'User',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 									<th scope="col">
-										{ __( 'Tool', 'amcp-builder' ) }
+										{ __(
+											'Tool',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 									<th scope="col">
-										{ __( 'Outcome', 'amcp-builder' ) }
+										{ __(
+											'Outcome',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 									<th scope="col">
-										{ __( 'Page', 'amcp-builder' ) }
+										{ __(
+											'Page',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 									<th scope="col">
-										{ __( 'Details', 'amcp-builder' ) }
+										{ __(
+											'Details',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</th>
 								</tr>
 							</thead>
@@ -360,11 +429,11 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 									<tr>
 										<td
 											colSpan={ 6 }
-											className="amcpb-empty"
+											className="acmcp-empty"
 										>
 											{ __(
 												'Nothing logged yet.',
-												'amcp-builder'
+												'ac-mcp-for-bricks-elementor'
 											) }
 										</td>
 									</tr>
@@ -377,18 +446,18 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 										<td>{ entry.user || '—' }</td>
 										<td>
 											<code
-												className="amcpb-tool-name"
+												className="acmcp-tool-name"
 												title={ entry.ability }
 											>
 												{ entry.ability.replace(
-													/^amcp-builder\//,
+													/^ac-mcp\//,
 													''
 												) }
 											</code>
 										</td>
 										<td>
 											<span
-												className={ `amcpb-badge amcpb-badge--outcome-${ entry.outcome }` }
+												className={ `acmcp-badge acmcp-badge--outcome-${ entry.outcome }` }
 											>
 												{ OUTCOME_LABELS[
 													entry.outcome
@@ -398,7 +467,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 										<td>{ entry.postId || '—' }</td>
 										<td>
 											{ entry.message && (
-												<p className="amcpb-message">
+												<p className="acmcp-message">
 													{ entry.message }
 												</p>
 											) }
@@ -407,10 +476,10 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 													<summary>
 														{ __(
 															'Input',
-															'amcp-builder'
+															'ac-mcp-for-bricks-elementor'
 														) }
 													</summary>
-													<code className="amcpb-input">
+													<code className="acmcp-input">
 														{ entry.inputSummary }
 													</code>
 												</details>
@@ -428,7 +497,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 														/* translators: %d: snapshot ID. */
 														__(
 															'Restore snapshot #%d (state before this)',
-															'amcp-builder'
+															'ac-mcp-for-bricks-elementor'
 														),
 														entry.snapshotId
 													) }
@@ -440,19 +509,22 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 							</tbody>
 						</table>
 					</div>
-					<div className="amcpb-pagination">
+					<div className="acmcp-pagination">
 						<Button
 							variant="secondary"
 							size="compact"
 							disabled={ page <= 1 }
 							onClick={ () => setPage( page - 1 ) }
 						>
-							{ __( 'Previous', 'amcp-builder' ) }
+							{ __( 'Previous', 'ac-mcp-for-bricks-elementor' ) }
 						</Button>
 						<span>
 							{ sprintf(
 								/* translators: 1: current page, 2: total pages. */
-								__( 'Page %1$d of %2$d', 'amcp-builder' ),
+								__(
+									'Page %1$d of %2$d',
+									'ac-mcp-for-bricks-elementor'
+								),
 								page,
 								pages
 							) }
@@ -463,7 +535,7 @@ const AuditLog = ( { onRestored }: { onRestored: () => void } ) => {
 							disabled={ page >= pages }
 							onClick={ () => setPage( page + 1 ) }
 						>
-							{ __( 'Next', 'amcp-builder' ) }
+							{ __( 'Next', 'ac-mcp-for-bricks-elementor' ) }
 						</Button>
 					</div>
 				</>
@@ -496,7 +568,7 @@ const Snapshots = ( { version }: { version: number } ) => {
 					/* translators: 1: restored snapshot ID, 2: undo snapshot ID. */
 					__(
 						'Restored snapshot #%1$d. To undo, restore #%2$d.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					),
 					result.restored,
 					result.undoSnapshotId
@@ -510,10 +582,10 @@ const Snapshots = ( { version }: { version: number } ) => {
 
 	return (
 		<Section
-			title={ __( 'Recent snapshots', 'amcp-builder' ) }
+			title={ __( 'Recent snapshots', 'ac-mcp-for-bricks-elementor' ) }
 			description={ __(
 				'Automatic backups taken right before each change.',
-				'amcp-builder'
+				'ac-mcp-for-bricks-elementor'
 			) }
 		>
 			{ error && (
@@ -529,23 +601,35 @@ const Snapshots = ( { version }: { version: number } ) => {
 			{ ! items ? (
 				<Spinner />
 			) : (
-				<div className="amcpb-table-wrap">
-					<table className="amcpb-table">
+				<div className="acmcp-table-wrap">
+					<table className="acmcp-table">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">
-									{ __( 'When', 'amcp-builder' ) }
+									{ __(
+										'When',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'What', 'amcp-builder' ) }
+									{ __(
+										'What',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Taken before', 'amcp-builder' ) }
+									{ __(
+										'Taken before',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
 									<span className="screen-reader-text">
-										{ __( 'Actions', 'amcp-builder' ) }
+										{ __(
+											'Actions',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</span>
 								</th>
 							</tr>
@@ -553,10 +637,10 @@ const Snapshots = ( { version }: { version: number } ) => {
 						<tbody>
 							{ items.length === 0 && (
 								<tr>
-									<td colSpan={ 5 } className="amcpb-empty">
+									<td colSpan={ 5 } className="acmcp-empty">
 										{ __(
 											'No snapshots yet.',
-											'amcp-builder'
+											'ac-mcp-for-bricks-elementor'
 										) }
 									</td>
 								</tr>
@@ -571,7 +655,7 @@ const Snapshots = ( { version }: { version: number } ) => {
 													/* translators: %d: page ID. */
 													__(
 														'Page %d',
-														'amcp-builder'
+														'ac-mcp-for-bricks-elementor'
 													),
 													item.targetId
 												)
@@ -583,7 +667,10 @@ const Snapshots = ( { version }: { version: number } ) => {
 											variant="link"
 											onClick={ () => restore( item.id ) }
 										>
-											{ __( 'Restore', 'amcp-builder' ) }
+											{ __(
+												'Restore',
+												'ac-mcp-for-bricks-elementor'
+											) }
 										</Button>
 									</td>
 								</tr>

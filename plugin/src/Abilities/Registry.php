@@ -1,15 +1,15 @@
 <?php
 /**
- * Registers AMCP Builder abilities with the WordPress Abilities API.
+ * Registers AC MCP for Bricks and Elementor abilities with the WordPress Abilities API.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities;
+namespace AcMcp\Abilities;
 
-use AmcpBuilder\Environment;
-use AmcpBuilder\Safety\Snapshots;
-use AmcpBuilder\Settings;
+use AcMcp\Environment;
+use AcMcp\Safety\Snapshots;
+use AcMcp\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Registry {
 
-	public const CATEGORY = 'amcp-builder';
+	public const CATEGORY = 'ac-mcp';
 
 	/** @var list<Ability>|null */
 	private ?array $abilities = null;
@@ -38,8 +38,8 @@ final class Registry {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'AMCP Builder', 'amcp-builder' ),
-				'description' => __( 'Build and edit Bricks and Elementor pages.', 'amcp-builder' ),
+				'label'       => __( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ),
+				'description' => __( 'Build and edit Bricks and Elementor pages.', 'ac-mcp-for-bricks-elementor' ),
 			)
 		);
 	}

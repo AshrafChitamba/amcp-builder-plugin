@@ -2,13 +2,13 @@
 /**
  * The bricks-get-page tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Support\Posts;
+use AcMcp\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class GetPage extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: get page', 'amcp-builder' );
+		return __( 'Bricks: get page', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -68,7 +68,7 @@ final class GetPage extends BricksAbility {
 
 		$root = empty( $input['rootId'] ) ? null : (string) $input['rootId'];
 		if ( null !== $root && ! $tree->has( $root ) ) {
-			return ( new \AmcpBuilder\Support\TreeError( 'element_not_found', sprintf( 'Element "%s" does not exist on this page.', $root ), 'Omit rootId to read the whole page.' ) )->to_wp_error();
+			return ( new \AcMcp\Support\TreeError( 'element_not_found', sprintf( 'Element "%s" does not exist on this page.', $root ), 'Omit rootId to read the whole page.' ) )->to_wp_error();
 		}
 
 		$outline = $tree->outline( $root, (int) $input['depth'] );

@@ -2,13 +2,13 @@
 /**
  * The upload-media tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Support\Errors;
+use AcMcp\Abilities\Ability;
+use AcMcp\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,7 +26,7 @@ final class UploadMedia extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Upload media from URL', 'amcp-builder' );
+		return __( 'Upload media from URL', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -69,7 +69,7 @@ final class UploadMedia extends Ability {
 	protected function run( array $input ) {
 		$url = esc_url_raw( (string) $input['url'], array( 'https' ) );
 		if ( '' === $url || ! wp_http_validate_url( $url ) ) {
-			return Errors::make( 'invalid_url', __( 'The image URL is not a valid public https URL.', 'amcp-builder' ), __( 'Use a direct https link to the image file.', 'amcp-builder' ) );
+			return Errors::make( 'invalid_url', __( 'The image URL is not a valid public https URL.', 'ac-mcp-for-bricks-elementor' ), __( 'Use a direct https link to the image file.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		if ( $this->is_dry_run( $input ) ) {
@@ -86,14 +86,14 @@ final class UploadMedia extends Ability {
 		// download_url() uses wp_safe_remote_get(), which refuses private and local addresses.
 		$tmp = download_url( $url, 30 );
 		if ( is_wp_error( $tmp ) ) {
-			return Errors::make( 'download_failed', $tmp->get_error_message(), __( 'Check that the URL is public and points directly to an image.', 'amcp-builder' ), 502 );
+			return Errors::make( 'download_failed', $tmp->get_error_message(), __( 'Check that the URL is public and points directly to an image.', 'ac-mcp-for-bricks-elementor' ), 502 );
 		}
 
 		$size = (int) filesize( $tmp );
 		$type = wp_get_image_mime( $tmp );
 		if ( $size > self::MAX_BYTES || ! in_array( $type, self::ALLOWED_TYPES, true ) ) {
 			wp_delete_file( $tmp );
-			return Errors::make( 'unsupported_file', __( 'The file is not a supported image or is larger than 10 MB.', 'amcp-builder' ), __( 'Use a JPEG, PNG, GIF, WebP or AVIF image under 10 MB.', 'amcp-builder' ) );
+			return Errors::make( 'unsupported_file', __( 'The file is not a supported image or is larger than 10 MB.', 'ac-mcp-for-bricks-elementor' ), __( 'Use a JPEG, PNG, GIF, WebP or AVIF image under 10 MB.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		$extension = wp_get_default_extension_for_mime_type( $type );

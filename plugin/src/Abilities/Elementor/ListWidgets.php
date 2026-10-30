@@ -2,10 +2,10 @@
 /**
  * The elementor-list-widgets tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -19,7 +19,7 @@ final class ListWidgets extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: list widgets', 'amcp-builder' );
+		return __( 'Elementor: list widgets', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

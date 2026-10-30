@@ -1,4 +1,4 @@
-# AMCP Builder design guide
+# AC MCP for Bricks and Elementor design guide
 
 Read this before you build or redesign anything. It applies to Bricks and Elementor alike. The site owner's own rules come at the end of this guide. **Where they conflict with anything here, they win.**
 

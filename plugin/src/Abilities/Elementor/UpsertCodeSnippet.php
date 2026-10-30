@@ -2,14 +2,14 @@
 /**
  * The elementor-upsert-code-snippet tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Templates;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Elementor\Templates;
+use AcMcp\Support\Errors;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -29,7 +29,7 @@ final class UpsertCodeSnippet extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: add or update custom code snippet', 'amcp-builder' );
+		return __( 'Elementor: add or update custom code snippet', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -94,7 +94,7 @@ final class UpsertCodeSnippet extends ElementorAbility {
 	protected function run( array $input ) {
 		$snippet_id = (int) ( $input['snippetId'] ?? 0 );
 		if ( $snippet_id && 'elementor_snippet' !== get_post_type( $snippet_id ) ) {
-			return Errors::make( 'snippet_not_found', __( 'That ID is not an Elementor custom code snippet.', 'amcp-builder' ), '', 404 );
+			return Errors::make( 'snippet_not_found', __( 'That ID is not an Elementor custom code snippet.', 'ac-mcp-for-bricks-elementor' ), '', 404 );
 		}
 		try {
 			$conditions = isset( $input['conditions'] ) && Templates::has_theme_builder() ? Templates::parse_conditions( $input['conditions'] ) : null;
@@ -128,7 +128,7 @@ final class UpsertCodeSnippet extends ElementorAbility {
 				array(
 					'post_type'   => 'elementor_snippet',
 					'post_status' => 'draft',
-					'post_title'  => sanitize_text_field( $input['title'] ?? __( 'AMCP Builder snippet', 'amcp-builder' ) ),
+					'post_title'  => sanitize_text_field( $input['title'] ?? __( 'AC MCP for Bricks and Elementor snippet', 'ac-mcp-for-bricks-elementor' ) ),
 				),
 				true
 			);

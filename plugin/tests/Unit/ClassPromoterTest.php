@@ -1,12 +1,12 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
-use AmcpBuilder\Bricks\ClassPromoter;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Bricks\ClassPromoter;
+use AcMcp\Tests\TestCase;
 
 final class ClassPromoterTest extends TestCase {
 

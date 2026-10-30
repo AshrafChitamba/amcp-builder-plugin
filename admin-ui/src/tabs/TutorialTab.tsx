@@ -7,31 +7,31 @@ import { videoEmbed } from '../embed';
 
 const STEPS = [
 	{
-		title: __( 'Connect your AI assistant', 'amcp-builder' ),
+		title: __( 'Connect your AI assistant', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'On the Connection screen, pick your AI assistant (Claude, ChatGPT, Cursor, Codex…) and follow its steps. Approve the connection when your site asks.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Tell it your design rules', 'amcp-builder' ),
+		title: __( 'Tell it your design rules', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'Add your brand rules on the Design rules screen: colors, fonts, tone of voice, things to avoid. The AI reads them before every build.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Ask for a page or a change', 'amcp-builder' ),
+		title: __( 'Ask for a page or a change', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'For example: "Build a services page for our dental clinic in Bricks" or "Make the hero button on the home page larger". Start on a draft page.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 	{
-		title: __( 'Review and undo if needed', 'amcp-builder' ),
+		title: __( 'Review and undo if needed', 'ac-mcp-for-bricks-elementor' ),
 		text: __(
 			'The AI shares a preview link and a short note for every change. Every change is backed up first, so you can restore it on the Safety & logs screen.',
-			'amcp-builder'
+			'ac-mcp-for-bricks-elementor'
 		),
 	},
 ];
@@ -41,17 +41,17 @@ const Video = () => {
 
 	if ( ! embed ) {
 		return (
-			<div className="amcpb-video amcpb-video--empty">
-				<p className="amcpb-video__title">
+			<div className="acmcp-video acmcp-video--empty">
+				<p className="acmcp-video__title">
 					{ __(
 						'The video tutorial is coming soon',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 				</p>
 				<p>
 					{ __(
 						'Until then, the four steps below cover everything you need to get started.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 				</p>
 			</div>
@@ -59,11 +59,11 @@ const Video = () => {
 	}
 
 	return (
-		<div className="amcpb-video">
+		<div className="acmcp-video">
 			{ embed.kind === 'iframe' ? (
 				<iframe
 					src={ embed.src }
-					title={ __( 'AMCP Builder tutorial', 'amcp-builder' ) }
+					title={ __( 'AC MCP for Bricks and Elementor tutorial', 'ac-mcp-for-bricks-elementor' ) }
 					loading="lazy"
 					allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
 					allowFullScreen
@@ -79,15 +79,15 @@ const Video = () => {
 export const TutorialTab = () => (
 	<>
 		<Section
-			title={ __( 'Watch: build your first page', 'amcp-builder' ) }
+			title={ __( 'Watch: build your first page', 'ac-mcp-for-bricks-elementor' ) }
 			description={ __(
 				'A short walkthrough of connecting an AI assistant and building a page with it.',
-				'amcp-builder'
+				'ac-mcp-for-bricks-elementor'
 			) }
 			actions={
 				config.tutorialUrl ? (
 					<ExternalLink href={ config.tutorialUrl }>
-						{ __( 'Open in a new tab', 'amcp-builder' ) }
+						{ __( 'Open in a new tab', 'ac-mcp-for-bricks-elementor' ) }
 					</ExternalLink>
 				) : undefined
 			}
@@ -95,21 +95,21 @@ export const TutorialTab = () => (
 			<Video />
 		</Section>
 
-		<Section title={ __( 'Getting started', 'amcp-builder' ) }>
-			<ol className="amcpb-quickstart">
+		<Section title={ __( 'Getting started', 'ac-mcp-for-bricks-elementor' ) }>
+			<ol className="acmcp-quickstart">
 				{ STEPS.map( ( step, index ) => (
-					<li key={ step.title } className="amcpb-quickstart__item">
+					<li key={ step.title } className="acmcp-quickstart__item">
 						<span
-							className="amcpb-quickstart__index"
+							className="acmcp-quickstart__index"
 							aria-hidden="true"
 						>
 							{ index + 1 }
 						</span>
 						<div>
-							<h3 className="amcpb-quickstart__title">
+							<h3 className="acmcp-quickstart__title">
 								{ step.title }
 							</h3>
-							<p className="amcpb-quickstart__text">
+							<p className="acmcp-quickstart__text">
 								{ step.text }
 							</p>
 						</div>

@@ -25,20 +25,20 @@ export const Section = ( {
 	tone = 'default',
 	children,
 }: Props ) => (
-	<section className={ `amcpb-section amcpb-section--${ tone }` }>
-		<header className="amcpb-section__header">
-			<div className="amcpb-section__titles">
-				<h2 className="amcpb-section__title">{ title }</h2>
+	<section className={ `acmcp-section acmcp-section--${ tone }` }>
+		<header className="acmcp-section__header">
+			<div className="acmcp-section__titles">
+				<h2 className="acmcp-section__title">{ title }</h2>
 				{ description && (
-					<p className="amcpb-section__description">
+					<p className="acmcp-section__description">
 						{ description }
 					</p>
 				) }
 			</div>
 			{ actions && (
-				<div className="amcpb-section__actions">{ actions }</div>
+				<div className="acmcp-section__actions">{ actions }</div>
 			) }
 		</header>
-		<div className="amcpb-section__body">{ children }</div>
+		<div className="acmcp-section__body">{ children }</div>
 	</section>
 );

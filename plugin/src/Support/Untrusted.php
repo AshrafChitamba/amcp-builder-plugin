@@ -2,10 +2,10 @@
 /**
  * Helpers for returning site content to the AI.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -2,10 +2,10 @@
 /**
  * Turns plain CSS classes into Bricks global classes.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Bricks;
+namespace AcMcp\Bricks;
 
 defined( 'ABSPATH' ) || exit;
 

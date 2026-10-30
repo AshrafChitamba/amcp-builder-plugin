@@ -2,12 +2,12 @@
 /**
  * Builder guidance shared with AI clients.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Guides;
+namespace AcMcp\Guides;
 
-use AmcpBuilder\Settings;
+use AcMcp\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -56,7 +56,7 @@ final class Guides {
 	}
 
 	private function file( string $topic ): string {
-		$path = AMCP_BUILDER_DIR . 'guides/' . $topic . '.md';
+		$path = AC_MCP_DIR . 'guides/' . $topic . '.md';
 		$text = is_readable( $path ) ? file_get_contents( $path ) : false; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local plugin file.
 		return false === $text ? '' : $text;
 	}

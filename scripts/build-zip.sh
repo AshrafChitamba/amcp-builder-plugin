@@ -4,18 +4,18 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-VERSION="$(sed -n "s/^ \* Version: *//p" "$ROOT/plugin/amcp-builder.php" | tr -d '[:space:]')"
+VERSION="$(sed -n "s/^ \* Version: *//p" "$ROOT/plugin/ac-mcp-for-bricks-elementor.php" | tr -d '[:space:]')"
 STAGE="$(mktemp -d)"
-TARGET="$STAGE/amcp-builder"
+TARGET="$STAGE/ac-mcp-for-bricks-elementor"
 trap 'rm -rf "$STAGE"' EXIT
 
-echo "Building AMCP Builder $VERSION"
+echo "Building AC MCP for Bricks and Elementor $VERSION"
 
 (cd "$ROOT/admin-ui" && npm ci --no-audit --no-fund && npm run build)
 
 mkdir -p "$TARGET"
 cp -R "$ROOT/plugin/src" "$ROOT/plugin/build" "$ROOT/plugin/languages" "$ROOT/plugin/guides" "$TARGET/"
-cp "$ROOT/plugin/amcp-builder.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/readme.txt" \
+cp "$ROOT/plugin/ac-mcp-for-bricks-elementor.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/readme.txt" \
 	"$ROOT/plugin/LICENSE" "$ROOT/plugin/composer.json" "$TARGET/"
 
 (cd "$TARGET" && composer install --no-dev --optimize-autoloader --no-interaction --quiet && rm composer.lock)
@@ -23,7 +23,7 @@ cp "$ROOT/plugin/amcp-builder.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/re
 find "$TARGET" -name '.*' -not -name '.' -prune -exec rm -rf {} +
 
 mkdir -p "$ROOT/dist"
-rm -f "$ROOT/dist/amcp-builder-$VERSION.zip"
-(cd "$STAGE" && zip -rq "$ROOT/dist/amcp-builder-$VERSION.zip" amcp-builder)
+rm -f "$ROOT/dist/ac-mcp-for-bricks-elementor-$VERSION.zip"
+(cd "$STAGE" && zip -rq "$ROOT/dist/ac-mcp-for-bricks-elementor-$VERSION.zip" ac-mcp-for-bricks-elementor)
 
-echo "Created dist/amcp-builder-$VERSION.zip"
+echo "Created dist/ac-mcp-for-bricks-elementor-$VERSION.zip"

@@ -2,16 +2,16 @@
 /**
  * Works out what an ability call will change.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Safety;
+namespace AcMcp\Safety;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Best-effort resolution of the post or option an ability writes to, used
- * to snapshot and lock-check abilities AMCP Builder does not own.
+ * to snapshot and lock-check abilities AC MCP for Bricks and Elementor does not own.
  */
 final class Targets {
 

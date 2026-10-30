@@ -2,13 +2,13 @@
 /**
  * The bricks-remove-element tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Bricks\Validator;
+use AcMcp\Bricks\Tree;
+use AcMcp\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class RemoveElement extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: remove element', 'amcp-builder' );
+		return __( 'Bricks: remove element', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

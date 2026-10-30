@@ -2,10 +2,10 @@
 /**
  * Error raised by element tree operations.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 use RuntimeException;
 use WP_Error;

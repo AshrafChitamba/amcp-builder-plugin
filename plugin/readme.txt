@@ -1,4 +1,4 @@
-=== AMCP Builder ===
+=== AC MCP for Bricks and Elementor ===
 Contributors: ashrafchitambaa
 Tags: mcp, ai, bricks, elementor, page builder
 Requires at least: 7.1
@@ -13,7 +13,7 @@ Lets AI assistants such as Claude, ChatGPT and Codex build and edit Bricks and E
 
 == Description ==
 
-AMCP Builder connects AI assistants to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code.
+AC MCP for Bricks and Elementor connects AI assistants to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code unless you turn on the optional custom-code switch.
 
 * One MCP endpoint for Bricks and Elementor.
 * Builds Bricks pages and templates from native elements, with display conditions, global classes, colors, variables, theme styles and page settings.
@@ -25,7 +25,7 @@ AMCP Builder connects AI assistants to your site through the Model Context Proto
 * Works with claude.ai, ChatGPT, Claude Code, Codex, Cursor and more: web apps sign in with OAuth (you approve each app, read-only if you like), coding tools with OAuth or access tokens.
 * Tools only appear for builders that are active on the site.
 
-AMCP Builder sends no telemetry. It only makes outbound requests to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
+AC MCP for Bricks and Elementor sends no telemetry. It only makes outbound requests to read an app's sign-in metadata during OAuth and to download images you ask it to upload.
 
 **Use a staging site first and keep backups.** AI assistants can change your pages.
 
@@ -34,15 +34,15 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 == Installation ==
 
 1. Install and activate the MCP Adapter plugin.
-2. Upload and activate AMCP Builder.
-3. Open AMCP Builder in the admin menu, go to Connection and follow the steps for your AI assistant. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
+2. Upload and activate AC MCP for Bricks and Elementor.
+3. Open AC MCP for Bricks and Elementor in the admin menu, go to Connection and follow the steps for your AI assistant. Web apps such as claude.ai and ChatGPT need the site on public HTTPS.
 4. Add your brand rules on the Design rules screen.
 
 == Changelog ==
 
 = 1.0.0 =
-* MCP Builder is now AMCP Builder. The connection URL changes to /wp-json/amcp-builder/mcp. Settings, snapshots, the audit log and connected apps are copied over automatically from MCP Builder.
-* New top-level AMCP Builder admin menu with a redesigned interface, a Design rules screen and a Tutorial screen.
+* MCP Builder is now AC MCP for Bricks and Elementor. The connection URL changes to /wp-json/ac-mcp/mcp. Settings, snapshots, the audit log and connected apps are copied over automatically from MCP Builder.
+* New top-level AC MCP for Bricks and Elementor admin menu with a redesigned interface, a Design rules screen and a Tutorial screen.
 * Rewritten built-in design guide: no labels above headings, heroes that reflect the business, one consistent design system across the site, and no new colors or fonts without permission.
 * The AI re-reads your design rules as soon as you change them.
 * Every change now returns front-end preview links, and the AI reports each change in plain words.
@@ -70,4 +70,4 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 == Upgrade Notice ==
 
 = 1.0.0 =
-MCP Builder is now AMCP Builder. After updating, deactivate the old MCP Builder plugin and change the server URL in each AI assistant to /wp-json/amcp-builder/mcp. Your settings and history are copied over automatically.
+MCP Builder is now AC MCP for Bricks and Elementor. After updating, deactivate the old MCP Builder plugin and change the server URL in each AI assistant to /wp-json/ac-mcp/mcp. Your settings and history are copied over automatically.

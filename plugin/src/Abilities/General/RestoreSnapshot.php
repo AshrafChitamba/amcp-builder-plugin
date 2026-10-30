@@ -2,15 +2,15 @@
 /**
  * The restore-snapshot tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Safety\Governance;
-use AmcpBuilder\Safety\Snapshots;
-use AmcpBuilder\Support\Errors;
+use AcMcp\Abilities\Ability;
+use AcMcp\Safety\Governance;
+use AcMcp\Safety\Snapshots;
+use AcMcp\Support\Errors;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class RestoreSnapshot extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Restore snapshot', 'amcp-builder' );
+		return __( 'Restore snapshot', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -67,7 +67,7 @@ final class RestoreSnapshot extends Ability {
 	protected function run( array $input ) {
 		$snapshot = $this->snapshots->get( (int) $input['snapshotId'] );
 		if ( ! $snapshot ) {
-			return Errors::make( 'snapshot_not_found', __( 'That snapshot does not exist or has expired.', 'amcp-builder' ), __( 'Call list-snapshots to see available snapshots.', 'amcp-builder' ), 404 );
+			return Errors::make( 'snapshot_not_found', __( 'That snapshot does not exist or has expired.', 'ac-mcp-for-bricks-elementor' ), __( 'Call list-snapshots to see available snapshots.', 'ac-mcp-for-bricks-elementor' ), 404 );
 		}
 		unset( $snapshot['payload'] );
 
@@ -76,8 +76,8 @@ final class RestoreSnapshot extends Ability {
 			return Errors::make(
 				'post_locked',
 				/* translators: %s: user name. */
-				sprintf( __( '%s has this page open in an editor.', 'amcp-builder' ), $locked_by ),
-				__( 'Ask the user to close the editor, then try again.', 'amcp-builder' ),
+				sprintf( __( '%s has this page open in an editor.', 'ac-mcp-for-bricks-elementor' ), $locked_by ),
+				__( 'Ask the user to close the editor, then try again.', 'ac-mcp-for-bricks-elementor' ),
 				409
 			);
 		}

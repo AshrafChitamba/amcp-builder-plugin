@@ -2,10 +2,10 @@
 /**
  * Bricks colors, variables and theme styles.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Bricks;
+namespace AcMcp\Bricks;
 
 defined( 'ABSPATH' ) || exit;
 

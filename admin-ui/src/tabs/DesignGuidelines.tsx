@@ -33,39 +33,39 @@ export const DesignGuidelines = ( {
 
 	return (
 		<Section
-			title={ __( 'Your design rules', 'amcp-builder' ) }
+			title={ __( 'Your design rules', 'ac-mcp-for-bricks-elementor' ) }
 			description={ __(
 				'Brand rules every AI assistant must follow on this site. They override the built-in guide, and assistants pick up changes the moment you save.',
-				'amcp-builder'
+				'ac-mcp-for-bricks-elementor'
 			) }
 		>
 			<ToggleControl
 				__nextHasNoMarginBottom
 				label={ __(
-					'Include the built-in AMCP design guide',
-					'amcp-builder'
+					'Include the built-in design guide',
+					'ac-mcp-for-bricks-elementor'
 				) }
 				help={ __(
 					'Layout, hero, typography, consistency and accessibility rules that keep AI-built pages from looking generated.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 				checked={ settings.design_guide }
 				disabled={ saving }
 				onChange={ ( value ) => save( { design_guide: value } ) }
 			/>
-			<div className="amcpb-spacer" />
+			<div className="acmcp-spacer" />
 			<TextareaControl
 				__nextHasNoMarginBottom
-				label={ __( 'Rules for this site', 'amcp-builder' ) }
+				label={ __( 'Rules for this site', 'ac-mcp-for-bricks-elementor' ) }
 				placeholder={ __(
 					'For example: Use only our navy and orange. Headings in Merriweather. Buttons are 6px rounded. Write in a warm, plain tone. Never use stock photos of handshakes.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 				help={ sprintf(
 					/* translators: 1: characters used, 2: maximum. */
 					__(
 						'Brand colors and fonts, tone of voice, components to reuse, things to avoid. You can paste your own design skill here. %1$d / %2$d characters.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					),
 					draft.length,
 					MAX
@@ -74,24 +74,24 @@ export const DesignGuidelines = ( {
 				value={ draft }
 				onChange={ ( value ) => setDraft( value.slice( 0, MAX ) ) }
 			/>
-			<div className="amcpb-actions">
+			<div className="acmcp-actions">
 				<Button
 					variant="primary"
 					onClick={ submit }
 					isBusy={ saving }
 					disabled={ saving || draft === settings.design_guidelines }
 				>
-					{ __( 'Save rules', 'amcp-builder' ) }
+					{ __( 'Save rules', 'ac-mcp-for-bricks-elementor' ) }
 				</Button>
 				<span aria-live="polite">
-					{ saved && __( 'Saved.', 'amcp-builder' ) }
+					{ saved && __( 'Saved.', 'ac-mcp-for-bricks-elementor' ) }
 				</span>
 			</div>
 			{ draft.includes( '<script' ) && (
 				<Notice status="warning" isDismissible={ false }>
 					{ __(
 						'Guidelines are plain text; HTML tags are removed when saving.',
-						'amcp-builder'
+						'ac-mcp-for-bricks-elementor'
 					) }
 				</Notice>
 			) }

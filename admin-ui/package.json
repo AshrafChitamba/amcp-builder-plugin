@@ -1,8 +1,8 @@
 {
-	"name": "amcp-builder-admin-ui",
+	"name": "ac-mcp-admin-ui",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Settings screen for the AMCP Builder WordPress plugin.",
+	"description": "Settings screen for the AC MCP for Bricks and Elementor WordPress plugin.",
 	"author": "Ashraf Chitambaa (https://ashrafchitambaa.com)",
 	"homepage": "https://ashrafchitambaa.com",
 	"license": "GPL-2.0-or-later",

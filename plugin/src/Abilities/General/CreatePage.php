@@ -2,15 +2,15 @@
 /**
  * The create-page tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\General;
+namespace AcMcp\Abilities\General;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\PageBuilder;
-use AmcpBuilder\Support\Posts;
+use AcMcp\Abilities\Ability;
+use AcMcp\Support\Errors;
+use AcMcp\Support\PageBuilder;
+use AcMcp\Support\Posts;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +25,7 @@ final class CreatePage extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Create page', 'amcp-builder' );
+		return __( 'Create page', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -85,7 +85,7 @@ final class CreatePage extends Ability {
 		}
 
 		if ( 'publish' === $input['status'] && ! current_user_can( $type->cap->publish_posts ) ) {
-			return Errors::make( 'cannot_publish', __( 'You are not allowed to publish this post type.', 'amcp-builder' ), __( 'Create it as a draft instead.', 'amcp-builder' ), 403 );
+			return Errors::make( 'cannot_publish', __( 'You are not allowed to publish this post type.', 'ac-mcp-for-bricks-elementor' ), __( 'Create it as a draft instead.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
 		$postarr = array(
@@ -124,14 +124,14 @@ final class CreatePage extends Ability {
 	private function check_builder( string $builder, string $post_type ) {
 		if ( PageBuilder::BRICKS === $builder ) {
 			if ( null === $this->environment->bricks_version() ) {
-				return Errors::make( 'builder_inactive', __( 'Bricks is not the active theme on this site.', 'amcp-builder' ), __( 'Call site-info to see which builders are active.', 'amcp-builder' ) );
+				return Errors::make( 'builder_inactive', __( 'Bricks is not the active theme on this site.', 'ac-mcp-for-bricks-elementor' ), __( 'Call site-info to see which builders are active.', 'ac-mcp-for-bricks-elementor' ) );
 			}
 			// VERIFY: Bricks stores enabled post types in bricks_global_settings['postTypes'] (Bricks 2.4).
 			$settings = get_option( 'bricks_global_settings', array() );
 			$enabled  = is_array( $settings ) && isset( $settings['postTypes'] ) ? (array) $settings['postTypes'] : array( 'page' );
 		} else {
 			if ( null === $this->environment->elementor_version() ) {
-				return Errors::make( 'builder_inactive', __( 'Elementor is not active on this site.', 'amcp-builder' ), __( 'Call site-info to see which builders are active.', 'amcp-builder' ) );
+				return Errors::make( 'builder_inactive', __( 'Elementor is not active on this site.', 'ac-mcp-for-bricks-elementor' ), __( 'Call site-info to see which builders are active.', 'ac-mcp-for-bricks-elementor' ) );
 			}
 			// VERIFY: Elementor stores enabled post types in the elementor_cpt_support option (default page, post).
 			$enabled = (array) get_option( 'elementor_cpt_support', array( 'page', 'post' ) );
@@ -141,8 +141,8 @@ final class CreatePage extends Ability {
 			return Errors::make(
 				'post_type_not_enabled',
 				/* translators: 1: post type, 2: builder name. */
-				sprintf( __( 'Post type "%1$s" is not enabled for %2$s.', 'amcp-builder' ), $post_type, ucfirst( $builder ) ),
-				__( 'Ask a site admin to enable it in the builder\'s settings, or use postType "page".', 'amcp-builder' )
+				sprintf( __( 'Post type "%1$s" is not enabled for %2$s.', 'ac-mcp-for-bricks-elementor' ), $post_type, ucfirst( $builder ) ),
+				__( 'Ask a site admin to enable it in the builder\'s settings, or use postType "page".', 'ac-mcp-for-bricks-elementor' )
 			);
 		}
 		return true;
@@ -155,7 +155,7 @@ final class CreatePage extends Ability {
 		// VERIFY: Bricks treats a post as a Bricks page when _bricks_editor_mode is "bricks".
 		update_post_meta( $post_id, '_bricks_editor_mode', 'bricks' );
 		if ( 'bricks' !== get_post_meta( $post_id, '_bricks_editor_mode', true ) ) {
-			return Errors::make( 'bricks_access_denied', __( 'Bricks refused to mark the page as a Bricks page.', 'amcp-builder' ), __( 'Your user needs builder access in Bricks → Settings → Builder access.', 'amcp-builder' ), 403 );
+			return Errors::make( 'bricks_access_denied', __( 'Bricks refused to mark the page as a Bricks page.', 'ac-mcp-for-bricks-elementor' ), __( 'Your user needs builder access in Bricks → Settings → Builder access.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 		return true;
 	}
@@ -167,7 +167,7 @@ final class CreatePage extends Ability {
 		// VERIFY: Documents API in Elementor 4.3 (core/documents-manager.php, core/base/document.php).
 		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
 		if ( ! $document || false === $document->save( array( 'elements' => array() ) ) ) {
-			return Errors::make( 'elementor_save_failed', __( 'Elementor could not set up the page.', 'amcp-builder' ), __( 'Check that your user can edit this post type with Elementor.', 'amcp-builder' ), 500 );
+			return Errors::make( 'elementor_save_failed', __( 'Elementor could not set up the page.', 'ac-mcp-for-bricks-elementor' ), __( 'Check that your user can edit this post type with Elementor.', 'ac-mcp-for-bricks-elementor' ), 500 );
 		}
 		$document->set_is_built_with_elementor( true );
 		return true;

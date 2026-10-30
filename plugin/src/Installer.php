@@ -2,12 +2,12 @@
 /**
  * Activation and deactivation routines.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
-use AmcpBuilder\Safety\Schema;
+use AcMcp\Safety\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Installer {
 
-	public const CRON_HOOK = 'amcp_builder_prune';
+	public const CRON_HOOK = 'ac_mcp_prune';
 
 	public static function activate(): void {
 		Migration::maybe_run();

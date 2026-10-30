@@ -2,19 +2,19 @@
 /**
  * Admin notices for unmet requirements.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Admin;
+namespace AcMcp\Admin;
 
-use AmcpBuilder\Mcp\Server;
-use AmcpBuilder\Migration;
-use AmcpBuilder\Requirements;
+use AcMcp\Mcp\Server;
+use AcMcp\Migration;
+use AcMcp\Requirements;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Warns administrators when AMCP Builder cannot run.
+ * Warns administrators when AC MCP for Bricks and Elementor cannot run.
  */
 final class Notices {
 
@@ -33,8 +33,8 @@ final class Notices {
 			wp_admin_notice(
 				sprintf(
 					'<p><strong>%1$s</strong> %2$s</p><p><code>%3$s</code></p>',
-					esc_html__( 'MCP Builder is now AMCP Builder.', 'amcp-builder' ),
-					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI assistant to:', 'amcp-builder' ),
+					esc_html__( 'MCP Builder is now AC MCP for Bricks and Elementor.', 'ac-mcp-for-bricks-elementor' ),
+					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI assistant to:', 'ac-mcp-for-bricks-elementor' ),
 					esc_html( Server::url() )
 				),
 				array(
@@ -60,10 +60,10 @@ final class Notices {
 		wp_admin_notice(
 			sprintf(
 				'<p><strong>%s</strong></p><ul>%s</ul><p><a href="%s">%s</a></p>',
-				esc_html__( 'AMCP Builder is not running yet.', 'amcp-builder' ),
+				esc_html__( 'AC MCP for Bricks and Elementor is not running yet.', 'ac-mcp-for-bricks-elementor' ),
 				$items,
 				esc_url( AdminPage::url( 'status' ) ),
-				esc_html__( 'Open Status', 'amcp-builder' )
+				esc_html__( 'Open Status', 'ac-mcp-for-bricks-elementor' )
 			),
 			array(
 				'type'           => 'error',

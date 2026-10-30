@@ -2,15 +2,15 @@
 /**
  * The elementor-get-page tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Store;
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Elementor\Store;
+use AcMcp\Support\Posts;
+use AcMcp\Support\TreeError;
+use AcMcp\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class GetPage extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: get page', 'amcp-builder' );
+		return __( 'Elementor: get page', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

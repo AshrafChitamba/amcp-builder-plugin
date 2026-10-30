@@ -2,15 +2,15 @@
 /**
  * The bricks-set-template-conditions tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Ids;
-use AmcpBuilder\Bricks\Templates;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Bricks\Ids;
+use AcMcp\Bricks\Templates;
+use AcMcp\Support\Errors;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +24,7 @@ final class SetTemplateConditions extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: set template conditions', 'amcp-builder' );
+		return __( 'Bricks: set template conditions', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -60,7 +60,7 @@ final class SetTemplateConditions extends BricksAbility {
 	protected function run( array $input ) {
 		$post = get_post( (int) $input['templateId'] );
 		if ( ! $post || Templates::POST_TYPE !== $post->post_type ) {
-			return Errors::make( 'template_not_found', __( 'That ID is not a Bricks template.', 'amcp-builder' ), __( 'Call bricks-list-templates to find template IDs.', 'amcp-builder' ), 404 );
+			return Errors::make( 'template_not_found', __( 'That ID is not a Bricks template.', 'ac-mcp-for-bricks-elementor' ), __( 'Call bricks-list-templates to find template IDs.', 'ac-mcp-for-bricks-elementor' ), 404 );
 		}
 
 		try {

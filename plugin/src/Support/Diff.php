@@ -2,10 +2,10 @@
 /**
  * Summary of what a write changed.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 defined( 'ABSPATH' ) || exit;
 

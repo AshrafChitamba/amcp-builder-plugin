@@ -2,14 +2,14 @@
 /**
  * The elementor-add-elements tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Ids;
-use AmcpBuilder\Elementor\Tree;
-use AmcpBuilder\Elementor\Validator;
+use AcMcp\Elementor\Ids;
+use AcMcp\Elementor\Tree;
+use AcMcp\Elementor\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class AddElements extends ElementorWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: add elements', 'amcp-builder' );
+		return __( 'Elementor: add elements', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

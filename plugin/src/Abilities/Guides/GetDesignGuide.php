@@ -2,13 +2,13 @@
 /**
  * The get-design-guide tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Guides;
+namespace AcMcp\Abilities\Guides;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Guides\Guides;
+use AcMcp\Abilities\Ability;
+use AcMcp\Guides\Guides;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class GetDesignGuide extends Ability {
 	}
 
 	public function label(): string {
-		return __( 'Get design guide', 'amcp-builder' );
+		return __( 'Get design guide', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

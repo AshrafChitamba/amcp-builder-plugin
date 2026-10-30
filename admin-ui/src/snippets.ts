@@ -34,7 +34,7 @@ export interface Snippet {
 export const TOKEN_PLACEHOLDER = 'YOUR-ACCESS-TOKEN';
 export const PASSWORD_PLACEHOLDER = 'YOUR-APPLICATION-PASSWORD';
 
-const SERVER_NAME = 'amcp-builder';
+const SERVER_NAME = 'ac-mcp';
 
 /**
  * Value for an HTTP Basic Authorization header.
@@ -80,7 +80,7 @@ export const buildSnippets = ( input: SnippetInput ): Snippet[] => {
 			label: 'OpenAI Codex (CLI, IDE, desktop app)',
 			where: oauth
 				? 'Run in a terminal:'
-				: 'Add to ~/.codex/config.toml, then set the token in your shell (export AMCP_BUILDER_TOKEN=...):',
+				: 'Add to ~/.codex/config.toml, then set the token in your shell (export AC_MCP_TOKEN=...):',
 			after: oauth
 				? 'Your browser opens the WordPress approval page.'
 				: undefined,
@@ -91,7 +91,7 @@ export const buildSnippets = ( input: SnippetInput ): Snippet[] => {
 				: `[mcp_servers.${ SERVER_NAME.replace(
 						'-',
 						'_'
-					) }]\nurl = "${ mcpUrl }"\nbearer_token_env_var = "AMCP_BUILDER_TOKEN"\n\n# export AMCP_BUILDER_TOKEN="${ token }"`,
+					) }]\nurl = "${ mcpUrl }"\nbearer_token_env_var = "AC_MCP_TOKEN"\n\n# export AC_MCP_TOKEN="${ token }"`,
 		},
 		{
 			id: 'cursor',
@@ -130,15 +130,15 @@ export const buildSnippets = ( input: SnippetInput ): Snippet[] => {
 									url: mcpUrl,
 									headers: {
 										Authorization:
-											'Bearer ${input:amcp-builder-token}',
+											'Bearer ${input:ac-mcp-token}',
 									},
 								},
 							},
 							inputs: [
 								{
 									type: 'promptString',
-									id: 'amcp-builder-token',
-									description: 'AMCP Builder access token',
+									id: 'ac-mcp-token',
+									description: 'AC MCP for Bricks and Elementor access token',
 									password: true,
 								},
 							],

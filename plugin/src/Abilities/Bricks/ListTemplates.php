@@ -2,14 +2,14 @@
 /**
  * The bricks-list-templates tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Templates;
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Bricks\Templates;
+use AcMcp\Support\Posts;
+use AcMcp\Support\Untrusted;
 use WP_Query;
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ final class ListTemplates extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: list templates', 'amcp-builder' );
+		return __( 'Bricks: list templates', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

@@ -2,12 +2,12 @@
 /**
  * Token storage for OAuth and personal access tokens.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\OAuth;
+namespace AcMcp\OAuth;
 
-use AmcpBuilder\Safety\Schema;
+use AcMcp\Safety\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -48,10 +48,10 @@ class Tokens {
 	public function issue( string $kind, array $data, ?int $ttl ): string {
 		global $wpdb;
 		$prefix = array(
-			'code'    => 'amcpbc_',
-			'access'  => 'amcpba_',
-			'refresh' => 'amcpbr_',
-			'pat'     => 'amcpbp_',
+			'code'    => 'acmcpc_',
+			'access'  => 'acmcpa_',
+			'refresh' => 'acmcpr_',
+			'pat'     => 'acmcpp_',
 		)[ $kind ];
 		$token  = $prefix . bin2hex( random_bytes( 32 ) );
 

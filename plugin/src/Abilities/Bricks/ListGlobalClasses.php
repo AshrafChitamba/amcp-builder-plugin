@@ -2,13 +2,13 @@
 /**
  * The bricks-list-global-classes tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\GlobalClasses;
-use AmcpBuilder\Support\Untrusted;
+use AcMcp\Bricks\GlobalClasses;
+use AcMcp\Support\Untrusted;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class ListGlobalClasses extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: list global classes', 'amcp-builder' );
+		return __( 'Bricks: list global classes', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

@@ -2,10 +2,10 @@
 /**
  * Custom database tables.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Safety;
+namespace AcMcp\Safety;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -15,26 +15,26 @@ defined( 'ABSPATH' ) || exit;
 final class Schema {
 
 	public const VERSION        = '2';
-	public const VERSION_OPTION = 'amcp_builder_db_version';
+	public const VERSION_OPTION = 'ac_mcp_db_version';
 
 	public static function audit_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'amcpb_audit';
+		return $wpdb->prefix . 'acmcp_audit';
 	}
 
 	public static function snapshot_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'amcpb_snapshots';
+		return $wpdb->prefix . 'acmcp_snapshots';
 	}
 
 	public static function oauth_clients_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'amcpb_oauth_clients';
+		return $wpdb->prefix . 'acmcp_oauth_clients';
 	}
 
 	public static function tokens_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'amcpb_tokens';
+		return $wpdb->prefix . 'acmcp_tokens';
 	}
 
 	/**

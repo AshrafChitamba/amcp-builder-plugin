@@ -1,14 +1,14 @@
 <?php
 /**
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Tests\Unit;
+namespace AcMcp\Tests\Unit;
 
 use Brain\Monkey\Functions;
-use AmcpBuilder\Environment;
-use AmcpBuilder\Requirements;
-use AmcpBuilder\Tests\TestCase;
+use AcMcp\Environment;
+use AcMcp\Requirements;
+use AcMcp\Tests\TestCase;
 
 final class RequirementsTest extends TestCase {
 

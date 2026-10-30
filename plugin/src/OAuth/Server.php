@@ -2,13 +2,13 @@
 /**
  * OAuth 2.1 authorization server for remote MCP clients.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\OAuth;
+namespace AcMcp\OAuth;
 
-use AmcpBuilder\Mcp\Server as McpServer;
-use AmcpBuilder\Settings;
+use AcMcp\Mcp\Server as McpServer;
+use AcMcp\Settings;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
@@ -25,13 +25,13 @@ defined( 'ABSPATH' ) || exit;
  * (RFC 7591), Client ID Metadata Documents, authorization code with PKCE
  * (S256 only), refresh token rotation and token revocation (RFC 7009).
  *
- * Endpoints live under /wp-json/amcp-builder/v1/oauth so they work on any
+ * Endpoints live under /wp-json/ac-mcp/v1/oauth so they work on any
  * host. The /.well-known URLs at the site root are also answered when the
  * web server passes them to WordPress (most do).
  */
 class Server {
 
-	public const NAMESPACE = 'amcp-builder/v1';
+	public const NAMESPACE = 'ac-mcp/v1';
 
 	/**
 	 * Set when a request carried a bearer token that was not accepted.
@@ -111,7 +111,7 @@ class Server {
 			'authorization_servers'    => array( self::issuer() ),
 			'scopes_supported'         => Tokens::SCOPES,
 			'bearer_methods_supported' => array( 'header' ),
-			'resource_name'            => get_bloginfo( 'name' ) . ' (AMCP Builder)',
+			'resource_name'            => get_bloginfo( 'name' ) . ' (AC MCP for Bricks and Elementor)',
 			'resource_documentation'   => 'https://ashrafchitambaa.com',
 		);
 	}
@@ -244,7 +244,7 @@ class Server {
 	}
 
 	/**
-	 * Accepts "Authorization: Bearer" tokens, but only on AMCP Builder's own routes.
+	 * Accepts "Authorization: Bearer" tokens, but only on AC MCP for Bricks and Elementor's own routes.
 	 *
 	 * @param int|false $user_id User found so far.
 	 * @return int|false
@@ -291,7 +291,7 @@ class Server {
 	 */
 	public function skip_app_passwords_on_token_endpoint( bool $is_api ): bool {
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only compared.
-		return ( str_contains( $uri, 'amcp-builder/v1/oauth/token' ) || str_contains( $uri, 'amcp-builder/v1/oauth/revoke' ) ) ? false : $is_api;
+		return ( str_contains( $uri, 'ac-mcp/v1/oauth/token' ) || str_contains( $uri, 'ac-mcp/v1/oauth/revoke' ) ) ? false : $is_api;
 	}
 
 	public function register_client( WP_REST_Request $request ): WP_REST_Response {
@@ -314,13 +314,13 @@ class Server {
 
 		// Never redirect to an unverified URI: show the error instead.
 		if ( ! $client ) {
-			Consent::error_page( __( 'This app is not registered with this site. Try connecting again from the app.', 'amcp-builder' ) );
+			Consent::error_page( __( 'This app is not registered with this site. Try connecting again from the app.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 		if ( '' === $uri && 1 === count( $client['redirect_uris'] ) ) {
 			$uri = $client['redirect_uris'][0];
 		}
 		if ( ! Clients::redirect_matches( $uri, $client['redirect_uris'] ) ) {
-			Consent::error_page( __( 'The app sent an unexpected return address, so the request was stopped.', 'amcp-builder' ) );
+			Consent::error_page( __( 'The app sent an unexpected return address, so the request was stopped.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		$state = isset( $params['state'] ) ? (string) $params['state'] : null;
@@ -343,7 +343,7 @@ class Server {
 		}
 		wp_set_current_user( $user_id );
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			Consent::error_page( __( 'Your account is not allowed to connect AI assistants to this site.', 'amcp-builder' ) );
+			Consent::error_page( __( 'Your account is not allowed to connect AI assistants to this site.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		$requested_scope = Tokens::normalize_scope( (string) ( $params['scope'] ?? '' ) );
@@ -353,7 +353,7 @@ class Server {
 		}
 
 		if ( ! wp_verify_nonce( (string) ( $params['_mcpb_nonce'] ?? '' ), Consent::NONCE . $client['client_id'] ) ) {
-			Consent::error_page( __( 'The approval form expired. Go back to the app and connect again.', 'amcp-builder' ) );
+			Consent::error_page( __( 'The approval form expired. Go back to the app and connect again.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 		if ( 'approve' !== ( $params['decision'] ?? '' ) ) {
 			$this->redirect_error( $uri, 'access_denied', $state );
@@ -502,7 +502,7 @@ class Server {
 	}
 
 	/**
-	 * Whether the current request targets one of AMCP Builder's REST namespaces.
+	 * Whether the current request targets one of AC MCP for Bricks and Elementor's REST namespaces.
 	 */
 	private static function is_own_rest_request(): bool {
 		$uri    = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only compared.

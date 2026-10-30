@@ -2,16 +2,16 @@
 /**
  * The bricks-create-template tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Bricks\Ids;
-use AmcpBuilder\Bricks\Templates;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\Posts;
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Bricks\Ids;
+use AcMcp\Bricks\Templates;
+use AcMcp\Support\Errors;
+use AcMcp\Support\Posts;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -25,7 +25,7 @@ final class CreateTemplate extends BricksAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: create template', 'amcp-builder' );
+		return __( 'Bricks: create template', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {

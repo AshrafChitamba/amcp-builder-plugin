@@ -2,14 +2,14 @@
 /**
  * The elementor-create-template tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Elementor;
+namespace AcMcp\Abilities\Elementor;
 
-use AmcpBuilder\Elementor\Templates;
-use AmcpBuilder\Support\Errors;
-use AmcpBuilder\Support\Posts;
+use AcMcp\Elementor\Templates;
+use AcMcp\Support\Errors;
+use AcMcp\Support\Posts;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class CreateTemplate extends ElementorAbility {
 	}
 
 	public function label(): string {
-		return __( 'Elementor: create template', 'amcp-builder' );
+		return __( 'Elementor: create template', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
@@ -62,8 +62,8 @@ final class CreateTemplate extends ElementorAbility {
 	protected function run( array $input ) {
 		$types = Templates::types();
 		if ( ! in_array( $input['type'], $types, true ) ) {
-			$hint = __( 'Use one of: ', 'amcp-builder' ) . implode( ', ', $types ) . '. Header, footer and single types need Elementor Pro.';
-			return Errors::make( 'invalid_template_type', sprintf( /* translators: %s: type. */ __( 'Template type "%s" is not available on this site.', 'amcp-builder' ), (string) $input['type'] ), $hint );
+			$hint = __( 'Use one of: ', 'ac-mcp-for-bricks-elementor' ) . implode( ', ', $types ) . '. Header, footer and single types need Elementor Pro.';
+			return Errors::make( 'invalid_template_type', sprintf( /* translators: %s: type. */ __( 'Template type "%s" is not available on this site.', 'ac-mcp-for-bricks-elementor' ), (string) $input['type'] ), $hint );
 		}
 		if ( $this->is_dry_run( $input ) ) {
 			return array(
@@ -84,7 +84,7 @@ final class CreateTemplate extends ElementorAbility {
 			)
 		);
 		if ( is_wp_error( $document ) || ! $document ) {
-			return Errors::make( 'create_failed', is_wp_error( $document ) ? $document->get_error_message() : __( 'Elementor could not create the template.', 'amcp-builder' ), '', 500 );
+			return Errors::make( 'create_failed', is_wp_error( $document ) ? $document->get_error_message() : __( 'Elementor could not create the template.', 'ac-mcp-for-bricks-elementor' ), '', 500 );
 		}
 
 		$post = get_post( $document->get_main_id() );

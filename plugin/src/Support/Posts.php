@@ -2,10 +2,10 @@
 /**
  * Post helpers shared by tools.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Support;
+namespace AcMcp\Support;
 
 use WP_Error;
 use WP_Post;
@@ -28,8 +28,8 @@ final class Posts {
 			return Errors::make(
 				'invalid_post_type',
 				/* translators: %s: post type slug. */
-				sprintf( __( 'Post type "%s" does not exist or cannot be edited.', 'amcp-builder' ), $post_type ),
-				__( 'Use "page" or "post", or a custom post type slug registered on this site.', 'amcp-builder' )
+				sprintf( __( 'Post type "%s" does not exist or cannot be edited.', 'ac-mcp-for-bricks-elementor' ), $post_type ),
+				__( 'Use "page" or "post", or a custom post type slug registered on this site.', 'ac-mcp-for-bricks-elementor' )
 			);
 		}
 		return $type;

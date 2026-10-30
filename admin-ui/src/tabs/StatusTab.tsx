@@ -12,10 +12,10 @@ import { Section } from '../components/Section';
 import type { CheckStatus, Status, TestResult } from '../types';
 
 const STATUS_TEXT: Record< CheckStatus, string > = {
-	ok: __( 'OK', 'amcp-builder' ),
-	warning: __( 'Warning', 'amcp-builder' ),
-	error: __( 'Problem', 'amcp-builder' ),
-	inactive: __( 'Not active', 'amcp-builder' ),
+	ok: __( 'OK', 'ac-mcp-for-bricks-elementor' ),
+	warning: __( 'Warning', 'ac-mcp-for-bricks-elementor' ),
+	error: __( 'Problem', 'ac-mcp-for-bricks-elementor' ),
+	inactive: __( 'Not active', 'ac-mcp-for-bricks-elementor' ),
 };
 
 const NOTICE_STATUS = {
@@ -41,7 +41,7 @@ const TestButton = ( {
 	};
 
 	return (
-		<div className="amcpb-test">
+		<div className="acmcp-test">
 			<Button
 				variant="secondary"
 				onClick={ onClick }
@@ -88,18 +88,18 @@ export const StatusTab = () => {
 	return (
 		<>
 			<Section
-				title={ __( 'Connection tests', 'amcp-builder' ) }
+				title={ __( 'Connection tests', 'ac-mcp-for-bricks-elementor' ) }
 				description={ __(
 					'Run these after setup, and whenever an AI assistant cannot connect.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 			>
 				<TestButton
-					label={ __( 'Test MCP connection', 'amcp-builder' ) }
+					label={ __( 'Test MCP connection', 'ac-mcp-for-bricks-elementor' ) }
 					run={ testMcpConnection }
 				/>
 				<TestButton
-					label={ __( 'Test Authorization header', 'amcp-builder' ) }
+					label={ __( 'Test Authorization header', 'ac-mcp-for-bricks-elementor' ) }
 					run={ () =>
 						testAuthHeader().catch( ( e ) => ( {
 							status: 'error',
@@ -109,25 +109,25 @@ export const StatusTab = () => {
 				/>
 			</Section>
 
-			<Section title={ __( 'Environment', 'amcp-builder' ) }>
-				<div className="amcpb-table-wrap">
-					<table className="amcpb-table">
+			<Section title={ __( 'Environment', 'ac-mcp-for-bricks-elementor' ) }>
+				<div className="acmcp-table-wrap">
+					<table className="acmcp-table">
 						<thead>
 							<tr>
 								<th scope="col">
-									{ __( 'Check', 'amcp-builder' ) }
+									{ __( 'Check', 'ac-mcp-for-bricks-elementor' ) }
 								</th>
 								<th scope="col">
-									{ __( 'Status', 'amcp-builder' ) }
+									{ __( 'Status', 'ac-mcp-for-bricks-elementor' ) }
 								</th>
 								<th scope="col">
-									{ __( 'Current', 'amcp-builder' ) }
+									{ __( 'Current', 'ac-mcp-for-bricks-elementor' ) }
 								</th>
 								<th scope="col">
-									{ __( 'Required', 'amcp-builder' ) }
+									{ __( 'Required', 'ac-mcp-for-bricks-elementor' ) }
 								</th>
 								<th scope="col">
-									{ __( 'Notes', 'amcp-builder' ) }
+									{ __( 'Notes', 'ac-mcp-for-bricks-elementor' ) }
 								</th>
 							</tr>
 						</thead>
@@ -137,7 +137,7 @@ export const StatusTab = () => {
 									<td>{ check.label }</td>
 									<td>
 										<span
-											className={ `amcpb-badge amcpb-badge--${ check.status }` }
+											className={ `acmcp-badge acmcp-badge--${ check.status }` }
 										>
 											{ STATUS_TEXT[ check.status ] }
 										</span>
@@ -157,24 +157,24 @@ export const StatusTab = () => {
 			</Section>
 
 			<Section
-				title={ __( 'Tools', 'amcp-builder' ) }
+				title={ __( 'Tools', 'ac-mcp-for-bricks-elementor' ) }
 				description={ __(
 					'Tools for builders that are not active are hidden from AI assistants.',
-					'amcp-builder'
+					'ac-mcp-for-bricks-elementor'
 				) }
 			>
-				<ul className="amcpb-tool-list">
+				<ul className="acmcp-tool-list">
 					{ status.tools.map( ( tool ) => (
 						<li key={ tool.name }>
 							<code>{ tool.name }</code> { tool.label }{ ' ' }
-							<span className="amcpb-badge">
+							<span className="acmcp-badge">
 								{ tool.readonly
-									? __( 'Read', 'amcp-builder' )
-									: __( 'Write', 'amcp-builder' ) }
+									? __( 'Read', 'ac-mcp-for-bricks-elementor' )
+									: __( 'Write', 'ac-mcp-for-bricks-elementor' ) }
 							</span>
 							{ ! tool.available && (
-								<span className="amcpb-badge amcpb-badge--inactive">
-									{ __( 'Hidden', 'amcp-builder' ) }
+								<span className="acmcp-badge acmcp-badge--inactive">
+									{ __( 'Hidden', 'ac-mcp-for-bricks-elementor' ) }
 								</span>
 							) }
 						</li>

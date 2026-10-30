@@ -2,10 +2,10 @@
 /**
  * Per-user rate limiting.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Safety;
+namespace AcMcp\Safety;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ class RateLimiter {
 	 * @param string $kind "read" or "write".
 	 */
 	public function hit( int $user_id, string $kind, int $limit ): bool {
-		$key   = sprintf( 'amcpb_rl_%d_%s_%d', $user_id, $kind, (int) floor( time() / MINUTE_IN_SECONDS ) );
+		$key   = sprintf( 'acmcp_rl_%d_%s_%d', $user_id, $kind, (int) floor( time() / MINUTE_IN_SECONDS ) );
 		$count = (int) get_transient( $key );
 		if ( $count >= $limit ) {
 			return false;

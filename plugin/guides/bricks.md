@@ -2,7 +2,7 @@
 
 ## Structure
 
-- A Bricks page is a flat list of elements linked by parent/children. You send nested trees; AMCP Builder flattens them and creates the IDs.
+- A Bricks page is a flat list of elements linked by parent/children. You send nested trees; AC MCP for Bricks and Elementor flattens them and creates the IDs.
 - Standard layout: section > container > block/div > content elements. Sections give vertical spacing and full width; containers give the content width; blocks and divs group and lay out content.
 - Content elements: heading, text-basic (plain text), text (rich text), button, image, icon, icon-box, list, video, divider, nav-menu, form, accordion-nested, tabs-nested, slider-nested.
 - Always check names with bricks-list-elements and settings with bricks-get-element-schema before using a new element type. Unknown keys are rejected.
@@ -19,7 +19,7 @@
 - Icons: {"library":"fontawesomeSolid","icon":"fas fa-arrow-right"} (also fontawesomeBrands "fab fa-…", themify "ti-…", ionicons).
 - Links: {"type":"internal","postId":42} or {"type":"external","url":"https://…","newTab":true}.
 - Images: {"id":123,"url":"https://…/image.jpg","size":"large"} from list-media or upload-media, plus altText.
-- Custom CSS (_cssCustom on elements and global classes): write %root% for the element or class selector; AMCP Builder replaces it with "#brxe-ID" or ".class-name" when saving, as the Bricks builder does.
+- Custom CSS (_cssCustom on elements and global classes): write %root% for the element or class selector; AC MCP for Bricks and Elementor replaces it with "#brxe-ID" or ".class-name" when saving, as the Bricks builder does.
 
 ## Design system
 
@@ -27,7 +27,7 @@
 - Many Bricks sites run Automatic.css (ACSS): spacing, colors and type are variables such as var(--space-m), var(--primary), var(--text-l). Its button and link styles are applied to any class containing "btn--" or "link--", so never use those fragments in your own class names.
 - Theme button styles can override fonts and text transform on buttons; set them explicitly in a class if the design needs it.
 - Create new global classes with a unique prefix instead of editing classes the site already uses: an existing class may style many pages.
-- Use global classes, never plain classes. Bricks shows plain classes ("_cssClasses") only under Style → CSS, so the user cannot see them in the class selector next to the element ID. Create the class with bricks-upsert-global-class and attach it through "_cssGlobalClasses" (class IDs) or bricks-apply-global-class. If you do send "_cssClasses", AMCP Builder turns each name into a global class (reusing one with the same name) and lists new ones in globalClassesCreated.
+- Use global classes, never plain classes. Bricks shows plain classes ("_cssClasses") only under Style → CSS, so the user cannot see them in the class selector next to the element ID. Create the class with bricks-upsert-global-class and attach it through "_cssGlobalClasses" (class IDs) or bricks-apply-global-class. If you do send "_cssClasses", AC MCP for Bricks and Elementor turns each name into a global class (reusing one with the same name) and lists new ones in globalClassesCreated.
 
 ## Templates
 
@@ -43,5 +43,5 @@
 
 ## Custom code
 
-- Build with native elements. The Code element, SVG code and page scripts are custom code: they are refused unless an administrator enabled custom code in AMCP Builder.
-- Code that runs PHP or HTML only executes after an administrator signs it in Bricks (Settings → Custom code → Regenerate code signatures). AMCP Builder never signs code. bricks-code-status shows what still needs signing.
+- Build with native elements. The Code element, SVG code and page scripts are custom code: they are refused unless an administrator enabled custom code in AC MCP for Bricks and Elementor.
+- Code that runs PHP or HTML only executes after an administrator signs it in Bricks (Settings → Custom code → Regenerate code signatures). AC MCP for Bricks and Elementor never signs code. bricks-code-status shows what still needs signing.

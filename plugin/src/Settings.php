@@ -2,10 +2,10 @@
 /**
  * Plugin settings store.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder;
+namespace AcMcp;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Settings {
 
-	public const OPTION = 'amcp_builder_settings';
+	public const OPTION = 'ac_mcp_settings';
 
 	/**
 	 * Every setting with its default. The type of each default is also the
@@ -87,10 +87,10 @@ final class Settings {
 	}
 
 	/**
-	 * True when every AMCP Builder tool must refuse to run.
+	 * True when every AC MCP for Bricks and Elementor tool must refuse to run.
 	 */
 	public function is_killed(): bool {
-		return ( defined( 'AMCP_BUILDER_DISABLE' ) && AMCP_BUILDER_DISABLE ) || $this->get( 'kill_switch' );
+		return ( defined( 'AC_MCP_DISABLE' ) && AC_MCP_DISABLE ) || $this->get( 'kill_switch' );
 	}
 
 	/**

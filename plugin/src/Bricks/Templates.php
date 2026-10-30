@@ -2,14 +2,14 @@
 /**
  * Bricks template helpers.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Bricks;
+namespace AcMcp\Bricks;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use AmcpBuilder\Support\TreeError;
+use AcMcp\Support\TreeError;
 
 defined( 'ABSPATH' ) || exit;
 

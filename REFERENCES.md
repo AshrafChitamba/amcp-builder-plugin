@@ -1,18 +1,18 @@
 # References
 
-The documentation behind AMCP Builder: the platforms it plugs into, the standards it implements, the tools it is built with, and the design sources behind its interface and its design guide.
+The documentation behind AC MCP for Bricks and Elementor: the platforms it plugs into, the standards it implements, the tools it is built with, and the design sources behind its interface and its design guide.
 
 ## WordPress
 
 | Topic | Used for | Documentation |
 |---|---|---|
 | Abilities API | Registering every tool, permission checks, the hooks that apply safety rules to all abilities | [WordPress/abilities-api](https://github.com/WordPress/abilities-api) |
-| MCP Adapter | Serving the abilities as an MCP server at `/wp-json/amcp-builder/mcp` | [WordPress/mcp-adapter](https://github.com/WordPress/mcp-adapter), [plugin page](https://wordpress.org/plugins/mcp-adapter/) |
+| MCP Adapter | Serving the abilities as an MCP server at `/wp-json/ac-mcp/mcp` | [WordPress/mcp-adapter](https://github.com/WordPress/mcp-adapter), [plugin page](https://wordpress.org/plugins/mcp-adapter/) |
 | REST API | The admin screens' settings, logs and snapshot endpoints | [REST API Handbook](https://developer.wordpress.org/rest-api/) |
 | Application Passwords | Sign-in for coding tools without OAuth | [Integration guide](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/) |
 | Plugin development | Activation, options, custom tables, uninstall | [Plugin Handbook](https://developer.wordpress.org/plugins/), [`dbDelta()`](https://developer.wordpress.org/reference/functions/dbdelta/) |
-| Admin menu | The top-level AMCP Builder menu and its screens | [`add_menu_page()`](https://developer.wordpress.org/reference/functions/add_menu_page/), [`add_submenu_page()`](https://developer.wordpress.org/reference/functions/add_submenu_page/) |
-| Internationalization | Translatable strings, the `amcp-builder` text domain, the .pot file | [Internationalization](https://developer.wordpress.org/apis/internationalization/), [`wp i18n make-pot`](https://developer.wordpress.org/cli/commands/i18n/make-pot/) |
+| Admin menu | The top-level AC MCP for Bricks and Elementor menu and its screens | [`add_menu_page()`](https://developer.wordpress.org/reference/functions/add_menu_page/), [`add_submenu_page()`](https://developer.wordpress.org/reference/functions/add_submenu_page/) |
+| Internationalization | Translatable strings, the `ac-mcp` text domain, the .pot file | [Internationalization](https://developer.wordpress.org/apis/internationalization/), [`wp i18n make-pot`](https://developer.wordpress.org/cli/commands/i18n/make-pot/) |
 | readme.txt | The plugin directory listing | [How your readme.txt works](https://developer.wordpress.org/plugins/wordpress-org/how-your-readme-txt-works/) |
 | Coding standards | PHP style and security rules | [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/), [WPCS for PHP_CodeSniffer](https://github.com/WordPress/WordPress-Coding-Standards) |
 

@@ -2,16 +2,16 @@
 /**
  * Shared behaviour of Bricks tools.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
-use AmcpBuilder\Abilities\Ability;
-use AmcpBuilder\Bricks\BricksCatalog;
-use AmcpBuilder\Bricks\Store;
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Support\Errors;
+use AcMcp\Abilities\Ability;
+use AcMcp\Bricks\BricksCatalog;
+use AcMcp\Bricks\Store;
+use AcMcp\Bricks\Tree;
+use AcMcp\Support\Errors;
 use WP_Error;
 use WP_Post;
 
@@ -61,10 +61,10 @@ abstract class BricksAbility extends Ability {
 	protected function load( int $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post || 'trash' === $post->post_status ) {
-			return Errors::make( 'post_not_found', sprintf( /* translators: %d: post ID. */ __( 'Page %d does not exist.', 'amcp-builder' ), $post_id ), __( 'Call list-pages to find the right ID.', 'amcp-builder' ), 404 );
+			return Errors::make( 'post_not_found', sprintf( /* translators: %d: post ID. */ __( 'Page %d does not exist.', 'ac-mcp-for-bricks-elementor' ), $post_id ), __( 'Call list-pages to find the right ID.', 'ac-mcp-for-bricks-elementor' ), 404 );
 		}
 		if ( ! Store::can_edit( $post_id ) ) {
-			return Errors::make( 'bricks_access_denied', __( 'Bricks does not allow your user to edit this page.', 'amcp-builder' ), __( 'Ask an admin to give your role builder access in Bricks → Settings → Builder access.', 'amcp-builder' ), 403 );
+			return Errors::make( 'bricks_access_denied', __( 'Bricks does not allow your user to edit this page.', 'ac-mcp-for-bricks-elementor' ), __( 'Ask an admin to give your role builder access in Bricks → Settings → Builder access.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
 		$key = Store::area_key( $post );

@@ -2,17 +2,17 @@
 /**
  * The bricks-apply-global-class tool.
  *
- * @package AmcpBuilder
+ * @package AcMcp
  */
 
-namespace AmcpBuilder\Abilities\Bricks;
+namespace AcMcp\Abilities\Bricks;
 
 // phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages become JSON tool errors, never HTML output.
 
-use AmcpBuilder\Bricks\GlobalClasses;
-use AmcpBuilder\Bricks\Tree;
-use AmcpBuilder\Support\TreeError;
-use AmcpBuilder\Bricks\Validator;
+use AcMcp\Bricks\GlobalClasses;
+use AcMcp\Bricks\Tree;
+use AcMcp\Support\TreeError;
+use AcMcp\Bricks\Validator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,7 +26,7 @@ final class ApplyGlobalClass extends BricksWriteAbility {
 	}
 
 	public function label(): string {
-		return __( 'Bricks: apply global class', 'amcp-builder' );
+		return __( 'Bricks: apply global class', 'ac-mcp-for-bricks-elementor' );
 	}
 
 	protected function description(): string {
