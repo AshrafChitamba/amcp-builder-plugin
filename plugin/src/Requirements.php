@@ -75,7 +75,7 @@ final class Requirements {
 		$checks[] = $this->builder_check( 'elementor', __( 'Elementor', 'ac-mcp-for-bricks-elementor' ), $env->elementor_version(), self::MIN_ELEMENTOR );
 
 		if ( $env->elementor_atomic_active() ) {
-			$checks[] = $this->check( 'elementorAtomic', __( 'Elementor Atomic editor', 'ac-mcp-for-bricks-elementor' ), 'warning', __( 'On', 'ac-mcp-for-bricks-elementor' ), null, __( 'Pages built with Atomic (v4) elements can be read but not edited by AC MCP for Bricks and Elementor yet. Classic widgets and Containers are fully supported.', 'ac-mcp-for-bricks-elementor' ) );
+			$checks[] = $this->check( 'elementorAtomic', __( 'Elementor Atomic editor', 'ac-mcp-for-bricks-elementor' ), 'warning', __( 'On', 'ac-mcp-for-bricks-elementor' ), null, __( 'Pages built with Atomic (v4) elements can be read but not edited by AC MCP yet. Classic widgets and Containers are fully supported.', 'ac-mcp-for-bricks-elementor' ) );
 		}
 
 		$checks[] = $env->is_https()

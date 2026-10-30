@@ -1,6 +1,6 @@
 <?php
 /**
- * The AC MCP for Bricks and Elementor admin menu and screen.
+ * The AC MCP admin menu and screen.
  *
  * @package AcMcp
  */
@@ -61,7 +61,7 @@ final class AdminPage {
 	public function menu(): void {
 		$this->hook = (string) add_menu_page(
 			__( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ),
-			__( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ),
+			__( 'AC MCP', 'ac-mcp-for-bricks-elementor' ),
 			'manage_options',
 			Plugin::SLUG,
 			array( $this, 'render' ),
@@ -152,7 +152,7 @@ final class AdminPage {
 
 		$asset_file = AC_MCP_DIR . 'build/index.asset.php';
 		if ( ! is_readable( $asset_file ) ) {
-			wp_admin_notice( esc_html__( 'AC MCP for Bricks and Elementor admin assets are missing. Run "npm run build" in admin-ui, or install the release ZIP.', 'ac-mcp-for-bricks-elementor' ), array( 'type' => 'error' ) );
+			wp_admin_notice( esc_html__( 'AC MCP admin assets are missing. Run "npm run build" in admin-ui, or install the release ZIP.', 'ac-mcp-for-bricks-elementor' ), array( 'type' => 'error' ) );
 			return;
 		}
 		$asset = require $asset_file;

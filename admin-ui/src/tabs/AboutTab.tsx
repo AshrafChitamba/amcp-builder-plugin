@@ -8,12 +8,12 @@ export const AboutTab = () => (
 	<>
 		<Notice status="warning" isDismissible={ false }>
 			{ __(
-				'AI assistants can change your pages. Try AC MCP for Bricks and Elementor on a staging site first, and keep regular backups of every site you connect.',
+				'AI assistants can change your pages. Try AC MCP on a staging site first, and keep regular backups of every site you connect.',
 				'ac-mcp-for-bricks-elementor'
 			) }
 		</Notice>
 
-		<Section title={ __( 'About AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ) }>
+		<Section title={ __( 'About AC MCP', 'ac-mcp-for-bricks-elementor' ) }>
 			<p>
 				{ sprintf(
 					/* translators: %s: version number. */
@@ -26,14 +26,16 @@ export const AboutTab = () => (
 			</p>
 			<p>
 				{ __(
-					"AC MCP for Bricks and Elementor lets AI assistants such as Claude and Cursor build and edit Bricks and Elementor pages using each builder's native elements.",
+					"AC MCP lets AI assistants such as Claude and Cursor build and edit Bricks and Elementor pages using each builder's native elements.",
 					'ac-mcp-for-bricks-elementor'
 				) }
 			</p>
 			<p>
-				<strong>{ __( 'Privacy:', 'ac-mcp-for-bricks-elementor' ) }</strong>{ ' ' }
+				<strong>
+					{ __( 'Privacy:', 'ac-mcp-for-bricks-elementor' ) }
+				</strong>{ ' ' }
 				{ __(
-					"AC MCP for Bricks and Elementor sends no telemetry. Your AI assistant talks to your site directly. The plugin only makes outbound requests to read an AI assistant's sign-in details during OAuth and to download images you ask it to upload.",
+					"AC MCP sends no telemetry. Your AI assistant talks to your site directly. The plugin only makes outbound requests to read an AI assistant's sign-in details during OAuth and to download images you ask it to upload.",
 					'ac-mcp-for-bricks-elementor'
 				) }
 			</p>

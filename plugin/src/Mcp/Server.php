@@ -1,6 +1,6 @@
 <?php
 /**
- * AC MCP for Bricks and Elementor's MCP server.
+ * AC MCP's MCP server.
  *
  * @package AcMcp
  */
@@ -23,7 +23,7 @@ final class Server {
 	public const ROUTE     = 'mcp';
 
 	/** Sent to clients on initialize; many show it to the model as server instructions. */
-	public const INSTRUCTIONS = 'AC MCP for Bricks and Elementor: build and edit Bricks and Elementor pages on this WordPress site. '
+	public const INSTRUCTIONS = 'AC MCP: build and edit Bricks and Elementor pages on this WordPress site. '
 		. 'Start every session with ac-mcp-site-info, then ac-mcp-get-design-guide (topic "design", then the active builder). The design guide ends with the site owner\'s own rules: always follow them, they override everything else. '
 		. 'Every result includes guidelinesVersion; when it differs from the version you last read, call get-design-guide again before the next change, because the owner has updated the rules. '
 		. 'Keep the site consistent: reuse its existing colors, fonts, spacing and corner radius, and never introduce a new color or font unless the user approves it. '
@@ -48,7 +48,7 @@ final class Server {
 			self::ID,
 			self::NAMESPACE,
 			self::ROUTE,
-			'AC MCP for Bricks and Elementor',
+			'AC MCP',
 			self::INSTRUCTIONS,
 			AC_MCP_VERSION,
 			array( \WP\MCP\Transport\HttpTransport::class ),
@@ -64,7 +64,7 @@ final class Server {
 
 		if ( is_wp_error( $result ) && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug-only diagnostics.
-			error_log( 'AC MCP for Bricks and Elementor: could not create MCP server: ' . $result->get_error_message() );
+			error_log( 'AC MCP: could not create MCP server: ' . $result->get_error_message() );
 		}
 	}
 
@@ -76,7 +76,7 @@ final class Server {
 	 */
 	public function can_connect() {
 		if ( $this->settings->is_killed() ) {
-			return new WP_Error( 'ac_mcp_disabled', __( 'AC MCP for Bricks and Elementor is switched off by a site administrator (kill switch).', 'ac-mcp-for-bricks-elementor' ), array( 'status' => 503 ) );
+			return new WP_Error( 'ac_mcp_disabled', __( 'AC MCP is switched off by a site administrator (kill switch).', 'ac-mcp-for-bricks-elementor' ), array( 'status' => 503 ) );
 		}
 		return current_user_can( 'edit_posts' );
 	}

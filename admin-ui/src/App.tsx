@@ -167,7 +167,7 @@ export const App = () => {
 					<Logo size={ 44 } />
 					<div>
 						<h1 className="acmcp-header__title">
-							{ __( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ) }
+							{ __( 'AC MCP', 'ac-mcp-for-bricks-elementor' ) }
 						</h1>
 						<p className="acmcp-header__tagline">
 							{ __(
@@ -203,7 +203,10 @@ export const App = () => {
 					</code>
 					<CopyButton
 						text={ config.mcpUrl }
-						label={ __( 'Copy URL', 'ac-mcp-for-bricks-elementor' ) }
+						label={ __(
+							'Copy URL',
+							'ac-mcp-for-bricks-elementor'
+						) }
 					/>
 				</div>
 			</header>
@@ -211,7 +214,10 @@ export const App = () => {
 			<div
 				className="acmcp-nav"
 				role="tablist"
-				aria-label={ __( 'AC MCP for Bricks and Elementor screens', 'ac-mcp-for-bricks-elementor' ) }
+				aria-label={ __(
+					'AC MCP screens',
+					'ac-mcp-for-bricks-elementor'
+				) }
 			>
 				{ TABS.map( ( tab, index ) => (
 					<button
@@ -246,7 +252,7 @@ export const App = () => {
 
 			<footer className="acmcp-footer">
 				<span>
-					{ __( 'AC MCP for Bricks and Elementor by', 'ac-mcp-for-bricks-elementor' ) }{ ' ' }
+					{ __( 'AC MCP by', 'ac-mcp-for-bricks-elementor' ) }{ ' ' }
 					<ExternalLink href={ config.authorUrl }>
 						{ config.author }
 					</ExternalLink>

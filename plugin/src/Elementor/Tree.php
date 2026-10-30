@@ -280,7 +280,7 @@ final class Tree {
 	}
 
 	/**
-	 * True for Elementor v4 Atomic elements, which AC MCP for Bricks and Elementor only reads.
+	 * True for Elementor v4 Atomic elements, which AC MCP only reads.
 	 *
 	 * @param array<string, mixed> $element Stored element.
 	 */

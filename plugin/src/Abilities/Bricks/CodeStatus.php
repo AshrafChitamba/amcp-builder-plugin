@@ -28,9 +28,9 @@ final class CodeStatus extends BricksAbility {
 	}
 
 	protected function description(): string {
-		return 'Reports whether Bricks custom code can run on this site: code execution setting, whether the current user may execute code, whether AC MCP for Bricks and Elementor allows custom code, '
+		return 'Reports whether Bricks custom code can run on this site: code execution setting, whether the current user may execute code, whether AC MCP allows custom code, '
 			. 'and every Code or SVG-code element with its signature status (valid, invalid or missing). Code that runs PHP or HTML only executes after an administrator signs it in Bricks → Settings → Custom code → "Regenerate code signatures". '
-			. 'AC MCP for Bricks and Elementor never signs code itself. Use it before and after adding a Code element, and tell the user what they must do.';
+			. 'AC MCP never signs code itself. Use it before and after adding a Code element, and tell the user what they must do.';
 	}
 
 	protected function properties(): array {

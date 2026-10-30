@@ -139,7 +139,7 @@ const SettingsForm = ( {
 				<ToggleControl
 					__nextHasNoMarginBottom
 					label={ __(
-						'Switch off AC MCP for Bricks and Elementor',
+						'Switch off AC MCP',
 						'ac-mcp-for-bricks-elementor'
 					) }
 					help={ __(

@@ -59,7 +59,7 @@ final class Validator {
 	}
 
 	/**
-	 * Refuses changes to Atomic (v4) elements, which AC MCP for Bricks and Elementor only reads.
+	 * Refuses changes to Atomic (v4) elements, which AC MCP only reads.
 	 *
 	 * @param array<string, mixed> $element Existing element.
 	 */
@@ -188,7 +188,7 @@ final class Validator {
 		if ( Tree::is_atomic( $element + array( 'elType' => '' ) ) ) {
 			throw new TreeError(
 				'atomic_not_supported',
-				'This is an Elementor v4 Atomic element. AC MCP for Bricks and Elementor can read Atomic content but not edit it.',
+				'This is an Elementor v4 Atomic element. AC MCP can read Atomic content but not edit it.',
 				'Use classic containers and widgets, or edit Atomic elements with Elementor\'s own tools.'
 			);
 		}

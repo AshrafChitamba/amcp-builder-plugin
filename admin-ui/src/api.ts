@@ -133,7 +133,7 @@ const mcpCall = async (
 };
 
 /**
- * Runs initialize + tools/list against AC MCP for Bricks and Elementor's endpoint as the logged-in
+ * Runs initialize + tools/list against AC MCP's endpoint as the logged-in
  * admin (cookie auth), then closes the session.
  */
 export const testMcpConnection = async (): Promise< TestResult > => {
@@ -174,7 +174,10 @@ export const testMcpConnection = async (): Promise< TestResult > => {
 			status: 'ok',
 			message: sprintf(
 				/* translators: %d: number of tools. */
-				__( 'Connected. The server offers %d tools.', 'ac-mcp-for-bricks-elementor' ),
+				__(
+					'Connected. The server offers %d tools.',
+					'ac-mcp-for-bricks-elementor'
+				),
 				list.body.result?.tools?.length ?? 0
 			),
 		};

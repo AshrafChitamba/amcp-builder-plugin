@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Best-effort resolution of the post or option an ability writes to, used
- * to snapshot and lock-check abilities AC MCP for Bricks and Elementor does not own.
+ * to snapshot and lock-check abilities AC MCP does not own.
  */
 final class Targets {
 

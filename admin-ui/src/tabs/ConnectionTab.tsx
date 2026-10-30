@@ -39,18 +39,29 @@ import type {
 } from '../types';
 
 const formatDate = ( value: string | null ): string =>
-	value ? new Date( value ).toLocaleString() : __( 'Never', 'ac-mcp-for-bricks-elementor' );
+	value
+		? new Date( value ).toLocaleString()
+		: __( 'Never', 'ac-mcp-for-bricks-elementor' );
 
 const isHttps = config.mcpUrl.startsWith( 'https://' );
 
 const DISCOVERY_LABELS: Record< string, string > = {
-	resourceMetadata: __( 'Resource metadata (REST)', 'ac-mcp-for-bricks-elementor' ),
-	wellKnownResource: __( 'Resource metadata (/.well-known)', 'ac-mcp-for-bricks-elementor' ),
+	resourceMetadata: __(
+		'Resource metadata (REST)',
+		'ac-mcp-for-bricks-elementor'
+	),
+	wellKnownResource: __(
+		'Resource metadata (/.well-known)',
+		'ac-mcp-for-bricks-elementor'
+	),
 	wellKnownServer: __(
 		'Authorization server (/.well-known)',
 		'ac-mcp-for-bricks-elementor'
 	),
-	openidAppended: __( 'Authorization server (REST)', 'ac-mcp-for-bricks-elementor' ),
+	openidAppended: __(
+		'Authorization server (REST)',
+		'ac-mcp-for-bricks-elementor'
+	),
 	https: __( 'HTTPS', 'ac-mcp-for-bricks-elementor' ),
 };
 
@@ -150,7 +161,10 @@ const RemoteApps = () => {
 					isBusy={ busy }
 					disabled={ busy }
 				>
-					{ __( 'Test sign-in discovery', 'ac-mcp-for-bricks-elementor' ) }
+					{ __(
+						'Test sign-in discovery',
+						'ac-mcp-for-bricks-elementor'
+					) }
 				</Button>
 				{ error && (
 					<Notice status="error" isDismissible={ false }>
@@ -167,8 +181,14 @@ const RemoteApps = () => {
 									}` }
 								>
 									{ check.ok
-										? __( 'OK', 'ac-mcp-for-bricks-elementor' )
-										: __( 'Problem', 'ac-mcp-for-bricks-elementor' ) }
+										? __(
+												'OK',
+												'ac-mcp-for-bricks-elementor'
+											)
+										: __(
+												'Problem',
+												'ac-mcp-for-bricks-elementor'
+											) }
 								</span>{ ' ' }
 								{ DISCOVERY_LABELS[ key ] ?? key }{ ' ' }
 								<code>{ check.url }</code>
@@ -234,7 +254,10 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 
 	return (
 		<Section
-			title={ __( 'Connect coding tools', 'ac-mcp-for-bricks-elementor' ) }
+			title={ __(
+				'Connect coding tools',
+				'ac-mcp-for-bricks-elementor'
+			) }
 			description={ __(
 				'Claude Code, OpenAI Codex, Cursor, VS Code and Gemini CLI can sign in with WordPress, or use an access token.',
 				'ac-mcp-for-bricks-elementor'
@@ -252,7 +275,10 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 						value: 'oauth',
 					},
 					{
-						label: __( 'Access token', 'ac-mcp-for-bricks-elementor' ),
+						label: __(
+							'Access token',
+							'ac-mcp-for-bricks-elementor'
+						),
 						value: 'token',
 					},
 				] }
@@ -293,31 +319,49 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 						<TextControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							label={ __( 'Token name', 'ac-mcp-for-bricks-elementor' ) }
+							label={ __(
+								'Token name',
+								'ac-mcp-for-bricks-elementor'
+							) }
 							value={ name }
 							onChange={ setName }
 						/>
 						<SelectControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							label={ __( 'Expires after', 'ac-mcp-for-bricks-elementor' ) }
+							label={ __(
+								'Expires after',
+								'ac-mcp-for-bricks-elementor'
+							) }
 							value={ days }
 							options={ [
 								{
 									value: '30',
-									label: __( '30 days', 'ac-mcp-for-bricks-elementor' ),
+									label: __(
+										'30 days',
+										'ac-mcp-for-bricks-elementor'
+									),
 								},
 								{
 									value: '90',
-									label: __( '90 days', 'ac-mcp-for-bricks-elementor' ),
+									label: __(
+										'90 days',
+										'ac-mcp-for-bricks-elementor'
+									),
 								},
 								{
 									value: '365',
-									label: __( '1 year', 'ac-mcp-for-bricks-elementor' ),
+									label: __(
+										'1 year',
+										'ac-mcp-for-bricks-elementor'
+									),
 								},
 								{
 									value: '0',
-									label: __( 'Never', 'ac-mcp-for-bricks-elementor' ),
+									label: __(
+										'Never',
+										'ac-mcp-for-bricks-elementor'
+									),
 								},
 							] }
 							onChange={ setDays }
@@ -328,12 +372,18 @@ const CodingTools = ( { onTokenCreated }: { onTokenCreated: () => void } ) => {
 							isBusy={ busy }
 							disabled={ busy }
 						>
-							{ __( 'Create token', 'ac-mcp-for-bricks-elementor' ) }
+							{ __(
+								'Create token',
+								'ac-mcp-for-bricks-elementor'
+							) }
 						</Button>
 					</div>
 					<ToggleControl
 						__nextHasNoMarginBottom
-						label={ __( 'Read only', 'ac-mcp-for-bricks-elementor' ) }
+						label={ __(
+							'Read only',
+							'ac-mcp-for-bricks-elementor'
+						) }
 						help={ __(
 							'Apps using this token can read pages but not change them.',
 							'ac-mcp-for-bricks-elementor'
@@ -391,9 +441,7 @@ const LocalProxy = () => {
 	const create = async () => {
 		setError( null );
 		try {
-			setCreated(
-				await createAppPassword( 'AC MCP for Bricks and Elementor – Claude Desktop' )
-			);
+			setCreated( await createAppPassword( 'AC MCP – Claude Desktop' ) );
 			await refresh();
 		} catch ( e ) {
 			setError( errorMessage( e ) );
@@ -422,7 +470,10 @@ const LocalProxy = () => {
 
 	return (
 		<Section
-			title={ __( 'Claude Desktop with a local site', 'ac-mcp-for-bricks-elementor' ) }
+			title={ __(
+				'Claude Desktop with a local site',
+				'ac-mcp-for-bricks-elementor'
+			) }
 			description={ snippet.where }
 		>
 			{ error && (
@@ -447,7 +498,10 @@ const LocalProxy = () => {
 				</Notice>
 			) }
 			<Button variant="secondary" onClick={ create }>
-				{ __( 'Create Application Password', 'ac-mcp-for-bricks-elementor' ) }
+				{ __(
+					'Create Application Password',
+					'ac-mcp-for-bricks-elementor'
+				) }
 			</Button>
 			<CodeBlock code={ snippet.code } label={ snippet.label } />
 			{ passwords === null ? (
@@ -463,7 +517,10 @@ const LocalProxy = () => {
 									isDestructive
 									onClick={ () => revoke( item ) }
 								>
-									{ __( 'Revoke', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Revoke',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</Button>
 							</li>
 						) ) }
@@ -511,7 +568,10 @@ const Connections = ( { version }: { version: number } ) => {
 
 	return (
 		<Section
-			title={ __( 'Connected apps and access tokens', 'ac-mcp-for-bricks-elementor' ) }
+			title={ __(
+				'Connected apps and access tokens',
+				'ac-mcp-for-bricks-elementor'
+			) }
 		>
 			{ error && (
 				<Notice status="error" onRemove={ () => setError( null ) }>
@@ -526,23 +586,41 @@ const Connections = ( { version }: { version: number } ) => {
 						<thead>
 							<tr>
 								<th scope="col">
-									{ __( 'Name', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Name',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Type', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Type',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'User', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'User',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Access', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Access',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Last used', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Last used',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
 									<span className="screen-reader-text">
-										{ __( 'Actions', 'ac-mcp-for-bricks-elementor' ) }
+										{ __(
+											'Actions',
+											'ac-mcp-for-bricks-elementor'
+										) }
 									</span>
 								</th>
 							</tr>
@@ -575,7 +653,10 @@ const Connections = ( { version }: { version: number } ) => {
 									<td>{ item.user }</td>
 									<td>
 										{ item.readOnly
-											? __( 'Read only', 'ac-mcp-for-bricks-elementor' )
+											? __(
+													'Read only',
+													'ac-mcp-for-bricks-elementor'
+												)
 											: __(
 													'Read and edit',
 													'ac-mcp-for-bricks-elementor'
@@ -612,7 +693,7 @@ export const ConnectionTab = () => {
 			{ ! config.canRun && (
 				<Notice status="error" isDismissible={ false }>
 					{ __(
-						'AC MCP for Bricks and Elementor is not running yet. Open the Status tab to see what is missing.',
+						'AC MCP is not running yet. Open the Status tab to see what is missing.',
 						'ac-mcp-for-bricks-elementor'
 					) }
 				</Notice>

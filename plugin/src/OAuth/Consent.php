@@ -36,7 +36,7 @@ final class Consent {
 			<?php
 			printf(
 				/* translators: 1: app name, 2: site name. */
-				esc_html__( '%1$s wants to use AC MCP for Bricks and Elementor on %2$s.', 'ac-mcp-for-bricks-elementor' ),
+				esc_html__( '%1$s wants to use AC MCP on %2$s.', 'ac-mcp-for-bricks-elementor' ),
 				'<strong>' . esc_html( (string) $client['name'] ) . '</strong>',
 				'<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>'
 			);
@@ -63,7 +63,7 @@ final class Consent {
 				<label><input type="radio" name="access" value="full" <?php checked( ! $read_first ); ?>> <?php esc_html_e( 'Read and edit pages', 'ac-mcp-for-bricks-elementor' ); ?></label>
 				<label><input type="radio" name="access" value="read" <?php checked( $read_first ); ?>> <?php esc_html_e( 'Read only', 'ac-mcp-for-bricks-elementor' ); ?></label>
 			</fieldset>
-			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within AC MCP for Bricks and Elementor\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under AC MCP for Bricks and Elementor → Connection.', 'ac-mcp-for-bricks-elementor' ); ?></p>
+			<p class="hint"><?php esc_html_e( 'The app can do what your account can do, within AC MCP\'s safety settings. Every change is snapshotted and logged. You can disconnect it any time under AC MCP → Connection.', 'ac-mcp-for-bricks-elementor' ); ?></p>
 			<div class="actions">
 				<button type="submit" name="decision" value="deny" class="secondary"><?php esc_html_e( 'Cancel', 'ac-mcp-for-bricks-elementor' ); ?></button>
 				<button type="submit" name="decision" value="approve" class="primary"><?php esc_html_e( 'Allow access', 'ac-mcp-for-bricks-elementor' ); ?></button>
@@ -120,7 +120,7 @@ final class Consent {
 	<div class="card">
 		<?php echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts above. ?>
 	</div>
-	<p class="credit">AC MCP for Bricks and Elementor by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
+	<p class="credit">AC MCP by <a href="https://ashrafchitambaa.com" rel="noopener">Ashraf Chitambaa</a></p>
 </main>
 </body>
 </html>

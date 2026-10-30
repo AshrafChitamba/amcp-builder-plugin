@@ -1,6 +1,6 @@
 <?php
 /**
- * Removes AC MCP for Bricks and Elementor's settings, tables and scheduled job when the plugin is deleted.
+ * Removes AC MCP's settings, tables and scheduled job when the plugin is deleted.
  *
  * OAuth connections and access tokens live in the dropped tables and stop
  * working at once. Application Passwords belong to users and

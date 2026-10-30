@@ -1,4 +1,4 @@
-// AC MCP for Bricks and Elementor admin. One blue brand family, cool neutrals, panels as the
+// AC MCP admin. One blue brand family, cool neutrals, panels as the
 // only raised surface. Status colors are reserved for status.
 
 .acmcp-app {
@@ -32,7 +32,8 @@
 
 	--acmcp-radius: 12px;
 	--acmcp-radius-control: 8px;
-	--acmcp-shadow: 0 1px 2px rgb(15 26 46 / 4%), 0 2px 8px -2px rgb(15 26 46 / 6%);
+	--acmcp-shadow:
+		0 1px 2px rgb(15 26 46 / 4%), 0 2px 8px -2px rgb(15 26 46 / 6%);
 	--acmcp-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 	// Re-theme WordPress components inside the app.
@@ -262,7 +263,9 @@
 		font-weight: 550;
 		margin-bottom: -1px;
 		padding: 16px 12px 14px;
-		transition: color 0.15s var(--acmcp-ease), border-color 0.15s var(--acmcp-ease);
+		transition:
+			color 0.15s var(--acmcp-ease),
+			border-color 0.15s var(--acmcp-ease);
 
 		&:hover {
 			color: var(--acmcp-ink);
@@ -285,7 +288,6 @@
 }
 
 @keyframes acmcp-enter {
-
 	from {
 		opacity: 0;
 		transform: translateY(4px);
@@ -381,7 +383,6 @@
 // Controls
 
 .acmcp-app {
-
 	.components-button {
 		border-radius: var(--acmcp-radius-control);
 		font-weight: 550;
@@ -875,7 +876,6 @@
 // Small screens
 
 @media (max-width: 782px) {
-
 	.acmcp-app {
 		margin: 12px 10px 32px 0;
 	}
@@ -905,7 +905,6 @@
 	}
 
 	.acmcp-section {
-
 		&__header {
 			flex-direction: column;
 			padding: 16px 16px 0;
@@ -918,7 +917,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
 	.acmcp-panel {
 		animation: none;
 	}

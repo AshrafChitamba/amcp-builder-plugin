@@ -56,7 +56,10 @@ export const DesignGuidelines = ( {
 			<div className="acmcp-spacer" />
 			<TextareaControl
 				__nextHasNoMarginBottom
-				label={ __( 'Rules for this site', 'ac-mcp-for-bricks-elementor' ) }
+				label={ __(
+					'Rules for this site',
+					'ac-mcp-for-bricks-elementor'
+				) }
 				placeholder={ __(
 					'For example: Use only our navy and orange. Headings in Merriweather. Buttons are 6px rounded. Write in a warm, plain tone. Never use stock photos of handshakes.',
 					'ac-mcp-for-bricks-elementor'

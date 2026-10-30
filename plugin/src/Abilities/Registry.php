@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers AC MCP for Bricks and Elementor abilities with the WordPress Abilities API.
+ * Registers AC MCP abilities with the WordPress Abilities API.
  *
  * @package AcMcp
  */
@@ -38,7 +38,7 @@ final class Registry {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'AC MCP for Bricks and Elementor', 'ac-mcp-for-bricks-elementor' ),
+				'label'       => __( 'AC MCP', 'ac-mcp-for-bricks-elementor' ),
 				'description' => __( 'Build and edit Bricks and Elementor pages.', 'ac-mcp-for-bricks-elementor' ),
 			)
 		);

@@ -14,7 +14,7 @@ use AcMcp\Requirements;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Warns administrators when AC MCP for Bricks and Elementor cannot run.
+ * Warns administrators when AC MCP cannot run.
  */
 final class Notices {
 
@@ -33,7 +33,7 @@ final class Notices {
 			wp_admin_notice(
 				sprintf(
 					'<p><strong>%1$s</strong> %2$s</p><p><code>%3$s</code></p>',
-					esc_html__( 'MCP Builder is now AC MCP for Bricks and Elementor.', 'ac-mcp-for-bricks-elementor' ),
+					esc_html__( 'MCP Builder is now AC MCP.', 'ac-mcp-for-bricks-elementor' ),
 					esc_html__( 'Your settings, snapshots, audit log and connected apps were copied over. Deactivate the old MCP Builder plugin, then update the server URL in each AI assistant to:', 'ac-mcp-for-bricks-elementor' ),
 					esc_html( Server::url() )
 				),
@@ -60,7 +60,7 @@ final class Notices {
 		wp_admin_notice(
 			sprintf(
 				'<p><strong>%s</strong></p><ul>%s</ul><p><a href="%s">%s</a></p>',
-				esc_html__( 'AC MCP for Bricks and Elementor is not running yet.', 'ac-mcp-for-bricks-elementor' ),
+				esc_html__( 'AC MCP is not running yet.', 'ac-mcp-for-bricks-elementor' ),
 				$items,
 				esc_url( AdminPage::url( 'status' ) ),
 				esc_html__( 'Open Status', 'ac-mcp-for-bricks-elementor' )

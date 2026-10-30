@@ -29,7 +29,7 @@ abstract class GuideResource extends Ability {
 	}
 
 	protected function description(): string {
-		return 'AC MCP for Bricks and Elementor ' . $this->topic() . ' guide (markdown). Same content as get-design-guide with topic "' . $this->topic() . '".';
+		return 'AC MCP ' . $this->topic() . ' guide (markdown). Same content as get-design-guide with topic "' . $this->topic() . '".';
 	}
 
 	public function mcp_type(): string {

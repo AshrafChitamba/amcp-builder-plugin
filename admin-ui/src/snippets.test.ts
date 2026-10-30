@@ -42,9 +42,8 @@ describe( 'buildSnippets', () => {
 			'--header "Authorization: Bearer acmcpp_abc123"'
 		);
 		expect(
-			JSON.parse( byId( 'token', 'cursor' ).code ).mcpServers[
-				'ac-mcp'
-			].headers.Authorization
+			JSON.parse( byId( 'token', 'cursor' ).code ).mcpServers[ 'ac-mcp' ]
+				.headers.Authorization
 		).toBe( 'Bearer acmcpp_abc123' );
 		expect( byId( 'token', 'gemini' ).code ).toContain(
 			'Authorization: Bearer acmcpp_abc123'
@@ -71,9 +70,7 @@ describe( 'buildSnippets', () => {
 	it( 'uses an environment variable for Codex tokens', () => {
 		const code = byId( 'token', 'codex' ).code;
 		expect( code ).toContain( '[mcp_servers.ac_mcp]' );
-		expect( code ).toContain(
-			'bearer_token_env_var = "AC_MCP_TOKEN"'
-		);
+		expect( code ).toContain( 'bearer_token_env_var = "AC_MCP_TOKEN"' );
 	} );
 
 	it( 'never writes the VS Code token into the file', () => {

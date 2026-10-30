@@ -282,7 +282,7 @@ final class AdminController {
 	}
 
 	/**
-	 * Every ability AC MCP for Bricks and Elementor governs: its own and official builder ones.
+	 * Every ability AC MCP governs: its own and official builder ones.
 	 */
 	public function abilities(): WP_REST_Response {
 		$disabled = $this->settings->get( 'disabled_tools' );

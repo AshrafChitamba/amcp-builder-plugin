@@ -94,7 +94,7 @@ final class UpsertColors extends BricksAbility {
 		if ( null === $index ) {
 			$palettes[] = array(
 				'id'     => $ids->next(),
-				'name'   => '' !== $wanted ? sanitize_text_field( $wanted ) : 'AC MCP for Bricks and Elementor',
+				'name'   => '' !== $wanted ? sanitize_text_field( $wanted ) : 'AC MCP',
 				'colors' => array(),
 			);
 			$index      = count( $palettes ) - 1;

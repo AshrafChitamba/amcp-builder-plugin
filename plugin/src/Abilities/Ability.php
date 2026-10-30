@@ -1,6 +1,6 @@
 <?php
 /**
- * Base class for every AC MCP for Bricks and Elementor ability.
+ * Base class for every AC MCP ability.
  *
  * @package AcMcp
  */
@@ -196,7 +196,7 @@ abstract class Ability {
 					'idempotent'  => $this->is_readonly(),
 				),
 				'show_in_rest' => false,
-				// Only exposed through AC MCP for Bricks and Elementor's own server, never the adapter's default server.
+				// Only exposed through AC MCP's own server, never the adapter's default server.
 				'mcp'          => array(
 					'public' => false,
 					'type'   => $this->mcp_type(),

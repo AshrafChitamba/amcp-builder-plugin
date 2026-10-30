@@ -27,7 +27,10 @@ const GROUPS: Array< { id: string; title: string; description: string } > = [
 	{
 		id: 'elementor',
 		title: __( 'Elementor', 'ac-mcp-for-bricks-elementor' ),
-		description: __( 'Read and edit Elementor pages.', 'ac-mcp-for-bricks-elementor' ),
+		description: __(
+			'Read and edit Elementor pages.',
+			'ac-mcp-for-bricks-elementor'
+		),
 	},
 	{
 		id: 'custom-code',
@@ -41,7 +44,7 @@ const GROUPS: Array< { id: string; title: string; description: string } > = [
 		id: 'official-bricks',
 		title: __( 'Official Bricks tools', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
-			"Bricks' own AI abilities (Bricks 2.4+). AC MCP for Bricks and Elementor's safety rules apply to them too.",
+			"Bricks' own AI abilities (Bricks 2.4+). AC MCP's safety rules apply to them too.",
 			'ac-mcp-for-bricks-elementor'
 		),
 	},
@@ -49,7 +52,7 @@ const GROUPS: Array< { id: string; title: string; description: string } > = [
 		id: 'official-elementor',
 		title: __( 'Official Elementor tools', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
-			"Elementor's own MCP abilities. AC MCP for Bricks and Elementor's safety rules apply to them too.",
+			"Elementor's own MCP abilities. AC MCP's safety rules apply to them too.",
 			'ac-mcp-for-bricks-elementor'
 		),
 	},
@@ -113,7 +116,10 @@ export const ToolsTab = () => {
 			<Section title={ __( 'Access', 'ac-mcp-for-bricks-elementor' ) }>
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Read-only mode', 'ac-mcp-for-bricks-elementor' ) }
+					label={ __(
+						'Read-only mode',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					help={ __(
 						'AI assistants can read pages but every change is refused. Write tools are hidden from them.',
 						'ac-mcp-for-bricks-elementor'
@@ -125,7 +131,10 @@ export const ToolsTab = () => {
 				<div className="acmcp-spacer" />
 				<ToggleControl
 					__nextHasNoMarginBottom
-					label={ __( 'Allow custom code', 'ac-mcp-for-bricks-elementor' ) }
+					label={ __(
+						'Allow custom code',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					help={ __(
 						'Off by default. When on, administrators (with unfiltered HTML) can use custom-code tools. Bricks code still has to be signed by an admin in Bricks before it runs.',
 						'ac-mcp-for-bricks-elementor'

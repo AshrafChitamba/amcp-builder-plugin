@@ -88,18 +88,27 @@ export const StatusTab = () => {
 	return (
 		<>
 			<Section
-				title={ __( 'Connection tests', 'ac-mcp-for-bricks-elementor' ) }
+				title={ __(
+					'Connection tests',
+					'ac-mcp-for-bricks-elementor'
+				) }
 				description={ __(
 					'Run these after setup, and whenever an AI assistant cannot connect.',
 					'ac-mcp-for-bricks-elementor'
 				) }
 			>
 				<TestButton
-					label={ __( 'Test MCP connection', 'ac-mcp-for-bricks-elementor' ) }
+					label={ __(
+						'Test MCP connection',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					run={ testMcpConnection }
 				/>
 				<TestButton
-					label={ __( 'Test Authorization header', 'ac-mcp-for-bricks-elementor' ) }
+					label={ __(
+						'Test Authorization header',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					run={ () =>
 						testAuthHeader().catch( ( e ) => ( {
 							status: 'error',
@@ -109,25 +118,42 @@ export const StatusTab = () => {
 				/>
 			</Section>
 
-			<Section title={ __( 'Environment', 'ac-mcp-for-bricks-elementor' ) }>
+			<Section
+				title={ __( 'Environment', 'ac-mcp-for-bricks-elementor' ) }
+			>
 				<div className="acmcp-table-wrap">
 					<table className="acmcp-table">
 						<thead>
 							<tr>
 								<th scope="col">
-									{ __( 'Check', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Check',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Status', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Status',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Current', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Current',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Required', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Required',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 								<th scope="col">
-									{ __( 'Notes', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Notes',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</th>
 							</tr>
 						</thead>
@@ -169,12 +195,21 @@ export const StatusTab = () => {
 							<code>{ tool.name }</code> { tool.label }{ ' ' }
 							<span className="acmcp-badge">
 								{ tool.readonly
-									? __( 'Read', 'ac-mcp-for-bricks-elementor' )
-									: __( 'Write', 'ac-mcp-for-bricks-elementor' ) }
+									? __(
+											'Read',
+											'ac-mcp-for-bricks-elementor'
+										)
+									: __(
+											'Write',
+											'ac-mcp-for-bricks-elementor'
+										) }
 							</span>
 							{ ! tool.available && (
 								<span className="acmcp-badge acmcp-badge--inactive">
-									{ __( 'Hidden', 'ac-mcp-for-bricks-elementor' ) }
+									{ __(
+										'Hidden',
+										'ac-mcp-for-bricks-elementor'
+									) }
 								</span>
 							) }
 						</li>

@@ -65,7 +65,7 @@ final class SiteInfo extends Ability {
 					'version'     => $env->elementor_version(),
 					'pro'         => $env->elementor_pro_version(),
 					'atomicOn'    => $env->elementor_atomic_active(),
-					'atomicNotes' => 'Atomic (v4) elements are read-only in AC MCP for Bricks and Elementor. Classic widgets and Containers are fully editable.',
+					'atomicNotes' => 'Atomic (v4) elements are read-only in AC MCP. Classic widgets and Containers are fully editable.',
 				),
 			),
 			'safety'    => array(

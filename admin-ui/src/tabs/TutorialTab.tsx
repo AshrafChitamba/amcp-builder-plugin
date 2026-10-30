@@ -21,7 +21,10 @@ const STEPS = [
 		),
 	},
 	{
-		title: __( 'Ask for a page or a change', 'ac-mcp-for-bricks-elementor' ),
+		title: __(
+			'Ask for a page or a change',
+			'ac-mcp-for-bricks-elementor'
+		),
 		text: __(
 			'For example: "Build a services page for our dental clinic in Bricks" or "Make the hero button on the home page larger". Start on a draft page.',
 			'ac-mcp-for-bricks-elementor'
@@ -63,7 +66,10 @@ const Video = () => {
 			{ embed.kind === 'iframe' ? (
 				<iframe
 					src={ embed.src }
-					title={ __( 'AC MCP for Bricks and Elementor tutorial', 'ac-mcp-for-bricks-elementor' ) }
+					title={ __(
+						'AC MCP tutorial',
+						'ac-mcp-for-bricks-elementor'
+					) }
 					loading="lazy"
 					allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
 					allowFullScreen
@@ -79,7 +85,10 @@ const Video = () => {
 export const TutorialTab = () => (
 	<>
 		<Section
-			title={ __( 'Watch: build your first page', 'ac-mcp-for-bricks-elementor' ) }
+			title={ __(
+				'Watch: build your first page',
+				'ac-mcp-for-bricks-elementor'
+			) }
 			description={ __(
 				'A short walkthrough of connecting an AI assistant and building a page with it.',
 				'ac-mcp-for-bricks-elementor'
@@ -87,7 +96,10 @@ export const TutorialTab = () => (
 			actions={
 				config.tutorialUrl ? (
 					<ExternalLink href={ config.tutorialUrl }>
-						{ __( 'Open in a new tab', 'ac-mcp-for-bricks-elementor' ) }
+						{ __(
+							'Open in a new tab',
+							'ac-mcp-for-bricks-elementor'
+						) }
 					</ExternalLink>
 				) : undefined
 			}
@@ -95,7 +107,9 @@ export const TutorialTab = () => (
 			<Video />
 		</Section>
 
-		<Section title={ __( 'Getting started', 'ac-mcp-for-bricks-elementor' ) }>
+		<Section
+			title={ __( 'Getting started', 'ac-mcp-for-bricks-elementor' ) }
+		>
 			<ol className="acmcp-quickstart">
 				{ STEPS.map( ( step, index ) => (
 					<li key={ step.title } className="acmcp-quickstart__item">

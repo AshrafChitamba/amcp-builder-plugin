@@ -28,7 +28,10 @@ const RULES = [
 		),
 	},
 	{
-		title: __( 'Heroes that fit the business', 'ac-mcp-for-bricks-elementor' ),
+		title: __(
+			'Heroes that fit the business',
+			'ac-mcp-for-bricks-elementor'
+		),
 		text: __(
 			'Real imagery, one clear headline and one main action, in a layout chosen for the brand.',
 			'ac-mcp-for-bricks-elementor'

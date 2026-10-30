@@ -87,7 +87,7 @@ final class Settings {
 	}
 
 	/**
-	 * True when every AC MCP for Bricks and Elementor tool must refuse to run.
+	 * True when every AC MCP tool must refuse to run.
 	 */
 	public function is_killed(): bool {
 		return ( defined( 'AC_MCP_DISABLE' ) && AC_MCP_DISABLE ) || $this->get( 'kill_switch' );

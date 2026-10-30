@@ -17,13 +17,13 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Hooks into WordPress core's ability execution, so the rules apply to
- * AC MCP for Bricks and Elementor's tools and to the official Bricks and Elementor abilities,
+ * AC MCP's tools and to the official Bricks and Elementor abilities,
  * whichever server or REST route calls them.
  *
  * - wp_pre_execute_ability: kill switch, disabled tools, custom-code gate,
  *   read-only mode, editor locks, rate limits. Denials are audited.
  * - wp_before_execute_ability: snapshot before official abilities write.
- *   AC MCP for Bricks and Elementor's own tools snapshot themselves, after a dry-run check.
+ *   AC MCP's own tools snapshot themselves, after a dry-run check.
  * - wp_ability_execute_result: audit the outcome (success or error).
  * - mcp_adapter_tools_list: hide tools that would be refused anyway.
  */
@@ -212,15 +212,15 @@ class Governance {
 		$readonly = self::is_readonly( $ability );
 
 		if ( $this->settings->is_killed() ) {
-			return Errors::make( 'disabled', __( 'AC MCP for Bricks and Elementor is switched off by a site administrator (kill switch).', 'ac-mcp-for-bricks-elementor' ), __( 'Stop and tell the user; nothing can run until an admin turns it back on.', 'ac-mcp-for-bricks-elementor' ), 503 );
+			return Errors::make( 'disabled', __( 'AC MCP is switched off by a site administrator (kill switch).', 'ac-mcp-for-bricks-elementor' ), __( 'Stop and tell the user; nothing can run until an admin turns it back on.', 'ac-mcp-for-bricks-elementor' ), 503 );
 		}
 
 		if ( in_array( $name, $settings['disabled_tools'], true ) ) {
-			return Errors::make( 'tool_disabled', __( 'This tool is turned off in AC MCP for Bricks and Elementor settings.', 'ac-mcp-for-bricks-elementor' ), __( 'Use another tool, or ask an admin to enable it under AC MCP for Bricks and Elementor → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
+			return Errors::make( 'tool_disabled', __( 'This tool is turned off in AC MCP settings.', 'ac-mcp-for-bricks-elementor' ), __( 'Use another tool, or ask an admin to enable it under AC MCP → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
 		if ( $this->is_custom_code( $name ) && ( ! $settings['custom_code_enabled'] || ! current_user_can( 'manage_options' ) || ! current_user_can( 'unfiltered_html' ) ) ) {
-			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'ac-mcp-for-bricks-elementor' ), __( 'Build with native elements instead. An administrator can enable custom code under AC MCP for Bricks and Elementor → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
+			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'ac-mcp-for-bricks-elementor' ), __( 'Build with native elements instead. An administrator can enable custom code under AC MCP → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
 		if ( ! $readonly && \AcMcp\OAuth\Tokens::current_is_read_only() ) {

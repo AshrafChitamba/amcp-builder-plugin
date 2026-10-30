@@ -111,7 +111,7 @@ class Server {
 			'authorization_servers'    => array( self::issuer() ),
 			'scopes_supported'         => Tokens::SCOPES,
 			'bearer_methods_supported' => array( 'header' ),
-			'resource_name'            => get_bloginfo( 'name' ) . ' (AC MCP for Bricks and Elementor)',
+			'resource_name'            => get_bloginfo( 'name' ) . ' (AC MCP)',
 			'resource_documentation'   => 'https://ashrafchitambaa.com',
 		);
 	}
@@ -244,7 +244,7 @@ class Server {
 	}
 
 	/**
-	 * Accepts "Authorization: Bearer" tokens, but only on AC MCP for Bricks and Elementor's own routes.
+	 * Accepts "Authorization: Bearer" tokens, but only on AC MCP's own routes.
 	 *
 	 * @param int|false $user_id User found so far.
 	 * @return int|false
@@ -502,7 +502,7 @@ class Server {
 	}
 
 	/**
-	 * Whether the current request targets one of AC MCP for Bricks and Elementor's REST namespaces.
+	 * Whether the current request targets one of AC MCP's REST namespaces.
 	 */
 	private static function is_own_rest_request(): bool {
 		$uri    = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only compared.

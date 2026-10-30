@@ -138,7 +138,7 @@ export const buildSnippets = ( input: SnippetInput ): Snippet[] => {
 								{
 									type: 'promptString',
 									id: 'ac-mcp-token',
-									description: 'AC MCP for Bricks and Elementor access token',
+									description: 'AC MCP access token',
 									password: true,
 								},
 							],

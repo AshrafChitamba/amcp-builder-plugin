@@ -128,7 +128,7 @@ final class UpsertCodeSnippet extends ElementorAbility {
 				array(
 					'post_type'   => 'elementor_snippet',
 					'post_status' => 'draft',
-					'post_title'  => sanitize_text_field( $input['title'] ?? __( 'AC MCP for Bricks and Elementor snippet', 'ac-mcp-for-bricks-elementor' ) ),
+					'post_title'  => sanitize_text_field( $input['title'] ?? __( 'AC MCP snippet', 'ac-mcp-for-bricks-elementor' ) ),
 				),
 				true
 			);
