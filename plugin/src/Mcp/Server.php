@@ -85,6 +85,19 @@ final class Server {
 	 * Public endpoint URL. Uses ?rest_route= when permalinks are plain.
 	 */
 	public static function url(): string {
-		return rest_url( self::NAMESPACE . '/' . self::ROUTE );
+		return self::rest_url( self::NAMESPACE . '/' . self::ROUTE );
+	}
+
+	/**
+	 * rest_url() that is safe to call before WordPress has created $wp_rewrite.
+	 *
+	 * Plugins such as Elementor Pro resolve the current user while plugins are still loading,
+	 * which runs the bearer-token check before wp-settings.php sets up the rewrite object.
+	 */
+	public static function rest_url( string $path = '' ): string {
+		if ( ! isset( $GLOBALS['wp_rewrite'] ) ) {
+			$GLOBALS['wp_rewrite'] = new \WP_Rewrite(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Same object core creates moments later.
+		}
+		return rest_url( $path );
 	}
 }

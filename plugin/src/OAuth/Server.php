@@ -91,7 +91,7 @@ class Server {
 	}
 
 	public static function issuer(): string {
-		return untrailingslashit( rest_url( self::NAMESPACE . '/oauth' ) );
+		return untrailingslashit( McpServer::rest_url( self::NAMESPACE . '/oauth' ) );
 	}
 
 	public static function resource(): string {
@@ -99,7 +99,7 @@ class Server {
 	}
 
 	public static function resource_metadata_url(): string {
-		return rest_url( self::NAMESPACE . '/oauth/protected-resource' );
+		return McpServer::rest_url( self::NAMESPACE . '/oauth/protected-resource' );
 	}
 
 	/**
