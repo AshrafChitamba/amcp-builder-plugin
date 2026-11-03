@@ -108,7 +108,6 @@ final class Registry {
 				Elementor\CreateTemplate::class,
 				Elementor\SetConditions::class,
 				Elementor\UpdateGlobals::class,
-				Elementor\UpsertCodeSnippet::class,
 			)
 		);
 	}

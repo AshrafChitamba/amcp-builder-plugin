@@ -17,7 +17,7 @@ The plugin registers its tools with the WordPress Abilities API and serves them 
 ## What it can do
 
 - **Bricks:** pages and templates (header, footer, single, archive, section, popup) with display conditions; every native element with settings validated against your live site; global classes; color palettes, CSS variables and theme styles; page settings; query loops; code-signature status.
-- **Elementor:** containers and widgets, page settings, kit colors and fonts, Theme Builder templates and Pro display conditions, Pro custom code snippets. Atomic (v4) elements are read-only.
+- **Elementor:** containers and widgets, page settings, kit colors and fonts, Theme Builder templates and Pro display conditions. Atomic (v4) elements are read-only.
 - **General:** list and create pages, change title, slug and status, search and upload media, snapshots and restore.
 - **Design that fits your site:** a built-in design guide (strong heroes that reflect the business, no labels above headings, one consistent design system, no new colors or fonts without permission) plus **your own design rules**, which the AI re-reads the moment you change them.
 - **Clear change reports:** every change returns front-end preview links, and the AI describes each changed section in a line or two.
@@ -31,7 +31,7 @@ The plugin registers its tools with the WordPress Abilities API and serves them 
 | PHP | 8.1 |
 | MCP Adapter plugin | 0.7.0 |
 | Bricks (optional) | 2.0 |
-| Elementor (optional) | 3.25 (Pro for Theme Builder conditions and code snippets) |
+| Elementor (optional) | 3.25 (Pro for Theme Builder conditions) |
 | Web apps | public HTTPS site |
 
 ## Quick start

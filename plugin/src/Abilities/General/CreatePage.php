@@ -84,7 +84,7 @@ final class CreatePage extends Ability {
 			return $supported;
 		}
 
-		if ( 'publish' === $input['status'] && ! current_user_can( $type->cap->publish_posts ) ) {
+		if ( in_array( $input['status'], array( 'publish', 'private' ), true ) && ! current_user_can( $type->cap->publish_posts ) ) {
 			return Errors::make( 'cannot_publish', __( 'You are not allowed to publish this post type.', 'ac-mcp-for-bricks-elementor' ), __( 'Create it as a draft instead.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 

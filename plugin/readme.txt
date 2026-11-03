@@ -50,7 +50,7 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 = 0.4.0 =
 * Sign in with OAuth 2.1 for claude.ai, Claude Desktop, ChatGPT, Codex, Claude Code and other apps; access tokens for coding tools; active connections list with revoke.
 * Bricks: templates and display conditions, color palettes, variables, theme styles, page settings, code-signature status.
-* Elementor: templates, Pro display conditions, kit globals, Pro custom code snippets.
+* Elementor: templates, Pro display conditions, kit globals.
 * New tools: get-design-guide, update-page, upload-media. Guides as MCP resources and prompts; your own design guidelines in the Tools tab.
 * Custom code (Bricks Code/SVG code, page scripts, Elementor HTML widget) is now refused unless enabled.
 

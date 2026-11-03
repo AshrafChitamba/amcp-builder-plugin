@@ -35,4 +35,3 @@
 
 - Build with native widgets. The HTML widget is custom code and is refused unless an administrator enabled custom code in AC MCP.
 - Elementor removes scripts and unsafe HTML for accounts without unfiltered HTML; read the page back after saving.
-- Elementor Pro Custom Code snippets (head or body code) go through elementor-upsert-code-snippet, created as drafts for the user to review.

@@ -244,7 +244,7 @@ class Server {
 	}
 
 	/**
-	 * Accepts "Authorization: Bearer" tokens, but only on AC MCP's own routes.
+	 * Accepts "Authorization: Bearer" tokens, but only on the MCP endpoint.
 	 *
 	 * @param int|false $user_id User found so far.
 	 * @return int|false
@@ -502,12 +502,13 @@ class Server {
 	}
 
 	/**
-	 * Whether the current request targets one of AC MCP's REST namespaces.
+	 * Whether the current request targets the MCP endpoint. Bearer tokens must not reach the admin routes.
 	 */
 	private static function is_own_rest_request(): bool {
 		$uri    = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only compared.
-		$prefix = '/' . rest_get_url_prefix() . '/' . McpServer::NAMESPACE . '/';
-		return str_contains( $uri, $prefix ) || str_contains( rawurldecode( $uri ), 'rest_route=/' . McpServer::NAMESPACE . '/' );
+		$route  = McpServer::NAMESPACE . '/' . McpServer::ROUTE;
+		$prefix = '/' . rest_get_url_prefix() . '/' . $route;
+		return str_contains( $uri, $prefix ) || str_contains( rawurldecode( $uri ), 'rest_route=/' . $route );
 	}
 
 	/**

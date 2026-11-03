@@ -87,6 +87,9 @@ final class UpdatePageSettings extends BricksAbility {
 				$hint = __( 'Use one of: ', 'ac-mcp-for-bricks-elementor' ) . implode( ', ', array_merge( array_keys( self::ALLOWED ), self::SCRIPTS ) ) . '.';
 				return Errors::make( 'unknown_setting', sprintf( /* translators: %s: key. */ __( 'Unknown page setting "%s".', 'ac-mcp-for-bricks-elementor' ), (string) $key ), $hint );
 			}
+			if ( 'customCss' === $key && null !== $value && ! current_user_can( 'unfiltered_html' ) ) {
+				return Errors::make( 'unfiltered_html_required', __( 'Your account cannot save raw page CSS.', 'ac-mcp-for-bricks-elementor' ), __( 'Use native element settings instead, or ask an administrator.', 'ac-mcp-for-bricks-elementor' ), 403 );
+			}
 			if ( $is_script && ! CustomCode::allowed( $this->settings ) ) {
 				return CustomCode::refusal( 'Page scripts' )->to_wp_error();
 			}

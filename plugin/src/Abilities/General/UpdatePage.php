@@ -73,7 +73,7 @@ final class UpdatePage extends Ability {
 		if ( ! $post || 'trash' === $post->post_status ) {
 			return Errors::make( 'post_not_found', __( 'That page does not exist.', 'ac-mcp-for-bricks-elementor' ), __( 'Call list-pages to find the right ID.', 'ac-mcp-for-bricks-elementor' ), 404 );
 		}
-		if ( 'publish' === ( $input['status'] ?? '' ) && ! current_user_can( 'publish_post', $post->ID ) ) {
+		if ( in_array( $input['status'] ?? '', array( 'publish', 'private' ), true ) && ! current_user_can( 'publish_post', $post->ID ) ) {
 			return Errors::make( 'cannot_publish', __( 'Your account cannot publish this page.', 'ac-mcp-for-bricks-elementor' ), __( 'Ask an editor or administrator to publish it.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 		$locked_by = Governance::locked_by( $post->ID );
