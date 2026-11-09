@@ -35,7 +35,7 @@ final class Validator {
 		'widget'    => array( 'container' ),
 	);
 
-	public function __construct( private Catalog $catalog, private bool $allow_custom_code = false ) {}
+	public function __construct( private Catalog $catalog ) {}
 
 	/**
 	 * @param mixed                     $specs  Nested specs from the caller.
@@ -85,7 +85,7 @@ final class Validator {
 	 * @param mixed $settings Settings object.
 	 */
 	public function settings( string $el_type, ?string $widget_type, $settings ): void {
-		if ( ! $this->allow_custom_code && 'html' === $widget_type ) {
+		if ( 'html' === $widget_type ) {
 			throw \AcMcp\Support\CustomCode::refusal( 'The HTML widget' );
 		}
 		$what = self::describe( $el_type, $widget_type );

@@ -33,14 +33,6 @@ const GROUPS: Array< { id: string; title: string; description: string } > = [
 		),
 	},
 	{
-		id: 'custom-code',
-		title: __( 'Custom code', 'ac-mcp-for-bricks-elementor' ),
-		description: __(
-			'Tools that add HTML, CSS, JavaScript or PHP. Also need the custom-code switch above.',
-			'ac-mcp-for-bricks-elementor'
-		),
-	},
-	{
 		id: 'official-bricks',
 		title: __( 'Official Bricks tools', 'ac-mcp-for-bricks-elementor' ),
 		description: __(
@@ -89,22 +81,6 @@ export const ToolsTab = () => {
 				: [ ...settings.disabled_tools, name ],
 		} );
 
-	const toggleCustomCode = ( enabled: boolean ) => {
-		if (
-			enabled &&
-			// eslint-disable-next-line no-alert
-			! window.confirm(
-				__(
-					'Custom-code tools let AI assistants add HTML, CSS, JavaScript or PHP to your site. Only administrators can use them. Enable?',
-					'ac-mcp-for-bricks-elementor'
-				)
-			)
-		) {
-			return;
-		}
-		save( { custom_code_enabled: enabled } );
-	};
-
 	return (
 		<>
 			{ error && (
@@ -127,21 +103,6 @@ export const ToolsTab = () => {
 					checked={ settings.read_only }
 					disabled={ saving }
 					onChange={ ( value ) => save( { read_only: value } ) }
-				/>
-				<div className="acmcp-spacer" />
-				<ToggleControl
-					__nextHasNoMarginBottom
-					label={ __(
-						'Allow custom code',
-						'ac-mcp-for-bricks-elementor'
-					) }
-					help={ __(
-						'Off by default. When on, administrators (with unfiltered HTML) can use custom-code tools. Bricks code still has to be signed by an admin in Bricks before it runs.',
-						'ac-mcp-for-bricks-elementor'
-					) }
-					checked={ settings.custom_code_enabled }
-					disabled={ saving }
-					onChange={ toggleCustomCode }
 				/>
 			</Section>
 

@@ -104,7 +104,7 @@ abstract class Ability {
 		);
 	}
 
-	/** Tool group shown in settings: general, bricks, elementor or custom-code. */
+	/** Tool group shown in settings: general, bricks or elementor. */
 	public function group(): string {
 		return 'general';
 	}

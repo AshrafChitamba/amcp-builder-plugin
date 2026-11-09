@@ -28,7 +28,7 @@ final class SiteInfo extends Ability {
 
 	protected function description(): string {
 		return 'Call this first in every session. Returns which page builders are active (Bricks, Elementor) and their versions, '
-			. 'whether the site is in read-only mode, whether writes default to dry run, and whether custom-code tools are enabled. '
+			. 'whether the site is in read-only mode and whether writes default to dry run. Raw custom code is not available in this directory version. '
 			. 'Use it to decide which builder-specific tools to use. Only tools for active builders exist on this server.';
 	}
 
@@ -71,7 +71,7 @@ final class SiteInfo extends Ability {
 			'safety'    => array(
 				'readOnly'          => (bool) $this->settings->get( 'read_only' ),
 				'dryRunDefault'     => (bool) $this->settings->get( 'dry_run_default' ),
-				'customCodeEnabled' => (bool) $this->settings->get( 'custom_code_enabled' ),
+				'customCodeEnabled' => false,
 			),
 			'versions'  => array(
 				'wordpress' => $env->wp_version(),

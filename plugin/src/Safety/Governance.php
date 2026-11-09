@@ -219,8 +219,8 @@ class Governance {
 			return Errors::make( 'tool_disabled', __( 'This tool is turned off in AC MCP settings.', 'ac-mcp-for-bricks-elementor' ), __( 'Use another tool, or ask an admin to enable it under AC MCP → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
-		if ( $this->is_custom_code( $name ) && ( ! $settings['custom_code_enabled'] || ! current_user_can( 'manage_options' ) || ! current_user_can( 'unfiltered_html' ) ) ) {
-			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are disabled, or your user is not allowed to use them.', 'ac-mcp-for-bricks-elementor' ), __( 'Build with native elements instead. An administrator can enable custom code under AC MCP → Tools.', 'ac-mcp-for-bricks-elementor' ), 403 );
+		if ( $this->is_custom_code( $name ) ) {
+			return Errors::make( 'custom_code_disabled', __( 'Custom-code tools are not available in this directory version.', 'ac-mcp-for-bricks-elementor' ), __( 'Build with native elements instead.', 'ac-mcp-for-bricks-elementor' ), 403 );
 		}
 
 		if ( ! $readonly && \AcMcp\OAuth\Tokens::current_is_read_only() ) {

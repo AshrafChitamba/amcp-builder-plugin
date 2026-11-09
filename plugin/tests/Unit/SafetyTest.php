@@ -61,8 +61,8 @@ final class SafetyTest extends TestCase {
 		$this->assertSame( 'ac_mcp_tool_disabled', $error->get_error_code() );
 	}
 
-	public function test_custom_code_is_off_by_default(): void {
-		$error = $this->governance()->check( 'bricks/execute-php', array(), $this->ability( 'bricks/execute-php', false ) );
+	public function test_custom_code_is_blocked_even_if_legacy_setting_is_enabled(): void {
+		$error = $this->governance( array( 'custom_code_enabled' => true ) )->check( 'bricks/execute-php', array(), $this->ability( 'bricks/execute-php', false ) );
 		$this->assertSame( 'ac_mcp_custom_code_disabled', $error->get_error_code() );
 	}
 

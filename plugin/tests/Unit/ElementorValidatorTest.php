@@ -100,7 +100,7 @@ final class ElementorValidatorTest extends TestCase {
 		$this->assertStringContainsString( 'Close matches: template', $error->getMessage() );
 	}
 
-	public function test_html_widget_needs_custom_code_permission(): void {
+	public function test_html_widget_is_always_refused_in_directory_build(): void {
 		$html = array( array( 'elType' => 'container', 'elements' => array( array( 'elType' => 'widget', 'widgetType' => 'html', 'settings' => array( 'html' => '<p>x</p>' ) ) ) ) );
 		try {
 			$this->validator()->specs( $html, null );
@@ -108,7 +108,5 @@ final class ElementorValidatorTest extends TestCase {
 		} catch ( \AcMcp\Support\TreeError $error ) {
 			$this->assertSame( 'custom_code_disabled', $error->error_code );
 		}
-		( new Validator( new ElementorArrayCatalog(), true ) )->specs( $html, null );
-		$this->addToAssertionCount( 1 );
 	}
 }

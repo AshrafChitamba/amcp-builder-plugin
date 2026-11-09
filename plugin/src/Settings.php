@@ -21,20 +21,19 @@ final class Settings {
 	 * type the sanitizer enforces.
 	 */
 	public const DEFAULTS = array(
-		'kill_switch'         => false,
-		'read_only'           => false,
-		'dry_run_default'     => false,
-		'custom_code_enabled' => false,
-		'disabled_tools'      => array(),
-		'rate_limit_reads'    => 120,
-		'rate_limit_writes'   => 30,
-		'snapshot_keep'       => 20,
-		'snapshot_days'       => 30,
-		'audit_days'          => 90,
-		'post_lock'           => 'deny',
-		'design_guide'        => true,
-		'oauth_enabled'       => true,
-		'design_guidelines'   => '',
+		'kill_switch'       => false,
+		'read_only'         => false,
+		'dry_run_default'   => false,
+		'disabled_tools'    => array(),
+		'rate_limit_reads'  => 120,
+		'rate_limit_writes' => 30,
+		'snapshot_keep'     => 20,
+		'snapshot_days'     => 30,
+		'audit_days'        => 90,
+		'post_lock'         => 'deny',
+		'design_guide'      => true,
+		'oauth_enabled'     => true,
+		'design_guidelines' => '',
 	);
 
 	/** Free-text settings and their maximum length. */

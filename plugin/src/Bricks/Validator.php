@@ -35,7 +35,7 @@ final class Validator {
 		'_hideElementFrontend',
 	);
 
-	public function __construct( private Catalog $catalog, private bool $allow_custom_code = false ) {}
+	public function __construct( private Catalog $catalog ) {}
 
 	/**
 	 * @param mixed       $specs       Nested specs from the caller.
@@ -66,7 +66,7 @@ final class Validator {
 	 * @param mixed $settings Settings object.
 	 */
 	public function settings( string $name, $settings ): void {
-		if ( ! $this->allow_custom_code && is_array( $settings ) && ( 'code' === $name || ( 'svg' === $name && isset( $settings['code'] ) ) ) ) {
+		if ( is_array( $settings ) && ( 'code' === $name || ( 'svg' === $name && isset( $settings['code'] ) ) ) ) {
 			throw \AcMcp\Support\CustomCode::refusal( 'code' === $name ? 'A Code element' : 'An SVG element with inline code' );
 		}
 		if ( ! is_array( $settings ) || ( $settings && array_is_list( $settings ) ) ) {
