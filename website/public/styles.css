@@ -715,6 +715,11 @@ button {
 .elementor-logo {
 	width: 124px;
 }
+.bricks-logo {
+	width: 34px;
+	height: 34px;
+	object-fit: contain;
+}
 .bricks-symbol {
 	background: #d8e8ff;
 	color: #1867cf;

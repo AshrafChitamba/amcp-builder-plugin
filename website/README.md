@@ -11,4 +11,4 @@ When publishing a later release, replace the ZIP and update its link, version, a
 
 The GitHub link currently points to this repository: `https://github.com/AshrafChitamba/amcp-builder-plugin`. Change the `href` on the header’s `.github-link` in `public/index.html` when the website gets its own repository.
 
-The Elementor builder card uses the supplied Elementor logo package (`public/elementor-logo.svg`). The AC logo favicon is `public/favicon.svg`.
+The builder cards use the supplied Elementor and Bricks logos (`public/elementor-logo.svg` and `public/bricks-logo.svg`). The AC logo favicon is `public/favicon.svg`.
