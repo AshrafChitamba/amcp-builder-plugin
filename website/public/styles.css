@@ -5,9 +5,10 @@
 	--blue-dark: #0e50c2;
 	--paper: #f6f8fb;
 	--line: #dce3ec;
-	--mono: "IBM Plex Mono", monospace;
-	--sans: "IBM Plex Sans", sans-serif;
-	--display: "IBM Plex Sans", sans-serif;
+	--mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+	--sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--display: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--gutter: max(9vw, calc((100vw - 1280px) / 2));
 	scroll-behavior: smooth;
 	scroll-padding-top: 78px;
 }
@@ -46,7 +47,7 @@ button {
 }
 .site-header {
 	height: 78px;
-	padding: 0 max(9vw, calc((100vw - 1280px) / 2));
+	padding: 0 var(--gutter);
 	display: flex;
 	align-items: center;
 	gap: 46px;
@@ -135,7 +136,7 @@ button {
 	min-height: calc(100svh - 78px);
 	background: #101a2d;
 	color: #fff;
-	padding: clamp(62px, 8vw, 110px) max(7vw, 24px) 74px;
+	padding: clamp(62px, 8vw, 110px) var(--gutter) 74px;
 	display: grid;
 	grid-template-columns: minmax(340px, 0.88fr) minmax(470px, 1.12fr);
 	align-items: center;
@@ -146,22 +147,6 @@ button {
 	position: relative;
 	z-index: 1;
 	max-width: 610px;
-}
-.hero-markline {
-	font: 11px var(--mono);
-	letter-spacing: 0.04em;
-	color: #aab7ca;
-	display: flex;
-	align-items: center;
-	gap: 9px;
-	margin-bottom: 30px;
-}
-.status-dot {
-	width: 7px;
-	height: 7px;
-	border-radius: 100%;
-	background: #6ee3a1;
-	box-shadow: 0 0 0 4px #6ee3a11c;
 }
 .hero h1 {
 	font: 600 clamp(48px, 5vw, 64px)/1.06 var(--display);
@@ -226,15 +211,18 @@ button {
 	margin: 25px 0;
 }
 .hero-visual {
+	--node-offset: -26px;
 	position: relative;
 	z-index: 1;
+	width: min(100%, 530px);
+	justify-self: center;
 	min-height: 440px;
 	display: grid;
 	place-items: center;
 }
 .assistant-window {
 	position: relative;
-	width: min(100%, 530px);
+	width: 100%;
 	background: #17243a;
 	border: 1px solid #34435a;
 	border-radius: 14px;
@@ -293,26 +281,12 @@ button {
 	font-size: 11px;
 	line-height: 1.6;
 	color: #e0e6ef;
+	margin-bottom: 20px;
 }
 .message-time {
-	margin-top: 6px;
+	margin-top: 4px;
 	color: #9aa7bb;
 	font: 9px var(--mono);
-}
-.connector-line {
-	height: 37px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	color: #80aef9;
-	font: 9px var(--mono);
-	letter-spacing: 0.08em;
-}
-.connector-line span {
-	height: 1px;
-	width: 70px;
-	background: #3b5c8d;
 }
 .site-window {
 	border: 1px solid #3a4657;
@@ -422,34 +396,44 @@ button {
 	height: 63px;
 	background: #c09b78;
 }
-.visual-caption {
-	font: 9px var(--mono);
-	color: #9ca9bb;
-	padding-top: 12px;
-	display: flex;
-	gap: 7px;
-	align-items: center;
-}
-.caption-check {
-	color: #6ee3a1;
-}
-.caption-check .icon {
-	width: 12px;
-	height: 12px;
-}
 .orbit {
 	position: absolute;
-	border: 1px solid #384967;
-	border-radius: 50%;
-	width: 550px;
-	height: 330px;
+	pointer-events: none;
+}
+.orbit svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+.orbit ellipse {
+	fill: none;
+	stroke: #405a82;
+	stroke-width: 1;
+}
+.orbit-one {
+	width: min(134%, 700px);
+	aspect-ratio: 550 / 330;
 	transform: rotate(-25deg);
 }
 .orbit-two {
-	width: 500px;
-	height: 410px;
+	width: min(120%, 610px);
+	aspect-ratio: 500 / 410;
 	transform: rotate(34deg);
-	border-color: #293b57;
+}
+.orbit-two ellipse {
+	stroke: #324b70;
+}
+.orbit-dot {
+	filter: drop-shadow(0 0 5px currentColor);
+}
+.dot-wp {
+	fill: #4d90ff;
+	color: #1769e8;
+}
+.dot-ai {
+	fill: #e6eeff;
+	color: #9ac2ff;
 }
 .floating-node {
 	position: absolute;
@@ -460,29 +444,29 @@ button {
 	box-shadow: 0 12px 30px #08101f88;
 }
 .node-wp {
-	right: 0;
-	top: 60px;
-	width: 46px;
-	height: 46px;
+	right: var(--node-offset);
+	top: 14%;
+	width: clamp(38px, 9vw, 46px);
+	aspect-ratio: 1;
 	background: #1769e8;
 	color: white;
 }
 .node-wp svg {
-	width: 27px;
-	height: 27px;
+	width: 58%;
+	height: 58%;
 	color: #fff;
 }
 .node-ai {
-	bottom: 36px;
-	left: 0;
-	width: 41px;
-	height: 41px;
+	left: var(--node-offset);
+	bottom: 9%;
+	width: clamp(34px, 8vw, 41px);
+	aspect-ratio: 1;
 	background: #fbfbff;
 	color: #5d6f8c;
 }
 .node-ai .icon {
-	width: 21px;
-	height: 21px;
+	width: 52%;
+	height: 52%;
 }
 .hero-bottom {
 	grid-column: 1/-1;
@@ -504,16 +488,7 @@ button {
 .workflow {
 	background: #fff;
 	min-height: 88vh;
-	padding: clamp(75px, 9vw, 125px) max(9vw, 28px);
-}
-.section-index {
-	font: 10px var(--mono);
-	letter-spacing: 0.08em;
-	color: #7e8a9c;
-	margin: 0 0 21px;
-}
-.section-index span {
-	color: #abb4c1;
+	padding: clamp(75px, 9vw, 125px) var(--gutter);
 }
 .section-intro {
 	max-width: 700px;
@@ -632,7 +607,7 @@ button {
 	min-height: 95vh;
 	background: #1769e8;
 	color: #fff;
-	padding: clamp(76px, 8vw, 110px) max(7vw, 24px) 70px;
+	padding: clamp(76px, 8vw, 110px) var(--gutter) 70px;
 	overflow: hidden;
 }
 .builders:after {
@@ -645,12 +620,6 @@ button {
 	right: -200px;
 	top: -240px;
 	pointer-events: none;
-}
-.section-index-light {
-	color: #bdcff0;
-}
-.section-index-light span {
-	color: #93b4ea;
 }
 .builders-heading {
 	max-width: 710px;
@@ -692,17 +661,6 @@ button {
 	font: 9px var(--mono);
 	letter-spacing: 0.07em;
 }
-.builder-symbol {
-	width: 34px;
-	height: 34px;
-	border-radius: 8px;
-	display: grid;
-	place-items: center;
-}
-.builder-symbol .icon {
-	width: 20px;
-	height: 20px;
-}
 .builder-logo {
 	display: block;
 	width: 128px;
@@ -717,14 +675,6 @@ button {
 	width: 34px;
 	height: 34px;
 	object-fit: contain;
-}
-.bricks-symbol {
-	background: #d8e8ff;
-	color: #1867cf;
-}
-.elementor-symbol {
-	background: #fae4ec;
-	color: #ce3c77;
 }
 .builder-panel h3 {
 	font: 700 25px var(--display);
@@ -852,7 +802,7 @@ button {
 .safety {
 	background: #f6f8fb;
 	min-height: 90vh;
-	padding: clamp(78px, 9vw, 120px) max(9vw, 28px);
+	padding: clamp(78px, 9vw, 120px) var(--gutter);
 	display: grid;
 	grid-template-columns: 0.83fr 1.17fr;
 	gap: clamp(48px, 8vw, 120px);
@@ -922,7 +872,7 @@ button {
 .downloads {
 	background: #101a2d;
 	color: #fff;
-	padding: clamp(76px, 9vw, 120px) max(9vw, 28px) 70px;
+	padding: clamp(76px, 9vw, 120px) var(--gutter) 70px;
 	min-height: 95vh;
 }
 .downloads-head {
@@ -1058,7 +1008,7 @@ button {
 }
 .setup {
 	background: #fff;
-	padding: clamp(78px, 9vw, 120px) max(9vw, 28px);
+	padding: clamp(78px, 9vw, 120px) var(--gutter);
 	display: grid;
 	grid-template-columns: 0.85fr 1.15fr;
 	gap: clamp(45px, 9vw, 130px);
@@ -1068,7 +1018,7 @@ button {
 .setup-copy h2 {
 	font-size: clamp(38px, 4.7vw, 59px);
 }
-.setup-copy > p:not(.section-index) {
+.setup-copy > p {
 	font-size: 13px;
 	line-height: 1.75;
 	color: #697587;
@@ -1113,7 +1063,7 @@ button {
 .site-footer {
 	background: #101a2d;
 	color: #fff;
-	padding: 34px max(7vw, 24px);
+	padding: 34px var(--gutter);
 	display: flex;
 	align-items: center;
 	gap: 23px;
@@ -1140,16 +1090,21 @@ button {
 	font: 9px var(--mono);
 	color: #768499;
 }
-@media (min-width: 1200px) {
+@media (max-width: 1080px) {
 	.hero {
-		padding-left: max(9vw, calc((100vw - 1280px) / 2));
-		padding-right: max(9vw, calc((100vw - 1280px) / 2));
+		grid-template-columns: minmax(0, 1fr);
+		gap: 25px;
+	}
+	.hero-copy {
+		max-width: 700px;
 	}
 }
 @media (max-width: 900px) {
+	:root {
+		--gutter: 6vw;
+	}
 	.site-header {
 		gap: 22px;
-		padding: 0 6vw;
 	}
 	.nav-links {
 		gap: 17px;
@@ -1160,8 +1115,6 @@ button {
 	}
 	.hero {
 		grid-template-columns: minmax(0, 1fr);
-		padding-left: 6vw;
-		padding-right: 6vw;
 		gap: 25px;
 	}
 	.hero-copy {
@@ -1178,13 +1131,6 @@ button {
 		padding-left: 12px;
 		padding-right: 12px;
 	}
-	.workflow,
-	.safety,
-	.downloads,
-	.setup {
-		padding-left: 6vw;
-		padding-right: 6vw;
-	}
 	.safety {
 		gap: 45px;
 	}
@@ -1199,11 +1145,11 @@ button {
 }
 @media (max-width: 680px) {
 	:root {
+		--gutter: 23px;
 		scroll-padding-top: 65px;
 	}
 	.site-header {
 		height: 65px;
-		padding: 0 23px;
 		gap: 0;
 	}
 	.brand {
@@ -1264,15 +1210,11 @@ button {
 	}
 	.hero {
 		min-height: auto;
-		padding: 62px 23px 30px;
+		padding: 62px var(--gutter) 30px;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
 		gap: 25px;
-	}
-	.hero-markline {
-		font-size: 9px;
-		margin-bottom: 23px;
 	}
 	.hero h1 {
 		font-size: clamp(43px, 12vw, 61px);
@@ -1295,37 +1237,14 @@ button {
 		margin: 18px 0 0;
 	}
 	.hero-visual {
+		--node-offset: -12px;
 		min-height: 300px;
-		margin: 0 -5px;
-	}
-	.assistant-window {
-		max-width: 480px;
 	}
 	.site-canvas {
 		height: 158px;
 	}
 	.canvas-heading {
 		margin-top: 23px;
-	}
-	.orbit {
-		width: 410px;
-		height: 260px;
-	}
-	.orbit-two {
-		width: 380px;
-		height: 310px;
-	}
-	.node-wp {
-		right: -3px;
-		top: -32px;
-		width: 39px;
-		height: 39px;
-	}
-	.node-ai {
-		bottom: 30px;
-		left: 1px;
-		width: 35px;
-		height: 35px;
 	}
 	.hero-bottom {
 		gap: 9px;
@@ -1342,7 +1261,8 @@ button {
 	.safety,
 	.downloads,
 	.setup {
-		padding: 66px 23px;
+		padding-top: 66px;
+		padding-bottom: 66px;
 		min-height: 0;
 	}
 	.section-intro h2,
@@ -1496,14 +1416,15 @@ button {
 		grid-template-columns: 1fr;
 		gap: 35px;
 	}
-	.setup-copy > p:not(.section-index) {
+	.setup-copy > p {
 		font-size: 12px;
 	}
 	.setup-steps li {
 		padding: 16px 0;
 	}
 	.site-footer {
-		padding: 29px 23px;
+		padding-top: 29px;
+		padding-bottom: 29px;
 		gap: 13px 18px;
 	}
 	.site-footer p {

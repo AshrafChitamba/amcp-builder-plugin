@@ -18,11 +18,11 @@
 			content="Connect your AI assistant to WordPress and build native Bricks and Elementor pages with AC MCP."
 		/>
 		<title>AC MCP — AI, connected to your WordPress site</title>
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="./styles.css" />
@@ -205,8 +205,33 @@
 					role="group"
 					aria-label="Diagram showing an AI assistant making a native page in WordPress"
 				>
-					<div class="orbit orbit-one"></div>
-					<div class="orbit orbit-two"></div>
+					<div class="orbit orbit-one" aria-hidden="true">
+						<svg viewBox="0 0 550 330" focusable="false">
+							<ellipse cx="275.0" cy="165.0" rx="274.5" ry="164.5" />
+							<circle class="orbit-dot dot-wp" r="4">
+								<animateMotion
+									dur="16s"
+									repeatCount="indefinite"
+									path="M0.5,165.0 a274.5,164.5 0 1,0 549,0 a274.5,164.5 0 1,0 -549,0Z"
+								/>
+							</circle>
+						</svg>
+					</div>
+					<div class="orbit orbit-two" aria-hidden="true">
+						<svg viewBox="0 0 500 410" focusable="false">
+							<ellipse cx="250.0" cy="205.0" rx="249.5" ry="204.5" />
+							<circle class="orbit-dot dot-ai" r="4">
+								<animateMotion
+									dur="24s"
+									repeatCount="indefinite"
+									path="M0.5,205.0 a249.5,204.5 0 1,0 499,0 a249.5,204.5 0 1,0 -499,0Z"
+									keyPoints="1;0"
+									keyTimes="0;1"
+									calcMode="linear"
+								/>
+							</circle>
+						</svg>
+					</div>
 					<div class="assistant-window">
 						<div class="window-top">
 							<div class="window-dots"><i></i><i></i><i></i></div>
@@ -226,9 +251,7 @@
 								<div class="message-time">Just now</div>
 							</div>
 						</div>
-						<div class="connector-line">
-							<span></span><b>AC MCP</b><span></span>
-						</div>
+
 						<div class="site-window">
 							<div class="site-top">
 								<span class="site-icon"
@@ -245,7 +268,7 @@
 										CONTACT</span
 									>
 								</div>
-								<div class="canvas-hero">
+								<div>
 									<div class="canvas-heading">
 										Spaces for<br />the way you live.
 									</div>
@@ -262,13 +285,6 @@
 								<div class="canvas-blocks"><i></i><i></i><i></i></div>
 							</div>
 						</div>
-						<div class="visual-caption">
-							<span class="caption-check"
-								><svg class="icon" aria-hidden="true">
-									<use href="#icon-check" /></svg
-							></span>
-							Built with native Bricks elements
-						</div>
 					</div>
 					<div class="floating-node node-wp">
 						<svg aria-hidden="true"><use href="#icon-wordpress" /></svg>
@@ -281,7 +297,7 @@
 				</div>
 				<div class="hero-bottom">
 					<span>CHATGPT</span><i></i><span>CLAUDE</span><i></i><span>CODEX</span
-					><i></i><span>CURSOR</span><i></i><span>AND MORE</span>
+					><i></i><span>CURSOR</span><i></i><span>ANY MCP CLIENT</span>
 				</div>
 			</section>
 
@@ -374,7 +390,7 @@
 					</p>
 				</div>
 				<div class="builder-panels">
-					<article class="builder-panel bricks-panel">
+					<article class="builder-panel">
 						<div class="builder-top">
 							<img
 								class="builder-logo bricks-logo"
@@ -393,7 +409,7 @@
 							<li>Elements, global classes and theme styles</li>
 							<li>Color palettes, CSS variables and query loops</li>
 						</ul>
-						<div class="builder-art bricks-art" aria-hidden="true">
+						<div class="builder-art" aria-hidden="true">
 							<div class="art-label">PAGE STRUCTURE</div>
 							<div class="tree-row selected">
 								<svg class="tree-icon" aria-hidden="true">
@@ -428,7 +444,7 @@
 							<div class="art-glow"></div>
 						</div>
 					</article>
-					<article class="builder-panel elementor-panel">
+					<article class="builder-panel">
 						<div class="builder-top">
 							<img
 								class="builder-logo elementor-logo"
@@ -580,7 +596,7 @@
 					</p>
 				</div>
 				<div class="download-grid">
-					<article class="download-card directory-card">
+					<article class="download-card">
 						<div class="package-line">
 							<span class="package-icon"
 								><svg aria-hidden="true">
@@ -712,6 +728,6 @@
 					<use href="#icon-arrow-up-right" /></svg></a
 			><span class="footer-license">Free · Open source · GPL-2.0-or-later</span>
 		</footer>
-		<script src="/script.js" defer></script>
+		<script src="./script.js" defer></script>
 	</body>
 </html>
