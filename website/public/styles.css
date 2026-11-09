@@ -735,6 +735,11 @@ button {
 	height: 13px;
 	flex: none;
 	color: #8996a9;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 	margin-right: 8px;
 }
 .tree-row b {
