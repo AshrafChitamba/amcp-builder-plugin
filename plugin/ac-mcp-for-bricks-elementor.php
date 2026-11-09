@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       AC MCP for Bricks and Elementor
  * Description:       Lets AI assistants such as Claude, ChatGPT and Codex build and edit Bricks and Elementor pages, templates and design systems through MCP, with read-only mode, snapshots and an audit log.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 7.1
  * Requires PHP:      8.1
  * Requires Plugins:  mcp-adapter
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AC_MCP_VERSION', '1.0.0' );
+define( 'AC_MCP_VERSION', '1.0.1' );
 define( 'AC_MCP_FILE', __FILE__ );
 define( 'AC_MCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AC_MCP_URL', plugin_dir_url( __FILE__ ) );

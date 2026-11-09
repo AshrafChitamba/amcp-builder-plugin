@@ -47,7 +47,7 @@ final class UpdatePageSettings extends BricksAbility {
 	protected function description(): string {
 		return 'Changes Bricks page settings of a page or template: bodyClasses, headerDisabled, footerDisabled, popupDisabled, disableLazyLoad, documentTitle, metaDescription, metaKeywords, metaRobots, '
 			. 'sharingTitle, sharingDescription, sharingImage ({"id":..,"url":..}), customCss (use "#brxe-ID" or body classes as selectors). A null value removes a setting. '
-			. 'Page scripts (customScriptsHeader, customScriptsBodyHeader, customScriptsBodyFooter) are custom code and only work when custom code is allowed. A snapshot is taken first.';
+			. 'Page scripts (customScriptsHeader, customScriptsBodyHeader, customScriptsBodyFooter) are not available in this directory version. A snapshot is taken first.';
 	}
 
 	protected function properties(): array {
@@ -90,7 +90,7 @@ final class UpdatePageSettings extends BricksAbility {
 			if ( 'customCss' === $key && null !== $value && ! current_user_can( 'unfiltered_html' ) ) {
 				return Errors::make( 'unfiltered_html_required', __( 'Your account cannot save raw page CSS.', 'ac-mcp-for-bricks-elementor' ), __( 'Use native element settings instead, or ask an administrator.', 'ac-mcp-for-bricks-elementor' ), 403 );
 			}
-			if ( $is_script && ! CustomCode::allowed( $this->settings ) ) {
+			if ( $is_script && ! CustomCode::allowed() ) {
 				return CustomCode::refusal( 'Page scripts' )->to_wp_error();
 			}
 			if ( null === $value || false === $value ) {

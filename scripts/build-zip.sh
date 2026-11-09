@@ -16,7 +16,7 @@ echo "Building AC MCP for Bricks and Elementor $VERSION"
 mkdir -p "$TARGET"
 cp -R "$ROOT/plugin/src" "$ROOT/plugin/build" "$ROOT/plugin/languages" "$ROOT/plugin/guides" "$TARGET/"
 cp "$ROOT/plugin/ac-mcp-for-bricks-elementor.php" "$ROOT/plugin/uninstall.php" "$ROOT/plugin/readme.txt" \
-	"$ROOT/plugin/LICENSE" "$ROOT/plugin/composer.json" "$TARGET/"
+	"$ROOT/plugin/LICENSE" "$ROOT/plugin/composer.json" "$ROOT/plugin/composer.lock" "$TARGET/"
 
 (cd "$TARGET" && composer install --no-dev --optimize-autoloader --no-interaction --quiet && rm composer.lock)
 # WordPress.org expects composer.json next to vendor/, and no hidden files.

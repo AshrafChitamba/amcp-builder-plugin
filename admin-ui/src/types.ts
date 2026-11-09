@@ -64,7 +64,6 @@ export interface Settings {
 	kill_switch: boolean;
 	read_only: boolean;
 	dry_run_default: boolean;
-	custom_code_enabled: boolean;
 	disabled_tools: string[];
 	rate_limit_reads: number;
 	rate_limit_writes: number;

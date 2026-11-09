@@ -89,7 +89,7 @@ final class Server {
 	}
 
 	/**
-	 * rest_url() that is safe to call before WordPress has created $wp_rewrite.
+	 * REST URL helper that is safe to call before WordPress has created $wp_rewrite.
 	 *
 	 * Plugins such as Elementor Pro resolve the current user while plugins are still loading,
 	 * which runs the bearer-token check before wp-settings.php sets up the rewrite object.
