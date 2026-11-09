@@ -18,9 +18,3 @@ nav?.querySelectorAll("a").forEach((link) => {
 		toggle?.setAttribute("aria-label", "Open navigation");
 	});
 });
-
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-	document.querySelectorAll(".orbit svg").forEach((svg) => {
-		svg.pauseAnimations?.();
-	});
-}

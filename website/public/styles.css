@@ -396,37 +396,6 @@ button {
 	height: 63px;
 	background: #c09b78;
 }
-.orbit {
-	position: absolute;
-	pointer-events: none;
-}
-.orbit svg {
-	display: block;
-	width: 100%;
-	height: 100%;
-	overflow: visible;
-}
-.orbit ellipse {
-	fill: none;
-	stroke: #405a82;
-	stroke-width: 1;
-}
-.orbit-one {
-	width: min(134%, 700px);
-	aspect-ratio: 550 / 330;
-	transform: rotate(-25deg);
-}
-.orbit-two {
-	width: min(120%, 610px);
-	aspect-ratio: 500 / 410;
-	transform: rotate(34deg);
-}
-.orbit-two ellipse {
-	stroke: #324b70;
-}
-.orbit-dot {
-	filter: drop-shadow(0 0 5px currentColor);
-}
 .dot-wp {
 	fill: #4d90ff;
 	color: #1769e8;
