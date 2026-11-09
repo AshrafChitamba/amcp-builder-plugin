@@ -10,3 +10,5 @@ The site uses the project’s current package artifacts:
 When publishing a later release, replace the ZIP and update its link, version, and feature notes in `index.html` together. The directory package is described as a submission build; the site does not claim WordPress.org approval or listing.
 
 The GitHub link currently points to this repository: `https://github.com/AshrafChitamba/amcp-builder-plugin`. Change the `href` on the header’s `.github-link` in `public/index.html` when the website gets its own repository.
+
+The Elementor builder card uses the supplied Elementor logo package (`public/elementor-logo.svg`). The AC logo favicon is `public/favicon.svg`.

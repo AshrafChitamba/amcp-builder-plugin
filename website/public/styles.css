@@ -707,6 +707,14 @@ button {
 	width: 20px;
 	height: 20px;
 }
+.builder-logo {
+	display: block;
+	width: 128px;
+	height: auto;
+}
+.elementor-logo {
+	width: 124px;
+}
 .bricks-symbol {
 	background: #d8e8ff;
 	color: #1867cf;
