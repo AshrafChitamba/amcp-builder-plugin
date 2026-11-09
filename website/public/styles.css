@@ -5,9 +5,9 @@
 	--blue-dark: #0e50c2;
 	--paper: #f6f8fb;
 	--line: #dce3ec;
-	--mono: "DM Mono", monospace;
-	--sans: "DM Sans", sans-serif;
-	--display: "Manrope", sans-serif;
+	--mono: "IBM Plex Mono", monospace;
+	--sans: "IBM Plex Sans", sans-serif;
+	--display: "IBM Plex Sans", sans-serif;
 	scroll-behavior: smooth;
 	scroll-padding-top: 78px;
 }
@@ -24,12 +24,29 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
+.icon-library {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+.icon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	flex: none;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
 button {
 	font: inherit;
 }
 .site-header {
 	height: 78px;
-	padding: 0 max(5.7vw, 24px);
+	padding: 0 max(9vw, calc((100vw - 1280px) / 2));
 	display: flex;
 	align-items: center;
 	gap: 46px;
@@ -77,6 +94,17 @@ button {
 .site-footer a:hover {
 	color: #fff;
 }
+.github-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+}
+.github-icon {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+	stroke: none;
+}
 .header-cta {
 	display: flex;
 	align-items: center;
@@ -91,6 +119,10 @@ button {
 .header-cta:hover {
 	background: #fff;
 	color: var(--ink);
+}
+.header-cta .icon {
+	width: 14px;
+	height: 14px;
 }
 .menu-toggle {
 	display: none;
@@ -133,7 +165,7 @@ button {
 }
 .hero h1 {
 	font: 600 clamp(48px, 5vw, 64px)/1.06 var(--display);
-	letter-spacing: -0.065em;
+	letter-spacing: -0.04em;
 	margin: 0;
 	max-width: 660px;
 }
@@ -177,7 +209,7 @@ button {
 	background: var(--blue);
 }
 .button-blue:hover {
-	background: #3681f6;
+	background: var(--blue-dark);
 }
 .text-link {
 	font-size: 13px;
@@ -191,7 +223,7 @@ button {
 	color: white;
 }
 .hero-note {
-	color: #8592a5;
+	color: #aab7ca;
 	font-size: 11px;
 	line-height: 1.6;
 	max-width: 390px;
@@ -235,7 +267,10 @@ button {
 	background: #566479;
 }
 .window-menu {
-	letter-spacing: 2px;
+	width: 20px;
+	height: 20px;
+	fill: currentColor;
+	stroke: none;
 }
 .assistant-content {
 	display: flex;
@@ -251,6 +286,10 @@ button {
 	background: #283c5b;
 	border-radius: 7px;
 	color: #9ac2ff;
+}
+.assistant-avatar .icon {
+	width: 16px;
+	height: 16px;
 }
 .assistant-message {
 	min-width: 0;
@@ -303,7 +342,11 @@ button {
 	color: #fff;
 	display: grid;
 	place-items: center;
-	font: bold 9px Arial;
+}
+.site-icon svg {
+	width: 100%;
+	height: 100%;
+	color: #fff;
 }
 .live-pill {
 	margin-left: auto;
@@ -340,7 +383,7 @@ button {
 }
 .canvas-heading {
 	font: 700 clamp(22px, 3vw, 35px)/1.02 var(--display);
-	letter-spacing: -0.06em;
+	letter-spacing: -0.04em;
 	margin-top: 31px;
 }
 .canvas-sub {
@@ -353,8 +396,14 @@ button {
 	background: #303b34;
 	color: #fff;
 	border-radius: 2px;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
 	font-size: 7px;
+}
+.canvas-button .icon {
+	width: 9px;
+	height: 9px;
 }
 .canvas-blocks {
 	display: flex;
@@ -388,6 +437,10 @@ button {
 .caption-check {
 	color: #6ee3a1;
 }
+.caption-check .icon {
+	width: 12px;
+	height: 12px;
+}
 .orbit {
 	position: absolute;
 	border: 1px solid #384967;
@@ -417,7 +470,11 @@ button {
 	height: 46px;
 	background: #1769e8;
 	color: white;
-	font: 700 22px Georgia;
+}
+.node-wp svg {
+	width: 27px;
+	height: 27px;
+	color: #fff;
 }
 .node-ai {
 	bottom: 36px;
@@ -426,7 +483,10 @@ button {
 	height: 41px;
 	background: #fbfbff;
 	color: #5d6f8c;
-	font-size: 22px;
+}
+.node-ai .icon {
+	width: 21px;
+	height: 21px;
 }
 .hero-bottom {
 	grid-column: 1/-1;
@@ -434,7 +494,7 @@ button {
 	align-items: center;
 	justify-content: center;
 	gap: 21px;
-	color: #8592a5;
+	color: #aab7ca;
 	font: 10px var(--mono);
 	letter-spacing: 0.09em;
 	margin-top: 8px;
@@ -468,7 +528,7 @@ button {
 .downloads h2,
 .setup h2 {
 	font: 600 clamp(38px, 5.1vw, 64px)/1.1 var(--display);
-	letter-spacing: -0.06em;
+	letter-spacing: -0.04em;
 	margin: 0;
 }
 .section-intro > p:last-child {
@@ -497,7 +557,10 @@ button {
 	border-radius: 18px;
 	display: grid;
 	place-items: center;
-	font-size: 27px;
+}
+.flow-icon .icon {
+	width: 28px;
+	height: 28px;
 }
 .ai-icon {
 	background: #eff4fc;
@@ -509,11 +572,15 @@ button {
 .ac-icon svg {
 	width: 34px;
 	fill: var(--blue);
+	stroke: none;
 }
 .wp-icon {
 	background: #e9f0ff;
 	color: #1769e8;
-	font: 700 28px Georgia;
+}
+.wp-icon svg {
+	width: 34px;
+	height: 34px;
 }
 .flow-step h3 {
 	margin: 0;
@@ -635,7 +702,10 @@ button {
 	border-radius: 8px;
 	display: grid;
 	place-items: center;
-	font: 700 20px var(--display);
+}
+.builder-symbol .icon {
+	width: 20px;
+	height: 20px;
 }
 .bricks-symbol {
 	background: #d8e8ff;
@@ -647,7 +717,7 @@ button {
 }
 .builder-panel h3 {
 	font: 700 25px var(--display);
-	letter-spacing: -0.05em;
+	letter-spacing: -0.025em;
 	margin: 19px 0 5px;
 }
 .builder-panel > p {
@@ -696,8 +766,13 @@ button {
 	width: 70%;
 	position: relative;
 	z-index: 1;
+	display: flex;
+	align-items: center;
 }
-.tree-row span {
+.tree-icon {
+	width: 13px;
+	height: 13px;
+	flex: none;
 	color: #8996a9;
 	margin-right: 8px;
 }
@@ -748,10 +823,15 @@ button {
 	gap: 4px;
 	color: #8e496b;
 	font-size: 12px;
+	flex-direction: column;
 }
 .widget-grid small {
 	font-size: 7px;
 	color: #697587;
+}
+.widget-grid .icon {
+	width: 16px;
+	height: 16px;
 }
 .builder-note {
 	font: 9px var(--mono);
@@ -807,6 +887,10 @@ button {
 	place-items: center;
 	color: var(--blue);
 	font-size: 19px;
+}
+.safety-icon .icon {
+	width: 20px;
+	height: 20px;
 }
 .safety-list h3 {
 	margin: 1px 0 6px;
@@ -877,11 +961,18 @@ button {
 	place-items: center;
 	background: #e5edf9;
 	color: #1769e8;
-	font: 700 16px Georgia;
+}
+.package-icon svg {
+	width: 20px;
+	height: 20px;
+	color: #1769e8;
 }
 .full-package-icon {
 	background: #d4e3ff;
-	font: 17px var(--sans);
+}
+.full-package-icon .icon {
+	width: 16px;
+	height: 16px;
 }
 .version-pill {
 	margin-left: auto;
@@ -897,7 +988,7 @@ button {
 .download-card h3 {
 	margin: 20px 0 6px;
 	font: 700 25px var(--display);
-	letter-spacing: -0.05em;
+	letter-spacing: -0.025em;
 }
 .package-desc {
 	font-size: 12px;
@@ -948,9 +1039,11 @@ button {
 	font-size: 11px;
 	margin: 0;
 }
-.install-reminder span {
+.install-reminder > .icon {
+	width: 16px;
+	height: 16px;
 	color: #f0c26f;
-	font-size: 16px;
+	flex: none;
 }
 .setup {
 	background: #fff;
@@ -1045,7 +1138,7 @@ button {
 @media (max-width: 900px) {
 	.site-header {
 		gap: 22px;
-		padding: 0 25px;
+		padding: 0 6vw;
 	}
 	.nav-links {
 		gap: 17px;
@@ -1055,16 +1148,20 @@ button {
 		padding: 11px 12px;
 	}
 	.hero {
-		grid-template-columns: 1fr 1fr;
-		padding-left: 5vw;
-		padding-right: 5vw;
+		grid-template-columns: minmax(0, 1fr);
+		padding-left: 6vw;
+		padding-right: 6vw;
 		gap: 25px;
+	}
+	.hero-copy {
+		max-width: 700px;
 	}
 	.hero h1 {
 		font-size: clamp(44px, 5vw, 58px);
 	}
 	.hero-visual {
 		min-height: 390px;
+		margin-top: 8px;
 	}
 	.assistant-window {
 		padding-left: 12px;
@@ -1095,7 +1192,7 @@ button {
 	}
 	.site-header {
 		height: 65px;
-		padding: 0 19px;
+		padding: 0 23px;
 		gap: 0;
 	}
 	.brand {
@@ -1112,7 +1209,7 @@ button {
 		border: 0;
 		padding: 10px;
 	}
-	.header-cta span {
+	.header-cta .icon {
 		display: none;
 	}
 	.menu-toggle {
