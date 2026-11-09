@@ -6,6 +6,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-09
+
+### Changed
+- Removed remote custom-code entry points from the WordPress.org directory build, including Bricks Code/SVG elements, page scripts, Elementor HTML widgets, and Bricks' PHP execution ability.
+- Bricks and Elementor template listings now apply each post's `read_post` capability before returning its details.
+- Removed the custom-code enable switch and its stored setting from the directory build.
+- Updated the plugin and WordPress.org stable versions to 1.0.1.
+
 ## [1.0.0] - 2026-10-20
 
 ### Changed

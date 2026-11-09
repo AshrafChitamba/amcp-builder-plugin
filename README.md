@@ -1,6 +1,6 @@
 # AC MCP for Bricks and Elementor
 
-A free, open-source WordPress plugin that lets AI assistants (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). It uses each builder's native elements and settings, never hidden code unless you turn on the optional custom-code switch.
+A free, open-source WordPress plugin that lets AI assistants (claude.ai, ChatGPT, Claude Code, OpenAI Codex, Cursor, VS Code, Gemini CLI and others) build and edit **Bricks** and **Elementor** pages, templates and design systems through the [Model Context Protocol](https://modelcontextprotocol.io). The WordPress.org directory version uses each builder's native elements and settings and does not let AI assistants add executable PHP, JavaScript or HTML code.
 
 Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 
@@ -21,7 +21,7 @@ The plugin registers its tools with the WordPress Abilities API and serves them 
 - **General:** list and create pages, change title, slug and status, search and upload media, snapshots and restore.
 - **Design that fits your site:** a built-in design guide (strong heroes that reflect the business, no labels above headings, one consistent design system, no new colors or fonts without permission) plus **your own design rules**, which the AI re-reads the moment you change them.
 - **Clear change reports:** every change returns front-end preview links, and the AI describes each changed section in a line or two.
-- **Safety:** snapshots before every change, dry run, read-only mode and read-only connections, per-tool switches, rate limits, editor-lock protection, an audit log and a kill switch. These rules also apply to the official Bricks and Elementor AI tools. Custom code is off by default, and Bricks code is never signed by the plugin.
+- **Safety:** snapshots before every change, dry run, read-only mode and read-only connections, per-tool switches, rate limits, editor-lock protection, an audit log and a kill switch. These rules also apply to the official Bricks and Elementor AI tools. The directory version blocks remote custom-code changes, including Bricks Code/SVG elements, page scripts and Elementor HTML widgets.
 
 ## Requirements
 

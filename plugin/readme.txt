@@ -5,7 +5,7 @@ Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 8.1
 Requires Plugins: mcp-adapter
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Lets AI assistants such as Claude, ChatGPT and Codex build and edit Bricks and E
 
 == Description ==
 
-AC MCP for Bricks and Elementor connects AI assistants to your site through the Model Context Protocol (MCP). The AI uses each builder's native elements and settings, never hidden code unless you turn on the optional custom-code switch.
+AC MCP for Bricks and Elementor connects AI assistants to your site through the Model Context Protocol (MCP). It uses each builder's native elements and settings. The directory version does not let AI assistants add executable PHP, JavaScript or HTML code.
 
 * One MCP endpoint for Bricks and Elementor.
 * Builds Bricks pages and templates from native elements, with display conditions, global classes, colors, variables, theme styles and page settings.
@@ -29,7 +29,7 @@ AC MCP for Bricks and Elementor sends no telemetry. It only makes outbound reque
 
 **Use a staging site first and keep backups.** AI assistants can change your pages.
 
-Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
+Built by Ashraf Chitambaa.
 
 == Installation ==
 
@@ -39,6 +39,14 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 4. Add your brand rules on the Design rules screen.
 
 == Changelog ==
+
+= 1.0.1 =
+* Blocked remote custom-code changes, including Bricks Code and SVG code, page scripts, and Elementor HTML widgets.
+* Filtered Bricks and Elementor template listings through WordPress post read permissions.
+* Removed the custom-code switch from the directory version.
+
+= 1.0.1 =
+Remote custom-code tools have been removed from the WordPress.org version.
 
 = 1.0.0 =
 * MCP Builder is now AC MCP for Bricks and Elementor. The connection URL changes to /wp-json/ac-mcp/mcp. Settings, snapshots, the audit log and connected apps are copied over automatically from MCP Builder.
@@ -52,7 +60,6 @@ Built by [Ashraf Chitambaa](https://ashrafchitambaa.com).
 * Bricks: templates and display conditions, color palettes, variables, theme styles, page settings, code-signature status.
 * Elementor: templates, Pro display conditions, kit globals.
 * New tools: get-design-guide, update-page, upload-media. Guides as MCP resources and prompts; your own design guidelines in the Tools tab.
-* Custom code (Bricks Code/SVG code, page scripts, Elementor HTML widget) is now refused unless enabled.
 
 = 0.3.0 =
 * Elementor tools: get page, list widgets, widget schema, site globals, add/update/move/duplicate/remove elements, page settings (template). Atomic (v4) elements stay read-only.
