@@ -65,6 +65,9 @@ final class ListTemplates extends BricksAbility {
 
 		$items = array();
 		foreach ( ( new WP_Query( $args ) )->posts as $post ) {
+			if ( ! current_user_can( 'read_post', $post->ID ) ) {
+				continue;
+			}
 			$settings = get_post_meta( $post->ID, Templates::SETTINGS_META, true );
 			$items[]  = array(
 				'id'              => $post->ID,

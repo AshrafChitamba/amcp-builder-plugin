@@ -65,6 +65,9 @@ final class ListTemplates extends ElementorAbility {
 
 		$items = array();
 		foreach ( ( new WP_Query( $args ) )->posts as $post ) {
+			if ( ! current_user_can( 'read_post', $post->ID ) ) {
+				continue;
+			}
 			$items[] = array(
 				'id'              => $post->ID,
 				'title'           => Untrusted::text( $post->post_title ),

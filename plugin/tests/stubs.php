@@ -56,3 +56,21 @@ class WP_Ability {
 		return $this->meta;
 	}
 }
+
+class WP_Post {
+	public int $ID;
+	public string $post_title;
+	public string $post_status;
+	public string $post_type;
+}
+
+class WP_Query {
+	/** @var list<WP_Post> Posts returned by the query in unit tests. */
+	public static array $test_posts = array();
+	/** @var list<WP_Post> */
+	public array $posts;
+
+	public function __construct( array $args = array() ) {
+		$this->posts = self::$test_posts;
+	}
+}
